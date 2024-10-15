@@ -1,0 +1,22 @@
+GET
+/exchange/v1/public/get-expired-settlement-price
+false
+{
+  "id": -1,
+  "method": "public/get-expired-settlement-price",
+  "code": 0,
+  "result": {
+    "data": [{
+      "i": "BTCUSD-210528m2",
+      "x": 1622145600000,
+      "v": "50776.73000",
+      "t": 1622145540000
+    },
+      {
+        "i": "BTCUSD-210528m3",
+        "x": 1622160000000,
+        "v": "38545.570000",
+        "t": 1622159940000
+      }]
+  }
+}

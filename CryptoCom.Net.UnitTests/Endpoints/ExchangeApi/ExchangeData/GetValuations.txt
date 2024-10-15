@@ -1,0 +1,14 @@
+GET
+/exchange/v1/public/get-valuations
+false
+{
+  "id": 1,
+  "method": "public/get-valuations",
+  "code": 0,
+  "result": {
+    "data": [{
+      "v": "50776.73000",
+      "t": 1613547318000
+    }]
+  }
+}

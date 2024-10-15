@@ -1,0 +1,8 @@
+POST
+/exchange/v1/private/cancel-all-orders
+true
+{
+  "id": 1,
+  "method": "private/cancel-all-orders",
+  "code": 0
+}

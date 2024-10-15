@@ -1,0 +1,12 @@
+POST
+/exchange/v1/private/create-order
+true
+{
+  "id": 1,
+  "method": "private/create-order",
+  "code": 0,
+  "result": {
+    "client_oid": "c5f682ed-7108-4f1c-b755-972fcdca0f02",
+    "order_id": "18342311"
+  }
+}

@@ -1,0 +1,53 @@
+POST
+/exchange/v1/private/get-accounts
+true
+{
+  "id": 12,
+  "method": "private/get-accounts",
+  "code": 0,
+  "result": {
+    "master_account": {
+      "uuid": "243d3f39-b193-4eb9-1d60-e98f2fc17707",
+      "master_account_uuid": "291879ae-b769-4eb3-4d75-3366ebee7dd6",
+      "margin_account_uuid": "69c9ab41-5b95-4d75-b769-e45f2fc16507",
+      "enabled": true,
+      "tradable": true,
+      "name": "",
+      "email": "user@crypto.com",
+      "mobile_number": "",
+      "country_code": "",
+      "address": "",
+      "margin_access": "DEFAULT",
+      "derivatives_access": "DISABLED",
+      "create_time": 1620962543792,
+      "update_time": 1622019525960,
+      "two_fa_enabled": true,
+      "kyc_level": "ADVANCED",
+      "suspended": false,
+      "terminated": false
+    },
+    "sub_account_list": [
+      {
+        "uuid": "243d3f39-b193-4eb9-1d60-e98f2fc17707",
+        "master_account_uuid": "291879ae-b769-4eb3-4d75-3366ebee7dd6",
+        "margin_account_uuid": "69c9ab41-5b95-4d75-b769-e45f2fc16507",
+        "label": "Sub Account",
+        "enabled": true,
+        "tradable": true,
+        "name": "",
+        "email": "user@crypto.com",
+        "mobile_number": "",
+        "country_code": "",
+        "address": "",
+        "margin_access": "DEFAULT",
+        "derivatives_access": "DISABLED",
+        "create_time": 1620962543792,
+        "update_time": 1622019525960,
+        "two_fa_enabled": true,
+        "kyc_level": "ADVANCED",
+        "suspended": false,
+        "terminated": false
+      }
+    ]
+  }
+}

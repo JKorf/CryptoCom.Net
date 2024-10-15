@@ -1,0 +1,12 @@
+POST
+/exchange/v1/private/close-position
+true
+{
+  "id": 1,
+  "method": "private/close-position",
+  "code": 0,
+  "result": {
+    "client_oid": "1684d6e4-2c55-64e1-52c3-3aa9febc3a23",
+    "order_id": "15744"
+  }
+}

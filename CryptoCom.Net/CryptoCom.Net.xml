@@ -1,0 +1,1823 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CryptoCom.Net</name>
+    </assembly>
+    <members>
+        <member name="T:CryptoCom.Net.Clients.CryptoComRestClient">
+            <inheritdoc cref="T:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient" />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.CryptoComRestClient.ExchangeApi">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.#ctor(System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions})">
+            <summary>
+            Create a new instance of the CryptoComRestClient using provided options
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILoggerFactory,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions})">
+            <summary>
+            Create a new instance of the CryptoComRestClient using provided options
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="loggerFactory">The logger factory</param>
+            <param name="httpClient">Http client for this client</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.SetDefaultOptions(System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions})">
+            <summary>
+            Set the default options to be used when creating new clients
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.CryptoComSocketClient">
+            <inheritdoc cref="T:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient" />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.CryptoComSocketClient.ExchangeApi">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Create a new instance of CryptoComSocketClient
+            </summary>
+            <param name="loggerFactory">The logger factory</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions})">
+            <summary>
+            Create a new instance of CryptoComSocketClient
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Create a new instance of CryptoComSocketClient
+            </summary>
+            <param name="loggerFactory">The logger factory</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.SetDefaultOptions(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions})">
+            <summary>
+            Set the default options to be used when creating new clients
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi">
+            <inheritdoc cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi" />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.Account">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.ExchangeData">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.Trading">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.ExchangeName">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.CreateAccessor">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.CreateSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.GetServerTimestampAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.GetTimeSyncInfo">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.GetTimeOffset">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.SharedClient">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetBalancesAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetBalanceHistoryAsync(CryptoCom.Net.Enums.Timeframe,System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetAccountInfoAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetRiskParametersAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetSymbolsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetOrderBookAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetKlinesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetTickersAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetTradeHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetValuationsAsync(System.String,CryptoCom.Net.Enums.ValuationType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetExpiredSettlementPriceAsync(CryptoCom.Net.Enums.SymbolType,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetInsuranceAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.CancelAllOrdersAsync(System.String,System.Nullable{CryptoCom.Net.Enums.OrderTypeFilter},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi">
+            <summary>
+            Client providing access to the CryptoCom Exchange websocket Api
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoCom.Net.Objects.Options.CryptoComSocketOptions)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateAccessor">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToXXXUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComModel}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetAuthenticationRequest(CryptoExchange.Net.Sockets.SocketConnection)">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SharedClient">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.CryptoComEnvironment">
+            <summary>
+            CryptoCom environments
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComEnvironment.RestClientAddress">
+            <summary>
+            Rest API address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComEnvironment.SocketClientAddress">
+            <summary>
+            Socket API address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComEnvironment.Live">
+            <summary>
+            Live environment
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComEnvironment.Sandbox">
+            <summary>
+            Sandbox environment
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.CryptoComEnvironment.CreateCustom(System.String,System.String,System.String)">
+            <summary>
+            Create a custom environment
+            </summary>
+            <param name="name"></param>
+            <param name="spotRestAddress"></param>
+            <param name="spotSocketStreamsAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CryptoCom.Net.CryptoComExchange">
+            <summary>
+            CryptoCom exchange information and configuration
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.ExchangeName">
+            <summary>
+            Exchange name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.Url">
+            <summary>
+            Url to the main website
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.ApiDocsUrl">
+            <summary>
+            Urls to the API documentation
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.RateLimiter">
+            <summary>
+            Rate limiter configuration for the CryptoCom API
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.CryptoComRateLimiters">
+            <summary>
+            Rate limiter configuration for the CryptoCom API
+            </summary>
+        </member>
+        <member name="E:CryptoCom.Net.CryptoComRateLimiters.RateLimitTriggered">
+            <summary>
+            Event for when a rate limit is triggered
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.AccessType">
+            <summary>
+            Access type
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AccessType.Default">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AccessType.Disabled">
+            <summary>
+            Disabled
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.KlineInterval">
+            <summary>
+            Interval for klines/candlesticks
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.OneMinute">
+            <summary>
+            One minute
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.FiveMinutes">
+            <summary>
+            Five minutes
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.FifteenMinutes">
+            <summary>
+            Fifteen minutes
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.ThirtyMinutes">
+            <summary>
+            Thirty minutes
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.OneHour">
+            <summary>
+            One hour
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.TwoHours">
+            <summary>
+            Two hours
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.FourHours">
+            <summary>
+            Four hours
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.TwelveHours">
+            <summary>
+            Twelve hours
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.OneDay">
+            <summary>
+            One day
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.OneWeek">
+            <summary>
+            One week
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.TwoWeeks">
+            <summary>
+            Two weeks
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.KlineInterval.OneMonth">
+            <summary>
+            One month
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.OrderSide">
+            <summary>
+            Order side
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderSide.Buy">
+            <summary>
+            Buy
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderSide.Sell">
+            <summary>
+            Sell
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderType.Limit">
+            <summary>
+            Limit
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderType.Market">
+            <summary>
+            Market
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderType.StopLoss">
+            <summary>
+            Stop loss
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderType.StopLimit">
+            <summary>
+            Stop limit
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderType.TakeProfit">
+            <summary>
+            Take profit
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderType.TakeProfitLimit">
+            <summary>
+            Take profit limit
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.OrderTypeFilter">
+            <summary>
+            Order type filter
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderTypeFilter.Limit">
+            <summary>
+            Limit orders
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderTypeFilter.Trigger">
+            <summary>
+            Trigger orders
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderTypeFilter.All">
+            <summary>
+            All types
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.PriceType">
+            <summary>
+            Price type
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.PriceType.MarkPrice">
+            <summary>
+            Mark price
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.PriceType.IndexPrice">
+            <summary>
+            Index price
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.PriceType.LastPrice">
+            <summary>
+            Last price
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.SelfTradePreventionMode">
+            <summary>
+            Self trade prevention mode
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SelfTradePreventionMode.CancelMaker">
+            <summary>
+            Cancel maker
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SelfTradePreventionMode.CancelTaker">
+            <summary>
+            Cancel taker
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SelfTradePreventionMode.CancelBoth">
+            <summary>
+            Cancel both maker and taker
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.SelfTradePreventionScope">
+            <summary>
+            STP scope
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SelfTradePreventionScope.MasterAndSubAccount">
+            <summary>
+            Matches master or sub a/c
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SelfTradePreventionScope.SubAccount">
+            <summary>
+            Matches sub a/c only
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.SymbolType">
+            <summary>
+            Symbol type
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SymbolType.Spot">
+            <summary>
+            Spot
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SymbolType.PerpetualSwap">
+            <summary>
+            Perpetual swap
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SymbolType.DeliveryFuture">
+            <summary>
+            Future
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.Timeframe">
+            <summary>
+            Timeframe
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.Timeframe.OneHour">
+            <summary>
+            One hour
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.Timeframe.OneDay">
+            <summary>
+            One day
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.TimeInForce">
+            <summary>
+            Time in force
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TimeInForce.GoodTillCancel">
+            <summary>
+            Good till cancel
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TimeInForce.ImmediateOrCancel">
+            <summary>
+            Immediate or cancel
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TimeInForce.FillOrKill">
+            <summary>
+            Fill or kill
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.ValuationType">
+            <summary>
+            Valuation type
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ValuationType.IndexPrice">
+            <summary>
+            Per minute data of underlying reference price of the instrument.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ValuationType.MarkPrice">
+            <summary>
+            Per minute data of mark price of the instrument.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ValuationType.FundingHistory">
+            <summary>
+            Hourly data of the funding rate settled in past hourly settlement.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ValuationType.FundingRate">
+            <summary>
+            Per minute data of current hourly funding rate that will settle at the end of each hour of current 4-hour interval.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ValuationType.EstimatedFundingRate">
+            <summary>
+            Per minute data of estimated funding rate for the next interval.
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.ExtensionMethods.CryptoComExtensionMethods">
+            <summary>
+            Extension methods specific to using the CryptoCom API
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi">
+            <summary>
+            CryptoCom Exchange API endpoints
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Account">
+            <summary>
+            Endpoints related to account settings, info or actions
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.ExchangeData">
+            <summary>
+            Endpoints related to retrieving market and system data
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Trading">
+            <summary>
+            Endpoints related to orders and trades
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.SharedClient">
+            <summary>
+            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount">
+            <summary>
+            CryptoCom Exchange account endpoints. Account endpoints include balance info, withdraw/deposit info and requesting and account settings
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetBalancesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get user account balances
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetBalanceHistoryAsync(CryptoCom.Net.Enums.Timeframe,System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get account cash balance history 
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance-history" /></para>
+            </summary>
+            <param name="interval">Interval of the data, either OneHour or OneDay</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetAccountInfoAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get master and sub account info
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-accounts" /></para>
+            </summary>
+            <param name="page">Page</param>
+            <param name="pageSize">Max number of results per page</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData">
+            <summary>
+            CryptoCom Exchange exchange data endpoints. Exchange data includes market data (tickers, order books, etc) and system status.
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            <para><a href="XXX" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetRiskParametersAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get risk parameters
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-risk-parameters" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetSymbolsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get symbols/instruments
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetOrderBookAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get the order book for a symbol
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-book" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="depth">Order book depth, max 50</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetTickersAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get tickers
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-tickers" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETH_USDT`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetTradeHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get trade history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-trades" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETH_USDT`</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results, max 150</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetKlinesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get Kline/Candlestick data
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-candlestick" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="interval">Kline interval</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetValuationsAsync(System.String,CryptoCom.Net.Enums.ValuationType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get various statistics
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-valuations" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="type">Stat type</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetExpiredSettlementPriceAsync(CryptoCom.Net.Enums.SymbolType,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get expired contracts settlement price
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-expired-settlement-price" /></para>
+            </summary>
+            <param name="symbolType">Symbol type</param>
+            <param name="pageNumber">Page number</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetInsuranceAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get the balance of Insurance Fund for a particular asset.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-insurance" /></para>
+            </summary>
+            <param name="asset">Asset</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiShared">
+            <summary>
+            Shared interface for Exchange rest API usage
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading">
+            <summary>
+            CryptoCom Exchange trading endpoints, placing and managing orders.
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get positions for the account
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Place a new order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="side">Order side</param>
+            <param name="type">Order type</param>
+            <param name="quantity">Order quantity</param>
+            <param name="quoteQuantity">Quantity in quote asset</param>
+            <param name="price">Limit price</param>
+            <param name="clientOrderId">Client order id</param>
+            <param name="postOnly">Post only order</param>
+            <param name="timeInForce">Time in force</param>
+            <param name="triggerPrice">Trigger price</param>
+            <param name="triggerPriceType">Type of trigger price</param>
+            <param name="margin">True for spot margin order</param>
+            <param name="selfTradePreventionScope">Scope for self trade prevention</param>
+            <param name="selfTradePreventionMode">Mode for self trade prevention</param>
+            <param name="selfTradePreventionId">Id for self trade prevention</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancel an order by id
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /></para>
+            </summary>
+            <param name="orderId">Order id, either this or clientOrderId should be provided</param>
+            <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelAllOrdersAsync(System.String,System.Nullable{CryptoCom.Net.Enums.OrderTypeFilter},System.Threading.CancellationToken)">
+            <summary>
+            Cancel all order fitting the parameters
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol</param>
+            <param name="type">Filter by type</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Threading.CancellationToken)">
+            <summary>
+            Close an open position
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="orderType">Type of order to use</param>
+            <param name="price">Price for limit order</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi">
+            <summary>
+            CryptoCom Exchange streams
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToXXXUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComModel}},System.Threading.CancellationToken)">
+            <summary>
+            
+            <para><a href="XXX" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SharedClient">
+            <summary>
+            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApiShared">
+            <summary>
+            Shared interface for TP_RP_API_NAME socket API usage
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient">
+            <summary>
+            Client for accessing the CryptoCom Rest API. 
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.ExchangeApi">
+            <summary>
+            Exchange API endpoints
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <summary>
+            Set the API credentials for this client. All Api clients in this client will use the new credentials, regardless of earlier set options.
+            </summary>
+            <param name="credentials">The credentials to set</param>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient">
+            <summary>
+            Client for accessing the CryptoCom websocket API
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.ExchangeApi">
+            <summary>
+            Exchange API endpoints
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <summary>
+            Set the API credentials for this client. All Api clients in this client will use the new credentials, regardless of earlier set options.
+            </summary>
+            <param name="credentials">The credentials to set</param>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.ICryptoComOrderBookFactory">
+            <summary>
+            CryptoCom local order book factory
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Interfaces.ICryptoComOrderBookFactory.Exchange">
+            <summary>
+            Exchange order book factory methods
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComOrderBookFactory.CreateExchange(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <summary>
+            Create a new Exchange local order book instance
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.CryptoComApiAddresses">
+            <summary>
+            Api addresses
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.CryptoComApiAddresses.RestClientAddress">
+            <summary>
+            The address used by the CryptoComRestClient for the API
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.CryptoComApiAddresses.SocketClientAddress">
+            <summary>
+            The address used by the CryptoComSocketClient for the websocket API
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Objects.CryptoComApiAddresses.Default">
+            <summary>
+            The default addresses to connect to the CryptoCom API
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Objects.CryptoComApiAddresses.Sandbox">
+            <summary>
+            The default addresses to connect to the CryptoCom Sandbox API
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.CryptoComOrderId">
+            <summary>
+            Order ids
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.CryptoComOrderId.ClientOid">
+            <summary>
+            Client oid
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.CryptoComOrderId.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAccountInfo">
+            <summary>
+            Account info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountInfo.MasterAccount">
+            <summary>
+            Master account
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountInfo.SubAccountList">
+            <summary>
+            Sub account list
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAccountDetails">
+            <summary>
+            Account details
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Uuid">
+            <summary>
+            Unique id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.MasterAccountUuid">
+            <summary>
+            Master account uuid
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.UserUuid">
+            <summary>
+            User uuid
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.MarginAccountUuid">
+            <summary>
+            Margin account uuid
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Enabled">
+            <summary>
+            Enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Tradable">
+            <summary>
+            Tradable
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.MobileNumber">
+            <summary>
+            Mobile number
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.CountryCode">
+            <summary>
+            Country code
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.MarginAccess">
+            <summary>
+            Margin access
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.DerivativesAccess">
+            <summary>
+            Derivatives access
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.CreateTime">
+            <summary>
+            Create time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.TwoFaEnabled">
+            <summary>
+            Two fa enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.KycLevel">
+            <summary>
+            Kyc level
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Suspended">
+            <summary>
+            Suspended
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Terminated">
+            <summary>
+            Terminated
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.SpotEnabled">
+            <summary>
+            Spot enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.MarginEnabled">
+            <summary>
+            Margin enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.DerivativesEnabled">
+            <summary>
+            Derivatives enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountDetails.Label">
+            <summary>
+            Label
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalanceHistory">
+            <summary>
+            Balance history info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceHistory.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceHistory.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalanceHistoryValue">
+            <summary>
+            History value
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceHistoryValue.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceHistoryValue.Balance">
+            <summary>
+            Balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalancesWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalances">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalAvailableBalance">
+            <summary>
+            Total available balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalMarginBalance">
+            <summary>
+            Total margin balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalInitialMargin">
+            <summary>
+            Total initial margin
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalPositionIm">
+            <summary>
+            Total position initial margin
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalHaircut">
+            <summary>
+            Total haircut
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalMaintenanceMargin">
+            <summary>
+            Total maintenance margin
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalPositionCost">
+            <summary>
+            Total position cost
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalCashBalance">
+            <summary>
+            Total cash balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalCollateralValue">
+            <summary>
+            Total collateral value
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalSessionUnrealizedPnl">
+            <summary>
+            Total session unrealized pnl
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.AssetName">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalSessionRealizedPnl">
+            <summary>
+            Total session realized pnl
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.IsLiquidating">
+            <summary>
+            Is liquidating
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.TotalEffectiveLeverage">
+            <summary>
+            Total effective leverage
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.PositionLimit">
+            <summary>
+            Position limit
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.UsedPositionLimit">
+            <summary>
+            Used position limit
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalances.PositionBalances">
+            <summary>
+            Position balances
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalance">
+            <summary>
+            Asset balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.MarketValue">
+            <summary>
+            Market value
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.CollateralEligible">
+            <summary>
+            Collateral eligible
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.Haircut">
+            <summary>
+            Haircut
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.CollateralQuantity">
+            <summary>
+            Collateral quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.MaxWithdrawalBalance">
+            <summary>
+            Max withdrawal balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalance.ReservedQuantity">
+            <summary>
+            Reserved quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComExpiredPriceWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComExpiredPrice">
+            <summary>
+            Price info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComExpiredPrice.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComExpiredPrice.ExpireTime">
+            <summary>
+            Expire timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComExpiredPrice.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComExpiredPrice.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKlineWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComKline">
+            <summary>
+            Kline/candlestick data
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKline.OpenPrice">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKline.HighPrice">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKline.LowPrice">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKline.ClosePrice">
+            <summary>
+            Close price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKline.Volume">
+            <summary>
+            Volume
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComKline.OpenTime">
+            <summary>
+            Open timestamp
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderBook">
+            <summary>
+            Order book info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBook.Asks">
+            <summary>
+            Asks
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBook.Bids">
+            <summary>
+            Bids
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderBookEntry">
+            <summary>
+            Order book entry
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookEntry.Price">
+            <summary>
+            Price level
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookEntry.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookEntry.OrderCount">
+            <summary>
+            Number of orders
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPositionWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComPosition">
+            <summary>
+            Position info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.AccountId">
+            <summary>
+            Account id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.Quantity">
+            <summary>
+            Position size
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.Cost">
+            <summary>
+            Cost
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.OpenPositionPnl">
+            <summary>
+            Open position profit and loss
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.OpenPosCost">
+            <summary>
+            Open pos cost
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.SessionPnl">
+            <summary>
+            Session profit and loss
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.UpdateTime">
+            <summary>
+            Update timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComPosition.SymbolType">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComRiskParameters">
+            <summary>
+            Limit info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.DefaultMaxProductLeverageForSpot">
+            <summary>
+            Default max product leverage for spot
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.DefaultMaxProductLeverageForPerps">
+            <summary>
+            Default max product leverage for perps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.DefaultMaxProductLeverageForFutures">
+            <summary>
+            Default max product leverage for futures
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.DefaultUnitMarginRate">
+            <summary>
+            Default unit margin rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.DefaultCollateralCap">
+            <summary>
+            Default collateral cap
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.UpdateTime">
+            <summary>
+            Update timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParameters.BaseAssetConfig">
+            <summary>
+            Base asset config
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.CollateralCapNotional">
+            <summary>
+            the maximum $notional that is counted towards the margin balance. Any additional token balance would not contribute to the margin balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.MaxProductLeverageForSpot">
+            <summary>
+            Max product leverage for spot
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.MaxProductLeverageForPerps">
+            <summary>
+            Max product leverage for perps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.MaxProductLeverageForFutures">
+            <summary>
+            Max product leverage for futures
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.MinimumHaircut">
+            <summary>
+            Minimum haircut
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.UnitMarginRate">
+            <summary>
+            Unit margin rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.MaxShortSellLimit">
+            <summary>
+            Max negative asset balance user can hold on the base token
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.DailyNotionalLimit">
+            <summary>
+            Max spot order notional user can place in rolling 24-hour window. If field is omitted, user can trade unlimited on this base token
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComRiskParametersAsset.OrderLimit">
+            <summary>
+            Max value per order in USD
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbolWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComSymbol">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.SymbolType">
+            <summary>
+            Symbol type
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.DisplayName">
+            <summary>
+            Display name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.BaseAsset">
+            <summary>
+            Base asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuoteAsset">
+            <summary>
+            Quote asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuoteDecimals">
+            <summary>
+            Price decimals
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuantityDecimals">
+            <summary>
+            Quantity decimals
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.PriceTickQuantity">
+            <summary>
+            Price step
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuantityTickQuantity">
+            <summary>
+            Quantity step
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.MaxLeverage">
+            <summary>
+            Max leverage
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.Tradable">
+            <summary>
+            Tradable
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.ExpiryTime">
+            <summary>
+            Expiry timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.UnderlyingSymbol">
+            <summary>
+            Underlying symbol
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComTicker">
+            <summary>
+            Ticker info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.HighPrice">
+            <summary>
+            High price in last 24 hours
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.LowPrice">
+            <summary>
+            Low price in last 24 hours
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.LastPrice">
+            <summary>
+            Last price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.Volume">
+            <summary>
+            Volume in last 24 hours
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.VolumeUsd">
+            <summary>
+            Volume in last 24 hours in USD
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.OpenInterest">
+            <summary>
+            Current open interest
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.PriceChange">
+            <summary>
+            Price change factor since 24 hours ago, 0.01 = 1%
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.BestBidPrice">
+            <summary>
+            Current best bid price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.BestAskPrice">
+            <summary>
+            Current best ask price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTradeWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComTrade">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTrade.TradeId">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTrade.Timestamp">
+            <summary>
+            Trade timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTrade.Quantity">
+            <summary>
+            Trade quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTrade.Price">
+            <summary>
+            Trade price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTrade.Side">
+            <summary>
+            Trade side
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTrade.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuationWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComValuation">
+            <summary>
+            Valuation
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuation.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuation.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions">
+            <summary>
+            Options for the CryptoCom SymbolOrderBook
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions.Default">
+            <summary>
+            Default options for new clients
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions.Limit">
+            <summary>
+            The top amount of results to keep in sync. If for example limit=10 is used, the order book will contain the 10 best bids and 10 best asks. Leaving this null will sync the full order book
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions.InitialDataTimeout">
+            <summary>
+            After how much time we should consider the connection dropped if no data is received for this time after the initial subscriptions
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Options.CryptoComRestOptions">
+            <summary>
+            Options for the CryptoComRestClient
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComRestOptions.Default">
+            <summary>
+            Default options for new clients
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComRestOptions.ExchangeOptions">
+            <summary>
+            Exchange API options
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Options.CryptoComSocketOptions">
+            <summary>
+            Options for the CryptoComSocketClient
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComSocketOptions.Default">
+            <summary>
+            Default options for new clients
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComSocketOptions.ExchangeOptions">
+            <summary>
+            Exchange API options
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.ListenerIdentifiers">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean)">
+            <summary>
+            ctor
+            </summary>
+            <param name="logger"></param>
+            <param name="topics"></param>
+            <param name="handler"></param>
+            <param name="auth"></param>
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetSubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook">
+            <summary>
+            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
+            Make sure to check the State property to see if the order book is synced.
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient,CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient)">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="logger">Logger</param>
+            <param name="restClient">Rest client instance</param>
+            <param name="socketClient">Socket client instance</param>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoReset">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.Dispose(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory">
+            <summary>
+            CryptoCom order book factory
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            ctor
+            </summary>
+            <param name="serviceProvider">Service provider for resolving logging and clients</param>
+        </member>
+        <member name="P:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.Exchange">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.CreateExchange(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoExchange.Net.Interfaces.CryptoClientExtensions">
+            <summary>
+            Extensions for the ICryptoRestClient and ICryptoSocketClient interfaces
+            </summary>
+        </member>
+        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.CryptoCom(CryptoExchange.Net.Interfaces.ICryptoRestClient)">
+            <summary>
+            Get the CryptoCom REST Api client
+            </summary>
+            <param name="baseClient"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.CryptoCom(CryptoExchange.Net.Interfaces.ICryptoSocketClient)">
+            <summary>
+            Get the CryptoCom Websocket Api client
+            </summary>
+            <param name="baseClient"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Extensions for DI
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions},System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},System.Nullable{Microsoft.Extensions.DependencyInjection.ServiceLifetime})">
+            <summary>
+            Add the ICryptoComRestClient and ICryptoComSocketClient to the sevice collection so they can be injected
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="defaultRestOptionsDelegate">Set default options for the rest client</param>
+            <param name="defaultSocketOptionsDelegate">Set default options for the socket client</param>
+            <param name="socketClientLifeTime">The lifetime of the ICryptoComSocketClient for the service collection. Defaults to Singleton.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

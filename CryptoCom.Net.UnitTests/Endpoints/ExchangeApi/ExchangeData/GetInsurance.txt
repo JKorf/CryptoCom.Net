@@ -1,0 +1,14 @@
+GET
+/exchange/v1/public/get-insurance
+false
+{
+  "id": 1,
+  "method": "public/get-insurance",
+  "code": 0,
+  "result": {
+    "data": [{
+      "v": "50000000",
+      "t": 1613539503965
+    }]
+  }
+}

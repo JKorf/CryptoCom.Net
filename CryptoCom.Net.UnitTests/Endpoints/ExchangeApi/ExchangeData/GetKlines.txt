@@ -1,0 +1,19 @@
+GET
+/exchange/v1/public/get-candlestick
+false
+{
+  "id": 1,
+  "method": "public/get-candlestick",
+  "code": 0,
+  "result": {
+    "data": [{
+      "o": "50508.500000",    
+      "h": "50548.500000",    
+      "l": "50172.500000",   
+      "c": "50202.000000",  
+      "v": "17.203200",      
+      "t": 1613544000000      
+    }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+POST
+/exchange/v1/private/cancel-order
+true
+{
+  "id": 1,
+  "method": "private/cancel-order",
+  "code": 0,
+  "message": "NO_ERROR",
+  "result": {
+    "client_oid": "c5f682ed-7108-4f1c-b755-972fcdca0f02",
+    "order_id": "18342311"
+  }
+}

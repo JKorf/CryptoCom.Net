@@ -1,0 +1,21 @@
+POST
+/exchange/v1/private/get-positions
+true
+{
+  "id": 1,
+  "method": "private/get-positions",
+  "code": 0,
+  "result": {
+    "data": [{
+      "account_id": "858dbc8b-22fd-49fa-bff4-d342d98a8acb",
+      "quantity": "-0.1984",
+      "cost": "-10159.573500",
+      "open_position_pnl": "-497.743736",
+      "open_pos_cost": "-10159.352200",
+      "session_pnl": "2.236145",
+      "update_timestamp_ms": 1613552240770,
+      "instrument_name": "BTCUSD-PERP",
+      "type": "PERPETUAL_SWAP"
+    }]
+  }
+}

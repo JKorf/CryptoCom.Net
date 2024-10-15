@@ -1,0 +1,54 @@
+GET
+/exchange/v1/public/get-risk-parameters
+false
+{
+  "id" : -1,
+  "method" : "public/get-risk-parameters",
+  "code" : 0,
+  "result" : {
+    "default_max_product_leverage_for_spot" : "1.0",
+    "default_max_product_leverage_for_perps" : "20.0",
+    "default_max_product_leverage_for_futures" : "20.0",
+    "default_unit_margin_rate" : "0.05",
+    "default_collateral_cap" : "-1.0",
+    "update_timestamp_ms" : 1727853473520,
+    "base_currency_config" : [ {
+      "instrument_name" : "1INCH",
+      "minimum_haircut" : "0",
+      "unit_margin_rate" : "0.00050",
+      "order_limit" : "100000.0"
+    }, {
+      "instrument_name" : "AAVE",
+      "collateral_cap_notional" : "3600000.0",
+      "minimum_haircut" : "0.2",
+      "max_product_leverage_for_spot" : "5.0",
+      "unit_margin_rate" : "0.007",
+      "max_short_sell_limit" : "600.0",
+      "order_limit" : "500000.0"
+    }, {
+      "instrument_name" : "ACA",
+      "order_limit" : "100000.0"
+    }, {
+      "instrument_name" : "ACH",
+      "minimum_haircut" : "0",
+      "unit_margin_rate" : "0.00015",
+      "order_limit" : "100000.0"
+    }, {
+      "instrument_name" : "AERGO",
+      "order_limit" : "100000.0"
+    }, {
+      "instrument_name" : "AERO",
+      "order_limit" : "1000.0"
+    }, {
+      "instrument_name" : "ZRO",
+      "minimum_haircut" : "0",
+      "unit_margin_rate" : "0.004",
+      "order_limit" : "500000.0"
+    }, {
+      "instrument_name" : "ZRX",
+      "minimum_haircut" : "0",
+      "unit_margin_rate" : "0.00040",
+      "order_limit" : "100000.0"
+    } ]
+  }
+}

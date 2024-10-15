@@ -1,0 +1,19 @@
+GET
+/exchange/v1/public/get-trades
+false
+{
+  "id": 1,
+  "method": "public/get-trades",
+  "code": 0,
+  "result": {
+    "data": [{
+      "d": "15281981878",   
+      "t": 1613547060925,   
+      "tn": "1613547060925523623",
+      "q": "0.181900",    
+      "p": "50772.000000",        
+      "s": "SELL",          
+      "i": "BTCUSD-PERP"          
+    }]
+  }
+}

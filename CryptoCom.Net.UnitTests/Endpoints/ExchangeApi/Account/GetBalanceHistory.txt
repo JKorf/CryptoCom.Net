@@ -1,0 +1,17 @@
+POST
+/exchange/v1/private/user-balance-history
+true
+{
+  "id": 11,
+  "method": "private/user-balance-history",
+  "code": 0,
+  "result": {
+    "instrument_name": "USD",
+    "data": [
+      {
+        "t": 1629478800000,
+        "c": "811.621851"
+      }
+    ]
+  }
+}
