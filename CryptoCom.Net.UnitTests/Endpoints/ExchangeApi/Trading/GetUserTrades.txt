@@ -1,0 +1,28 @@
+POST
+/exchange/v1/private/get-trades
+true
+{
+  "id": 1,
+  "method": "private/get-trades",
+  "code": 0,
+  "result": {
+    "data": [{
+      "account_id": "52e7c00f-1324-5a6z-bfgt-de445bde21a5",
+      "event_date": "2021-02-17",
+      "journal_type": "TRADING",
+      "traded_quantity": "0.0500",
+      "traded_price": "51278.5",
+      "fees": "-1.025570",
+      "order_id": "19708564",
+      "trade_id": "38554669",
+      "trade_match_id": "76423",
+      "client_oid": "7665b001-2753-4d17-b266-61ecb755922d",
+      "taker_side": "MAKER",
+      "side": "BUY",
+      "instrument_name": "BTCUSD-PERP",
+      "fee_instrument_name": "USD",
+      "create_time": 1613570791060,
+      "create_time_ns": "1613570791060827635"
+    }]
+  }
+}

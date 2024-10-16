@@ -1,0 +1,25 @@
+POST
+/exchange/v1/private/get-withdrawal-history
+true
+{
+  "id": 11,
+  "method": "private/get-withdrawal-history",
+  "code": 0,
+  "result": {
+    "withdrawal_list": [
+      {
+        "currency": "XRP",
+        "client_wid": "my_withdrawal_002",
+        "fee": 1.0,
+        "create_time": 1607063412000,
+        "id": "2220",
+        "update_time": 1607063460000,
+        "amount": 100,
+        "address": "2NBqqD5GRJ8wHy1PYyCXTe9ke5226FhavBf?1234567890",
+        "status": "1",
+        "txid": "",
+        "network_id": null
+      }
+    ]
+  }
+}

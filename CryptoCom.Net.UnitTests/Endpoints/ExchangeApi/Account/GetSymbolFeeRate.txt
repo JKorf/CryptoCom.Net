@@ -1,0 +1,13 @@
+POST
+/exchange/v1/private/get-instrument-fee-rate
+true
+{
+  "id": 1,
+  "method": "private/get-instrument-fee-rate",
+  "code": 0,
+  "result": {
+    "instrument_name": "BTC_USD",
+    "effective_maker_rate_bps": "6.5",
+    "effective_taker_rate_bps": "6.9"
+  }
+}

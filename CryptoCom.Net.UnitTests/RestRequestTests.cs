@@ -26,6 +26,17 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetBalanceHistoryAsync(Enums.Timeframe.OneDay, DateTime.UtcNow), "GetBalanceHistory", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetAccountInfoAsync(), "GetAccountInfo", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.SetAccountLeverageAsync("123", "123"), "SetAccountLeverage");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.SetAccountSettingsAsync(SelfTradePreventionScope.SubAccount, SelfTradePreventionMode.CancelTaker), "SetAccountSettings");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetAccountSettingsAsync(), "GetAccountSettings", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetTransactionHistoryAsync(), "GetTransactionHistory", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "event_timestamp_ms" });
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetFeeRatesAsync(), "GetFeeRate", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetSymbolFeeRateAsync("123"), "GetSymbolFeeRate", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.WithdrawAsync("123", 0.1m, "123"), "Withdraw", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetAssetsAsync(), "GetAssets", nestedJsonProperty: "result.currency_map");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetDepositAddressesAsync("123"), "GetDepositAddresses", nestedJsonProperty: "result.deposit_address_list");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetDepositHistoryAsync(), "GetDepositHistory", nestedJsonProperty: "result.deposit_list");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.GetWithdrawalHistoryAsync(), "GetWithdrawalHistory", nestedJsonProperty: "result.withdrawal_list");
         }
 
         [Test]
@@ -62,6 +73,11 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.CancelOrderAsync("123"), "CancelOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.CancelAllOrdersAsync(), "CancelAllOrders");
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.ClosePositionAsync("123", OrderType.Market), "ClosePosition", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetOpenOrdersAsync("123"), "GetOpenOrders", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time" });
+            await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetOrderAsync(), "GetOrder", nestedJsonProperty: "result", ignoreProperties: new List<string> { "create_time" });
+            await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetClosedOrdersAsync(), "GetClosedOrders", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time" });
+            await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetUserTradesAsync(), "GetUserTrades", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time" });
+            await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetOcoOrderAsync("ETH_USDT", "123"), "GetOcoOrder", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time", "trigger_price", "price", "type", "exec_inst", "trigger_price_type" });
         }
 
         private bool IsAuthenticated(WebCallResult result)

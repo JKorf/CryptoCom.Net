@@ -1,0 +1,18 @@
+POST
+/exchange/v1/private/create-withdrawal
+true
+{
+  "id":-1,
+  "method":"private/create-withdrawal",
+  "code":0,
+  "result": {
+    "id": 2220,
+    "amount": 1,
+    "fee": 0.0004,
+    "symbol": "BTC",
+    "address": "2NBqqD5GRJ8wHy1PYyCXTe9ke5226FhavBf",
+    "client_wid": "my_withdrawal_002",
+    "create_time":1607063412000,
+    "network_id": null
+  }
+}

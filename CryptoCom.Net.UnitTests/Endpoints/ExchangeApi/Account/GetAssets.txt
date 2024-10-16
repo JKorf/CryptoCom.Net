@@ -1,0 +1,54 @@
+POST
+/exchange/v1/private/get-currency-networks
+true
+{
+  "code": 0,
+  "result": {
+    "currency_map": {
+      "AGLD": {
+        "full_name": "Adventure Gold",
+        "default_network": null,
+        "network_list": [
+          {
+            "network_id": "ETH",
+            "withdrawal_fee": null,
+            "withdraw_enabled": true,
+            "min_withdrawal_amount": 10.0,
+            "deposit_enabled": true,
+            "confirmation_required": 12
+          }
+        ]
+      },
+      "MATIC": {
+        "full_name": "Polygon",
+        "default_network": "ETH",
+        "network_list": [
+          {
+            "network_id": "BNB",
+            "withdrawal_fee": 0.80000000,
+            "withdraw_enabled": true,
+            "min_withdrawal_amount": 1.6,
+            "deposit_enabled": true,
+            "confirmation_required": 0
+          },
+          {
+            "network_id": "ETH",
+            "withdrawal_fee": 20.00000000,
+            "withdraw_enabled": true,
+            "min_withdrawal_amount": 40.0,
+            "deposit_enabled": true,
+            "confirmation_required": 0
+          },
+          {
+            "network_id": "MATIC",
+            "withdrawal_fee": 0.08000000,
+            "withdraw_enabled": true,
+            "min_withdrawal_amount": 0.16,
+            "deposit_enabled": true,
+            "confirmation_required": 0
+          }
+        ]
+      }
+    }
+  }
+}

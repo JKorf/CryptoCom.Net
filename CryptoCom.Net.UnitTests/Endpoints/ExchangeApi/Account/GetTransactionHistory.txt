@@ -1,0 +1,45 @@
+POST
+/exchange/v1/private/get-transactions
+true
+{
+  "id": 1,
+  "method": "private/get-transactions",
+  "code": 0,
+  "result": {
+    "data": [
+      {
+        "account_id": "88888888-8888-8888-8888-000000000007",
+        "event_date": "2021-02-18",
+        "journal_type": "TRADING",
+        "journal_id": "187078",
+        "transaction_qty": "-0.0005",
+        "transaction_cost": "-24.500000",
+        "realized_pnl": "-0.006125",
+        "order_id": "72062",
+        "trade_id": "71497",
+        "trade_match_id": "8625",
+        "event_timestamp_ms": 1613640752166,
+        "event_timestamp_ns": "1613640752166234567",
+        "client_oid": "6ac2421d-5078-4ef6-a9d5-9680602ce123",
+        "taker_side": "MAKER",
+        "side": "SELL",
+        "instrument_name": "BTCUSD-PERP"
+      },
+      {
+        "account_id": "9c72d8f1-583d-4b9d-b27c-55e695a2d116",
+        "event_date": "2021-02-18",
+        "journal_type": "SESSION_SETTLE",
+        "journal_id": "186959",
+        "transaction_qty": "0",
+        "transaction_cost": "0.000000",
+        "realized_pnl": "-0.007800",
+        "trade_match_id": "0",
+        "event_timestamp_ms": 1613638800001,
+        "event_timestamp_ns": "1613638800001124563",
+        "client_oid": "",
+        "taker_side": "",
+        "instrument_name": "BTCUSD-PERP"
+      }
+    ]
+  }
+}

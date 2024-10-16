@@ -1,0 +1,28 @@
+POST
+/exchange/v1/private/get-deposit-address
+true
+{
+  "id": 11,
+  "method": "private/get-deposit-address",
+  "code": 0,
+  "result": {
+    "deposit_address_list": [
+      {
+        "currency": "CRO",
+        "create_time": 1615886328000,
+        "id": "12345",
+        "address": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "status": "1",
+        "network": "CRO"
+      },
+      {
+        "currency": "CRO",
+        "create_time": 1615886332000,
+        "id": "12346",
+        "address": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+        "status": "1",
+        "network": "ETH"
+      }
+    ]
+  }
+}

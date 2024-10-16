@@ -1,0 +1,16 @@
+POST
+/exchange/v1/private/get-account-settings
+true
+{
+  "id": 697,
+  "method": "private/get-account-settings",
+  "code": 0,
+  "result": [
+    {
+      "leverage": 20,
+      "stp_id": 100,
+      "stp_scope": "S",
+      "stp_inst": "M"
+    }
+  ]
+} 

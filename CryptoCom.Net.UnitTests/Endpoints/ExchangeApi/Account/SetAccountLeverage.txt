@@ -1,0 +1,8 @@
+POST
+/exchange/v1/private/change-account-leverage
+true
+{
+  "id": 1,
+  "method": "private/change-account-leverage",
+  "code": 0
+}

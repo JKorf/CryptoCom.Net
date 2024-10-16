@@ -1,4 +1,5 @@
 using CryptoExchange.Net.Objects.Options;
+using System;
 
 namespace CryptoCom.Net.Objects.Options
 {
@@ -13,7 +14,8 @@ namespace CryptoCom.Net.Objects.Options
         public static CryptoComSocketOptions Default { get; set; } = new CryptoComSocketOptions()
         {
             Environment = CryptoComEnvironment.Live,
-            SocketSubscriptionsCombineTarget = 10
+            SocketSubscriptionsCombineTarget = 10,
+            DelayAfterConnect = TimeSpan.FromSeconds(1)
         };
 
         

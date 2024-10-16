@@ -6,29 +6,29 @@ using System.Text;
 namespace CryptoCom.Net.Enums
 {
     /// <summary>
-    /// Symbol type
+    /// Deposit status
     /// </summary>
-    public enum SymbolType
+    public enum DepositStatus
     {
         /// <summary>
-        /// Spot
+        /// Not arrived
         /// </summary>
-        [Map("CCY_PAIR")]
-        Spot,
+        [Map("0")]
+        NotArrived,
         /// <summary>
-        /// Perpetual swap
+        /// Arrived
         /// </summary>
-        [Map("PERPETUAL_SWAP")]
-        PerpetualSwap,
+        [Map("1")]
+        Arrived,
         /// <summary>
-        /// Future
+        /// Failed
         /// </summary>
-        [Map("FUTURE")]
-        DeliveryFuture,
+        [Map("2")]
+        Failed,
         /// <summary>
-        /// CRO stake
+        /// Pending
         /// </summary>
-        [Map("CRO_STAKE")]
-        CroStake
+        [Map("3")]
+        Pending
     }
 }

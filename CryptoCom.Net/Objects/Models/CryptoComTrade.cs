@@ -29,7 +29,7 @@ namespace CryptoCom.Net.Objects.Models
         /// <summary>
         /// Trade timestamp
         /// </summary>
-        [JsonPropertyName("tn")]
+        [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
         /// Trade quantity

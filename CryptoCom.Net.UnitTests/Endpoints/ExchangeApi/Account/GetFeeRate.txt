@@ -1,0 +1,16 @@
+POST
+/exchange/v1/private/get-fee-rate
+true
+{
+  "id": 1,
+  "method": "/private/get-fee-rate",
+  "code": 0,
+  "result": {
+    "spot_tier": "3",
+    "deriv_tier": "3",
+    "effective_spot_maker_rate_bps": "6.5",
+    "effective_spot_taker_rate_bps": "6.9",
+    "effective_deriv_maker_rate_bps": "1.1",
+    "effective_deriv_taker_rate_bps": "3"
+  }
+}

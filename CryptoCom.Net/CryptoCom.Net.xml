@@ -118,6 +118,39 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetAccountInfoAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.SetAccountSettingsAsync(System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.Nullable{System.Int64},System.Nullable{System.Decimal},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetAccountSettingsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetTransactionHistoryAsync(System.String,System.Nullable{CryptoCom.Net.Enums.TransactionType},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetFeeRatesAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetSymbolFeeRateAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.WithdrawAsync(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetAssetsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetDepositAddressesAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetDepositHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{CryptoCom.Net.Enums.DepositStatus},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetWithdrawalHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{CryptoCom.Net.Enums.WithdrawalStatus},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData">
             <inheritdoc />
         </member>
@@ -169,6 +202,33 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetOpenOrdersAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetClosedOrdersAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetUserTradesAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.PlaceMultipleOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrderRequest},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.CancelOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.PlaceOcoOrderAsync(CryptoCom.Net.Objects.Models.CryptoComOrderRequest,CryptoCom.Net.Objects.Models.CryptoComOrderRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.CancelOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi">
             <summary>
             Client providing access to the CryptoCom Exchange websocket Api
@@ -188,7 +248,94 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToXXXUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComModel}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToMarkPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToMarkPriceUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToFundingRateUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalances}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
@@ -287,6 +434,31 @@
             Disabled
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Enums.DepositStatus">
+            <summary>
+            Deposit status
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.DepositStatus.NotArrived">
+            <summary>
+            Not arrived
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.DepositStatus.Arrived">
+            <summary>
+            Arrived
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.DepositStatus.Failed">
+            <summary>
+            Failed
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.DepositStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.KlineInterval">
             <summary>
             Interval for klines/candlesticks
@@ -365,6 +537,46 @@
         <member name="F:CryptoCom.Net.Enums.OrderSide.Sell">
             <summary>
             Sell
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.OrderStatus">
+            <summary>
+            Order status
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.New">
+            <summary>
+            New
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.Active">
+            <summary>
+            Active
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.Rejected">
+            <summary>
+            Rejected
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.Canceled">
+            <summary>
+            Canceled
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.Filled">
+            <summary>
+            Filled
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderStatus.Expired">
+            <summary>
+            Expired
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Enums.OrderType">
@@ -497,6 +709,11 @@
             Future
             </summary>
         </member>
+        <member name="F:CryptoCom.Net.Enums.SymbolType.CroStake">
+            <summary>
+            CRO stake
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.Timeframe">
             <summary>
             Timeframe
@@ -532,6 +749,141 @@
             Fill or kill
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Enums.TradeRole">
+            <summary>
+            Trade role
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TradeRole.Maker">
+            <summary>
+            Maker
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TradeRole.Taker">
+            <summary>
+            Taker
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.TransactionType">
+            <summary>
+            Type of transaction
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.Trading">
+            <summary>
+            Trading
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.TradeFee">
+            <summary>
+            Trade fee
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.WithdrawFee">
+            <summary>
+            Withdraw fee
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.Withdraw">
+            <summary>
+            Withdraw
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.Deposit">
+            <summary>
+            Deposit
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.RollbackDeposit">
+            <summary>
+            Rollback deposit
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.RollbackWithdraw">
+            <summary>
+            Rollback withdraw
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.Funding">
+            <summary>
+            Funding
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.RealizedPnl">
+            <summary>
+            Realized pnl
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.InsuranceFund">
+            <summary>
+            Insurance fund
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.SocializedLoss">
+            <summary>
+            Socialized loss
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.LiquidationFee">
+            <summary>
+            Liquidation fee
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.SessionReset">
+            <summary>
+            Session reset
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.Adjustment">
+            <summary>
+            Adjustment
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.SessionSettle">
+            <summary>
+            Session settle
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.UncoveredLoss">
+            <summary>
+            Uncovered loss
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.AdminAdjustment">
+            <summary>
+            Admin adjustment
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.Delist">
+            <summary>
+            Delist
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.SettlementFee">
+            <summary>
+            Settlement fee
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.AutoConversion">
+            <summary>
+            Auto conversion
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.ManualConversion">
+            <summary>
+            Manual conversion
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.SubaccountTx">
+            <summary>
+            Subaccount transaction
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.FiatWithdrawalCancel">
+            <summary>
+            Fiat withdrawal cancel
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.ValuationType">
             <summary>
             Valuation type
@@ -560,6 +912,46 @@
         <member name="F:CryptoCom.Net.Enums.ValuationType.EstimatedFundingRate">
             <summary>
             Per minute data of estimated funding rate for the next interval.
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.WithdrawalStatus">
+            <summary>
+            Withdrawal status
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.Processing">
+            <summary>
+            Processing
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.Rejected">
+            <summary>
+            Rejected
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.PaymentInProgress">
+            <summary>
+            Payment in-progress
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.PaymentFailed">
+            <summary>
+            Payment failed
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.Completed">
+            <summary>
+            Completed
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.WithdrawalStatus.Canceled">
+            <summary>
+            Cancelled
             </summary>
         </member>
         <member name="T:CryptoCom.Net.ExtensionMethods.CryptoComExtensionMethods">
@@ -621,6 +1013,114 @@
             </summary>
             <param name="page">Page</param>
             <param name="pageSize">Max number of results per page</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Set account leverage. Not that each symbol has it's own max leverage, the lower of the two will be used
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /></para>
+            </summary>
+            <param name="accountId">Id of the current account</param>
+            <param name="leverage">New leverage setting</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetAccountSettingsAsync(System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.Nullable{System.Int64},System.Nullable{System.Decimal},System.Threading.CancellationToken)">
+            <summary>
+            Update account settings
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-settings" /></para>
+            </summary>
+            <param name="stpScope">Self trade prevention scope</param>
+            <param name="stpMode">Self trade prevention mode</param>
+            <param name="stpId">Self trade prevention id</param>
+            <param name="leverage">Leverage</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetAccountSettingsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get current account settings
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetTransactionHistoryAsync(System.String,System.Nullable{CryptoCom.Net.Enums.TransactionType},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get account transaction history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-transactions" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol</param>
+            <param name="transactionType">Filter by transaction type</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetFeeRatesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get user fee rates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-fee-rate" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetSymbolFeeRateAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get symbol fee rates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-instrument-fee-rate" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.WithdrawAsync(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Withdraw funds
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /></para>
+            </summary>
+            <param name="asset">Asset to withdraw</param>
+            <param name="quantity">Quantity</param>
+            <param name="address">Target address</param>
+            <param name="addressTag">Address tag</param>
+            <param name="network">Network to use</param>
+            <param name="clientWithdrawId">Client id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetAssetsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get asset network info
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-currency-networks" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetDepositAddressesAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get deposit addresses for an asset
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-address" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetDepositHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{CryptoCom.Net.Enums.DepositStatus},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get deposit history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-history" /></para>
+            </summary>
+            <param name="asset">Filter by asset</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="status">Filter by status</param>
+            <param name="page">Page</param>
+            <param name="pageSize">Page size</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetWithdrawalHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{CryptoCom.Net.Enums.WithdrawalStatus},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get withdrawal history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-withdrawal-history" /></para>
+            </summary>
+            <param name="asset">Filter by asset</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="status">Filter by status</param>
+            <param name="page">Page number</param>
+            <param name="pageSize">Page size</param>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData">
@@ -745,7 +1245,7 @@
             Place a new order
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
             </summary>
-            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="symbol">The symbol, for example `ETH_USDT`</param>
             <param name="side">Order side</param>
             <param name="type">Order type</param>
             <param name="quantity">Order quantity</param>
@@ -785,20 +1285,384 @@
             Close an open position
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
             </summary>
-            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
             <param name="orderType">Type of order to use</param>
             <param name="price">Price for limit order</param>
             <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOpenOrdersAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get user open orders
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get info on a specific order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /></para>
+            </summary>
+            <param name="orderId">Order id, either this or clientOrderId should be provided</param>
+            <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetClosedOrdersAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get closed order history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetUserTradesAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get user trade history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceMultipleOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrderRequest},System.Threading.CancellationToken)">
+            <summary>
+            Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /></para>
+            </summary>
+            <param name="orders">Orders to place, max 10</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest},System.Threading.CancellationToken)">
+            <summary>
+            Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /></para>
+            </summary>
+            <param name="orders">Orders to cancel</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceOcoOrderAsync(CryptoCom.Net.Objects.Models.CryptoComOrderRequest,CryptoCom.Net.Objects.Models.CryptoComOrderRequest,System.Threading.CancellationToken)">
+            <summary>
+            Place a new OCO (One Cancels Other) order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /></para>
+            </summary>
+            <param name="order1">First order</param>
+            <param name="order2">Second order</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancel an OCO order
+            </summary>
+            <param name="symbol">Symbol</param>
+            <param name="listId">List id to cancel</param>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get info on an OCO order
+            </summary>
+            <param name="symbol">Symbol</param>
+            <param name="listId">Id</param>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi">
             <summary>
             CryptoCom Exchange streams
             </summary>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToXXXUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComModel}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
             <summary>
-            
-            <para><a href="XXX" /></para>
+            Subscribe to order book snapshot updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="depth">The book depth, either 10 or 50</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to order book snapshot updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="depth">The book depth, either 10 or 50</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="depth">The book depth, either 10 or 50</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="depth">The book depth, either 10 or 50</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to kline/candlestick updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="interval">The interval of the kline/candles</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to kline/candlestick updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="interval">The interval of the kline/candles</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to ticker updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to ticker updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to public trade updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to public trade updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to index price updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to index price updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToMarkPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to mark price updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToMarkPriceUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to mark price updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to settlement prices
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to settlement prices
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to settlement prices
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToFundingRateUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to funding rate updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to funding rate updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to estimated funding rate updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to estimated funding rate updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user order updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user order updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user order updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user trade updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user trade updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user trade updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="symbols">The symbols</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalances}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user balance updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user position updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -1036,6 +1900,91 @@
             Label
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAccountSettings">
+            <summary>
+            Account settings
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountSettings.Leverage">
+            <summary>
+            Account leverage
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountSettings.StpId">
+            <summary>
+            Self trade prevention id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountSettings.StpScope">
+            <summary>
+            Self trade prevention scope
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountSettings.StpMode">
+            <summary>
+            Self trade prevention mode
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetWrapper.AssetMap">
+            <summary>
+            Asset map
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAsset">
+            <summary>
+            Asset network info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAsset.FullName">
+            <summary>
+            Full name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAsset.DefaultNetwork">
+            <summary>
+            Default network
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAsset.Networks">
+            <summary>
+            Network list
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork">
+            <summary>
+            Network info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork.NetworkId">
+            <summary>
+            Network id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork.WithdrawalFee">
+            <summary>
+            Withdrawal fee
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork.WithdrawEnabled">
+            <summary>
+            Withdraw enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork.MinWithdrawalQuantity">
+            <summary>
+            Min withdrawal quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork.DepositEnabled">
+            <summary>
+            Deposit enabled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetNetwork.ConfirmationRequired">
+            <summary>
+            Confirmation required
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalanceHistory">
             <summary>
             Balance history info
@@ -1206,6 +2155,131 @@
             Reserved quantity
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest">
+            <summary>
+            Order cancellation request
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComCancelOrderResult">
+            <summary>
+            Cancel order result
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComCancelOrderResult.Index">
+            <summary>
+            Order index in request
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComCancelOrderResult.Code">
+            <summary>
+            Result code
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComCancelOrderResult.Message">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositWrapper.DepositList">
+            <summary>
+            Deposit list
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComDeposit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.CreateTime">
+            <summary>
+            Create time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDeposit.DepositStatus">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddressWrapper.DepositAddressList">
+            <summary>
+            Deposit address list
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComDepositAddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddress.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddress.CreateTime">
+            <summary>
+            Create time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddress.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddress.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddress.Active">
+            <summary>
+            Active
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositAddress.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComExpiredPriceWrapper.Data">
             <summary>
             Data
@@ -1276,6 +2350,151 @@
             Open timestamp
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOcoResult">
+            <summary>
+            OCO order result
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOcoResult.ListId">
+            <summary>
+            Order list id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrder">
+            <summary>
+            Order info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.AccountId">
+            <summary>
+            Account id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.TimeInForce">
+            <summary>
+            Time in force
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderSide">
+            <summary>
+            OrderSide
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Price">
+            <summary>
+            Limit price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderValue">
+            <summary>
+            Order value
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.MakerFeeRate">
+            <summary>
+            Maker fee rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.TakerFeeRate">
+            <summary>
+            Taker fee rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.AveragePrice">
+            <summary>
+            Average fill price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.QuantityFilled">
+            <summary>
+            Cumulative quantity filled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.QuoteQuantityFilled">
+            <summary>
+            Cumulative value filled
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Fee">
+            <summary>
+            Cumulative fee
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderStatus">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.UpdateUserId">
+            <summary>
+            Update user id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Reason">
+            <summary>
+            Reason
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderDate">
+            <summary>
+            Order date
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.FeeAsset">
+            <summary>
+            Fee asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.CreateTime">
+            <summary>
+            Creation time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.ListId">
+            <summary>
+            Order list id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.ContingencyType">
+            <summary>
+            Contingency type
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderBook">
             <summary>
             Order book info
@@ -1309,6 +2528,96 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookEntry.OrderCount">
             <summary>
             Number of orders
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderRequest">
+            <summary>
+            Order request
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.PostOnly">
+            <summary>
+            Post only
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.QuoteQuantity">
+            <summary>
+            Quote quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.Price">
+            <summary>
+            Limit price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.OrderSide">
+            <summary>
+            Order side
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.StpId">
+            <summary>
+            Self trade prevention id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.StpMode">
+            <summary>
+            Self trade prevention mode
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.StpScope">
+            <summary>
+            Self trade prevention scope
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.TimeInForce">
+            <summary>
+            Time in force
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.TriggerPrice">
+            <summary>
+            Trigger price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderResult">
+            <summary>
+            Order result
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderResult.Index">
+            <summary>
+            Order index in request
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderResult.Code">
+            <summary>
+            Result code
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderResult.Message">
+            <summary>
+            Error message
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComPositionWrapper.Data">
@@ -1536,6 +2845,26 @@
             Underlying symbol
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComSymbolFeeRate">
+            <summary>
+            Symbol fee rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbolFeeRate.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbolFeeRate.EffectiveMakerRateBps">
+            <summary>
+            Effective maker rate bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbolFeeRate.EffectiveTakerRateBps">
+            <summary>
+            Effective taker rate bps
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComTicker">
             <summary>
             Ticker info
@@ -1636,6 +2965,211 @@
             Symbol name
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransactionWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComTransaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.AccountId">
+            <summary>
+            Account id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.EventDate">
+            <summary>
+            Event date
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.TransactionType">
+            <summary>
+            Transaction type
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.JournalId">
+            <summary>
+            Journal id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.Quantity">
+            <summary>
+            Transaction quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.Cost">
+            <summary>
+            Transaction cost
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.RealizedPnl">
+            <summary>
+            Realized profit and loss
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.TradeId">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.TradeMatchId">
+            <summary>
+            Trade match id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.EventTime">
+            <summary>
+            Event timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.TradeRole">
+            <summary>
+            Trade role
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.OrderSide">
+            <summary>
+            Side
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComUserFee">
+            <summary>
+            User fee rates
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserFee.SpotTier">
+            <summary>
+            Spot tier
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserFee.DerivTier">
+            <summary>
+            Deriv tier
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserFee.EffectiveSpotMakerRateBps">
+            <summary>
+            Effective spot maker rate bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserFee.EffectiveSpotTakerRateBps">
+            <summary>
+            Effective spot taker rate bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserFee.EffectiveDerivMakerRateBps">
+            <summary>
+            Effective deriv maker rate bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserFee.EffectiveDerivTakerRateBps">
+            <summary>
+            Effective deriv taker rate bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTradeWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComUserTrade">
+            <summary>
+            User trade
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.AccountId">
+            <summary>
+            Account id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.EventDate">
+            <summary>
+            Event date
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.TransactionType">
+            <summary>
+            Journal type
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Quantity">
+            <summary>
+            Trade quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Price">
+            <summary>
+            Trade price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.TradeId">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.TradeMatchId">
+            <summary>
+            Trade match id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Role">
+            <summary>
+            Trade role
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.OrderSide">
+            <summary>
+            Trade side
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.FeeAsset">
+            <summary>
+            Fee asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.CreateTime">
+            <summary>
+            Create time
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuationWrapper.Data">
             <summary>
             Data
@@ -1654,6 +3188,116 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuation.Timestamp">
             <summary>
             Timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalWrapper.WithdrawalList">
+            <summary>
+            Withdrawal list
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComWithdrawal">
+            <summary>
+            Withdrawal info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.ClientWithdrawalId">
+            <summary>
+            Client withdrawal id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.CreateTime">
+            <summary>
+            Create time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.WithdrawalStatus">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.TransactionId">
+            <summary>
+            Transaction id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawal.NetworkId">
+            <summary>
+            Network id
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.ClientWithdrawId">
+            <summary>
+            Client withdrawal id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.CreateTime">
+            <summary>
+            Create time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComWithdrawalResult.NetworkId">
+            <summary>
+            Network id
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions">
@@ -1706,6 +3350,12 @@
             Exchange API options
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComHeartBeatSubscription">
+            <inheritdoc />
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComHeartBeatSubscription.ListenerIdentifiers">
+            <inheritdoc />
+        </member>
         <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1">
             <inheritdoc />
         </member>
@@ -1715,14 +3365,10 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean)">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             ctor
             </summary>
-            <param name="logger"></param>
-            <param name="topics"></param>
-            <param name="handler"></param>
-            <param name="auth"></param>
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetSubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
             <inheritdoc />

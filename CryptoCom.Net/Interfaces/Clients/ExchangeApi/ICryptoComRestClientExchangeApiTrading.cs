@@ -27,7 +27,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Place a new order
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
+        /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="side">Order side</param>
         /// <param name="type">Order type</param>
         /// <param name="quantity">Order quantity</param>
@@ -67,11 +67,92 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Close an open position
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
+        /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="orderType">Type of order to use</param>
         /// <param name="price">Price for limit order</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, CancellationToken ct = default);
+        
+        /// <summary>
+        /// Get user open orders
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /></para>
+        /// </summary>
+        /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<IEnumerable<CryptoComOrder>>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
 
+        /// <summary>
+        /// Get info on a specific order
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /></para>
+        /// </summary>
+        /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
+        /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<CryptoComOrder>> GetOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
+
+        /// <summary>
+        /// Get closed order history
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /></para>
+        /// </summary>
+        /// <param name="symbol">Filter by symbol</param>
+        /// <param name="startTime">Filter by start time</param>
+        /// <param name="endTime">Filter by end time</param>
+        /// <param name="limit">Max number of results</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<IEnumerable<CryptoComOrder>>> GetClosedOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+
+        /// <summary>
+        /// Get user trade history
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /></para>
+        /// </summary>
+        /// <param name="symbol">Filter by symbol</param>
+        /// <param name="startTime">Filter by start time</param>
+        /// <param name="endTime">Filter by end time</param>
+        /// <param name="limit">Max number of results</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<IEnumerable<CryptoComUserTrade>>> GetUserTradesAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+
+        /// <summary>
+        /// Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /></para>
+        /// </summary>
+        /// <param name="orders">Orders to place, max 10</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<IEnumerable<CryptoComOrderResult>>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default);
+
+        /// <summary>
+        /// Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /></para>
+        /// </summary>
+        /// <param name="orders">Orders to cancel</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<IEnumerable<CryptoComCancelOrderResult>>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default);
+
+        /// <summary>
+        /// Place a new OCO (One Cancels Other) order
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /></para>
+        /// </summary>
+        /// <param name="order1">First order</param>
+        /// <param name="order2">Second order</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default);
+
+        /// <summary>
+        /// Cancel an OCO order
+        /// </summary>
+        /// <param name="symbol">Symbol</param>
+        /// <param name="listId">List id to cancel</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns></returns>
+        Task<WebCallResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
+
+        /// <summary>
+        /// Get info on an OCO order
+        /// </summary>
+        /// <param name="symbol">Symbol</param>
+        /// <param name="listId">Id</param>
+        /// <param name="ct">Cancellation token</param>
+        /// <returns></returns>
+        Task<WebCallResult<IEnumerable<CryptoComOrder>>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
     }
 }

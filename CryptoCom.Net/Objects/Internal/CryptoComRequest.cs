@@ -12,13 +12,13 @@ namespace CryptoCom.Net.Objects.Internal
         public long Id { get; set; }
         [JsonPropertyName("method")]
         public string Method { get; set; } = string.Empty;
-        [JsonPropertyName("params")]
+        [JsonPropertyName("params"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ParameterCollection Parameters { get; set; } = new ParameterCollection();
-        [JsonPropertyName("api_key")]
+        [JsonPropertyName("api_key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? ApiKey { get; set; }
-        [JsonPropertyName("nonce")]
+        [JsonPropertyName("nonce"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public long? Nonce { get; set; }
-        [JsonPropertyName("sig")]
+        [JsonPropertyName("sig"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Signature { get; set; }
     }
 }
