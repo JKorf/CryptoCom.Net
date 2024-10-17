@@ -20,6 +20,11 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         public ICryptoComRestClientExchangeApiExchangeData ExchangeData { get; }
 
         /// <summary>
+        /// Endpoints related to staking
+        /// </summary>
+        public ICryptoComRestClientExchangeApiStaking Staking { get; }
+
+        /// <summary>
         /// Endpoints related to orders and trades
         /// </summary>
         public ICryptoComRestClientExchangeApiTrading Trading { get; }

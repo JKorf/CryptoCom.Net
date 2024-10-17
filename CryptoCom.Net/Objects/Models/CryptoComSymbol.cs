@@ -49,22 +49,22 @@ namespace CryptoCom.Net.Objects.Models
         /// Price decimals
         /// </summary>
         [JsonPropertyName("quote_decimals")]
-        public decimal QuoteDecimals { get; set; }
+        public int PriceDecimals { get; set; }
         /// <summary>
         /// Quantity decimals
         /// </summary>
         [JsonPropertyName("quantity_decimals")]
-        public decimal QuantityDecimals { get; set; }
+        public int QuantityDecimals { get; set; }
         /// <summary>
         /// Price step
         /// </summary>
         [JsonPropertyName("price_tick_size")]
-        public decimal PriceTickQuantity { get; set; }
+        public decimal PriceTickSize { get; set; }
         /// <summary>
         /// Quantity step
         /// </summary>
         [JsonPropertyName("qty_tick_size")]
-        public decimal QuantityTickQuantity { get; set; }
+        public decimal QuantityTickSize { get; set; }
         /// <summary>
         /// Max leverage
         /// </summary>

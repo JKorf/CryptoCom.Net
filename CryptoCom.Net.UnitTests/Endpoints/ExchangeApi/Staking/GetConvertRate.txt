@@ -1,0 +1,12 @@
+POST
+/exchange/v1/public/staking/get-conversion-rate
+false
+{
+  "id": 1,
+  "method": "public/staking/get-conversion-rate",
+  "code": 0,
+  "result": {
+    "instrument_name": "CDCETH",
+    "conversion_rate": "1.0203"
+  }
+}

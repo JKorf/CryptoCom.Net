@@ -76,6 +76,9 @@
         <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.ExchangeData">
             <inheritdoc />
         </member>
+        <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.Staking">
+            <inheritdoc />
+        </member>
         <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.Trading">
             <inheritdoc />
         </member>
@@ -118,7 +121,7 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.GetAccountInfoAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiAccount.SetAccountSettingsAsync(System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.Nullable{System.Int64},System.Nullable{System.Decimal},System.Threading.CancellationToken)">
@@ -182,6 +185,39 @@
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetInsuranceAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.StakeAsync(System.String,System.Decimal,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.UnstakeAsync(System.String,System.Decimal,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetStakingPositionsAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetStakingSymbolsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetOpenStakingRequestsAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetStakingHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetStakingRewardHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.ConvertAsync(System.String,System.String,System.Decimal,System.Decimal,System.Decimal,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetOpenConvertRequestsAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking.GetConvertRateAsync(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading">
@@ -248,16 +284,16 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
@@ -335,7 +371,7 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
@@ -689,6 +725,91 @@
             Matches sub a/c only
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Enums.StakeRequestStatus">
+            <summary>
+            Staking request status
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.New">
+            <summary>
+            New
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.PendingWithdrawal">
+            <summary>
+            Pending withdrawal
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.PendingUnstaking">
+            <summary>
+            Pending unstaking
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.Staked">
+            <summary>
+            Staked
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.Completed">
+            <summary>
+            Completed
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeRequestStatus.Rejected">
+            <summary>
+            Rejected
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.StakeSide">
+            <summary>
+            Staking request side
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeSide.Stake">
+            <summary>
+            Stake
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeSide.Unstake">
+            <summary>
+            Unstake
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.StakeStatus">
+            <summary>
+            Staking status
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeStatus.New">
+            <summary>
+            New
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeStatus.Staked">
+            <summary>
+            Staked
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeStatus.Completed">
+            <summary>
+            Completed
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.StakeStatus.Rejected">
+            <summary>
+            Rejected
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.SymbolType">
             <summary>
             Symbol type
@@ -884,6 +1005,41 @@
             Fiat withdrawal cancel
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Enums.UnstakeStatus">
+            <summary>
+            Unstake status
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.UnstakeStatus.New">
+            <summary>
+            New
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.UnstakeStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.UnstakeStatus.PendingWithdrawal">
+            <summary>
+            Pending withdrawal
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.UnstakeStatus.PendingUnstaking">
+            <summary>
+            Pending unstaking
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.UnstakeStatus.Completed">
+            <summary>
+            Completed
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.UnstakeStatus.Rejected">
+            <summary>
+            Rejected
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.ValuationType">
             <summary>
             Valuation type
@@ -974,6 +1130,11 @@
             Endpoints related to retrieving market and system data
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Staking">
+            <summary>
+            Endpoints related to staking
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Trading">
             <summary>
             Endpoints related to orders and trades
@@ -1015,7 +1176,7 @@
             <param name="pageSize">Max number of results per page</param>
             <param name="ct">Cancellation token</param>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Set account leverage. Not that each symbol has it's own max leverage, the lower of the two will be used
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /></para>
@@ -1227,6 +1388,107 @@
             Shared interface for Exchange rest API usage
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking">
+            <summary>
+            CryptoCom Exchange staking endpoints
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.StakeAsync(System.String,System.Decimal,System.Threading.CancellationToken)">
+            <summary>
+            Create a new stake request
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-stake" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example SOL.staked</param>
+            <param name="quantity">Quantity to stake</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.UnstakeAsync(System.String,System.Decimal,System.Threading.CancellationToken)">
+            <summary>
+            Create a new unstake request
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-unstake" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `SOL.staked`</param>
+            <param name="quantity">Quantity to unstake</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingPositionsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get current staking positions
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-position" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `SOL.staked`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingSymbolsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get staking symbols
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetOpenStakingRequestsAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get open stake/unstake requests
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-stake" /></para>
+            </summary>
+            <param name="symbol">Filter by staking symbol, for example `SOL.staked`</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get staking request history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-stake-history" /></para>
+            </summary>
+            <param name="symbol">Filter by staking symbol</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingRewardHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get staking reward history
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-reward-history" /></para>
+            </summary>
+            <param name="symbol">Filter by staking symbol, for example 'SOL.staked'</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.ConvertAsync(System.String,System.String,System.Decimal,System.Decimal,System.Decimal,System.Threading.CancellationToken)">
+            <summary>
+            Create a new convert request
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-convert" /></para>
+            </summary>
+            <param name="fromSymbol">Symbol to convert from, for example `ETH.staked` or `CDCETH`</param>
+            <param name="toSymbol">Symbol to convert to, for example `ETH.staked` or `CDCETH`</param>
+            <param name="expectedRate">Expected conversion rate</param>
+            <param name="quantity">Quantity to convert</param>
+            <param name="slippageToleranceBps">Maximum slippage allowed in basis point</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetOpenConvertRequestsAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get open convert requests
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-convert" /></para>
+            </summary>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetConvertRateAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get conversion rate
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-staking-get-conversion-rate" /></para>
+            </summary>
+            <param name="symbol">Symbol name, for example 'CDCETH'</param>
+            <param name="ct">Cancellation token</param>
+        </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading">
             <summary>
             CryptoCom Exchange trading endpoints, placing and managing orders.
@@ -1377,7 +1639,7 @@
             CryptoCom Exchange streams
             </summary>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to order book snapshot updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
@@ -1388,7 +1650,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to order book snapshot updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
@@ -1399,7 +1661,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
@@ -1410,7 +1672,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBook}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
@@ -1662,6 +1924,15 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user position updates
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user position and balance updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
@@ -2015,6 +2286,41 @@
             Balance
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate">
+            <summary>
+            Balance and position update
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate.Balances">
+            <summary>
+            Balances
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate.Positions">
+            <summary>
+            Positions
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComBalanceUpdate">
+            <summary>
+            Balanace update
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceUpdate.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceUpdate.Quantity">
+            <summary>
+            Balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalanceUpdate.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComBalancesWrapper.Data">
             <summary>
             Data
@@ -2188,6 +2494,121 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComCancelOrderResult.Message">
             <summary>
             Error message
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComConversionRate">
+            <summary>
+            Conversion rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConversionRate.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConversionRate.ConversionRate">
+            <summary>
+            Conversion rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequestWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComConvertRequest">
+            <summary>
+            Convert request info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.FromSymbol">
+            <summary>
+            From symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.ToSymbol">
+            <summary>
+            To symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.ExpectedRate">
+            <summary>
+            Expected rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.FromQuantity">
+            <summary>
+            From quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.SlippageToleranceBps">
+            <summary>
+            Slippage tolerance bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.ActualRate">
+            <summary>
+            Actual rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.ToQuantity">
+            <summary>
+            To quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.ConvertId">
+            <summary>
+            Convert id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertRequest.CreateTime">
+            <summary>
+            Create timestamp
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComConvertResult">
+            <summary>
+            Convert request response
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.FromSymbol">
+            <summary>
+            From symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.ToSymbol">
+            <summary>
+            To symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.ExpectedRate">
+            <summary>
+            Expected rate
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.FromQuantity">
+            <summary>
+            From quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.SlippageToleranceBps">
+            <summary>
+            Slippage tolerance bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.ConvertId">
+            <summary>
+            Convert id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComConvertResult.Reason">
+            <summary>
+            Reason
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComDepositWrapper.DepositList">
@@ -2445,7 +2866,7 @@
             Cumulative fee
             </summary>
         </member>
-        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderStatus">
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Status">
             <summary>
             Status
             </summary>
@@ -2508,6 +2929,31 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBook.Bids">
             <summary>
             Bids
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate">
+            <summary>
+            Order book info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate.MessageTime">
+            <summary>
+            Time of the event
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate.UpdateTime">
+            <summary>
+            Book update time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate.SequenceNumber">
+            <summary>
+            Sequence number
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate.PreviousSequenceNumber">
+            <summary>
+            Sequence number
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderBookEntry">
@@ -2770,6 +3216,266 @@
             Max value per order in USD
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePositionWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComStakePosition">
+            <summary>
+            Staking position info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePosition.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePosition.UnderlyingAsset">
+            <summary>
+            Underlying asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePosition.StakedQuantity">
+            <summary>
+            Staked quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePosition.PendingStakedQuantity">
+            <summary>
+            Pending staked quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePosition.PendingUnstakedQuantity">
+            <summary>
+            Pending unstaked quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakePosition.RewardEligibleQuantity">
+            <summary>
+            Reward eligible quantity
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComStakeResult">
+            <summary>
+            Staking request result
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.StakingId">
+            <summary>
+            Staking id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.StakeStatus">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.UnderlyingAsset">
+            <summary>
+            Underlying asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.PreStakeChargeRateInBps">
+            <summary>
+            Pre stake charge rate in bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.PreStakeCharge">
+            <summary>
+            Pre stake charge
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakeResult.Reason">
+            <summary>
+            Reason
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequestWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComStakingRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.UnderlyingAssetName">
+            <summary>
+            Underlying asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.CycleId">
+            <summary>
+            Cycle id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.StakingId">
+            <summary>
+            Staking id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.StakeRequestStatus">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.Account">
+            <summary>
+            Account
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.StakeSide">
+            <summary>
+            Side
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRequest.CreateTime">
+            <summary>
+            Create timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingRewardWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComStakingReward">
+            <summary>
+            Reward info
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingReward.StakingSymbol">
+            <summary>
+            Staking symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingReward.UnderlyingAssetName">
+            <summary>
+            Underlying asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingReward.RewardName">
+            <summary>
+            Reward name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingReward.RewardQuantity">
+            <summary>
+            Reward quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingReward.StakedBalance">
+            <summary>
+            Staked balance
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingReward.EventTime">
+            <summary>
+            Event timestamp
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbolWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.UnderlyingAsset">
+            <summary>
+            Underlying asset name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.RewardName">
+            <summary>
+            Reward name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.OutOfStock">
+            <summary>
+            Out of stock
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.BlockUnstake">
+            <summary>
+            Block unstake
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.EstimatedRewards">
+            <summary>
+            Estimated rewards
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.AprOrApy">
+            <summary>
+            Whether the rewards are APR or APY
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.MinStakeQuantity">
+            <summary>
+            Min stake quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.RewardFrequency">
+            <summary>
+            Reward frequency in days
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.LockUpPeriod">
+            <summary>
+            Lock up period in days
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.IsCompoundReward">
+            <summary>
+            Is compound reward
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.PreStakeChargeEnable">
+            <summary>
+            Pre stake charge enable
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.PreStakeChargeRateInBps">
+            <summary>
+            Pre stake charge rate in bps
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComStakingSymbol.IsRestaked">
+            <summary>
+            Is restaked
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbolWrapper.Data">
             <summary>
             Data
@@ -2805,7 +3511,7 @@
             Quote asset
             </summary>
         </member>
-        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuoteDecimals">
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.PriceDecimals">
             <summary>
             Price decimals
             </summary>
@@ -2815,12 +3521,12 @@
             Quantity decimals
             </summary>
         </member>
-        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.PriceTickQuantity">
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.PriceTickSize">
             <summary>
             Price step
             </summary>
         </member>
-        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuantityTickQuantity">
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComSymbol.QuantityTickSize">
             <summary>
             Quantity step
             </summary>
@@ -2915,9 +3621,19 @@
             Current best bid price
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.BestBidQuantity">
+            <summary>
+            Current best bid quantity
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.BestAskPrice">
             <summary>
             Current best ask price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.BestAskQuantity">
+            <summary>
+            Current best ask quantity
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComTicker.Timestamp">
@@ -3048,6 +3764,41 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComTransaction.Symbol">
             <summary>
             Symbol
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult">
+            <summary>
+            Unstake result
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult.StakingId">
+            <summary>
+            Staking id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult.UnstakeStatus">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult.UnderlyingAsset">
+            <summary>
+            Underlying asset
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUnstakeResult.Reason">
+            <summary>
+            Reason
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComUserFee">
@@ -3365,7 +4116,7 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
             <summary>
             ctor
             </summary>
@@ -3403,9 +4154,6 @@
             <param name="socketClient">Socket client instance</param>
         </member>
         <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoReset">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">

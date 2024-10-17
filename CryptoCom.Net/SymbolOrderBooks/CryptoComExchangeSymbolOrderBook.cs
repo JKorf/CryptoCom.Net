@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using CryptoCom.Net.Clients;
 using CryptoCom.Net.Interfaces.Clients;
 using CryptoCom.Net.Objects.Options;
+using CryptoCom.Net.Objects.Models;
 
 namespace CryptoCom.Net.SymbolOrderBooks
 {
@@ -18,7 +19,6 @@ namespace CryptoCom.Net.SymbolOrderBooks
     public class CryptoComExchangeSymbolOrderBook : SymbolOrderBook
     {
         private readonly bool _clientOwner;
-        private readonly ICryptoComRestClient _restClient;
         private readonly ICryptoComSocketClient _socketClient;
         private readonly TimeSpan _initialDataTimeout;
 
@@ -60,36 +60,52 @@ namespace CryptoCom.Net.SymbolOrderBooks
             _initialDataTimeout = options?.InitialDataTimeout ?? TimeSpan.FromSeconds(30);
             _clientOwner = socketClient == null;
             _socketClient = socketClient ?? new CryptoComSocketClient();
-            _restClient = restClient ?? new CryptoComRestClient();
         }
 
         /// <inheritdoc />
         protected override async Task<CallResult<UpdateSubscription>> DoStartAsync(CancellationToken ct)
         {
-            // XXX
-            throw new NotImplementedException();
+            var subResult = await _socketClient.ExchangeApi.SubscribeToOrderBookUpdatesAsync(Symbol, Levels ?? 10, HandleUpdate).ConfigureAwait(false);
+            if (!subResult)
+                return subResult;
+
+            if (ct.IsCancellationRequested)
+            {
+                await subResult.Data.CloseAsync().ConfigureAwait(false);
+                return subResult.AsError<UpdateSubscription>(new CancellationRequestedError());
+            }
+
+            Status = OrderBookStatus.Syncing;
+            var setResult = await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
+            if (!setResult)
+            {
+
+                await subResult.Data.CloseAsync().ConfigureAwait(false);
+                return setResult.As(subResult.Data);
+            }
+
+            return subResult;
         }
 
-        /// <inheritdoc />
-        protected override void DoReset()
+        private void HandleUpdate(DataEvent<CryptoComOrderBookUpdate> data)
         {
+            if (data.UpdateType == SocketUpdateType.Snapshot)
+                SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks);
+            else
+                UpdateOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks);
         }
 
         /// <inheritdoc />
         protected override async Task<CallResult<bool>> DoResyncAsync(CancellationToken ct)
         {
-            // XXX
-            throw new NotImplementedException();
+            return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         protected override void Dispose(bool disposing)
         {
             if (_clientOwner)
-            {
-                _restClient?.Dispose();
                 _socketClient?.Dispose();
-            }
 
             base.Dispose(disposing);
         }

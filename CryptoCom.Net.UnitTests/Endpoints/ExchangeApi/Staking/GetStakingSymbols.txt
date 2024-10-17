@@ -1,0 +1,49 @@
+POST
+/exchange/v1/private/staking/get-staking-instruments
+true
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/get-staking-instruments",
+  "result": {
+    "data": [
+      {
+        "instrument_name": "SOL.staked",
+        "underlying_inst_name": "SOL",
+        "reward_inst_name": "SOL.staked",
+        "out_of_stock": false,
+        "block_unstake": false,
+        "est_rewards": "0.0661",
+        "apr_y": "APR",
+        "min_stake_amt": "0.00000001",
+        "reward_frequency": "2.5",
+        "lock_up_period": "5",
+        "is_compound_reward": true,
+        "pre_stake_charge_enable": false,
+        "pre_stake_charge_rate_in_bps": "0",
+        "is_restaked": false
+      },
+      {
+        "instrument_name": "DYDX.staked",
+        "underlying_inst_name": "DYDX",
+        "reward_inst_name": "DYDX",
+        "out_of_stock": false,
+        "block_unstake": false,
+        "est_rewards": "0.05",
+        "apr_y": "APR",
+        "min_stake_amt": "0.00000001",
+        "reward_frequency": "1",
+        "lock_up_period": "31",
+        "is_compound_reward": false,
+        "pre_stake_charge_enable": false,
+        "pre_stake_charge_rate_in_bps": "0",
+        "is_restaked": false,
+        "additional_rewards": [
+          {
+            "reward_inst_name": "USD_Stable_Coin"
+          }
+        ]
+      }
+    ]
+  }
+}

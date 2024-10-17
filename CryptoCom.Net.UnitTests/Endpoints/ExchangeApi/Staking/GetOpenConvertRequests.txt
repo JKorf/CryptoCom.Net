@@ -1,0 +1,24 @@
+POST
+/exchange/v1/private/staking/get-open-convert
+true
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/get-open-convert",
+  "result": {
+    "data": [
+      {
+        "from_instrument_name": "ETH.staked",
+        "to_instrument_name": "CDCETH",
+        "expected_rate": "1.0203",
+        "from_quantity": "3.14159265",
+        "slippage_tolerance_bps": "3",
+        "actual_rate": "1.0203",
+        "to_quantity": "3.14159265",
+        "convert_id": 1,
+        "status": "COMPLETED",
+        "create_timestamp_ms": "1688140984005"
+      }
+    ]
+  }
+}

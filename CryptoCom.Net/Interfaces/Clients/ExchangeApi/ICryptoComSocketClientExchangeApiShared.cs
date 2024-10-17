@@ -9,7 +9,15 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     /// Shared interface for TP_RP_API_NAME socket API usage
     /// </summary>
     public interface ICryptoComSocketClientExchangeApiShared :
-        ISharedClient
+        ITickerSocketClient,
+        IBookTickerSocketClient,
+        IKlineSocketClient,
+        IOrderBookSocketClient,
+        ITradeSocketClient,
+        IUserTradeSocketClient,
+        ISpotOrderSocketClient,
+        IFuturesOrderSocketClient,
+        IPositionSocketClient
     {
     }
 }

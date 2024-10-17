@@ -1,4 +1,5 @@
 using CryptoCom.Net.Enums;
+using CryptoCom.Net.Objects.Internal;
 using CryptoCom.Net.Objects.Models;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
@@ -24,7 +25,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
-        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default);
+        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Subscribe to order book snapshot updates
@@ -35,7 +36,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
-        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default);
+        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
@@ -46,7 +47,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
-        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default);
+        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
@@ -57,7 +58,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
-        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default);
+        Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Subscribe to kline/candlestick updates

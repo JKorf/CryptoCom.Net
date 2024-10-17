@@ -59,24 +59,24 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             => new CryptoComAuthenticationProvider(credentials);
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default)
+        public Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
             => SubscribeToOrderBookSnapshotUpdatesAsync([symbol], depth, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default)
+        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrderBook>>(_logger, symbols.Select(x => $"book.{x}.{depth}").ToArray(), x => onMessage(x.As(x.Data.Data.First()).WithUpdateType(SocketUpdateType.Snapshot)), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrderBookUpdateInt>>(_logger, symbols.Select(x => $"book.{x}.{depth}").ToArray(), x => onMessage(x.As<CryptoComOrderBookUpdate>(x.Data.Data.First()).WithUpdateType(SocketUpdateType.Snapshot)), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default)
+        public Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
             => SubscribeToOrderBookUpdatesAsync([symbol], depth, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBook>> onMessage, CancellationToken ct = default)
+        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrderBookUpdate>>(_logger, symbols.Select(x => $"book.{x}.{depth}").ToArray(), 
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrderBookUpdateInt>>(_logger, symbols.Select(x => $"book.{x}.{depth}").ToArray(), 
                 x => onMessage(x.As(x.Data.Data.First().Update ?? x.Data.Data.First()).WithUpdateType(x.Data.Channel == "book.update" ? SocketUpdateType.Update : SocketUpdateType.Snapshot)),
                 false, new Dictionary<string, object> { { "book_subscription_type", "SNAPSHOT_AND_UPDATE" } });
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -186,14 +186,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<IEnumerable<CryptoComOrder>>> onMessage, CancellationToken ct = default)
         {
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, symbols.Select(x => "user.order." + x).ToArray(), x => onMessage(x.As(x.Data.Data)), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, symbols.Select(x => "user.order." + x).ToArray(), x => onMessage(x.As(x.Data.Data)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<IEnumerable<CryptoComOrder>>> onMessage, CancellationToken ct = default)
         {
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, ["user.order"], x => onMessage(x.As(x.Data.Data)), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, ["user.order"], x => onMessage(x.As(x.Data.Data)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -269,7 +269,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <inheritdoc />
         public ICryptoComSocketClientExchangeApiShared SharedClient => this;
 
+
         /// <inheritdoc />
-        public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradeMode, DateTime? deliverDate) => throw new NotImplementedException();
+        public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverDate = null)
+        {
+            if (tradingMode == TradingMode.Spot)
+                return $"{baseAsset.ToUpperInvariant()}_{quoteAsset.ToUpperInvariant()}";
+
+            if (tradingMode == TradingMode.PerpetualLinear)
+                return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-PERP";
+
+            if (deliverDate == null)
+                throw new ArgumentException("DeliverDate required to format delivery futures symbol");
+
+            return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-{deliverDate.Value.ToString("yyMMdd")}";
+        }
     }
 }

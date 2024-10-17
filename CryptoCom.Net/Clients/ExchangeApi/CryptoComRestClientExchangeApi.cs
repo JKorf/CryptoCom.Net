@@ -33,6 +33,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <inheritdoc />
         public ICryptoComRestClientExchangeApiExchangeData ExchangeData { get; }
         /// <inheritdoc />
+        public ICryptoComRestClientExchangeApiStaking Staking { get; }
+        /// <inheritdoc />
         public ICryptoComRestClientExchangeApiTrading Trading { get; }
         /// <inheritdoc />
         public string ExchangeName => "CryptoCom";
@@ -44,6 +46,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             Account = new CryptoComRestClientExchangeApiAccount(this);
             ExchangeData = new CryptoComRestClientExchangeApiExchangeData(logger, this);
+            Staking = new CryptoComRestClientExchangeApiStaking(this);
             Trading = new CryptoComRestClientExchangeApiTrading(logger, this);
         }
         #endregion
@@ -146,12 +149,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return $"{baseAsset.ToUpperInvariant()}_{quoteAsset.ToUpperInvariant()}";
 
             if (tradingMode == TradingMode.PerpetualLinear)
-                return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}_PERP";
+                return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-PERP";
 
             if (deliverDate == null)
                 throw new ArgumentException("DeliverDate required to format delivery futures symbol");
 
-            return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}_{deliverDate.Value.ToString("yyMMdd")}";
+            return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-{deliverDate.Value.ToString("yyMMdd")}";
         }
 
         /// <inheritdoc />

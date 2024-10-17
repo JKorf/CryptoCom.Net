@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Internal
 {
-    internal record CryptoComOrderBookUpdate : CryptoComOrderBook
+    internal record CryptoComOrderBookUpdateInt : CryptoComOrderBookUpdate
     {
         [JsonPropertyName("update")]
-        public CryptoComOrderBook? Update { get; set; }
+        public CryptoComOrderBookUpdate? Update { get; set; }
     }
 }

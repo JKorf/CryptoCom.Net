@@ -20,6 +20,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 
         private readonly Action<DataEvent<CryptoComSubscriptionEvent<T>>> _handler;
         private readonly Dictionary<string, object>? _parameters;
+        private readonly bool _firstUpdateSnapshot;
 
         /// <inheritdoc />
         public override Type? GetMessageType(IMessageAccessor message)
@@ -30,10 +31,11 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public CryptoComSubscription(ILogger logger, string[] topics, Action<DataEvent<CryptoComSubscriptionEvent<T>>> handler, bool auth, Dictionary<string, object>? parameters = null) : base(logger, auth)
+        public CryptoComSubscription(ILogger logger, string[] topics, Action<DataEvent<CryptoComSubscriptionEvent<T>>> handler, bool auth, Dictionary<string, object>? parameters = null, bool firstUpdateSnapshot = false) : base(logger, auth)
         {
             _handler = handler;
             _parameters = parameters;
+            _firstUpdateSnapshot = firstUpdateSnapshot;
             ListenerIdentifiers = new HashSet<string>(topics);
         }
 
@@ -91,7 +93,8 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         {
             var data = (CryptoComResponse<CryptoComSubscriptionEvent<T>>)message.Data;
 
-            _handler.Invoke(message.As(data.Result!, data.Result.Subscription, data.Result.Symbol, SocketUpdateType.Update));
+            var updateType = (ConnectionInvocations == 1 && _firstUpdateSnapshot) ? SocketUpdateType.Snapshot : SocketUpdateType.Update;
+            _handler.Invoke(message.As(data.Result!, data.Result.Subscription, data.Result.Symbol, updateType));
             return new CallResult(null);
         }
     }

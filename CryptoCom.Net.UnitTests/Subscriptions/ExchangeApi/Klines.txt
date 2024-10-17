@@ -1,0 +1,22 @@
+> { "method": "subscribe", "params": { "channels": ["candlestick.1D.ETH_USDT"] }, "nonce": "|2|", "id": "|1|" }
+< { "id": |1|, "code": 0, "method": "subscribe" }
+= 
+{
+  "id": -1,
+  "method": "subscribe",
+  "code": 0,
+  "result": {
+    "instrument_name": "ETH_USDT",
+    "subscription": "candlestick.1D.ETH_USDT",
+    "channel": "candlestick",
+    "interval": "1D",
+    "data": [{
+      "o": "51140.500000",  
+      "h": "51699.000000",  
+      "l": "49212.000000",   
+      "c": "51313.500000", 
+      "v": "867.9432",        
+      "t": 1612224000000     
+    }]
+  }
+}

@@ -1,0 +1,18 @@
+POST
+/exchange/v1/private/staking/stake
+true
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/stake",
+  "result": {
+    "staking_id": "1",
+    "instrument_name": "SOL.staked",
+    "status": "NEW",
+    "quantity": "1",
+    "underlying_inst_name": "SOL",
+    "pre_stake_charge_rate_in_bps": "50",
+    "pre_stake_charge": "0.5",
+    "reason": "NO_ERROR"
+  }
+}

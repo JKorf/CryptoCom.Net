@@ -62,10 +62,20 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("b")]
         public decimal? BestBidPrice { get; set; }
         /// <summary>
+        /// Current best bid quantity
+        /// </summary>
+        [JsonPropertyName("bs")]
+        public decimal? BestBidQuantity { get; set; }
+        /// <summary>
         /// Current best ask price
         /// </summary>
         [JsonPropertyName("k")]
         public decimal? BestAskPrice { get; set; }
+        /// <summary>
+        /// Current best ask quantity
+        /// </summary>
+        [JsonPropertyName("ks")]
+        public decimal? BestAskQuantity { get; set; }
         /// <summary>
         /// Timestamp
         /// </summary>

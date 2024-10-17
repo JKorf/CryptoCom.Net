@@ -35,6 +35,33 @@ namespace CryptoCom.Net.Objects.Models
     }
 
     /// <summary>
+    /// Order book info
+    /// </summary>
+    public record CryptoComOrderBookUpdate: CryptoComOrderBook
+    {
+        /// <summary>
+        /// Time of the event
+        /// </summary>
+        [JsonPropertyName("t")]
+        public DateTime MessageTime { get; set; }
+        /// <summary>
+        /// Book update time
+        /// </summary>
+        [JsonPropertyName("tt")]
+        public DateTime UpdateTime { get; set; }
+        /// <summary>
+        /// Sequence number
+        /// </summary>
+        [JsonPropertyName("u")]
+        public long SequenceNumber { get; set; }
+        /// <summary>
+        /// Sequence number
+        /// </summary>
+        [JsonPropertyName("pu")]
+        public long? PreviousSequenceNumber { get; set; }
+    }
+
+    /// <summary>
     /// Order book entry
     /// </summary>
     [JsonConverter(typeof(ArrayConverter))]

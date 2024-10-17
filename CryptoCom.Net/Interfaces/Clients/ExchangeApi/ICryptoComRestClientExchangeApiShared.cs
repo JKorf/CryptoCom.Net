@@ -9,7 +9,23 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     /// Shared interface for Exchange rest API usage
     /// </summary>
     public interface ICryptoComRestClientExchangeApiShared :
-        ISharedClient
+        IAssetsRestClient,
+        IBalanceRestClient,
+        IDepositRestClient,
+        IKlineRestClient,
+        IOrderBookRestClient,
+        IRecentTradeRestClient,
+        IWithdrawalRestClient,
+        IWithdrawRestClient,
+        ISpotSymbolRestClient,
+        ISpotTickerRestClient,
+        ISpotOrderRestClient,
+        IFundingRateRestClient,
+        IFuturesSymbolRestClient,
+        IFuturesTickerRestClient,
+        ILeverageRestClient,
+        IOpenInterestRestClient,
+        IFuturesOrderRestClient
     {
     }
 }

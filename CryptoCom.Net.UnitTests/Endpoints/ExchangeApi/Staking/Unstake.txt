@@ -1,0 +1,16 @@
+POST
+/exchange/v1/private/staking/unstake
+true
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/unstake",
+  "result": {
+    "staking_id": "1",
+    "instrument_name": "SOL.staked",
+    "status": "NEW",
+    "quantity": "1",
+    "underlying_inst_name": "SOL",
+    "reason": "NO_ERROR"
+  }
+}

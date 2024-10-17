@@ -69,7 +69,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Set Account Leverage
 
         /// <inheritdoc />
-        public async Task<WebCallResult> SetAccountLeverageAsync(string accountId, string leverage, CancellationToken ct = default)
+        public async Task<WebCallResult> SetAccountLeverageAsync(string accountId, int leverage, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("account_id", accountId);

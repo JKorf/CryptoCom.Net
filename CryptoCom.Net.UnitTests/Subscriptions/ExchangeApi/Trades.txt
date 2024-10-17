@@ -1,0 +1,21 @@
+> { "method": "subscribe", "params": { "channels": ["trade.ETH_USDT"] }, "nonce": "|2|", "id": "|1|" }
+< { "id": |1|, "code": 0, "method": "subscribe" }
+= 
+{
+  "id": -1,
+  "method": "subscribe",
+  "code": 0,
+  "result": {
+    "instrument_name": "ETH_USDT",
+    "subscription": "trade.ETH_USDT",
+    "channel": "trade",
+    "data": [{
+      "d" : "2030407068",  
+      "t": 1613581138462,    
+      "p": "51327.500000", 
+      "q": "0.000100",    
+      "s": "SELL",       
+      "i": "BTCUSD-PERP"     
+    }]
+  }
+}

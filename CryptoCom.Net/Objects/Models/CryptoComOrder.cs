@@ -102,7 +102,7 @@ namespace CryptoCom.Net.Objects.Models
         /// Status
         /// </summary>
         [JsonPropertyName("status")]
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus Status { get; set; }
         /// <summary>
         /// Update user id
         /// </summary>

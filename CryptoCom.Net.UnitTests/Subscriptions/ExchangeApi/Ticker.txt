@@ -1,0 +1,28 @@
+> { "method": "subscribe", "params": { "channels": ["ticker.ETH_USDT"] }, "nonce": "|2|", "id": "|1|" }
+< { "id": |1|, "code": 0, "method": "subscribe" }
+= 
+{
+  "id": -1,
+  "method": "subscribe",
+  "code": 0,
+  "result": {
+    "instrument_name": "ETH_USDT",
+    "subscription": "ticker.ETH_USDT",
+    "channel": "ticker",
+    "data": [{
+      "h": "51790.00",      
+      "l": "47895.50",        
+      "a": "51174.500000",   
+      "c": "0.03955106",      
+      "b": "51170.000000",   
+      "bs": "0.1000",        
+      "k": "51180.000000",    
+      "ks": "0.2000",       
+      "i": "BTCUSD-PERP",    
+      "v": "879.5024",       
+      "vv": "26370000.12",    
+      "oi": "12345.12",       
+      "t": 1613580710768
+    }]
+  }
+}

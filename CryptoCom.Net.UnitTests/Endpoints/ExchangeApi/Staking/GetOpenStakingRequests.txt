@@ -1,0 +1,34 @@
+POST
+/exchange/v1/private/staking/get-open-stake
+true
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/get-open-stake",
+  "result": {
+    "data": [
+      {
+        "instrument_name": "SOL.staked",
+        "underlying_inst_name": "SOL",
+        "cycle_id": "1",
+        "staking_id": "1",
+        "status": "PENDING",
+        "account": "12345678-9999-1234-9999-123456789999",
+        "quantity": "1",
+        "side": "STAKE",
+        "create_timestamp_ms": "1668658093600"
+      },
+      {
+        "instrument_name": "SOL.staked",
+        "underlying_inst_name": "SOL",
+        "cycle_id": "2",
+        "staking_id": "2",
+        "status": "PENDING",
+        "account": "12345678-9999-1234-9999-123456789999",
+        "quantity": "0.5",
+        "side": "UNSTAKE",
+        "create_timestamp_ms": "1668658093600"
+      }
+    ]
+  }
+}

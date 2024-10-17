@@ -46,7 +46,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="accountId">Id of the current account</param>
         /// <param name="leverage">New leverage setting</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> SetAccountLeverageAsync(string accountId, string leverage, CancellationToken ct = default);
+        Task<WebCallResult> SetAccountLeverageAsync(string accountId, int leverage, CancellationToken ct = default);
 
         /// <summary>
         /// Update account settings

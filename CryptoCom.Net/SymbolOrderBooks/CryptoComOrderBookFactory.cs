@@ -25,7 +25,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
             _serviceProvider = serviceProvider;
             
             
-            Exchange = new OrderBookFactory<CryptoComOrderBookOptions>((symbol, options) => CreateExchange(symbol, options), (baseAsset, quoteAsset, options) => CreateExchange(baseAsset + quoteAsset, options));
+            Exchange = new OrderBookFactory<CryptoComOrderBookOptions>((symbol, options) => CreateExchange(symbol, options), (baseAsset, quoteAsset, options) => CreateExchange(baseAsset + "_" + quoteAsset, options));
 
         }
 

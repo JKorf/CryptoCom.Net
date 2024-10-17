@@ -15,12 +15,10 @@ namespace CryptoCom.Net.Interfaces
         /// </summary>
         IOrderBookFactory<CryptoComOrderBookOptions> Exchange { get; }
 
-
-        
         /// <summary>
         /// Create a new Exchange local order book instance
         /// </summary>
-        ISymbolOrderBook CreateExchange(string symbol, Action<CryptoComOrderBookOptions>? options);
+        ISymbolOrderBook CreateExchange(string symbol, Action<CryptoComOrderBookOptions>? options = null);
 
     }
 }

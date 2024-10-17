@@ -1,0 +1,20 @@
+POST
+/exchange/v1/private/staking/get-reward-history
+false
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/get-reward-history",
+  "result": {
+    "data": [
+      {
+        "staking_inst_name": "SOL.staked",
+        "underlying_inst_name": "SOL",
+        "reward_inst_name": "SOL.staked",
+        "reward_quantity": "123.4567",
+        "staked_balance": "1234567",
+        "event_timestamp_ms": "1667795832609"
+      }
+    ]
+  }
+}

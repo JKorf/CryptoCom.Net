@@ -1,0 +1,20 @@
+POST
+/exchange/v1/private/staking/get-staking-position
+true
+{
+  "id": 1,
+  "code": 0,
+  "method": "private/staking/get-staking-position",
+  "result": {
+    "data": [
+      {
+        "instrument_name": "SOL.staked",
+        "underlying_inst_name": "SOL",
+        "staked_quantity": "30000.00",
+        "pending_staked_quantity": "20000.00",
+        "pending_unstaked_quantity": "10000.00",
+        "reward_eligible_quantity": "10000.00"
+      }
+    ]
+  }
+}
