@@ -55,7 +55,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptionalString("notional", quoteQuantity);
             parameters.AddOptionalString("price", price);
             parameters.AddOptional("client_oid", clientOrderId);
-            parameters.AddOptional("exec_inst", postOnly == true ? "POST_ONLY" : null);
+            parameters.AddOptional("exec_inst", postOnly == true ? new[] { "POST_ONLY" } : null);
             parameters.AddOptionalEnum("time_in_force", timeInForce);
             parameters.AddOptionalString("ref_price", triggerPrice);
             parameters.AddOptionalEnum("ref_price_type", triggerPriceType);

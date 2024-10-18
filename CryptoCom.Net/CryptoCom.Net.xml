@@ -2916,6 +2916,16 @@
             Contingency type
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.TriggerPrice">
+            <summary>
+            Trigger price
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.TriggerPriceType">
+            <summary>
+            Trigger price type
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComOrderBook">
             <summary>
             Order book info
@@ -3011,6 +3021,11 @@
             Quantity
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.TriggerPrice">
+            <summary>
+            Trigger price
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.OrderSide">
             <summary>
             Order side
@@ -3034,11 +3049,6 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.TimeInForce">
             <summary>
             Time in force
-            </summary>
-        </member>
-        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.TriggerPrice">
-            <summary>
-            Trigger price
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.OrderType">
@@ -4116,7 +4126,7 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
             <summary>
             ctor
             </summary>

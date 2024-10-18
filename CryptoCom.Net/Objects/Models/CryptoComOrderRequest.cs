@@ -48,6 +48,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("quantity"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(DecimalStringWriterConverter))]
         public decimal? Quantity { get; set; }
         /// <summary>
+        /// Trigger price
+        /// </summary>
+        [JsonPropertyName("ref_price"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(DecimalStringWriterConverter))]
+        public decimal? TriggerPrice { get; set; }
+        /// <summary>
         /// Order side
         /// </summary>
         [JsonPropertyName("side"), JsonConverter(typeof(EnumConverter))]
@@ -72,11 +77,6 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("time_in_force"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(EnumConverter))]
         public TimeInForce? TimeInForce { get; set; }
-        /// <summary>
-        /// Trigger price
-        /// </summary>
-        [JsonPropertyName("trigger_price"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(DecimalStringWriterConverter))]
-        public decimal? TriggerPrice { get; set; }
         /// <summary>
         /// Order type
         /// </summary>

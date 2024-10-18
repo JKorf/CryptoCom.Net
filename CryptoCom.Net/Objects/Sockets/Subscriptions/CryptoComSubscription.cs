@@ -9,6 +9,7 @@ using CryptoCom.Net.Objects.Models;
 using CryptoExchange.Net;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoCom.Net.Objects.Internal;
+using System.Linq;
 
 namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 {
@@ -18,6 +19,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override HashSet<string> ListenerIdentifiers { get; set; }
 
+        private readonly string[] _symbols;
         private readonly Action<DataEvent<CryptoComSubscriptionEvent<T>>> _handler;
         private readonly Dictionary<string, object>? _parameters;
         private readonly bool _firstUpdateSnapshot;
@@ -31,12 +33,13 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public CryptoComSubscription(ILogger logger, string[] topics, Action<DataEvent<CryptoComSubscriptionEvent<T>>> handler, bool auth, Dictionary<string, object>? parameters = null, bool firstUpdateSnapshot = false) : base(logger, auth)
+        public CryptoComSubscription(ILogger logger, string[] listenerIdentifiers, string[] symbols, Action<DataEvent<CryptoComSubscriptionEvent<T>>> handler, bool auth, Dictionary<string, object>? parameters = null, bool firstUpdateSnapshot = false) : base(logger, auth)
         {
             _handler = handler;
             _parameters = parameters;
+            _symbols = symbols;
             _firstUpdateSnapshot = firstUpdateSnapshot;
-            ListenerIdentifiers = new HashSet<string>(topics);
+            ListenerIdentifiers = new HashSet<string>(listenerIdentifiers);
         }
 
         /// <inheritdoc />
@@ -93,9 +96,12 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         {
             var data = (CryptoComResponse<CryptoComSubscriptionEvent<T>>)message.Data;
 
+            if (_symbols.Any() && !_symbols.Contains(data.Result.Symbol))
+                return message.ToCallResult();
+
             var updateType = (ConnectionInvocations == 1 && _firstUpdateSnapshot) ? SocketUpdateType.Snapshot : SocketUpdateType.Update;
             _handler.Invoke(message.As(data.Result!, data.Result.Subscription, data.Result.Symbol, updateType));
-            return new CallResult(null);
+            return message.ToCallResult();
         }
     }
 }

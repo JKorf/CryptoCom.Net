@@ -70,9 +70,14 @@ namespace CryptoCom.Net
                 {
                     foreach (var item in array)
                     {
-                        var dict = ToDictionary(item);
-                        if (dict != null)
-                            result += ToParamString(dict);
+                        if (item is string str)
+                            result += str;
+                        else
+                        {
+                            var dict = ToDictionary(item);
+                            if (dict != null)
+                                result += ToParamString(dict);
+                        }
                     }
                 }
                 else

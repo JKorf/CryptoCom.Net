@@ -21,7 +21,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public void SetDefaultExchangeParameter(string key, object value) => ExchangeParameters.SetStaticParameter(Exchange, key, value);
         public void ResetDefaultExchangeParameters() => ExchangeParameters.ResetStaticParameters();
 
-
         #region Ticker client
         EndpointOptions<SubscribeTickerRequest> ITickerSocketClient.SubscribeTickerOptions { get; } = new EndpointOptions<SubscribeTickerRequest>(false);
         async Task<ExchangeResult<UpdateSubscription>> ITickerSocketClient.SubscribeToTickerUpdatesAsync(SubscribeTickerRequest request, Action<ExchangeEvent<SharedSpotTicker>> handler, CancellationToken ct)
@@ -143,7 +142,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     x.CreateTime)
                 {
                     FeeAsset = x.FeeAsset,
-                    Fee = x.Fee,
+                    Fee = Math.Abs(x.Fee),
                     Role = x.Role == Enums.TradeRole.Taker ? SharedRole.Taker : SharedRole.Maker
                 }).ToArray()));
             }, ct).ConfigureAwait(false);
@@ -189,7 +188,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                             QuoteQuantity = x.OrderValue,
                             QuoteQuantityFilled = x.QuoteQuantityFilled,
                             UpdateTime = x.UpdateTime,
-                            Fee = x.Fee,
+                            Fee = Math.Abs(x.Fee),
                             FeeAsset = x.FeeAsset,
                             TimeInForce = x.TimeInForce == Enums.TimeInForce.ImmediateOrCancel ? SharedTimeInForce.ImmediateOrCancel : x.TimeInForce == Enums.TimeInForce.FillOrKill ? SharedTimeInForce.FillOrKill : SharedTimeInForce.GoodTillCanceled,
                             AveragePrice = x.AveragePrice
@@ -279,6 +278,26 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         UnrealizedPnl = x.SessionPnl
 #warning check
                     }).ToArray()));
+                },
+                ct: ct).ConfigureAwait(false);
+
+            return new ExchangeResult<UpdateSubscription>(Exchange, result);
+        }
+
+        #endregion
+
+        #region Balance client
+        EndpointOptions<SubscribeBalancesRequest> IBalanceSocketClient.SubscribeBalanceOptions { get; } = new EndpointOptions<SubscribeBalancesRequest>(false);
+        async Task<ExchangeResult<UpdateSubscription>> IBalanceSocketClient.SubscribeToBalanceUpdatesAsync(SubscribeBalancesRequest request, Action<ExchangeEvent<IEnumerable<SharedBalance>>> handler, CancellationToken ct)
+        {
+            var validationError = ((IBalanceSocketClient)this).SubscribeBalanceOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
+
+            var result = await SubscribeToBalanceUpdatesAsync(
+                update =>
+                {
+                    handler(update.AsExchangeEvent<IEnumerable<SharedBalance>>(Exchange, update.Data.PositionBalances.Select(x => new SharedBalance(x.Asset, x.Quantity - x.ReservedQuantity, x.Quantity)).ToArray()));
                 },
                 ct: ct).ConfigureAwait(false);
 

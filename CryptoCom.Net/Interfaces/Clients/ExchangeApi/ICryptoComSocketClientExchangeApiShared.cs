@@ -17,7 +17,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         IUserTradeSocketClient,
         ISpotOrderSocketClient,
         IFuturesOrderSocketClient,
-        IPositionSocketClient
+        IPositionSocketClient,
+        IBalanceSocketClient
     {
     }
 }

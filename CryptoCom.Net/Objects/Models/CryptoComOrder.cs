@@ -41,7 +41,12 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("order_type")]
         public OrderType OrderType { get; set; }
-#warning OCO order lists this as "type"
+        // OCO order response uses 'type'
+        [JsonInclude, JsonPropertyName("type")]
+        internal OrderType OrderTypeOco
+        {
+            set => OrderType = value;
+        }
         /// <summary>
         /// Time in force
         /// </summary>
@@ -62,7 +67,12 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("limit_price")]
         public decimal Price { get; set; }
-#warning OCO order lists this as "price"
+        // OCO order response uses 'price'
+        [JsonInclude, JsonPropertyName("price")]
+        internal decimal PriceOco
+        {
+            set => Price = value;
+        }
         /// <summary>
         /// Order value
         /// </summary>
@@ -148,8 +158,21 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("contingency_type")]
         public string? ContingencyType { get; set; }
+        /// <summary>
+        /// Trigger price
+        /// </summary>
+        [JsonPropertyName("ref_price")]
+        public decimal? TriggerPrice { get; set; }
+        // OCO order response uses 'trigger_price'
+        [JsonInclude, JsonPropertyName("trigger_price")]
+        internal decimal? TriggerPriceOco
+        {
+            set => TriggerPrice = value;
+        }
+        /// <summary>
+        /// Trigger price type
+        /// </summary>
+        [JsonPropertyName("ref_price_type")]
+        public PriceType? TriggerPriceType { get; set; }
     }
-
-#warning missing trigger_price / ref_price / trigger_price_type?
-
 }

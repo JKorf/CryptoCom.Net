@@ -398,14 +398,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Spot Order Client
 
         SharedFeeDeductionType ISpotOrderRestClient.SpotFeeDeductionType => SharedFeeDeductionType.DeductFromOutput;
-#warning check
         SharedFeeAssetType ISpotOrderRestClient.SpotFeeAssetType => SharedFeeAssetType.OutputAsset;
         IEnumerable<SharedOrderType> ISpotOrderRestClient.SpotSupportedOrderTypes { get; } = new[] { SharedOrderType.Limit, SharedOrderType.Market, SharedOrderType.LimitMaker };
         IEnumerable<SharedTimeInForce> ISpotOrderRestClient.SpotSupportedTimeInForce { get; } = new[] { SharedTimeInForce.GoodTillCanceled, SharedTimeInForce.ImmediateOrCancel, SharedTimeInForce.FillOrKill };
         SharedQuantitySupport ISpotOrderRestClient.SpotSupportedOrderQuantity { get; } = new SharedQuantitySupport(
                 SharedQuantityType.BaseAsset,
                 SharedQuantityType.BaseAsset,
-#warning check if optional or required
                 SharedQuantityType.BaseAndQuoteAsset,
                 SharedQuantityType.BaseAsset);
 
@@ -448,7 +446,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (validationError != null)
                 return new ExchangeWebResult<SharedSpotOrder>(Exchange, validationError);
 
-            var order = await Trading.GetOrderAsync(request.Symbol.GetSymbol(FormatSymbol), request.OrderId, ct: ct).ConfigureAwait(false);
+            var order = await Trading.GetOrderAsync(request.OrderId, ct: ct).ConfigureAwait(false);
             if (!order)
                 return order.AsExchangeResult<SharedSpotOrder>(Exchange, null, default);
 
@@ -461,11 +459,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 order.Data.CreateTime)
             {
                 ClientOrderId = order.Data.ClientOrderId,
-                AveragePrice = order.Data.AveragePrice,
+                AveragePrice = order.Data.AveragePrice == 0 ? null : order.Data.AveragePrice,
                 OrderPrice = order.Data.Price,
                 Quantity = order.Data.Quantity,
                 QuantityFilled = order.Data.QuantityFilled,
-                QuoteQuantity = order.Data.QuoteQuantityFilled,
+                QuoteQuantity = order.Data.OrderValue,
                 QuoteQuantityFilled = order.Data.QuoteQuantityFilled,
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
@@ -495,11 +493,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 x.CreateTime)
             {
                 ClientOrderId = x.ClientOrderId,
-                AveragePrice = x.AveragePrice,
+                AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
                 OrderPrice = x.Price,
                 Quantity = x.Quantity,
                 QuantityFilled = x.QuantityFilled,
-                QuoteQuantity = x.QuoteQuantityFilled,
+                QuoteQuantity = x.OrderValue,
                 QuoteQuantityFilled = x.QuoteQuantityFilled,
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
@@ -543,11 +541,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 x.CreateTime)
             {
                 ClientOrderId = x.ClientOrderId,
-                AveragePrice = x.AveragePrice,
+                AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
                 OrderPrice = x.Price,
                 Quantity = x.Quantity,
                 QuantityFilled = x.QuantityFilled,
-                QuoteQuantity = x.QuoteQuantityFilled,
+                QuoteQuantity = x.OrderValue,
                 QuoteQuantityFilled = x.QuoteQuantityFilled,
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
@@ -581,7 +579,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var orders = await Trading.GetUserTradesAsync(request.Symbol.GetSymbol(FormatSymbol),
                 startTime: request.StartTime,
                 endTime: fromTimestamp ?? request.EndTime,
-                limit: request.Limit ?? 500,
+                limit: request.Limit ?? 100,
                 ct: ct
                 ).ConfigureAwait(false);
             if (!orders)
@@ -589,7 +587,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             // Get next token
             DateTimeToken? nextToken = null;
-            if (orders.Data.Count() == (request.Limit ?? 500))
+            if (orders.Data.Count() == (request.Limit ?? 100))
                 nextToken = new DateTimeToken(orders.Data.Min(o => o.CreateTime).AddMilliseconds(-1));
 
             return orders.AsExchangeResult<IEnumerable<SharedUserTrade>>(Exchange, TradingMode.Spot, orders.Data.Select(x => new SharedUserTrade(
@@ -601,7 +599,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 x.Price,
                 x.CreateTime)
             {
-                Fee = x.Fee,
+                Fee = Math.Abs(x.Fee),
                 FeeAsset = x.FeeAsset,
                 Role = x.Role == TradeRole.Maker ? SharedRole.Maker : SharedRole.Taker
             }).ToArray(), nextToken);
@@ -1049,7 +1047,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 x.Price,
                 x.CreateTime)
             {
-                Fee = x.Fee,
+                Fee = Math.Abs(x.Fee),
                 FeeAsset = x.FeeAsset,
                 Role = x.Role == TradeRole.Maker ? SharedRole.Maker : SharedRole.Taker
             }).ToArray(), nextToken);
