@@ -565,6 +565,11 @@
             Order side
             </summary>
         </member>
+        <member name="F:CryptoCom.Net.Enums.OrderSide.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
         <member name="F:CryptoCom.Net.Enums.OrderSide.Buy">
             <summary>
             Buy
@@ -673,6 +678,11 @@
         <member name="T:CryptoCom.Net.Enums.PriceType">
             <summary>
             Price type
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.PriceType.Unknown">
+            <summary>
+            Unknown
             </summary>
         </member>
         <member name="F:CryptoCom.Net.Enums.PriceType.MarkPrice">

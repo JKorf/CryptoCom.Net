@@ -51,10 +51,8 @@ namespace CryptoCom.Net.Clients
             var options = CryptoComSocketOptions.Default.Copy();
             optionsDelegate?.Invoke(options);
             Initialize(options);
-
-            
+                                    
             ExchangeApi = AddApiClient(new CryptoComSocketClientExchangeApi(_logger, options));
-
         }
         #endregion
 

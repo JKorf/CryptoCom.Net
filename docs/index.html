@@ -59,7 +59,7 @@
 		<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#header-nav"><span></span><span></span><span></span></button>
         
         <ul class="social-icons social-icons-sm ml-lg-2 mr-2">
-          <li class="social-icons-ce"><a data-toggle="tooltip" href="https://jkorf.github.io/CryptoExchange.Net/" target="_blank" title="" data-original-title="Nuget">CryptoExchange.Net</a></li>
+          <li class="social-icons-ce"><a data-toggle="tooltip" href="https://jkorf.github.io/CryptoExchange.Net/" target="_blank" title="" data-original-title="CryptoExchange.Net">CryptoExchange.Net</a></li>
           <li class="social-icons-nuget"><a data-toggle="tooltip" href="http://www.nuget.org/profiles/JKorf/CryptoCom.Net" target="_blank" title="" data-original-title="Nuget">Nuget</a></li>
           <li><a data-toggle="tooltip" href="http://www.github.com/JKorf/CryptoCom.Net" target="_blank" title="" data-original-title="GitHub"><i class="fab fa-github"></i></a></li>
           <li><a data-toggle="tooltip" href="https://discord.gg/Wyqd4hegMZ" target="_blank" title="" data-original-title="Discord"><i class="fab fa-discord"></i></a></li>
@@ -97,7 +97,7 @@
         <section id="idocs_intro">
 			<h1>CryptoCom.Net</h1>
 			
-		<p>CryptoCom.Net is a client library for accessing the <a href="CryptoCom" target="_blank">CryptoCom REST and Websocket API</a>. </p>
+		<p>CryptoCom.Net is a client library for accessing the <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction" target="_blank">Crypto.com REST and Websocket API</a>. </p>
 		<h4>Features</h4>
 		<ul>
 			<li>Response data is mapped to descriptive models</li>
@@ -155,7 +155,7 @@
 		============================ -->
         <section id="idocs_start">
         <h1>Getting Started</h1>
-		<p>The package is available on Nuget. After installing the package the CryptoCom API is available by using the <code>CryptoComRestClient</code> and <code>CryptoComSocketClient</code>.</p>
+		<p>The package is available on Nuget. After installing the package the Crypto.com API is available by using the <code>CryptoComRestClient</code> and <code>CryptoComSocketClient</code>.</p>
 		<div class="alert alert-info">More information and usage documentation is available at the <a href="https://jkorf.github.io/CryptoExchange.Net/" target="_blank">CryptoExchange.Net</a> documentation page</div>
 		
         </section>
@@ -208,41 +208,88 @@ var socketClient = new CryptoComSocketClient();</code></pre>
 		
 		<section id="idocs_examples">
           <h2>Examples</h2>
+		  
+		  <p>The examples use `ETH_USD` as example symbol. This is a Spot symbol, but the same code will work for derivatives with for example the `ETHUSD-PERP` symbol.</p>
           
 		  <b id="idocs_example_symbols">Get Symbols</b><br />
-		  <p>Get a list of supported symbols on CryptoCom</p>
-		  <pre><code>await CryptoComClient.SpotApi.ExchangeData.GetSymbolsAsync();</code></pre>
+		  <p>Get a list of supported symbols on Crypto.com</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient();
 		  
+var result = await cryptoComClient.ExchangeApi.ExchangeData.GetSymbolsAsync();</code></pre>
+		  
+		  <b id="idocs_example_symbols">Get Symbol Ticker</b><br />
+		  <p>Get the 24h price ticker of a symbol</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient();
+
+var result = await cryptoComClient.ExchangeApi.ExchangeData.GetTickersAsync("ETH_USD");</code></pre>
         </section>
         		
-		<hr class="divider">
+			<b id="idocs_example_symbols">Get Recent Trades</b><br />
+		  <p>Get the most recent trades for a spot symbol</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient();
+
+var result = await cryptoComClient.ExchangeApi.ExchangeData.GetTradeHistoryAsync("ETH_USD");</code></pre>
 		
-		<!-- FAQ
-		<section id="idocs_faq">
-          <h2>FAQ</h2>
-          <b>I occasionally get a NullReferenceException, what's wrong?</b><br />
-		  <p>
-		  You probably don't check the result status of a call and just assume the data is always there. <code>NullReferenceExecption</code> will happen when you have code like this <code>var symbol = client.GetTickersAync().Result.Data.Symbol</code> because the <code>Data</code> property is null when the call fails. Instead check if the call is successful:
-<pre><code>var tickerResult = await client.SpotApi.ExchangeData.GetTickersAync();
-if(!tickerResult.Success)
-{
-  // Handle error
-}
-else
-{
-  // Handle result, it is now safe to access the Data property
-  var symbol = tickerResult.Data.Symbol;
-}</code></pre>
-		  </p>
-		  
-		<hr class="divider">
-        -->
+		<b id="idocs_example_symbols">Get Balances</b><br />
+		  <p>Get account balances</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await cryptoComClient.ExchangeApi.Account.GetBalancesAsync();</code></pre>
+		
+		<b id="idocs_example_symbols">Place Limit Order</b><br />
+		  <p>Place a new limit order for buying 0.1 ETH at a price of 2000 USDT</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await cryptoComClient.ExchangeApi.Trading.PlaceOrderAsync(
+    "ETH_USD",
+    OrderSide.Buy,
+    OrderType.Limit,
+    0.1m,
+    price: 2000);</code></pre>
+		
+		<b id="idocs_example_symbols">Place Market Order</b><br />
+		  <p>Place a new market order for buying 50 USDT worth of ETH at the best available price</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await cryptoComClient.ExchangeApi.Trading.PlaceOrderAsync(
+    "ETHUSDT",
+    OrderSide.Buy,
+    OrderType.Market,
+    quoteQuantity: 50);</code></pre>
+	
+		<b id="idocs_example_symbols">Get Order Info</b><br />
+		  <p>Retrieve order information for a specific order</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await cryptoComClient.ExchangeApi.Trading.GetOrderAsync("123");</code></pre>
+		
+		<b id="idocs_example_symbols">Cancel an order</b><br />
+		  <p>Cancel a currently active order</p>
+		  <pre><code>var cryptoComClient = new CryptoComRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await cryptoComClient.ExchangeApi.Trading.CancelOrderAsync("123");</code></pre>
+				
       </div>
     </div>
 	
   </div>
   <!-- Content end --> 
     
+	<footer id="footer" class="section bg-light">
+      <div class="container">
+      <p class="text-center">Give me more <a href="https://jkorf.github.io/CryptoExchange.Net/">documentation</a>.</p>
+      </div>
+    </footer>
 </div>
 <!-- Document Wrapper end --> 
 

@@ -45,6 +45,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         internal CryptoComSocketClientExchangeApi(ILogger logger, CryptoComSocketOptions options) :
             base(logger, options.Environment.SocketClientAddress!, options, options.ExchangeOptions)
         {
+            RateLimiter = CryptoComExchange.RateLimiter.Socket;
 
             AddSystemSubscription(new CryptoComHeartBeatSubscription(_logger));
         }

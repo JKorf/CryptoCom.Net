@@ -29,7 +29,7 @@ app.UseHttpsRedirection();
 // Map the endpoint and inject the rest client
 app.MapGet("/{Symbol}", async ([FromServices] ICryptoComRestClient client, string symbol) =>
 {
-    var result = await client.SpotApi.ExchangeData.GetTickerAsync(symbol);
+    var result = await client.ExchangeApi.ExchangeData.GetTickerAsync(symbol);
     return result.Data.LastPrice;
 })
 .WithOpenApi();
@@ -37,7 +37,7 @@ app.MapGet("/{Symbol}", async ([FromServices] ICryptoComRestClient client, strin
 
 app.MapGet("/Balances", async ([FromServices] ICryptoComRestClient client) =>
 {
-    var result = await client.SpotApi.Account.GetBalancesAsync();
+    var result = await client.ExchangeApi.Account.GetBalancesAsync();
     return (object)(result.Success ? result.Data : result.Error!);
 })
 .WithOpenApi();

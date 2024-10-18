@@ -63,7 +63,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptionalEnum("stp_scope", selfTradePreventionScope);
             parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
             parameters.AddOptional("stp_id", selfTradePreventionId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -78,7 +78,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var parameters = new ParameterCollection();
             parameters.AddOptional("order_id", orderId);
             parameters.AddOptional("client_oid", clientOrderId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-order", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -93,7 +93,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
             parameters.AddOptionalEnum("type", type);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-all-orders", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-all-orders", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -138,7 +138,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var parameters = new ParameterCollection();
             parameters.AddOptional("order_id", orderId);
             parameters.AddOptional("client_oid", clientOrderId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-detail", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-detail", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrder>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -155,7 +155,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
             parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
             parameters.AddOptional("limit", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-history", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-history", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderWrapper>(request, parameters, ct).ConfigureAwait(false);
             return result.As<IEnumerable<CryptoComOrder>>(result.Data?.Data);
         }
@@ -172,7 +172,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
             parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
             parameters.AddOptional("limit", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-trades", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-trades", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComUserTradeWrapper>(request, parameters, ct).ConfigureAwait(false);
             return result.As<IEnumerable<CryptoComUserTrade>>(result.Data?.Data);
         }

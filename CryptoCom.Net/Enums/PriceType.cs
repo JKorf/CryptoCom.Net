@@ -11,6 +11,11 @@ namespace CryptoCom.Net.Enums
     public enum PriceType
     {
         /// <summary>
+        /// Unknown
+        /// </summary>
+        [Map("NULL_VAL")]
+        Unknown,
+        /// <summary>
         /// Mark price
         /// </summary>
         [Map("MARK_PRICE")]

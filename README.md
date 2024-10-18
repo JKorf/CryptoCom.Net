@@ -2,7 +2,7 @@
 
 [![.NET](https://img.shields.io/github/actions/workflow/status/JKorf/CryptoCom.Net/dotnet.yml?style=for-the-badge)](https://github.com/JKorf/CryptoCom.Net/actions/workflows/dotnet.yml) ![License](https://img.shields.io/github/license/JKorf/CryptoCom.Net?style=for-the-badge)
 
-CryptoCom.Net is a client library for accessing the [CryptoCom REST and Websocket API](CryptoCom). 
+CryptoCom.Net is a client library for accessing the [CryptoCom REST and Websocket API](https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction). 
 
 ## Features
 * Response data is mapped to descriptive models
@@ -45,16 +45,16 @@ The NuGet package files are added along side the source with the latest GitHub r
 ## How to use
 * REST Endpoints
 	```csharp
-	// Get the ETH/USDT ticker via rest request
+	// Get the ETH/USD ticker via rest request
 	var restClient = new CryptoComRestClient();
-	var tickerResult = await restClient.SpotApi.ExchangeData.GetTickerAsync("ETHUSDT");
+	var tickerResult = await restClient.ExchangeApi.ExchangeData.GetTickerAsync("ETH_USD");
 	var lastPrice = tickerResult.Data.LastPrice;
 	```
 * Websocket streams
 	```csharp
 	// Subscribe to ETH/USDT ticker updates via the websocket API
 	var socketClient = new CryptoComSocketClient();
-	var tickerSubscriptionResult = socketClient.SpotApi.SubscribeToTickerUpdatesAsync("ETHUSDT", (update) => 
+	var tickerSubscriptionResult = socketClient.ExchangeApi.SubscribeToTickerUpdatesAsync("ETH_USD", (update) => 
 	{
 	  var lastPrice = update.Data.LastPrice;
 	});
@@ -75,6 +75,7 @@ CryptoExchange.Net also allows for [easy access to different exchange API's](htt
 |Bitget|[JKorf/Bitget.Net](https://github.com/JKorf/Bitget.Net)|[![Nuget version](https://img.shields.io/nuget/v/JK.Bitget.net.svg?style=flat-square)](https://www.nuget.org/packages/JK.Bitget.Net)|
 |BitMart|[JKorf/BitMart.Net](https://github.com/JKorf/BitMart.Net)|[![Nuget version](https://img.shields.io/nuget/v/BitMart.net.svg?style=flat-square)](https://www.nuget.org/packages/BitMart.Net)|
 |Bybit|[JKorf/Bybit.Net](https://github.com/JKorf/Bybit.Net)|[![Nuget version](https://img.shields.io/nuget/v/Bybit.net.svg?style=flat-square)](https://www.nuget.org/packages/Bybit.Net)|
+|Coinbase|[JKorf/CoinEx.Net](https://github.com/JKorf/Coinbase.Net)|[![Nuget version](https://img.shields.io/nuget/v/JKorf.Coinbase.net.svg?style=flat-square)](https://www.nuget.org/packages/JKorf.Coinbase.Net)|
 |CoinEx|[JKorf/CoinEx.Net](https://github.com/JKorf/CoinEx.Net)|[![Nuget version](https://img.shields.io/nuget/v/CoinEx.net.svg?style=flat-square)](https://www.nuget.org/packages/CoinEx.Net)|
 |CoinGecko|[JKorf/CoinGecko.Net](https://github.com/JKorf/CoinGecko.Net)|[![Nuget version](https://img.shields.io/nuget/v/CoinGecko.net.svg?style=flat-square)](https://www.nuget.org/packages/CoinGecko.Net)|
 |Gate.io|[JKorf/GateIo.Net](https://github.com/JKorf/GateIo.Net)|[![Nuget version](https://img.shields.io/nuget/v/GateIo.net.svg?style=flat-square)](https://www.nuget.org/packages/GateIo.Net)|
@@ -93,14 +94,22 @@ A Discord server is available [here](https://discord.gg/MSpeEtSY8t). For discuss
 
 ## Supported functionality
 
-### Spot
+### Exchange REST API
 |API|Supported|Location|
 |--|--:|--|
-|TODO|✓|`restClient.SpotApi.Account`|
-### Futures
+|Reference and Market Data|✓|`restClient.ExchangeApi.ExchangeData`|
+|Account Balance and Position|✓|`restClient.ExchangeApi.Account` / `restClient.ExchangeApi.Trading`|
+|Trading|✓|`restClient.ExchangeApi.Account` / `restClient.ExchangeApi.Trading`|
+|Advanced Order Management|✓|`restClient.ExchangeApi.Trading`|
+|Order, Trade, Transaction History|✓|`restClient.ExchangeApi.Account` / `restClient.ExchangeApi.Trading`|
+|Wallet|✓|`restClient.ExchangeApi.Account`|
+|Staking|✓|`restClient.ExchangeApi.Staking`|
+
+### Exchange Websocket API
 |API|Supported|Location|
 |--|--:|--|
-|TODO|✓|`restClient.FuturesApi.ExchangeData`|
+|User subscription|✓|`socketClient.ExchangeApi`|
+|Market subscription|✓|`socketClient.ExchangeApi`|
 
 ## Support the project
 Any support is greatly appreciated.
