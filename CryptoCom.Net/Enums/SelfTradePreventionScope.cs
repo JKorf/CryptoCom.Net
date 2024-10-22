@@ -20,6 +20,11 @@ namespace CryptoCom.Net.Enums
         /// </summary>
         [Map("S")]
         SubAccount,
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        [Map("D")]
+        Unknown
     }
 
 }

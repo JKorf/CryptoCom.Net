@@ -139,6 +139,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Cancel an OCO order
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /></para>
         /// </summary>
         /// <param name="symbol">Symbol</param>
         /// <param name="listId">List id to cancel</param>
@@ -148,6 +149,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get info on an OCO order
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-list-oco" /></para>
         /// </summary>
         /// <param name="symbol">Symbol</param>
         /// <param name="listId">Id</param>

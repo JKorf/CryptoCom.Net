@@ -374,6 +374,24 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetBalancesAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CancelAllOrdersAsync(System.String,System.Nullable{CryptoCom.Net.Enums.OrderTypeFilter},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
@@ -733,6 +751,11 @@
         <member name="F:CryptoCom.Net.Enums.SelfTradePreventionScope.SubAccount">
             <summary>
             Matches sub a/c only
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.SelfTradePreventionScope.Unknown">
+            <summary>
+            Unknown
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Enums.StakeRequestStatus">
@@ -1629,6 +1652,7 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Cancel an OCO order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /></para>
             </summary>
             <param name="symbol">Symbol</param>
             <param name="listId">List id to cancel</param>
@@ -1638,6 +1662,7 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Get info on an OCO order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-list-oco" /></para>
             </summary>
             <param name="symbol">Symbol</param>
             <param name="listId">Id</param>
@@ -1948,6 +1973,135 @@
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.GetBalancesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get user account balances
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get positions for the account
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Place a new order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETH_USDT`</param>
+            <param name="side">Order side</param>
+            <param name="type">Order type</param>
+            <param name="quantity">Order quantity</param>
+            <param name="quoteQuantity">Quantity in quote asset</param>
+            <param name="price">Limit price</param>
+            <param name="clientOrderId">Client order id</param>
+            <param name="postOnly">Post only order</param>
+            <param name="timeInForce">Time in force</param>
+            <param name="triggerPrice">Trigger price</param>
+            <param name="triggerPriceType">Type of trigger price</param>
+            <param name="margin">True for spot margin order</param>
+            <param name="selfTradePreventionScope">Scope for self trade prevention</param>
+            <param name="selfTradePreventionMode">Mode for self trade prevention</param>
+            <param name="selfTradePreventionId">Id for self trade prevention</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancel an order by id
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /></para>
+            </summary>
+            <param name="orderId">Order id, either this or clientOrderId should be provided</param>
+            <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelAllOrdersAsync(System.String,System.Nullable{CryptoCom.Net.Enums.OrderTypeFilter},System.Threading.CancellationToken)">
+            <summary>
+            Cancel all order fitting the parameters
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol</param>
+            <param name="type">Filter by type</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Threading.CancellationToken)">
+            <summary>
+            Close an open position
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
+            <param name="orderType">Type of order to use</param>
+            <param name="price">Price for limit order</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.GetOpenOrdersAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get user open orders
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.PlaceMultipleOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrderRequest},System.Threading.CancellationToken)">
+            <summary>
+            Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /></para>
+            </summary>
+            <param name="orders">Orders to place, max 10</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest},System.Threading.CancellationToken)">
+            <summary>
+            Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /></para>
+            </summary>
+            <param name="orders">Orders to cancel</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.PlaceOcoOrderAsync(CryptoCom.Net.Objects.Models.CryptoComOrderRequest,CryptoCom.Net.Objects.Models.CryptoComOrderRequest,System.Threading.CancellationToken)">
+            <summary>
+            Place a new OCO (One Cancels Other) order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /></para>
+            </summary>
+            <param name="order1">First order</param>
+            <param name="order2">Second order</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancel an OCO order
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /></para>
+            </summary>
+            <param name="symbol">Symbol</param>
+            <param name="listId">List id to cancel</param>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.WithdrawAsync(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Withdraw funds
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /></para>
+            </summary>
+            <param name="asset">Asset to withdraw</param>
+            <param name="quantity">Quantity</param>
+            <param name="address">Target address</param>
+            <param name="addressTag">Address tag</param>
+            <param name="network">Network to use</param>
+            <param name="clientWithdrawId">Client id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SetCancelOnDisconnectAsync(System.Threading.CancellationToken)">
+            <summary>
+            Set all open orders created by this connection to cancel when the connection is interupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /></para>
+            </summary>
+            <param name="ct"></param>
+            <returns></returns>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SharedClient">
             <summary>

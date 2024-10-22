@@ -22,6 +22,7 @@ using System.Linq;
 using CryptoCom.Net.Objects.Internal;
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects.Sockets;
+using CryptoCom.Net.Objects;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -50,6 +51,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             AddSystemSubscription(new CryptoComHeartBeatSubscription(_logger));
         }
         #endregion
+
+        #region Subscriptions
 
         /// <inheritdoc />
         protected override IByteMessageAccessor CreateAccessor() => new SystemTextJsonByteMessageAccessor();
@@ -255,6 +258,243 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var subscription = new CryptoComSubscription<IEnumerable<CryptoComBalancePositionUpdate>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data.First())), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
+
+        #endregion
+
+        #region Queries
+
+        /// <inheritdoc />
+        public async Task<CallResult<IEnumerable<CryptoComBalances>>> GetBalancesAsync(CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/user-balance"
+            };
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComBalancesWrapper>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<IEnumerable<CryptoComBalances>>(result.Data?.Result.Data);
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult<IEnumerable<CryptoComPosition>>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/get-positions",
+                Parameters = new ParameterCollection()
+            };
+            request.Parameters.AddOptional("instrument_name", symbol);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComPositionWrapper>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<IEnumerable<CryptoComPosition>>(result.Data?.Result.Data);
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/create-order",
+                Parameters = new ParameterCollection()
+            };
+
+            request.Parameters.Add("instrument_name", symbol);
+            request.Parameters.AddEnum("side", side);
+            request.Parameters.AddEnum("type", type);
+            request.Parameters.AddOptionalString("quantity", quantity);
+            request.Parameters.AddOptionalString("notional", quoteQuantity);
+            request.Parameters.AddOptionalString("price", price);
+            request.Parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
+            request.Parameters.AddOptional("exec_inst", postOnly == true ? new[] { "POST_ONLY" } : null);
+            request.Parameters.AddOptionalEnum("time_in_force", timeInForce);
+            request.Parameters.AddOptionalString("ref_price", triggerPrice);
+            request.Parameters.AddOptionalEnum("ref_price_type", triggerPriceType);
+            request.Parameters.AddOptional("spot_margin", margin == true ? "MARGIN" : null);
+            request.Parameters.AddOptionalEnum("stp_scope", selfTradePreventionScope);
+            request.Parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
+            request.Parameters.AddOptional("stp_id", selfTradePreventionId);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<CryptoComOrderId>(result.Data?.Result);
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/cancel-order",
+                Parameters = new ParameterCollection()
+            };
+            request.Parameters.AddOptional("order_id", orderId);
+            request.Parameters.AddOptional("client_oid", clientOrderId);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<CryptoComOrderId>(result.Data?.Result);
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/cancel-all-orders",
+                Parameters = new ParameterCollection()
+            };
+            request.Parameters.AddOptional("instrument_name", symbol);
+            request.Parameters.AddOptionalEnum("type", type);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(request, true, 1), ct).ConfigureAwait(false);
+            return result.AsDataless();
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/close-position",
+                Parameters = new ParameterCollection()
+            };
+            request.Parameters.Add("instrument_name", symbol);
+            request.Parameters.AddEnum("type", orderType);
+            request.Parameters.AddOptionalString("price", price);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<CryptoComOrderId>(result.Data?.Result);
+        }
+
+
+        public async Task<CallResult<IEnumerable<CryptoComOrder>>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/get-open-orders",
+                Parameters = new ParameterCollection()
+            };
+
+            request.Parameters.AddOptional("instrument_name", symbol);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderWrapper>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<IEnumerable<CryptoComOrder>>(result.Data?.Result.Data);
+        }
+
+        public async Task<CallResult<IEnumerable<CryptoComOrderResult>>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/create-order-list",
+                Parameters = new ParameterCollection()
+            };
+
+            foreach (var order in orders)
+                order.ClientOrderId ??= ExchangeHelpers.RandomString(32);
+
+            request.Parameters.Add("contingency_type", "LIST");
+            request.Parameters.Add("order_list", orders.ToArray());
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<IEnumerable<CryptoComOrderResult>>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<IEnumerable<CryptoComOrderResult>>(result.Data?.Result);
+        }
+
+        public async Task<CallResult<IEnumerable<CryptoComCancelOrderResult>>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/cancel-order-list",
+                Parameters = new ParameterCollection()
+            };
+
+            request.Parameters.Add("contingency_type", "LIST");
+            request.Parameters.Add("order_list", orders.ToArray());
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<IEnumerable<CryptoComCancelOrderResult>>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<IEnumerable<CryptoComCancelOrderResult>>(result.Data?.Result);
+        }
+
+        public async Task<CallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/create-order-list",
+                Parameters = new ParameterCollection()
+            };
+
+            order1.ClientOrderId ??= ExchangeHelpers.RandomString(32);
+            order2.ClientOrderId ??= ExchangeHelpers.RandomString(32);
+
+            request.Parameters.Add("contingency_type", "OCO");
+            request.Parameters.Add("order_list", new[] { order1, order2 });
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOcoResult>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<CryptoComOcoResult> (result.Data?.Result);
+        }
+
+        public async Task<CallResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/cancel-order-list",
+                Parameters = new ParameterCollection()
+            };
+
+            request.Parameters.Add("contingency_type", "OCO");
+            request.Parameters.Add("list_id", listId);
+            request.Parameters.Add("instrument_name", symbol);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(request, true, 1), ct).ConfigureAwait(false);
+            return result.AsDataless();
+        }
+
+        public async Task<CallResult<CryptoComWithdrawalResult>> WithdrawAsync(string asset, decimal quantity, string address, string? addressTag = null, string? network = null, string? clientWithdrawId = null, CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/create-withdrawal",
+                Parameters = new ParameterCollection()
+            };
+
+            request.Parameters.Add("currency", asset);
+            request.Parameters.Add("amount", quantity);
+            request.Parameters.Add("address", address);
+            request.Parameters.AddOptional("address_tag", addressTag);
+            request.Parameters.AddOptional("network_id", network);
+            request.Parameters.AddOptional("client_wid", clientWithdrawId);
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComWithdrawalResult>(request, true, 1), ct).ConfigureAwait(false);
+            return result.As<CryptoComWithdrawalResult>(result.Data?.Result);
+        }
+
+        public async Task<CallResult> SetCancelOnDisconnectAsync(CancellationToken ct = default)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                Method = "private/set-cancel-on-disconnect",
+                Parameters = new ParameterCollection()
+                {
+                    { "scope", "CONNECTION" }
+                }
+            };
+
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(request, true, 1), ct).ConfigureAwait(false);
+            return result.AsDataless();
+        }
+
+        #endregion
+
 
         /// <inheritdoc />
         public override string? GetListenerIdentifier(IMessageAccessor message)

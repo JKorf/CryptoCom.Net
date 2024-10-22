@@ -130,7 +130,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #endregion
 
-        #region Get Valudations
+        #region Get Valuations
 
         /// <inheritdoc />
         public async Task<WebCallResult<IEnumerable<CryptoComValuation>>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)

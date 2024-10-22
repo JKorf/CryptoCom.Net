@@ -52,7 +52,7 @@ The NuGet package files are added along side the source with the latest GitHub r
 	```
 * Websocket streams
 	```csharp
-	// Subscribe to ETH/USDT ticker updates via the websocket API
+	// Subscribe to ETH/USD ticker updates via the websocket API
 	var socketClient = new CryptoComSocketClient();
 	var tickerSubscriptionResult = socketClient.ExchangeApi.SubscribeToTickerUpdatesAsync("ETH_USD", (update) => 
 	{

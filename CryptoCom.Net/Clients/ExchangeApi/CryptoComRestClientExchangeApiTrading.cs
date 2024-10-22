@@ -12,6 +12,7 @@ using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System.Linq;
+using CryptoExchange.Net;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -54,7 +55,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptionalString("quantity", quantity);
             parameters.AddOptionalString("notional", quoteQuantity);
             parameters.AddOptionalString("price", price);
-            parameters.AddOptional("client_oid", clientOrderId);
+            parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
             parameters.AddOptional("exec_inst", postOnly == true ? new[] { "POST_ONLY" } : null);
             parameters.AddOptionalEnum("time_in_force", timeInForce);
             parameters.AddOptionalString("ref_price", triggerPrice);
@@ -185,6 +186,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<WebCallResult<IEnumerable<CryptoComOrderResult>>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
+
+            foreach (var order in orders)
+                order.ClientOrderId ??= ExchangeHelpers.RandomString(32);
+
             parameters.Add("contingency_type", "LIST");
             parameters.Add("order_list", orders.ToArray());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
@@ -213,6 +218,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<WebCallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
+
+            order1.ClientOrderId ??= ExchangeHelpers.RandomString(32);
+            order2.ClientOrderId ??= ExchangeHelpers.RandomString(32);
+
             parameters.Add("contingency_type", "OCO");
             parameters.Add("order_list", new[] { order1, order2 });
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
