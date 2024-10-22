@@ -109,6 +109,7 @@ A Discord server is available [here](https://discord.gg/MSpeEtSY8t). For discuss
 |API|Supported|Location|
 |--|--:|--|
 |User subscription|✓|`socketClient.ExchangeApi`|
+|Order management|✓|`socketClient.ExchangeApi`|
 |Market subscription|✓|`socketClient.ExchangeApi`|
 
 ## Support the project
