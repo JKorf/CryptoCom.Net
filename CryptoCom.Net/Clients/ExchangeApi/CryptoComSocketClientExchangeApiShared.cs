@@ -169,7 +169,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         return;
 
                     // Check for spot orders
-                    var data = update.Data.Where(x => x.Symbol.Contains("_"));
+                    var data = update.Data.Where(x => x.Symbol.Contains('_'));
                     if (!data.Any())
                         return;
 
@@ -225,7 +225,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         return;
 
                     // Check for Futures orders
-                    var data = update.Data.Where(x => !x.Symbol.Contains("_"));
+                    var data = update.Data.Where(x => !x.Symbol.Contains('_'));
                     if (!data.Any())
                         return;
 
@@ -277,7 +277,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         AverageOpenPrice = x.OpenPosCost,
                         PositionSide = x.Quantity < 0 ? SharedPositionSide.Short : SharedPositionSide.Long,
                         UnrealizedPnl = x.SessionPnl
-#warning check
                     }).ToArray()));
                 },
                 ct: ct).ConfigureAwait(false);

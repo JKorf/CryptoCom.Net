@@ -58,7 +58,7 @@ namespace CryptoCom.Net
             request.Signature = sign;
         }
 
-        public string ToParamString(IDictionary<string, object> parameters)
+        public string ToParamString(Dictionary<string, object> parameters)
         {
             var result = string.Empty;
             foreach(var parameter in parameters.OrderBy(x => x.Key))
@@ -87,7 +87,7 @@ namespace CryptoCom.Net
             return result;
         }
 
-        private static IDictionary<string, object>? ToDictionary(object? obj)
+        private static Dictionary<string, object>? ToDictionary(object? obj)
         {
             if (obj == null)
                 return null;
