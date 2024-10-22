@@ -29,8 +29,8 @@ app.UseHttpsRedirection();
 // Map the endpoint and inject the rest client
 app.MapGet("/{Symbol}", async ([FromServices] ICryptoComRestClient client, string symbol) =>
 {
-    var result = await client.ExchangeApi.ExchangeData.GetTickerAsync(symbol);
-    return result.Data.LastPrice;
+    var result = await client.ExchangeApi.ExchangeData.GetTickersAsync(symbol);
+    return result.Data?.SingleOrDefault()?.LastPrice;
 })
 .WithOpenApi();
 
