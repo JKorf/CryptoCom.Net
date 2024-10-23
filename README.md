@@ -2,7 +2,7 @@
 
 [![.NET](https://img.shields.io/github/actions/workflow/status/JKorf/CryptoCom.Net/dotnet.yml?style=for-the-badge)](https://github.com/JKorf/CryptoCom.Net/actions/workflows/dotnet.yml) ![License](https://img.shields.io/github/license/JKorf/CryptoCom.Net?style=for-the-badge)
 
-CryptoCom.Net is a client library for accessing the [CryptoCom REST and Websocket API](https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction). 
+CryptoCom.Net is a client library for accessing the [Crypto.com REST and Websocket API](https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction). 
 
 ## Features
 * Response data is mapped to descriptive models
