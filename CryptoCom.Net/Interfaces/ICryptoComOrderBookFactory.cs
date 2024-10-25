@@ -1,6 +1,7 @@
 using CryptoExchange.Net.Interfaces;
 using System;
 using CryptoCom.Net.Objects.Options;
+using CryptoExchange.Net.SharedApis;
 
 namespace CryptoCom.Net.Interfaces
 {
@@ -16,9 +17,17 @@ namespace CryptoCom.Net.Interfaces
         IOrderBookFactory<CryptoComOrderBookOptions> Exchange { get; }
 
         /// <summary>
-        /// Create a new Exchange local order book instance
+        /// Create a SymbolOrderBook for the symbol
         /// </summary>
-        ISymbolOrderBook CreateExchange(string symbol, Action<CryptoComOrderBookOptions>? options = null);
+        /// <param name="symbol">The symbol</param>
+        /// <param name="options">Book options</param>
+        /// <returns></returns>
+        ISymbolOrderBook Create(SharedSymbol symbol, Action<CryptoComOrderBookOptions>? options = null);
+
+        /// <summary>
+        /// Create a new local order book instance
+        /// </summary>
+        ISymbolOrderBook Create(string symbol, Action<CryptoComOrderBookOptions>? options = null);
 
     }
 }

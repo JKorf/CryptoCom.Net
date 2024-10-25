@@ -533,20 +533,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <inheritdoc />
         public ICryptoComSocketClientExchangeApiShared SharedClient => this;
 
-
         /// <inheritdoc />
-        public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverDate = null)
-        {
-            if (tradingMode == TradingMode.Spot)
-                return $"{baseAsset.ToUpperInvariant()}_{quoteAsset.ToUpperInvariant()}";
-
-            if (tradingMode == TradingMode.PerpetualLinear)
-                return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-PERP";
-
-            if (deliverDate == null)
-                throw new ArgumentException("DeliverDate required to format delivery futures symbol");
-
-            return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-{deliverDate.Value.ToString("yyMMdd")}";
-        }
+        public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverTime = null)
+                => CryptoComExchange.FormatSymbol(baseAsset, quoteAsset, tradingMode, deliverTime);
     }
 }

@@ -9,6 +9,7 @@ using CryptoCom.Net.Interfaces;
 using CryptoCom.Net.Interfaces.Clients;
 using CryptoCom.Net.Objects.Options;
 using CryptoCom.Net.SymbolOrderBooks;
+using CryptoCom.Net;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -62,6 +63,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<ICryptoRestClient, CryptoRestClient>();
             services.AddSingleton<ICryptoSocketClient, CryptoSocketClient>();
             services.AddTransient<ICryptoComOrderBookFactory, CryptoComOrderBookFactory>();
+            services.AddTransient<ICryptoComTrackerFactory, CryptoComTrackerFactory>();
 
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<ICryptoComRestClient>().ExchangeApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<ICryptoComSocketClient>().ExchangeApi.SharedClient);

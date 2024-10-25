@@ -260,7 +260,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<IEnumerable<SharedTrade>>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult<IEnumerable<SharedTrade>>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)).ToArray());
+            return result.AsExchangeResult<IEnumerable<SharedTrade>>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)
+            {
+                Side = x.Side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell
+            }).ToArray());
         }
         #endregion
 
@@ -742,7 +745,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var ticker = tickerTask.Result.Data.Single();
             var time = DateTime.UtcNow;
-            return tickerTask.Result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFuturesTicker(ticker.Symbol, ticker.LastPrice ?? 0, ticker.HighPrice ?? 0, ticker.LowPrice ?? 0, ticker.Volume, ticker.PriceChange * 100)
+            return tickerTask.Result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFuturesTicker(ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, ticker.PriceChange * 100)
             {
                 FundingRate = fundingTask.Result.Data?.Single().Value,
                 MarkPrice = markTask.Result.Data?.Single().Value,
@@ -764,7 +767,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var time = DateTime.UtcNow;
             var nextFundingTime = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, DateTimeKind.Utc).AddHours(1);
-            return result.AsExchangeResult<IEnumerable<SharedFuturesTicker>>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedFuturesTicker(x.Symbol, x.LastPrice ?? 0, x.HighPrice ?? 0, x.LowPrice ?? 0, x.Volume, x.PriceChange * 100)
+            return result.AsExchangeResult<IEnumerable<SharedFuturesTicker>>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedFuturesTicker(x.Symbol, x.LastPrice, x.HighPrice, x.LowPrice, x.Volume, x.PriceChange * 100)
             {
                 NextFundingTime = nextFundingTime
             }).ToArray());

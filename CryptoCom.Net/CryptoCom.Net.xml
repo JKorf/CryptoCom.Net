@@ -458,6 +458,16 @@
             Urls to the API documentation
             </summary>
         </member>
+        <member name="M:CryptoCom.Net.CryptoComExchange.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <summary>
+            Format a base and quote asset to a Crypto.com recognized symbol 
+            </summary>
+            <param name="baseAsset">Base asset</param>
+            <param name="quoteAsset">Quote asset</param>
+            <param name="tradingMode">Trading mode</param>
+            <param name="deliverTime">Delivery time for delivery futures</param>
+            <returns></returns>
+        </member>
         <member name="P:CryptoCom.Net.CryptoComExchange.RateLimiter">
             <summary>
             Rate limiter configuration for the CryptoCom API
@@ -472,6 +482,21 @@
             <summary>
             Event for when a rate limit is triggered
             </summary>
+        </member>
+        <member name="T:CryptoCom.Net.CryptoComTrackerFactory">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            ctor
+            </summary>
+            <param name="serviceProvider">Service provider for resolving logging and clients</param>
+        </member>
+        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <inheritdoc />
         </member>
         <member name="T:CryptoCom.Net.Enums.AccessType">
             <summary>
@@ -2155,10 +2180,42 @@
             Exchange order book factory methods
             </summary>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.ICryptoComOrderBookFactory.CreateExchange(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComOrderBookFactory.Create(CryptoExchange.Net.SharedApis.SharedSymbol,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
             <summary>
-            Create a new Exchange local order book instance
+            Create a SymbolOrderBook for the symbol
             </summary>
+            <param name="symbol">The symbol</param>
+            <param name="options">Book options</param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComOrderBookFactory.Create(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <summary>
+            Create a new local order book instance
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory">
+            <summary>
+            Tracker factory
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory.CreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <summary>
+            Create a new kline tracker
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="interval">Kline interval</param>
+            <param name="limit">The max amount of klines to retain</param>
+            <param name="period">The max period the data should be retained</param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory.CreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <summary>
+            Create a new trade tracker for a symbol
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="limit">The max amount of klines to retain</param>
+            <param name="period">The max period the data should be retained</param>
+            <returns></returns>
         </member>
         <member name="T:CryptoCom.Net.Objects.CryptoComApiAddresses">
             <summary>
@@ -4350,7 +4407,10 @@
         <member name="P:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.Exchange">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.CreateExchange(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.Create(CryptoExchange.Net.SharedApis.SharedSymbol,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.Create(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
             <inheritdoc />
         </member>
         <member name="T:CryptoExchange.Net.Interfaces.CryptoClientExtensions">

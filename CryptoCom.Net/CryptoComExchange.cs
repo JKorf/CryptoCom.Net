@@ -6,6 +6,8 @@ using CryptoExchange.Net.RateLimiting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CryptoExchange.Net.SharedApis;
+using CryptoExchange.Net;
 
 namespace CryptoCom.Net
 {
@@ -30,6 +32,28 @@ namespace CryptoCom.Net
         public static string[] ApiDocsUrl { get; } = new[] {
             "https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction"
             };
+
+        /// <summary>
+        /// Format a base and quote asset to a Crypto.com recognized symbol 
+        /// </summary>
+        /// <param name="baseAsset">Base asset</param>
+        /// <param name="quoteAsset">Quote asset</param>
+        /// <param name="tradingMode">Trading mode</param>
+        /// <param name="deliverTime">Delivery time for delivery futures</param>
+        /// <returns></returns>
+        public static string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverTime = null)
+        {
+            if (tradingMode == TradingMode.Spot)
+                return $"{baseAsset.ToUpperInvariant()}_{quoteAsset.ToUpperInvariant()}";
+
+            if (tradingMode.IsPerpetual())
+                return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-PERP";
+
+            if (deliverTime == null)
+                throw new ArgumentException("DeliverDate required to format delivery futures symbol");
+
+            return $"{baseAsset.ToUpperInvariant()}{quoteAsset.ToUpperInvariant()}-{deliverTime.Value.ToString("yyMMdd")}";
+        }
 
         /// <summary>
         /// Rate limiter configuration for the CryptoCom API
