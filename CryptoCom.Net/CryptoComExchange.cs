@@ -91,8 +91,8 @@ namespace CryptoCom.Net
             RestStaking = new RateLimitGate("Rest Staking")
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerEndpoint, Array.Empty<IGuardFilter>(), 50, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             Socket = new RateLimitGate("Socket Public")
-                .AddGuard(new RateLimitGuard(RateLimitGuard.PerEndpoint, [new LimitItemTypeFilter(RateLimitItemType.Request), new ExactPathFilter("/exchange/v1/market")], 100, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding))
-                .AddGuard(new RateLimitGuard(RateLimitGuard.PerEndpoint, [new LimitItemTypeFilter(RateLimitItemType.Request), new ExactPathFilter("/exchange/v1/user")], 150, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, [new LimitItemTypeFilter(RateLimitItemType.Request), new ExactPathFilter("/exchange/v1/market")], 100, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding))
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, [new LimitItemTypeFilter(RateLimitItemType.Request), new ExactPathFilter("/exchange/v1/user")], 150, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             RestPrivate.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
             RestPrivateSpecific.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
             RestPublic.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
