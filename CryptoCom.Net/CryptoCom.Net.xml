@@ -486,6 +486,11 @@
         <member name="T:CryptoCom.Net.CryptoComTrackerFactory">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
         <member name="M:CryptoCom.Net.CryptoComTrackerFactory.#ctor(System.IServiceProvider)">
             <summary>
             ctor
