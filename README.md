@@ -126,6 +126,14 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 1.1.0 - 28 Oct 2024
+    * Updated CryptoExchange.Net to version 8.1.0, see https://github.com/JKorf/CryptoExchange.Net/releases/tag/8.1.0
+    * Moved FormatSymbol to CryptoComExchange class
+    * Added support Side setting on SharedTrade model
+    * Added CryptoComTrackerFactory for creating trackers
+    * Added overload to Create method on CryptoComOrderBookFactory support SharedSymbol parameter
+    * Renamed CreateExchange method on CryptoComOrderBookFactory to Create
+
 * Version 1.0.1 - 22 Oct 2024
     * Fixed CryptoExchange.Net reference
 
