@@ -516,7 +516,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        protected override Query? GetAuthenticationRequest(SocketConnection connection)
+        protected override Task<Query?> GetAuthenticationRequestAsync(SocketConnection connection)
         {
             var authProvider = (CryptoComAuthenticationProvider)AuthenticationProvider!;
             var request = new CryptoComRequest
@@ -527,7 +527,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             };
 
             authProvider.AuthenticateRequest(null, request);
-            return new CryptoComQuery(request, false, 1);
+            return Task.FromResult<Query?>(new CryptoComQuery(request, false, 1));
         }
 
         /// <inheritdoc />
