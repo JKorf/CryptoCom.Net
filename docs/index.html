@@ -222,7 +222,6 @@ var result = await cryptoComClient.ExchangeApi.ExchangeData.GetSymbolsAsync();</
 		  <pre><code>var cryptoComClient = new CryptoComRestClient();
 
 var result = await cryptoComClient.ExchangeApi.ExchangeData.GetTickersAsync("ETH_USD");</code></pre>
-        </section>
         		
 			<b id="idocs_example_symbols">Get Recent Trades</b><br />
 		  <p>Get the most recent trades for a spot symbol</p>
@@ -252,13 +251,13 @@ var result = await cryptoComClient.ExchangeApi.Trading.PlaceOrderAsync(
     price: 2000);</code></pre>
 		
 		<b id="idocs_example_symbols">Place Market Order</b><br />
-		  <p>Place a new market order for buying 50 USDT worth of ETH at the best available price</p>
+		  <p>Place a new market order for buying 50 USD worth of ETH at the best available price</p>
 		  <pre><code>var cryptoComClient = new CryptoComRestClient(options => {
     options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
 });
 
 var result = await cryptoComClient.ExchangeApi.Trading.PlaceOrderAsync(
-    "ETHUSDT",
+    "ETH_USD",
     OrderSide.Buy,
     OrderType.Market,
     quoteQuantity: 50);</code></pre>
@@ -279,6 +278,7 @@ var result = await cryptoComClient.ExchangeApi.Trading.GetOrderAsync("123");</co
 
 var result = await cryptoComClient.ExchangeApi.Trading.CancelOrderAsync("123");</code></pre>
 				
+        </section>
       </div>
     </div>
 	
