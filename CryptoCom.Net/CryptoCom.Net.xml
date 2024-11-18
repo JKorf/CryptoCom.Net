@@ -16,11 +16,11 @@
             </summary>
             <param name="optionsDelegate">Option configuration delegate</param>
         </member>
-        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILoggerFactory,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions})">
+        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Options.IOptions{CryptoCom.Net.Objects.Options.CryptoComRestOptions})">
             <summary>
             Create a new instance of the CryptoComRestClient using provided options
             </summary>
-            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="options">Option configuration</param>
             <param name="loggerFactory">The logger factory</param>
             <param name="httpClient">Http client for this client</param>
         </member>
@@ -39,24 +39,18 @@
         <member name="P:CryptoCom.Net.Clients.CryptoComSocketClient.ExchangeApi">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(Microsoft.Extensions.Logging.ILoggerFactory)">
-            <summary>
-            Create a new instance of CryptoComSocketClient
-            </summary>
-            <param name="loggerFactory">The logger factory</param>
-        </member>
         <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions})">
             <summary>
             Create a new instance of CryptoComSocketClient
             </summary>
             <param name="optionsDelegate">Option configuration delegate</param>
         </member>
-        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},Microsoft.Extensions.Logging.ILoggerFactory)">
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.#ctor(Microsoft.Extensions.Options.IOptions{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
             Create a new instance of CryptoComSocketClient
             </summary>
             <param name="loggerFactory">The logger factory</param>
-            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="options">Option configuration</param>
         </member>
         <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.SetDefaultOptions(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions})">
             <summary>
@@ -417,6 +411,16 @@
         <member name="P:CryptoCom.Net.CryptoComEnvironment.SocketClientAddress">
             <summary>
             Socket API address
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.CryptoComEnvironment.#ctor">
+            <summary>
+            ctor for DI, use <see cref="M:CryptoCom.Net.CryptoComEnvironment.CreateCustom(System.String,System.String,System.String)"/> for creating a custom environment
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.CryptoComEnvironment.GetEnvironmentByName(System.String)">
+            <summary>
+            Get the CryptoCom environment by name
             </summary>
         </member>
         <member name="P:CryptoCom.Net.CryptoComEnvironment.Live">
@@ -4287,6 +4291,36 @@
             Network id
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Options.CryptoComOptions">
+            <summary>
+            CryptoCom options
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.Rest">
+            <summary>
+            Rest client options
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.Socket">
+            <summary>
+            Socket client options
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.Environment">
+            <summary>
+            Trade environment. Contains info about URL's to use to connect to the API. Use `CryptoComEnvironment` to swap environment, for example `Environment = CryptoComEnvironment.Live`
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.ApiCredentials">
+            <summary>
+            The api credentials used for signing requests.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.SocketClientLifeTime">
+            <summary>
+            The DI service lifetime for the ICryptoComSocketClient
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions">
             <summary>
             Options for the CryptoCom SymbolOrderBook
@@ -4317,6 +4351,11 @@
             Default options for new clients
             </summary>
         </member>
+        <member name="M:CryptoCom.Net.Objects.Options.CryptoComRestOptions.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Objects.Options.CryptoComRestOptions.ExchangeOptions">
             <summary>
             Exchange API options
@@ -4330,6 +4369,11 @@
         <member name="P:CryptoCom.Net.Objects.Options.CryptoComSocketOptions.Default">
             <summary>
             Default options for new clients
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Options.CryptoComSocketOptions.#ctor">
+            <summary>
+            ctor
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Options.CryptoComSocketOptions.ExchangeOptions">
@@ -4442,15 +4486,26 @@
             Extensions for DI
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions},System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},System.Nullable{Microsoft.Extensions.DependencyInjection.ServiceLifetime})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            Add the ICryptoComRestClient and ICryptoComSocketClient to the sevice collection so they can be injected
+            Add services such as the ICryptoComRestClient and ICryptoComSocketClient. Configures the services based on the provided configuration.
             </summary>
             <param name="services">The service collection</param>
-            <param name="defaultRestOptionsDelegate">Set default options for the rest client</param>
-            <param name="defaultSocketOptionsDelegate">Set default options for the socket client</param>
-            <param name="socketClientLifeTime">The lifetime of the ICryptoComSocketClient for the service collection. Defaults to Singleton.</param>
+            <param name="configuration">The configuration(section) containing the options</param>
             <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComOptions})">
+            <summary>
+            Add services such as the ICryptoComRestClient and ICryptoComSocketClient. Services will be configured based on the provided options.
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="optionsDelegate">Set options for the CryptoCom services</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions},System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},System.Nullable{Microsoft.Extensions.DependencyInjection.ServiceLifetime})">
+            <summary>
+            DEPRECATED; use <see cref="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComOptions})" /> instead
+            </summary>
         </member>
     </members>
 </doc>

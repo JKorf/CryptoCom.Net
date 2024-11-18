@@ -10,26 +10,30 @@ namespace CryptoCom.Net.Objects.Options
         /// <summary>
         /// Default options for new clients
         /// </summary>
-        public static CryptoComRestOptions Default { get; set; } = new CryptoComRestOptions()
+        internal static CryptoComRestOptions Default { get; set; } = new CryptoComRestOptions()
         {
             Environment = CryptoComEnvironment.Live,
             AutoTimestamp = true
         };
 
-        
-         /// <summary>
+        /// <summary>
+        /// ctor
+        /// </summary>
+        public CryptoComRestOptions()
+        {
+            Default?.Set(this);
+        }
+
+        /// <summary>
         /// Exchange API options
         /// </summary>
         public RestApiOptions ExchangeOptions { get; private set; } = new RestApiOptions();
 
-
-        internal CryptoComRestOptions Copy()
+        internal CryptoComRestOptions Set(CryptoComRestOptions targetOptions)
         {
-            var options = Copy<CryptoComRestOptions>();
-            
-            options.ExchangeOptions = ExchangeOptions.Copy<RestApiOptions>();
-
-            return options;
+            targetOptions = base.Set<CryptoComRestOptions>(targetOptions);
+            targetOptions.ExchangeOptions = ExchangeOptions.Set(targetOptions.ExchangeOptions);
+            return targetOptions;
         }
     }
 }

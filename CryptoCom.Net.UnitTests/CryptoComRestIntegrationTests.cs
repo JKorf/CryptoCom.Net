@@ -2,6 +2,7 @@ using CryptoCom.Net.Clients;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
@@ -23,11 +24,11 @@ namespace CryptoCom.Net.UnitTests
             var sec = Environment.GetEnvironmentVariable("APISECRET");
 
             Authenticated = key != null && sec != null;
-            return new CryptoComRestClient(null, loggerFactory, opts =>
+            return new CryptoComRestClient(null, loggerFactory, Options.Create(new Objects.Options.CryptoComRestOptions
             {
-                opts.OutputOriginalData = true;
-                opts.ApiCredentials = Authenticated ? new ApiCredentials(key, sec) : null;
-            });
+                OutputOriginalData = true,
+                ApiCredentials = Authenticated ? new ApiCredentials(key, sec) : null
+            }));
         }
 
         [Test]

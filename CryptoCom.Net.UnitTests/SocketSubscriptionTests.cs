@@ -9,6 +9,8 @@ using CryptoExchange.Net.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Extensions.Options;
+using CryptoCom.Net.Objects.Options;
 
 namespace CryptoCom.Net.UnitTests
 {
@@ -20,11 +22,11 @@ namespace CryptoCom.Net.UnitTests
         {
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddProvider(new TraceLoggerProvider());
-            var client = new CryptoComSocketClient(opts =>
+            var client = new CryptoComSocketClient(Options.Create(new CryptoComSocketOptions
             {
-                opts.DelayAfterConnect = TimeSpan.Zero;
-                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
-            }, loggerFactory);
+                DelayAfterConnect = TimeSpan.Zero,
+                ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
+            }), loggerFactory);
             var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com", stjCompare: true);
             await tester.ValidateAsync<CryptoComOrderBookUpdate>((client, handler) => client.ExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync("ETH_USDT", 10, handler), "BookSnapshot", nestedJsonProperty: "result.data", useFirstUpdateItem: true);
             await tester.ValidateAsync<CryptoComTicker>((client, handler) => client.ExchangeApi.SubscribeToTickerUpdatesAsync("ETH_USDT", handler), "Ticker", nestedJsonProperty: "result.data", useFirstUpdateItem: true);

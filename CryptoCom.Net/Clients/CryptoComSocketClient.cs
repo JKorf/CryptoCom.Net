@@ -6,6 +6,7 @@ using CryptoCom.Net.Interfaces.Clients;
 using CryptoCom.Net.Objects.Options;
 using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
 using CryptoCom.Net.Clients.ExchangeApi;
+using Microsoft.Extensions.Options;
 
 namespace CryptoCom.Net.Clients
 {
@@ -25,19 +26,13 @@ namespace CryptoCom.Net.Clients
         #endregion
 
         #region constructor/destructor
-        /// <summary>
-        /// Create a new instance of CryptoComSocketClient
-        /// </summary>
-        /// <param name="loggerFactory">The logger factory</param>
-        public CryptoComSocketClient(ILoggerFactory? loggerFactory = null) : this((x) => { }, loggerFactory)
-        {
-        }
 
         /// <summary>
         /// Create a new instance of CryptoComSocketClient
         /// </summary>
         /// <param name="optionsDelegate">Option configuration delegate</param>
-        public CryptoComSocketClient(Action<CryptoComSocketOptions> optionsDelegate) : this(optionsDelegate, null)
+        public CryptoComSocketClient(Action<CryptoComSocketOptions>? optionsDelegate = null)
+            : this(Options.Create(ApplyOptionsDelegate(optionsDelegate)), null)
         {
         }
 
@@ -45,14 +40,12 @@ namespace CryptoCom.Net.Clients
         /// Create a new instance of CryptoComSocketClient
         /// </summary>
         /// <param name="loggerFactory">The logger factory</param>
-        /// <param name="optionsDelegate">Option configuration delegate</param>
-        public CryptoComSocketClient(Action<CryptoComSocketOptions>? optionsDelegate, ILoggerFactory? loggerFactory = null) : base(loggerFactory, "CryptoCom")
+        /// <param name="options">Option configuration</param>
+        public CryptoComSocketClient(IOptions<CryptoComSocketOptions> options, ILoggerFactory? loggerFactory = null) : base(loggerFactory, "CryptoCom")
         {
-            var options = CryptoComSocketOptions.Default.Copy();
-            optionsDelegate?.Invoke(options);
-            Initialize(options);
-                                    
-            ExchangeApi = AddApiClient(new CryptoComSocketClientExchangeApi(_logger, options));
+            Initialize(options.Value);
+
+            ExchangeApi = AddApiClient(new CryptoComSocketClientExchangeApi(_logger, options.Value));
         }
         #endregion
 
@@ -62,9 +55,7 @@ namespace CryptoCom.Net.Clients
         /// <param name="optionsDelegate">Option configuration delegate</param>
         public static void SetDefaultOptions(Action<CryptoComSocketOptions> optionsDelegate)
         {
-            var options = CryptoComSocketOptions.Default.Copy();
-            optionsDelegate(options);
-            CryptoComSocketOptions.Default = options;
+            CryptoComSocketOptions.Default = ApplyOptionsDelegate(optionsDelegate);
         }
 
         /// <inheritdoc />

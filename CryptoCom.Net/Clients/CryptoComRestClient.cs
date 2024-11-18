@@ -7,6 +7,7 @@ using CryptoCom.Net.Objects.Options;
 using CryptoExchange.Net.Clients;
 using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
 using CryptoCom.Net.Clients.ExchangeApi;
+using Microsoft.Extensions.Options;
 
 namespace CryptoCom.Net.Clients
 {
@@ -28,26 +29,22 @@ namespace CryptoCom.Net.Clients
         /// Create a new instance of the CryptoComRestClient using provided options
         /// </summary>
         /// <param name="optionsDelegate">Option configuration delegate</param>
-        public CryptoComRestClient(Action<CryptoComRestOptions>? optionsDelegate = null) : this(null, null, optionsDelegate)
+        public CryptoComRestClient(Action<CryptoComRestOptions>? optionsDelegate = null)
+            : this(null, null, Options.Create(ApplyOptionsDelegate(optionsDelegate)))
         {
         }
 
         /// <summary>
         /// Create a new instance of the CryptoComRestClient using provided options
         /// </summary>
-        /// <param name="optionsDelegate">Option configuration delegate</param>
+        /// <param name="options">Option configuration</param>
         /// <param name="loggerFactory">The logger factory</param>
         /// <param name="httpClient">Http client for this client</param>
-        public CryptoComRestClient(HttpClient? httpClient, ILoggerFactory? loggerFactory, Action<CryptoComRestOptions>? optionsDelegate = null) : base(loggerFactory, "CryptoCom")
+        public CryptoComRestClient(HttpClient? httpClient, ILoggerFactory? loggerFactory, IOptions<CryptoComRestOptions> options) : base(loggerFactory, "CryptoCom")
         {
-            var options = CryptoComRestOptions.Default.Copy();
-            if (optionsDelegate != null)
-                optionsDelegate(options);
-            Initialize(options);
+            Initialize(options.Value);
 
-            
-            ExchangeApi = AddApiClient(new CryptoComRestClientExchangeApi(_logger, httpClient, options));
-
+            ExchangeApi = AddApiClient(new CryptoComRestClientExchangeApi(_logger, httpClient, options.Value));
         }
 
         #endregion
@@ -58,9 +55,7 @@ namespace CryptoCom.Net.Clients
         /// <param name="optionsDelegate">Option configuration delegate</param>
         public static void SetDefaultOptions(Action<CryptoComRestOptions> optionsDelegate)
         {
-            var options = CryptoComRestOptions.Default.Copy();
-            optionsDelegate(options);
-            CryptoComRestOptions.Default = options;
+            CryptoComRestOptions.Default = ApplyOptionsDelegate(optionsDelegate);
         }
 
         /// <inheritdoc />
