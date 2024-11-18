@@ -127,6 +127,9 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 1.2.1 - 18 Nov 2024
+    * Fixed deserialization issue in restClient.ExchangeApi.ExchangeData.GetTickerAsync
+
 * Version 1.2.0 - 06 Nov 2024
     * Updated CryptoExchange.Net to version 8.2.0, see https://github.com/JKorf/CryptoExchange.Net/releases/tag/8.2.0
 
