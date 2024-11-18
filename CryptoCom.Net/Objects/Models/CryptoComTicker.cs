@@ -45,7 +45,7 @@ namespace CryptoCom.Net.Objects.Models
         /// Volume in last 24 hours in USD
         /// </summary>
         [JsonPropertyName("vv")]
-        public decimal VolumeUsd { get; set; }
+        public decimal? VolumeUsd { get; set; }
         /// <summary>
         /// Current open interest
         /// </summary>
