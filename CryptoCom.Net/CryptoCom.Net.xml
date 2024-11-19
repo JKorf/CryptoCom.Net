@@ -452,6 +452,16 @@
             Exchange name
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.DisplayName">
+            <summary>
+            Exchange name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.ImageUrl">
+            <summary>
+            Url to exchange image
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.CryptoComExchange.Url">
             <summary>
             Url to the main website

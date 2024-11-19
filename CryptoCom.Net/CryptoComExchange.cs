@@ -22,6 +22,16 @@ namespace CryptoCom.Net
         public static string ExchangeName => "CryptoCom";
 
         /// <summary>
+        /// Exchange name
+        /// </summary>
+        public static string DisplayName => "Crypto.com";
+
+        /// <summary>
+        /// Url to exchange image
+        /// </summary>
+        public static string ImageUrl { get; } = "https://raw.githubusercontent.com/JKorf/CryptoCom.Net/master/CryptoCom.Net/Icon/icon.png";
+
+        /// <summary>
         /// Url to the main website
         /// </summary>
         public static string Url { get; } = "https://www.crypto.com";
