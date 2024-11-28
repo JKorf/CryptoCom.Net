@@ -4306,31 +4306,6 @@
             CryptoCom options
             </summary>
         </member>
-        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.Rest">
-            <summary>
-            Rest client options
-            </summary>
-        </member>
-        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.Socket">
-            <summary>
-            Socket client options
-            </summary>
-        </member>
-        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.Environment">
-            <summary>
-            Trade environment. Contains info about URL's to use to connect to the API. Use `CryptoComEnvironment` to swap environment, for example `Environment = CryptoComEnvironment.Live`
-            </summary>
-        </member>
-        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.ApiCredentials">
-            <summary>
-            The api credentials used for signing requests.
-            </summary>
-        </member>
-        <member name="P:CryptoCom.Net.Objects.Options.CryptoComOptions.SocketClientLifeTime">
-            <summary>
-            The DI service lifetime for the ICryptoComSocketClient
-            </summary>
-        </member>
         <member name="T:CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions">
             <summary>
             Options for the CryptoCom SymbolOrderBook
