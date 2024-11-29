@@ -25,9 +25,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
         {
             _serviceProvider = serviceProvider;
                         
-            Exchange = new OrderBookFactory<CryptoComOrderBookOptions>(Create,
-                (sharedSymbol, options) => Create(CryptoComExchange.FormatSymbol(sharedSymbol.BaseAsset, sharedSymbol.QuoteAsset, sharedSymbol.TradingMode, sharedSymbol.DeliverTime), options));
-            
+            Exchange = new OrderBookFactory<CryptoComOrderBookOptions>(Create, Create);            
         }
 
          /// <inheritdoc />
@@ -36,7 +34,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
         /// <inheritdoc />
         public ISymbolOrderBook Create(SharedSymbol symbol, Action<CryptoComOrderBookOptions>? options = null)
         {
-            var symbolName = CryptoComExchange.FormatSymbol(symbol.BaseAsset, symbol.QuoteAsset, symbol.TradingMode, symbol.DeliverTime);
+            var symbolName = symbol.GetSymbol(CryptoComExchange.FormatSymbol);
             return Create(symbolName, options);
         }
 
