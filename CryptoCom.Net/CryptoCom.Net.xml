@@ -24,6 +24,9 @@
             <param name="loggerFactory">The logger factory</param>
             <param name="httpClient">Http client for this client</param>
         </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
+            <inheritdoc />
+        </member>
         <member name="M:CryptoCom.Net.Clients.CryptoComRestClient.SetDefaultOptions(System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions})">
             <summary>
             Set the default options to be used when creating new clients
@@ -51,6 +54,9 @@
             </summary>
             <param name="loggerFactory">The logger factory</param>
             <param name="options">Option configuration</param>
+        </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
+            <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.CryptoComSocketClient.SetDefaultOptions(System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions})">
             <summary>
@@ -2167,6 +2173,12 @@
             Exchange API endpoints
             </summary>
         </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
+            <summary>
+            Update specific options
+            </summary>
+            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+        </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
             Set the API credentials for this client. All Api clients in this client will use the new credentials, regardless of earlier set options.
@@ -2182,6 +2194,12 @@
             <summary>
             Exchange API endpoints
             </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
+            <summary>
+            Update specific options
+            </summary>
+            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>

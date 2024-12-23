@@ -8,6 +8,7 @@ using CryptoExchange.Net.Clients;
 using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
 using CryptoCom.Net.Clients.ExchangeApi;
 using Microsoft.Extensions.Options;
+using CryptoExchange.Net.Objects.Options;
 
 namespace CryptoCom.Net.Clients
 {
@@ -48,6 +49,12 @@ namespace CryptoCom.Net.Clients
         }
 
         #endregion
+
+        /// <inheritdoc />
+        public void SetOptions(UpdateOptions options)
+        {
+            ExchangeApi.SetOptions(options);
+        }
 
         /// <summary>
         /// Set the default options to be used when creating new clients

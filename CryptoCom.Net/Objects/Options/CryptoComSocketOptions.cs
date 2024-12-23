@@ -15,7 +15,8 @@ namespace CryptoCom.Net.Objects.Options
         {
             Environment = CryptoComEnvironment.Live,
             SocketSubscriptionsCombineTarget = 10,
-            DelayAfterConnect = TimeSpan.FromSeconds(1)
+            DelayAfterConnect = TimeSpan.FromSeconds(1),
+            SocketNoDataTimeout = TimeSpan.FromSeconds(40) // Ping is send every 30 seconds
         };
 
         /// <summary>
