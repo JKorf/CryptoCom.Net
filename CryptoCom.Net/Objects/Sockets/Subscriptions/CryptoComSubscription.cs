@@ -85,7 +85,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 
         public override void HandleSubQueryResponse(CryptoComResponse<CryptoComSubscriptionEvent<T>> message)
         {
-            if (message.Code != 0 || message.Result == null)
+            if (message?.Code != 0 || message?.Result == null)
                 return;
 
             _handler.Invoke(new DataEvent<CryptoComSubscriptionEvent<T>>(message.Result, message.Result.Subscription, message.Result.Symbol, null, DateTime.UtcNow, SocketUpdateType.Snapshot));
