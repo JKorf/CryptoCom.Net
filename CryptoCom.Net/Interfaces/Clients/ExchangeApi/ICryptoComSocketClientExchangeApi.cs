@@ -19,7 +19,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     {
         /// <summary>
         /// Subscribe to order book snapshot updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="depth">The book depth, either 10 or 50</param>
@@ -30,7 +30,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to order book snapshot updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="depth">The book depth, either 10 or 50</param>
@@ -41,7 +41,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="depth">The book depth, either 10 or 50</param>
@@ -52,7 +52,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="depth">The book depth, either 10 or 50</param>
@@ -63,7 +63,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to kline/candlestick updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="interval">The interval of the kline/candles</param>
@@ -74,7 +74,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to kline/candlestick updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="interval">The interval of the kline/candles</param>
@@ -125,7 +125,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to index price updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -135,7 +135,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to index price updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -145,7 +145,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to mark price updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -155,7 +155,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to mark price updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -165,7 +165,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to settlement prices
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /></para>
         /// </summary>
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
@@ -174,7 +174,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to settlement prices
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -184,7 +184,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to settlement prices
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -194,7 +194,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to funding rate updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -204,7 +204,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to funding rate updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -214,7 +214,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to estimated funding rate updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -224,7 +224,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to estimated funding rate updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -234,7 +234,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user order updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
         /// </summary>
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
@@ -243,7 +243,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user order updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -253,7 +253,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user order updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -263,7 +263,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user trade updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
         /// </summary>
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
@@ -272,7 +272,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user trade updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
         /// </summary>
         /// <param name="symbol">The symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -282,7 +282,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user trade updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
         /// </summary>
         /// <param name="symbols">The symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -292,7 +292,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user balance updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-balance" /></para>
         /// </summary>
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
@@ -301,7 +301,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user position updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-positions" /></para>
         /// </summary>
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>
@@ -310,7 +310,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Subscribe to user position and balance updates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-position_balance" /></para>
         /// </summary>
         /// <param name="onMessage">The event handler for the received data</param>
         /// <param name="ct">Cancellation token for closing this subscription</param>

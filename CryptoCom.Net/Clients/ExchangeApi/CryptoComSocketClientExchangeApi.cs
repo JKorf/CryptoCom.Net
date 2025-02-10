@@ -84,7 +84,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var topics = symbols.Select(x => $"book.{x}.{depth}").ToArray();
             var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrderBookUpdateInt>>(_logger, topics, symbols.ToArray(), 
-                x => onMessage(x.As(x.Data.Data.First().Update ?? x.Data.Data.First()).WithUpdateType(x.Data.Channel == "book.update" ? SocketUpdateType.Update : SocketUpdateType.Snapshot)),
+                x => onMessage(
+                    x.As(x.Data.Data.First().Update ?? x.Data.Data.First())
+                    .WithUpdateType(x.Data.Channel == "book.update" ? SocketUpdateType.Update : SocketUpdateType.Snapshot)
+                    .WithDataTimestamp(x.Data.Data.First().UpdateTime)),
                 false, new Dictionary<string, object> { { "book_subscription_type", "SNAPSHOT_AND_UPDATE" } });
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -97,7 +100,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTicker>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "ticker." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComTicker>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data.First())), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComTicker>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -109,7 +114,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<IEnumerable<CryptoComTrade>>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "trade." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComTrade>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data)), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComTrade>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data)
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -135,7 +142,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "index." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data.First())), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -147,7 +156,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "mark." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data.First())), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -159,7 +170,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "settlement." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data.First())), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -167,7 +180,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = new[] { "settlement" };
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data.First())), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, [], x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -179,7 +194,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "funding." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data.First())), false);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -191,7 +208,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToEstimatedFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "estimatedfunding." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data.First())), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComValuation>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data.First())
+                .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -203,7 +222,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<IEnumerable<CryptoComOrder>>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "user.order." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data)), true, firstUpdateSnapshot: true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data)
+                .WithDataTimestamp(x.Data.Data.Max(x => x.UpdateTime))), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -211,7 +232,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<IEnumerable<CryptoComOrder>>> onMessage, CancellationToken ct = default)
         {
             var topics = new[] { "user.order" };
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data)), true, firstUpdateSnapshot: true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComOrder>>(_logger, topics, [], x => onMessage(
+                x.As(x.Data.Data)
+                .WithDataTimestamp(x.Data.Data.Max(x => x.UpdateTime))), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -223,7 +246,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<IEnumerable<CryptoComUserTrade>>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "user.trade." + x).ToArray();
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComUserTrade>>(_logger, topics, symbols.ToArray(), x => onMessage(x.As(x.Data.Data)), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComUserTrade>>(_logger, topics, symbols.ToArray(), x => onMessage(
+                x.As(x.Data.Data)
+                .WithDataTimestamp(x.Data.Data.Max(x => x.CreateTime))), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -231,7 +256,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<IEnumerable<CryptoComUserTrade>>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] {"user.trade"};
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComUserTrade>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data)), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComUserTrade>>(_logger, topics, [], x => onMessage(
+                x.As(x.Data.Data)
+                .WithDataTimestamp(x.Data.Data.Max(x => x.CreateTime))), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -239,7 +266,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<CryptoComBalances>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.balance" };
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComBalances>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data.First())), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComBalances>>(_logger, topics, [], x => onMessage(
+                x.As(x.Data.Data.First())), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -247,7 +275,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<IEnumerable<CryptoComPosition>>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.positions" };
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComPosition>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data)), true, firstUpdateSnapshot: true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComPosition>>(_logger, topics, [], x => onMessage(
+                x.As(x.Data.Data)
+                .WithDataTimestamp(x.Data.Data.Max(x => x.UpdateTime))), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -255,7 +285,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToPositionBalanceUpdatesAsync(Action<DataEvent<CryptoComBalancePositionUpdate>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.position_balance" };
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComBalancePositionUpdate>>(_logger, topics, [], x => onMessage(x.As(x.Data.Data.First())), true);
+            var subscription = new CryptoComSubscription<IEnumerable<CryptoComBalancePositionUpdate>>(_logger, topics, [], x => onMessage(
+                x.As(x.Data.Data.First())), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 

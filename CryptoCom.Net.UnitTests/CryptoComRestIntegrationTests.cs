@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CryptoCom.Net.UnitTests
 {
     [NonParallelizable]
-    internal class CryptoComRestIntegrationTests : RestIntergrationTest<CryptoComRestClient>
+    internal class CryptoComRestIntegrationTests : RestIntegrationTest<CryptoComRestClient>
     {
         public override bool Run { get; set; }
 
