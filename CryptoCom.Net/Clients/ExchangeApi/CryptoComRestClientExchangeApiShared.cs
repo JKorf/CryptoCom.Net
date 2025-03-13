@@ -680,6 +680,57 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #endregion
 
+        #region Spot Client Id Order Client
+
+        EndpointOptions<GetOrderRequest> ISpotOrderClientIdClient.GetSpotOrderByClientOrderIdOptions { get; } = new EndpointOptions<GetOrderRequest>(true);
+        async Task<ExchangeWebResult<SharedSpotOrder>> ISpotOrderClientIdClient.GetSpotOrderByClientOrderIdAsync(GetOrderRequest request, CancellationToken ct)
+        {
+            var validationError = ((ISpotOrderRestClient)this).GetSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedSpotOrder>(Exchange, validationError);
+
+            var order = await Trading.GetOrderAsync(clientOrderId: request.OrderId, ct: ct).ConfigureAwait(false);
+            if (!order)
+                return order.AsExchangeResult<SharedSpotOrder>(Exchange, null, default);
+
+            return order.AsExchangeResult(Exchange, TradingMode.Spot, new SharedSpotOrder(
+                ExchangeSymbolCache.ParseSymbol(_topicSpotId, order.Data.Symbol),
+                order.Data.Symbol,
+                order.Data.OrderId,
+                ParseOrderType(order.Data.OrderType),
+                order.Data.OrderSide == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
+                ParseOrderStatus(order.Data.Status),
+                order.Data.CreateTime)
+            {
+                ClientOrderId = order.Data.ClientOrderId,
+                AveragePrice = order.Data.AveragePrice == 0 ? null : order.Data.AveragePrice,
+                OrderPrice = order.Data.Price,
+                Quantity = order.Data.Quantity,
+                QuantityFilled = order.Data.QuantityFilled,
+                QuoteQuantity = order.Data.OrderValue,
+                QuoteQuantityFilled = order.Data.QuoteQuantityFilled,
+                TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
+                UpdateTime = order.Data.UpdateTime,
+                Fee = order.Data.Fee,
+                FeeAsset = order.Data.FeeAsset
+            });
+        }
+
+        EndpointOptions<CancelOrderRequest> ISpotOrderClientIdClient.CancelSpotOrderByClientOrderIdOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
+        async Task<ExchangeWebResult<SharedId>> ISpotOrderClientIdClient.CancelSpotOrderByClientOrderIdAsync(CancelOrderRequest request, CancellationToken ct)
+        {
+            var validationError = ((ISpotOrderRestClient)this).CancelSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedId>(Exchange, validationError);
+
+            var order = await Trading.CancelOrderAsync(clientOrderId: request.OrderId, ct: ct).ConfigureAwait(false);
+            if (!order)
+                return order.AsExchangeResult<SharedId>(Exchange, null, default);
+
+            return order.AsExchangeResult(Exchange, TradingMode.Spot, new SharedId(order.Data.OrderId));
+        }
+        #endregion
+
         #region Funding Rate client
         GetFundingRateHistoryOptions IFundingRateRestClient.GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(SharedPaginationSupport.Descending, true, 1000, false);
 
@@ -737,7 +788,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 PriceDecimals = s.PriceDecimals,
                 QuantityDecimals = s.QuantityDecimals,
                 DeliveryTime = s.ExpiryTime,
-                ContractSize = 1
+                ContractSize = 1,
+                MaxLongLeverage = s.MaxLeverage,
+                MaxShortLeverage = s.MaxLeverage
             }).ToArray());
 
             ExchangeSymbolCache.UpdateSymbolInfo(_topicFuturesId, response.Data);
@@ -1148,6 +1201,57 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.OrderId));
         }
 
+        #endregion
+
+        #region Futures Client Id Order Client
+
+        EndpointOptions<GetOrderRequest> IFuturesOrderClientIdClient.GetFuturesOrderByClientOrderIdOptions { get; } = new EndpointOptions<GetOrderRequest>(true);
+        async Task<ExchangeWebResult<SharedFuturesOrder>> IFuturesOrderClientIdClient.GetFuturesOrderByClientOrderIdAsync(GetOrderRequest request, CancellationToken ct)
+        {
+            var validationError = ((IFuturesOrderRestClient)this).GetFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedFuturesOrder>(Exchange, validationError);
+
+            var order = await Trading.GetOrderAsync(clientOrderId: request.OrderId, ct: ct).ConfigureAwait(false);
+            if (!order)
+                return order.AsExchangeResult<SharedFuturesOrder>(Exchange, null, default);
+
+            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesOrder(
+                ExchangeSymbolCache.ParseSymbol(_topicFuturesId, order.Data.Symbol),
+                order.Data.Symbol,
+                order.Data.OrderId,
+                ParseOrderType(order.Data.OrderType),
+                order.Data.OrderSide == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
+                ParseOrderStatus(order.Data.Status),
+                order.Data.CreateTime)
+            {
+                ClientOrderId = order.Data.ClientOrderId,
+                AveragePrice = order.Data.AveragePrice == 0 ? null : order.Data.AveragePrice,
+                OrderPrice = order.Data.Price,
+                Quantity = order.Data.Quantity,
+                QuantityFilled = order.Data.QuantityFilled,
+                QuoteQuantity = order.Data.OrderValue,
+                QuoteQuantityFilled = order.Data.QuoteQuantityFilled,
+                TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
+                UpdateTime = order.Data.UpdateTime,
+                Fee = order.Data.Fee,
+                FeeAsset = order.Data.FeeAsset
+            });
+        }
+
+        EndpointOptions<CancelOrderRequest> IFuturesOrderClientIdClient.CancelFuturesOrderByClientOrderIdOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
+        async Task<ExchangeWebResult<SharedId>> IFuturesOrderClientIdClient.CancelFuturesOrderByClientOrderIdAsync(CancelOrderRequest request, CancellationToken ct)
+        {
+            var validationError = ((IFuturesOrderRestClient)this).CancelFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedId>(Exchange, validationError);
+
+            var order = await Trading.CancelOrderAsync(clientOrderId: request.OrderId, ct: ct).ConfigureAwait(false);
+            if (!order)
+                return order.AsExchangeResult<SharedId>(Exchange, null, default);
+
+            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(order.Data.OrderId));
+        }
         #endregion
 
         #region Fee Client

@@ -26,7 +26,9 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         ILeverageRestClient,
         IOpenInterestRestClient,
         IFuturesOrderRestClient,
-        IFeeRestClient
+        IFeeRestClient,
+        ISpotOrderClientIdClient,
+        IFuturesOrderClientIdClient
     {
     }
 }

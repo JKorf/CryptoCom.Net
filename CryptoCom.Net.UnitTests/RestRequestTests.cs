@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CryptoCom.Net.Clients;
-using NUnit.Framework.Constraints;
-using System.Drawing;
 using CryptoCom.Net.Enums;
 
 namespace CryptoCom.Net.UnitTests
@@ -22,7 +20,7 @@ namespace CryptoCom.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Account", "https://api.crypto.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Account", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetBalanceHistoryAsync(Enums.Timeframe.OneDay, DateTime.UtcNow), "GetBalanceHistory", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetAccountInfoAsync(), "GetAccountInfo", nestedJsonProperty: "result");
@@ -47,7 +45,7 @@ namespace CryptoCom.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/ExchangeData", "https://api.crypto.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/ExchangeData", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetTickersAsync(), "GetTickers", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetTradeHistoryAsync("123"), "GetTradeHistory", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "tn" });
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetSymbolsAsync(), "GetSymbols", nestedJsonProperty: "result.data");
@@ -66,7 +64,7 @@ namespace CryptoCom.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Staking", "https://api.crypto.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Staking", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.Staking.StakeAsync("123", 0.1m), "Stake", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.ExchangeApi.Staking.UnstakeAsync("123", 0.1m), "Unstake", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.ExchangeApi.Staking.GetStakingPositionsAsync("123"), "GetStakingPosition", nestedJsonProperty: "result.data");
@@ -87,7 +85,7 @@ namespace CryptoCom.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Trading", "https://api.crypto.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Trading", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetPositionsAsync(), "GetPositions", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.PlaceOrderAsync("123", Enums.OrderSide.Buy, OrderType.Market), "PlaceOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.CancelOrderAsync("123"), "CancelOrder", nestedJsonProperty: "result");

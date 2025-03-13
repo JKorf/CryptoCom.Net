@@ -266,7 +266,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<CryptoComBalances>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.balance" };
-            var subscription = new CryptoComSubscription<IEnumerable<CryptoComBalances>>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComBalances[]>(_logger, topics, [], x => onMessage(
                 x.As(x.Data.Data.First())), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }

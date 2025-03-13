@@ -45,14 +45,14 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override Query? GetSubQuery(SocketConnection connection)
         {
-            var request = new Internal.CryptoComRequest
+            var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "subscribe",
                 Nonce = DateTimeConverter.ConvertToMilliseconds(DateTime.UtcNow),
                 Parameters = new ParameterCollection
                 {
-                    { "channels", ListenerIdentifiers }
+                    { "channels", ListenerIdentifiers.ToArray() }
                 }
             };
 
@@ -71,14 +71,14 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override Query? GetUnsubQuery()
         {
-            return new CryptoComQuery(new Internal.CryptoComRequest
+            return new CryptoComQuery(new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "unsubscribe",
                 Nonce = DateTimeConverter.ConvertToMilliseconds(DateTime.UtcNow),
                 Parameters = new ParameterCollection
                 {
-                    { "channels", ListenerIdentifiers }
+                    { "channels", ListenerIdentifiers.ToArray() }
                 }
             }, Authenticated);
         }
