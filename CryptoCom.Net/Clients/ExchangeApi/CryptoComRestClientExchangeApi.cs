@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using CryptoExchange.Net.CommonObjects;
-using CryptoExchange.Net.Interfaces.CommonClients;
 using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
 using CryptoCom.Net.Objects.Options;
 using CryptoExchange.Net.Clients;
@@ -52,9 +50,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         /// <inheritdoc />
-        protected override IStreamMessageAccessor CreateAccessor() => new SystemTextJsonStreamMessageAccessor();
+        protected override IStreamMessageAccessor CreateAccessor() => new SystemTextJsonStreamMessageAccessor(SerializerOptions.WithConverters(CryptoComExchange.SerializerContext));
         /// <inheritdoc />
-        protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer();
+        protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(CryptoComExchange.SerializerContext));
 
         /// <inheritdoc />
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
@@ -114,7 +112,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return result.As(result.Data.Result);
         }
 
-        protected override Error ParseErrorResponse(int httpStatusCode, IEnumerable<KeyValuePair<string, IEnumerable<string>>> responseHeaders, IMessageAccessor accessor)
+        protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
         {
             if (!accessor.IsJson)
                 return new ServerError(accessor.GetOriginalString());

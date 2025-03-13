@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Text;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net;
+using System.Text.Json.Serialization;
+using CryptoCom.Net.Converters;
 
 namespace CryptoCom.Net
 {
@@ -47,6 +49,8 @@ namespace CryptoCom.Net
         /// Type of exchange
         /// </summary>
         public static ExchangeType Type { get; } = ExchangeType.CEX;
+
+        internal static JsonSerializerContext SerializerContext = new CryptoComSourceGenerationContext();
 
         /// <summary>
         /// Format a base and quote asset to a Crypto.com recognized symbol 
