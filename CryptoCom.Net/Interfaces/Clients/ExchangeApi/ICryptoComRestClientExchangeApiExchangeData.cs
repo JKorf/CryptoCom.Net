@@ -33,7 +33,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComSymbol>>> GetSymbolsAsync(CancellationToken ct = default);
+        Task<WebCallResult<CryptoComSymbol[]>> GetSymbolsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get the order book for a symbol
@@ -50,7 +50,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComTicker>>> GetTickersAsync(string? symbol = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComTicker[]>> GetTickersAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get trade history
@@ -61,7 +61,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results, max 150</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComTrade>>> GetTradeHistoryAsync(string symbol, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComTrade[]>> GetTradeHistoryAsync(string symbol, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get Kline/Candlestick data
@@ -73,7 +73,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComKline>>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get various statistics
@@ -85,7 +85,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComValuation>>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComValuation[]>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get expired contracts settlement price
@@ -94,7 +94,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="symbolType">Symbol type</param>
         /// <param name="pageNumber">Page number</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComExpiredPrice>>> GetExpiredSettlementPriceAsync(SymbolType symbolType, int? pageNumber = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComExpiredPrice[]>> GetExpiredSettlementPriceAsync(SymbolType symbolType, int? pageNumber = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get the balance of Insurance Fund for a particular asset.
@@ -105,7 +105,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComValuation>>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComValuation[]>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
 
     }

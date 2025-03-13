@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Net.Attributes;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,15 +7,17 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComOrderResultWrapper
     {
         [JsonPropertyName("result_list")]
-        public IEnumerable<CryptoComOrderResult> Results { get; set; } = [];
+        public CryptoComOrderResult[] Results { get; set; } = [];
     }
 
     /// <summary>
     /// Order result
     /// </summary>
+    [SerializationModel]
     public record CryptoComOrderResult : CryptoComOrderId
     {
         /// <summary>

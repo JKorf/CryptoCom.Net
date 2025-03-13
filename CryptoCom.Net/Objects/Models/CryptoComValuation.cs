@@ -1,22 +1,25 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComValuationWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComValuation> Data { get; set; } = Array.Empty<CryptoComValuation>();
+        public CryptoComValuation[] Data { get; set; } = Array.Empty<CryptoComValuation>();
     }
 
     /// <summary>
     /// Valuation
     /// </summary>
+    [SerializationModel]
     public record CryptoComValuation
     {
         /// <summary>

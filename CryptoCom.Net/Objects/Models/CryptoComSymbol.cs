@@ -1,4 +1,5 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoCom.Net.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,18 +7,20 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComSymbolWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComSymbol> Data { get; set; } = Array.Empty<CryptoComSymbol>();
+        public CryptoComSymbol[] Data { get; set; } = Array.Empty<CryptoComSymbol>();
     }
 
     /// <summary>
     /// 
     /// </summary>
+    [SerializationModel]
     public record CryptoComSymbol
     {
         /// <summary>

@@ -1,5 +1,4 @@
 using CryptoExchange.Net.Interfaces;
-using CryptoExchange.Net.Interfaces.CommonClients;
 using System;
 
 namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi

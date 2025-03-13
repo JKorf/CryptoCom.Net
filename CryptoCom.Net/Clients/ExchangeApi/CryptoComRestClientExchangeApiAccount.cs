@@ -25,12 +25,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Balances
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComBalances>>> GetBalancesAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComBalances[]>> GetBalancesAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/user-balance", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComBalancesWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComBalances>>(result.Data?.Data);
+            return result.As<CryptoComBalances[]>(result.Data?.Data);
         }
 
         #endregion
@@ -101,11 +101,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Account Settings
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComAccountSettings>>> GetAccountSettingsAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComAccountSettings[]>> GetAccountSettingsAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-account-settings", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
-            var result = await _baseClient.SendAsync<IEnumerable<CryptoComAccountSettings>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<CryptoComAccountSettings[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -114,7 +114,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Transaction History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComTransaction>>> GetTransactionHistoryAsync(string? symbol = null, TransactionType? transactionType = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(string? symbol = null, TransactionType? transactionType = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
@@ -124,7 +124,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-transactions", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComTransactionWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComTransaction>>(result.Data?.Data);
+            return result.As<CryptoComTransaction[]>(result.Data?.Data);
         }
 
         #endregion
@@ -191,13 +191,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Deposit Addresses
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComDepositAddress>>> GetDepositAddressesAsync(string asset, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComDepositAddress[]>> GetDepositAddressesAsync(string asset, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("currency", asset);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-deposit-address", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComDepositAddressWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComDepositAddress>>(result.Data?.DepositAddressList);
+            return result.As<CryptoComDepositAddress[]>(result.Data?.DepositAddressList);
         }
 
         #endregion
@@ -205,7 +205,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Deposit History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComDeposit>>> GetDepositHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, DepositStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComDeposit[]>> GetDepositHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, DepositStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("currency", asset);
@@ -216,7 +216,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("page", pageSize);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-deposit-history", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComDepositWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComDeposit>>(result.Data?.DepositList);
+            return result.As<CryptoComDeposit[]>(result.Data?.DepositList);
         }
 
         #endregion
@@ -224,7 +224,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Withdrawal History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComWithdrawal>>> GetWithdrawalHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, WithdrawalStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComWithdrawal[]>> GetWithdrawalHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, WithdrawalStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("currency", asset);
@@ -235,7 +235,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("page_size", pageSize);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-withdrawal-history", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComWithdrawalWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComWithdrawal>>(result.Data?.WithdrawalList);
+            return result.As<CryptoComWithdrawal[]>(result.Data?.WithdrawalList);
         }
 
         #endregion

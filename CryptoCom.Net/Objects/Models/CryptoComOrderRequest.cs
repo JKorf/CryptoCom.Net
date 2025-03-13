@@ -1,4 +1,4 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoCom.Net.Enums;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Order request
     /// </summary>
+    [SerializationModel]
     public record CryptoComOrderRequest
     {
         // NOTE; THE ORDER OF THE PROPERTIES (JsonPropertyName) SHOULD BE IN ALPHABETICAL ORDER SO SERIALIZATION MATCHES SIGNATURE
@@ -55,7 +56,7 @@ namespace CryptoCom.Net.Objects.Models
         /// <summary>
         /// Order side
         /// </summary>
-        [JsonPropertyName("side"), JsonConverter(typeof(EnumConverter))]
+        [JsonPropertyName("side")]
         public OrderSide OrderSide { get; set; }
         /// <summary>
         /// Self trade prevention id
@@ -65,22 +66,22 @@ namespace CryptoCom.Net.Objects.Models
         /// <summary>
         /// Self trade prevention mode
         /// </summary>
-        [JsonPropertyName("stp_inst"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(EnumConverter))]
+        [JsonPropertyName("stp_inst"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public SelfTradePreventionMode? StpMode { get; set; }
         /// <summary>
         /// Self trade prevention scope
         /// </summary>
-        [JsonPropertyName("stp_scope"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(EnumConverter))]
+        [JsonPropertyName("stp_scope"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public SelfTradePreventionScope? StpScope { get; set; }
         /// <summary>
         /// Time in force
         /// </summary>
-        [JsonPropertyName("time_in_force"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull), JsonConverter(typeof(EnumConverter))]
+        [JsonPropertyName("time_in_force"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public TimeInForce? TimeInForce { get; set; }
         /// <summary>
         /// Order type
         /// </summary>
-        [JsonPropertyName("type"), JsonConverter(typeof(EnumConverter))]
+        [JsonPropertyName("type")]
         public OrderType OrderType { get; set; }
     }
 }

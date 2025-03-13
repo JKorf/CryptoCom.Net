@@ -1,10 +1,12 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComAssetWrapper
     {
         /// <summary>
@@ -17,6 +19,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Asset network info
     /// </summary>
+    [SerializationModel]
     public record CryptoComAsset
     {
         /// <summary>
@@ -33,12 +36,13 @@ namespace CryptoCom.Net.Objects.Models
         /// Network list
         /// </summary>
         [JsonPropertyName("network_list")]
-        public IEnumerable<CryptoComAssetNetwork> Networks { get; set; } = Array.Empty<CryptoComAssetNetwork>();
+        public CryptoComAssetNetwork[] Networks { get; set; } = Array.Empty<CryptoComAssetNetwork>();
     }
 
     /// <summary>
     /// Network info
     /// </summary>
+    [SerializationModel]
     public record CryptoComAssetNetwork
     {
         /// <summary>

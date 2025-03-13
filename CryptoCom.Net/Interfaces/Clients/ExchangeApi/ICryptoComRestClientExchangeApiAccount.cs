@@ -18,7 +18,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComBalances>>> GetBalancesAsync(CancellationToken ct = default);
+        Task<WebCallResult<CryptoComBalances[]>> GetBalancesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account cash balance history 
@@ -64,7 +64,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComAccountSettings>>> GetAccountSettingsAsync(CancellationToken ct = default);
+        Task<WebCallResult<CryptoComAccountSettings[]>> GetAccountSettingsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account transaction history
@@ -76,7 +76,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComTransaction>>> GetTransactionHistoryAsync(string? symbol = null, TransactionType? transactionType = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(string? symbol = null, TransactionType? transactionType = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user fee rates
@@ -119,7 +119,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComDepositAddress>>> GetDepositAddressesAsync(string asset, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComDepositAddress[]>> GetDepositAddressesAsync(string asset, CancellationToken ct = default);
 
         /// <summary>
         /// Get deposit history
@@ -132,7 +132,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="page">Page</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComDeposit>>> GetDepositHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, DepositStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComDeposit[]>> GetDepositHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, DepositStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get withdrawal history
@@ -145,7 +145,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="page">Page number</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComWithdrawal>>> GetWithdrawalHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, WithdrawalStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComWithdrawal[]>> GetWithdrawalHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, WithdrawalStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
     }
 }

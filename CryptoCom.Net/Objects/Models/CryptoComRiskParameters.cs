@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
@@ -9,6 +7,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Limit info
     /// </summary>
+    [SerializationModel]
     public record CryptoComRiskParameters
     {
         /// <summary>
@@ -45,12 +44,13 @@ namespace CryptoCom.Net.Objects.Models
         /// Base asset config
         /// </summary>
         [JsonPropertyName("base_currency_config")]
-        public IEnumerable<CryptoComRiskParametersAsset> BaseAssetConfig { get; set; } = Array.Empty<CryptoComRiskParametersAsset>();
+        public CryptoComRiskParametersAsset[] BaseAssetConfig { get; set; } = Array.Empty<CryptoComRiskParametersAsset>();
     }
 
     /// <summary>
     /// 
     /// </summary>
+    [SerializationModel]
     public record CryptoComRiskParametersAsset
     {
         /// <summary>

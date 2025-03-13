@@ -1,22 +1,25 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComDepositAddressWrapper
     {
         /// <summary>
         /// Deposit address list
         /// </summary>
         [JsonPropertyName("deposit_address_list")]
-        public IEnumerable<CryptoComDepositAddress> DepositAddressList { get; set; } = Array.Empty<CryptoComDepositAddress>();
+        public CryptoComDepositAddress[] DepositAddressList { get; set; } = Array.Empty<CryptoComDepositAddress>();
     }
 
     /// <summary>
     /// 
     /// </summary>
+    [SerializationModel]
     public record CryptoComDepositAddress
     {
         /// <summary>

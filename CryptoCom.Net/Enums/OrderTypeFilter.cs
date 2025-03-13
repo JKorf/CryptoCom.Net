@@ -1,13 +1,13 @@
-﻿using CryptoExchange.Net.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.Json.Serialization;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Attributes;
 
 namespace CryptoCom.Net.Enums
 {
     /// <summary>
     /// Order type filter
     /// </summary>
+    [JsonConverter(typeof(EnumConverter<OrderTypeFilter>))]
     public enum OrderTypeFilter
     {
         /// <summary>

@@ -37,14 +37,14 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `SOL.staked`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComStakePosition>>> GetStakingPositionsAsync(string symbol, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComStakePosition[]>> GetStakingPositionsAsync(string symbol, CancellationToken ct = default);
         
         /// <summary>
         /// Get staking symbols
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComStakingSymbol>>> GetStakingSymbolsAsync(CancellationToken ct = default);
+        Task<WebCallResult<CryptoComStakingSymbol[]>> GetStakingSymbolsAsync(CancellationToken ct = default);
         
         /// <summary>
         /// Get open stake/unstake requests
@@ -55,7 +55,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComStakingRequest>>> GetOpenStakingRequestsAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComStakingRequest[]>> GetOpenStakingRequestsAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get staking request history
@@ -66,7 +66,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComStakingRequest>>> GetStakingHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComStakingRequest[]>> GetStakingHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get staking reward history
@@ -77,7 +77,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComStakingReward>>> GetStakingRewardHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComStakingReward[]>> GetStakingRewardHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Create a new convert request
@@ -99,7 +99,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComConvertRequest>>> GetOpenConvertRequestsAsync(DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComConvertRequest[]>> GetOpenConvertRequestsAsync(DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get conversion rate

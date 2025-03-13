@@ -1,4 +1,5 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoCom.Net.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,18 +7,20 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComWithdrawalWrapper
     {
         /// <summary>
         /// Withdrawal list
         /// </summary>
         [JsonPropertyName("withdrawal_list")]
-        public IEnumerable<CryptoComWithdrawal> WithdrawalList { get; set; } = Array.Empty<CryptoComWithdrawal>();
+        public CryptoComWithdrawal[] WithdrawalList { get; set; } = Array.Empty<CryptoComWithdrawal>();
     }
 
     /// <summary>
     /// Withdrawal info
     /// </summary>
+    [SerializationModel]
     public record CryptoComWithdrawal
     {
         /// <summary>
