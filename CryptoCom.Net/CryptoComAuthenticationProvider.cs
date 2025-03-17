@@ -62,13 +62,17 @@ namespace CryptoCom.Net
             {
                 result += parameter.Key;
                 if (parameter.Value == null)
+                {
                     result += "null";
+                }
                 else if (parameter.Value is Array array)
                 {
                     foreach (var item in array)
                     {
                         if (item is string str)
+                        {
                             result += str;
+                        }
                         else
                         {
                             var dict = ToDictionary(item);
@@ -78,7 +82,9 @@ namespace CryptoCom.Net
                     }
                 }
                 else
+                {
                     result += Convert.ToString(parameter.Value, CultureInfo.InvariantCulture);
+                }
             }
 
             return result;
@@ -112,11 +118,13 @@ namespace CryptoCom.Net
 
                 if (propValue is Array arr)
                 {
-                    foreach(var arrValue in arr)
+                    foreach (var arrValue in arr)
                         result.Add(nameAttr.Name, arrValue);
                 }
                 else
+                {
                     result.Add(nameAttr.Name, propValue);
+                }
             }
 
             return result;
