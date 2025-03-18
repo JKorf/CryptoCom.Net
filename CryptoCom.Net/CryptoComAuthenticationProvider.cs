@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
@@ -90,6 +91,11 @@ namespace CryptoCom.Net
             return result;
         }
 
+#if NET5_0_OR_GREATER
+        [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL3050:RequiresUnreferencedCode", Justification = "JsonSerializerOptions provided here has TypeInfoResolver set")]
+        [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode", Justification = "JsonSerializerOptions provided here has TypeInfoResolver set")]
+        [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2075:RequiresUnreferencedCode", Justification = "All send types are registered in the TypeInfoResolver used and are therefor not trimmed")]
+#endif
         private static Dictionary<string, object>? ToDictionary(object? obj)
         {
             if (obj == null)
@@ -112,7 +118,8 @@ namespace CryptoCom.Net
                 if (converterAttr != null)
                 {
                     var options = new JsonSerializerOptions();
-                    options.Converters.Add((JsonConverter)Activator.CreateInstance(converterAttr.ConverterType));
+                    options.TypeInfoResolver = CryptoComExchange.SerializerContext.Options.TypeInfoResolver;
+                    options.Converters.Add((JsonConverter)Activator.CreateInstance(converterAttr.ConverterType!)!);
                     propValue = JsonSerializer.Serialize(propValue, options).Replace("\"", "");
                 }
 
@@ -123,7 +130,7 @@ namespace CryptoCom.Net
                 }
                 else
                 {
-                    result.Add(nameAttr.Name, propValue);
+                    result.Add(nameAttr.Name, propValue!);
                 }
             }
 
