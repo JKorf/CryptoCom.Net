@@ -1,4 +1,5 @@
 using CryptoCom.Net.Clients;
+using CryptoCom.Net.SymbolOrderBooks;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
@@ -78,6 +79,12 @@ namespace CryptoCom.Net.UnitTests
             await RunAndCheckResult(client => client.ExchangeApi.Trading.GetOpenOrdersAsync(default, default), true);
             await RunAndCheckResult(client => client.ExchangeApi.Trading.GetClosedOrdersAsync(default, default, default, default, default), true);
             await RunAndCheckResult(client => client.ExchangeApi.Trading.GetUserTradesAsync(default, default, default, default, default), true);
+        }
+
+        [Test]
+        public async Task TestOrderBooks()
+        {
+            await TestOrderBook(new CryptoComSymbolOrderBook("ETH_USD"));
         }
     }
 }

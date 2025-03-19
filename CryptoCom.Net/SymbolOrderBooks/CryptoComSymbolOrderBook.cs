@@ -16,7 +16,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
     /// Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
     /// Make sure to check the State property to see if the order book is synced.
     /// </summary>
-    public class CryptoComExchangeSymbolOrderBook : SymbolOrderBook
+    public class CryptoComSymbolOrderBook : SymbolOrderBook
     {
         private readonly bool _clientOwner;
         private readonly ICryptoComSocketClient _socketClient;
@@ -27,7 +27,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
         /// </summary>
         /// <param name="symbol">The symbol the order book is for</param>
         /// <param name="optionsDelegate">Option configuration delegate</param>
-        public CryptoComExchangeSymbolOrderBook(string symbol, Action<CryptoComOrderBookOptions>? optionsDelegate = null)
+        public CryptoComSymbolOrderBook(string symbol, Action<CryptoComOrderBookOptions>? optionsDelegate = null)
             : this(symbol, optionsDelegate, null, null, null)
         {
             _clientOwner = true;
@@ -41,7 +41,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
         /// <param name="logger">Logger</param>
         /// <param name="restClient">Rest client instance</param>
         /// <param name="socketClient">Socket client instance</param>
-        public CryptoComExchangeSymbolOrderBook(
+        public CryptoComSymbolOrderBook(
             string symbol,
             Action<CryptoComOrderBookOptions>? optionsDelegate,
             ILoggerFactory? logger,

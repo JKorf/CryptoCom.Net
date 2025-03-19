@@ -40,7 +40,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
 
         /// <inheritdoc />
         public ISymbolOrderBook Create(string symbol, Action<CryptoComOrderBookOptions>? options = null)
-            => new CryptoComExchangeSymbolOrderBook(symbol, options, 
+            => new CryptoComSymbolOrderBook(symbol, options, 
                                                           _serviceProvider.GetRequiredService<ILoggerFactory>(),
                                                           _serviceProvider.GetRequiredService<ICryptoComRestClient>(),
                                                           _serviceProvider.GetRequiredService<ICryptoComSocketClient>());

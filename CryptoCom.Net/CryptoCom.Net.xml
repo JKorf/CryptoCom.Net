@@ -5622,38 +5622,6 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
             <inheritdoc />
         </member>
-        <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook">
-            <summary>
-            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
-            Make sure to check the State property to see if the order book is synced.
-            </summary>
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
-            <summary>
-            Create a new order book instance
-            </summary>
-            <param name="symbol">The symbol the order book is for</param>
-            <param name="optionsDelegate">Option configuration delegate</param>
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient,CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient)">
-            <summary>
-            Create a new order book instance
-            </summary>
-            <param name="symbol">The symbol the order book is for</param>
-            <param name="optionsDelegate">Option configuration delegate</param>
-            <param name="logger">Logger</param>
-            <param name="restClient">Rest client instance</param>
-            <param name="socketClient">Socket client instance</param>
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.Dispose(System.Boolean)">
-            <inheritdoc />
-        </member>
         <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory">
             <summary>
             CryptoCom order book factory
@@ -5672,6 +5640,38 @@
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.Create(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook">
+            <summary>
+            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
+            Make sure to check the State property to see if the order book is synced.
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient,CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient)">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="logger">Logger</param>
+            <param name="restClient">Rest client instance</param>
+            <param name="socketClient">Socket client instance</param>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.Dispose(System.Boolean)">
             <inheritdoc />
         </member>
         <member name="T:CryptoExchange.Net.Interfaces.CryptoClientExtensions">
