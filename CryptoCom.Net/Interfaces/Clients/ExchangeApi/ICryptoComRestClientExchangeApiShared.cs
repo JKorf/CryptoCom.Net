@@ -30,7 +30,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         ISpotOrderClientIdClient,
         IFuturesOrderClientIdClient,
         ISpotTriggerOrderRestClient,
-        IFuturesTriggerOrderRestClient
+        IFuturesTriggerOrderRestClient,
+        IFuturesTpSlRestClient
     {
     }
 }
