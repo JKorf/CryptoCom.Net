@@ -197,26 +197,39 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                             ExchangeSymbolCache.ParseSymbol(_topicSpotId, x.Symbol),
                             x.Symbol,
                             x.OrderId,
-                            x.OrderType == OrderType.Limit ? SharedOrderType.Limit : x.OrderType == OrderType.Market ? SharedOrderType.Market : SharedOrderType.Other,
+                            ParseOrderType(x.OrderType),
                             x.OrderSide == Enums.OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
                             ParseStatus(x.Status),
                             x.CreateTime)
                         {
                             ClientOrderId = x.ClientOrderId,
-                            OrderPrice = x.Price,
+                            OrderPrice = x.Price == 0 ? null : x.Price,
                             OrderQuantity = new SharedOrderQuantity(x.Quantity, x.OrderValue),
                             QuantityFilled = new SharedOrderQuantity(x.QuantityFilled, x.QuoteQuantityFilled),
                             UpdateTime = x.UpdateTime,
                             Fee = Math.Abs(x.Fee),
                             FeeAsset = x.FeeAsset,
                             TimeInForce = x.TimeInForce == Enums.TimeInForce.ImmediateOrCancel ? SharedTimeInForce.ImmediateOrCancel : x.TimeInForce == Enums.TimeInForce.FillOrKill ? SharedTimeInForce.FillOrKill : SharedTimeInForce.GoodTillCanceled,
-                            AveragePrice = x.AveragePrice
+                            AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
+                            TriggerPrice = x.TriggerPrice,
+                            IsTriggerOrder = x.TriggerPrice != null
                         }
                     ).ToArray()));
                 },
                 ct: ct).ConfigureAwait(false);
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
+        }
+
+        private SharedOrderType ParseOrderType(OrderType orderType)
+        {
+            if (orderType == OrderType.Market || orderType == OrderType.StopLoss || orderType == OrderType.TakeProfit)
+                return SharedOrderType.Market;
+
+            if (orderType == OrderType.Limit || orderType == OrderType.StopLimit || orderType == OrderType.TakeProfitLimit)
+                return SharedOrderType.Limit;
+
+            return SharedOrderType.Other;
         }
 
         private SharedOrderStatus ParseStatus(OrderStatus status)
@@ -265,7 +278,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                             Fee = x.Fee,
                             FeeAsset = x.FeeAsset,
                             TimeInForce = x.TimeInForce == Enums.TimeInForce.ImmediateOrCancel ? SharedTimeInForce.ImmediateOrCancel : x.TimeInForce == Enums.TimeInForce.FillOrKill ? SharedTimeInForce.FillOrKill : SharedTimeInForce.GoodTillCanceled,
-                            AveragePrice = x.AveragePrice
+                            AveragePrice = x.AveragePrice,
+                            TriggerPrice = x.TriggerPrice,
+                            IsTriggerOrder = x.TriggerPrice > 0
                         }
                     ).ToArray()));
                 },

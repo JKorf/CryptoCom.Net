@@ -416,6 +416,34 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #endregion
 
+        #region Book Ticker client
+
+        EndpointOptions<GetBookTickerRequest> IBookTickerRestClient.GetBookTickerOptions { get; } = new EndpointOptions<GetBookTickerRequest>(false);
+        async Task<ExchangeWebResult<SharedBookTicker>> IBookTickerRestClient.GetBookTickerAsync(GetBookTickerRequest request, CancellationToken ct)
+        {
+            var validationError = ((IBookTickerRestClient)this).GetBookTickerOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedBookTicker>(Exchange, validationError);
+
+            var symbol = request.Symbol.GetSymbol(FormatSymbol);
+            var resultTicker = await ExchangeData.GetOrderBookAsync(symbol, 1, ct: ct).ConfigureAwait(false);
+            if (!resultTicker)
+                return resultTicker.AsExchangeResult<SharedBookTicker>(Exchange, null, default);
+
+            if (resultTicker.Data.Asks.Length == 0)
+                return resultTicker.AsExchangeError<SharedBookTicker>(Exchange, new ServerError("Symbol not found"));
+
+            return resultTicker.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedBookTicker(
+                ExchangeSymbolCache.ParseSymbol(request.Symbol.TradingMode == TradingMode.Spot ? _topicSpotId : _topicFuturesId, symbol),
+                symbol,
+                resultTicker.Data.Asks[0].Price,
+                resultTicker.Data.Asks[0].Quantity,
+                resultTicker.Data.Bids[0].Price,
+                resultTicker.Data.Bids[0].Quantity));
+        }
+
+        #endregion
+
         #region Spot Order Client
 
         SharedFeeDeductionType ISpotOrderRestClient.SpotFeeDeductionType => SharedFeeDeductionType.DeductFromOutput;
@@ -490,7 +518,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
                 Fee = order.Data.Fee,
-                FeeAsset = order.Data.FeeAsset
+                FeeAsset = order.Data.FeeAsset,
+                TriggerPrice = order.Data.TriggerPrice,
+                IsTriggerOrder = order.Data.TriggerPrice != null
             });
         }
 
@@ -523,7 +553,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
                 Fee = x.Fee,
-                FeeAsset = x.FeeAsset
+                FeeAsset = x.FeeAsset,
+                TriggerPrice = x.TriggerPrice,
+                IsTriggerOrder = x.TriggerPrice != null
             }).ToArray());
         }
 
@@ -570,7 +602,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
                 Fee = x.Fee,
-                FeeAsset = x.FeeAsset
+                FeeAsset = x.FeeAsset,
+                TriggerPrice = x.TriggerPrice,
+                IsTriggerOrder = x.TriggerPrice != null
             }).ToArray(), nextToken);
         }
 
@@ -658,8 +692,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         private SharedOrderType ParseOrderType(OrderType type)
         {
-            if (type == OrderType.Market) return SharedOrderType.Market;
-            if (type == OrderType.Limit) return SharedOrderType.Limit;
+            if (type == OrderType.Market || type == OrderType.StopLoss || type == OrderType.TakeProfit) return SharedOrderType.Market;
+            if (type == OrderType.Limit || type == OrderType.StopLimit || type == OrderType.TakeProfitLimit) return SharedOrderType.Limit;
 
             return SharedOrderType.Other;
         }
@@ -705,7 +739,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
                 Fee = order.Data.Fee,
-                FeeAsset = order.Data.FeeAsset
+                FeeAsset = order.Data.FeeAsset,
+                TriggerPrice = order.Data.TriggerPrice,
+                IsTriggerOrder = order.Data.TriggerPrice != null
             });
         }
 
@@ -994,7 +1030,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
                 Fee = order.Data.Fee,
-                FeeAsset = order.Data.FeeAsset
+                FeeAsset = order.Data.FeeAsset,
+                TriggerPrice = order.Data.TriggerPrice,
+                IsTriggerOrder = order.Data.TriggerPrice > 0
             });
         }
 
@@ -1027,7 +1065,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
                 Fee = x.Fee,
-                FeeAsset = x.FeeAsset
+                FeeAsset = x.FeeAsset,
+                TriggerPrice = x.TriggerPrice,
+                IsTriggerOrder = x.TriggerPrice > 0
             }).ToArray());
         }
 
@@ -1074,7 +1114,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
                 Fee = x.Fee,
-                FeeAsset = x.FeeAsset
+                FeeAsset = x.FeeAsset,
+                TriggerPrice = x.TriggerPrice,
+                IsTriggerOrder = x.TriggerPrice > 0
             }).ToArray(), nextToken);
         }
 
@@ -1220,7 +1262,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
                 Fee = order.Data.Fee,
-                FeeAsset = order.Data.FeeAsset
+                FeeAsset = order.Data.FeeAsset,
+                TriggerPrice = order.Data.TriggerPrice,
+                IsTriggerOrder = order.Data.TriggerPrice > 0
             });
         }
 
