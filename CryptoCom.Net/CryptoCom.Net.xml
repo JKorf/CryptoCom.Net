@@ -5714,10 +5714,5 @@
             <param name="optionsDelegate">Set options for the CryptoCom services</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions},System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},System.Nullable{Microsoft.Extensions.DependencyInjection.ServiceLifetime})">
-            <summary>
-            DEPRECATED; use <see cref="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComOptions})" /> instead
-            </summary>
-        </member>
     </members>
 </doc>

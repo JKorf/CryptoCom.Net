@@ -1530,6 +1530,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             RequiredOptionalParameters = new List<ParameterDescription>
             {
+                new ParameterDescription(nameof(SetTpSlRequest.Quantity), typeof(decimal), "Position quantity the TP/SL is for", 123m)
             }
         };
 
@@ -1543,6 +1544,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 request.Symbol.GetSymbol(FormatSymbol),
                 request.PositionSide == SharedPositionSide.Long ? OrderSide.Buy : OrderSide.Sell,
                 request.TpSlSide == SharedTpSlSide.TakeProfit ? OrderType.TakeProfit : OrderType.StopLoss,
+                quantity: request.Quantity,
                 triggerPrice: request.TriggerPrice,
                 ct: ct).ConfigureAwait(false);
             
@@ -1550,7 +1552,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedId>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedId(result.Data.OrderId));
+            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.OrderId));
         }
 
         EndpointOptions<CancelTpSlRequest> IFuturesTpSlRestClient.CancelTpSlOptions { get; } = new EndpointOptions<CancelTpSlRequest>(true)

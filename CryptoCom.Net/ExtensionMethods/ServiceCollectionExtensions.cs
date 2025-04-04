@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
             IConfiguration configuration)
         {
             var options = new CryptoComOptions();
-            // Reset environment so we know if theyre overriden
+            // Reset environment so we know if they're overridden
             options.Rest.Environment = null!;
             options.Socket.Environment = null!;
             configuration.Bind(options);
@@ -65,7 +65,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<CryptoComOptions>? optionsDelegate = null)
         {
             var options = new CryptoComOptions();
-            // Reset environment so we know if theyre overriden
+            // Reset environment so we know if they're overridden
             options.Rest.Environment = null!;
             options.Socket.Environment = null!;
             optionsDelegate?.Invoke(options);
@@ -81,21 +81,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton(x => Options.Options.Create(options.Socket));
 
             return AddCryptoComCore(services, options.SocketClientLifeTime);
-        }
-
-        /// <summary>
-        /// DEPRECATED; use <see cref="AddCryptoCom(IServiceCollection, Action{CryptoComOptions}?)" /> instead
-        /// </summary>
-        public static IServiceCollection AddCryptoCom(
-            this IServiceCollection services,
-            Action<CryptoComRestOptions> restDelegate,
-            Action<CryptoComSocketOptions>? socketDelegate = null,
-            ServiceLifetime? socketClientLifeTime = null)
-        {
-            services.Configure<CryptoComRestOptions>((x) => { restDelegate?.Invoke(x); });
-            services.Configure<CryptoComSocketOptions>((x) => { socketDelegate?.Invoke(x); });
-
-            return AddCryptoComCore(services, socketClientLifeTime);
         }
 
         private static IServiceCollection AddCryptoComCore(
