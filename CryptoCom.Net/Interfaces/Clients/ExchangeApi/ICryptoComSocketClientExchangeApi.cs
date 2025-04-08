@@ -439,7 +439,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         Task<CallResult<CryptoComWithdrawalResult>> WithdrawAsync(string asset, decimal quantity, string address, string? addressTag = null, string? network = null, string? clientWithdrawId = null, CancellationToken ct = default);
 
         /// <summary>
-        /// Set all open orders created by this connection to cancel when the connection is interupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
+        /// Set all open orders created by this connection to cancel when the connection is interrupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /></para>
         /// </summary>
         /// <param name="ct"></param>
@@ -447,7 +447,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         Task<CallResult> SetCancelOnDisconnectAsync(CancellationToken ct = default);
 
         /// <summary>
-        /// Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+        /// Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
         /// </summary>
         public ICryptoComSocketClientExchangeApiShared SharedClient { get; }
     }

@@ -2416,25 +2416,29 @@
             <summary>
             Endpoints related to account settings, info or actions
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.ExchangeData">
             <summary>
             Endpoints related to retrieving market and system data
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Staking">
             <summary>
             Endpoints related to staking
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Trading">
             <summary>
             Endpoints related to orders and trades
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.SharedClient">
             <summary>
-            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared rest requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount">
@@ -3356,7 +3360,7 @@
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SetCancelOnDisconnectAsync(System.Threading.CancellationToken)">
             <summary>
-            Set all open orders created by this connection to cancel when the connection is interupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
+            Set all open orders created by this connection to cancel when the connection is interrupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /></para>
             </summary>
             <param name="ct"></param>
@@ -3364,7 +3368,7 @@
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SharedClient">
             <summary>
-            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApiShared">
@@ -3381,12 +3385,13 @@
             <summary>
             Exchange API endpoints
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi"/>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
             <summary>
             Update specific options
             </summary>
-            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+            <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
@@ -3403,12 +3408,13 @@
             <summary>
             Exchange API endpoints
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi"/>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
             <summary>
             Update specific options
             </summary>
-            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+            <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
