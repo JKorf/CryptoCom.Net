@@ -417,7 +417,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return result.As<CryptoComOrder[]>(result.Data?.Result.Data);
         }
 
-        public async Task<CallResult<CryptoComOrderResult[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
+        public async Task<CallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
@@ -432,8 +432,26 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("contingency_type", "LIST");
             request.Parameters.Add("order_list", orders.ToArray());
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderResult[]>(request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComOrderResult[]>(result.Data?.Result);
+            var resultData = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderResult[]>(request, true, 1), ct).ConfigureAwait(false);
+            if (!resultData)
+                return resultData.As<CallResult<CryptoComOrderResult>[]>(default);
+
+            if (resultData.Data.Code != 0 && resultData.Data.Result?.Any() != true)
+                return resultData.AsError<CallResult<CryptoComOrderResult>[]>(new ServerError(resultData.Data.Code, resultData.Data.Message!));
+
+            var result = new List<CallResult<CryptoComOrderResult>>();
+            foreach (var item in resultData.Data.Result)
+            {
+                if (item.Code != 0)
+                    result.Add(new CallResult<CryptoComOrderResult>(new ServerError(item.Code, item.Message!)));
+                else
+                    result.Add(new CallResult<CryptoComOrderResult>(item));
+            }
+
+            if (result.All(x => !x.Success))
+                return resultData.AsErrorWithData(new ServerError("All orders failed"), result.ToArray());
+
+            return resultData.As(result.ToArray());
         }
 
         public async Task<CallResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)

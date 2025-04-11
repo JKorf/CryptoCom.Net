@@ -183,7 +183,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Place Multiple Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderResult[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
+        public async Task<WebCallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
 
@@ -193,7 +193,23 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.Add("contingency_type", "LIST");
             parameters.Add("order_list", orders.ToArray());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
-            return await _baseClient.SendAsync<CryptoComOrderResult[]>(request, parameters, ct).ConfigureAwait(false);
+            var resultData = await _baseClient.SendAsync<CryptoComOrderResult[]>(request, parameters, ct).ConfigureAwait(false);
+            if (!resultData)
+                return resultData.As<CallResult<CryptoComOrderResult>[]>(default);
+
+            var result = new List<CallResult<CryptoComOrderResult>>();
+            foreach (var item in resultData.Data!)
+            {
+                if (item.Code != 0)
+                    result.Add(new CallResult<CryptoComOrderResult>(new ServerError(item.Code, item.Message!)));
+                else
+                    result.Add(new CallResult<CryptoComOrderResult>(item));
+            }
+
+            if (result.All(x => !x.Success))
+                return resultData.AsErrorWithData(new ServerError("All orders failed"), result.ToArray());
+
+            return resultData.As(result.ToArray());
         }
 
         #endregion

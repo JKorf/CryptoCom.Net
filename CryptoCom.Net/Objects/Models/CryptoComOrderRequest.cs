@@ -56,7 +56,7 @@ namespace CryptoCom.Net.Objects.Models
         /// <summary>
         /// Order side
         /// </summary>
-        [JsonPropertyName("side")]
+        [JsonPropertyName("side"), JsonConverter(typeof(EnumConverter<OrderSide>))]
         public OrderSide OrderSide { get; set; }
         /// <summary>
         /// Self trade prevention id
@@ -66,22 +66,22 @@ namespace CryptoCom.Net.Objects.Models
         /// <summary>
         /// Self trade prevention mode
         /// </summary>
-        [JsonPropertyName("stp_inst"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("stp_inst"), JsonConverter(typeof(EnumConverter<SelfTradePreventionMode>)), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public SelfTradePreventionMode? StpMode { get; set; }
         /// <summary>
         /// Self trade prevention scope
         /// </summary>
-        [JsonPropertyName("stp_scope"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("stp_scope"), JsonConverter(typeof(EnumConverter<SelfTradePreventionScope>)), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public SelfTradePreventionScope? StpScope { get; set; }
         /// <summary>
         /// Time in force
         /// </summary>
-        [JsonPropertyName("time_in_force"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("time_in_force"), JsonConverter(typeof(EnumConverter<TimeInForce>)), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public TimeInForce? TimeInForce { get; set; }
         /// <summary>
         /// Order type
         /// </summary>
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type"), JsonConverter(typeof(EnumConverter<OrderType>))]
         public OrderType OrderType { get; set; }
     }
 }
