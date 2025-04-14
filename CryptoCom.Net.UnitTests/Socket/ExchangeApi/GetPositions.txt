@@ -1,0 +1,22 @@
+> {"id":"|1|","method":"public/auth","params":{},"api_key":"|2|","nonce":1744613205975,"sig":"|3|"}
+< {"id":|1|,"method":"public/auth","code":0}
+> { "id": "|4|", "nonce" : "|5|", "method": "private/get-positions", "params": { } }
+=
+{
+  "id": |4|,
+  "method": "private/get-positions",
+  "code": 0,
+  "result": {
+    "data": [{
+      "account_id": "858dbc8b-22fd-49fa-bff4-d342d98a8acb",
+      "quantity": "-0.1984",
+      "cost": "-10159.573500",
+      "open_position_pnl": "-497.743736",
+      "open_pos_cost": "-10159.352200",
+      "session_pnl": "2.236145",
+      "update_timestamp_ms": 1613552240770,
+      "instrument_name": "BTCUSD-PERP",
+      "type": "PERPETUAL_SWAP"
+    }]
+  }
+}

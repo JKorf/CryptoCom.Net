@@ -417,7 +417,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return result.As<CryptoComOrder[]>(result.Data?.Result.Data);
         }
 
-        public async Task<CallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
+        public async Task<CallResult<CallResult<CryptoComListOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
@@ -432,20 +432,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("contingency_type", "LIST");
             request.Parameters.Add("order_list", orders.ToArray());
 
-            var resultData = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderResult[]>(request, true, 1), ct).ConfigureAwait(false);
+            var resultData = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(request, orders.Count()), ct).ConfigureAwait(false);
             if (!resultData)
-                return resultData.As<CallResult<CryptoComOrderResult>[]>(default);
+                return resultData.As<CallResult<CryptoComListOrderResult>[]>(default);
 
-            if (resultData.Data.Code != 0 && resultData.Data.Result?.Any() != true)
-                return resultData.AsError<CallResult<CryptoComOrderResult>[]>(new ServerError(resultData.Data.Code, resultData.Data.Message!));
-
-            var result = new List<CallResult<CryptoComOrderResult>>();
-            foreach (var item in resultData.Data.Result)
+            var result = new List<CallResult<CryptoComListOrderResult>>();
+            foreach (var item in resultData.Data)
             {
-                if (item.Code != 0)
-                    result.Add(new CallResult<CryptoComOrderResult>(new ServerError(item.Code, item.Message!)));
+                if (item.ErrorCode != null)
+                    result.Add(new CallResult<CryptoComListOrderResult>(new ServerError(item.ErrorCode!.Value, item.ErrorMessage!)));
                 else
-                    result.Add(new CallResult<CryptoComOrderResult>(item));
+                    result.Add(new CallResult<CryptoComListOrderResult>(item));
             }
 
             if (result.All(x => !x.Success))
@@ -454,7 +451,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return resultData.As(result.ToArray());
         }
 
-        public async Task<CallResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
+        public async Task<CallResult<CryptoComListOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
@@ -466,8 +463,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("contingency_type", "LIST");
             request.Parameters.Add("order_list", orders.ToArray());
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComCancelOrderResult[]>(request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComCancelOrderResult[]>(result.Data?.Result);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(request, orders.Count()), ct).ConfigureAwait(false);
+            return result.As<CryptoComListOrderResult[]>(result.Data);
         }
 
         public async Task<CallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)

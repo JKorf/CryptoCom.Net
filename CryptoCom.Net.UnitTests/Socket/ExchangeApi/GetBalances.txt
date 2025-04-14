@@ -1,0 +1,73 @@
+> {"id":"|1|","method":"public/auth","params":{},"api_key":"|2|","nonce":1744613205975,"sig":"|3|"}
+< {"id":|1|,"method":"public/auth","code":0}
+> { "id": "|4|", "nonce" : "|5|", "method": "private/user-balance", "params": { } }
+=
+{
+  "id": |4|,
+  "method": "private/user-balance",
+  "code": 0,
+  "result": {
+    "data": [
+      {
+        "total_available_balance": "4721.05898582",
+        "total_margin_balance": "7595.42571782",
+        "total_initial_margin": "2874.36673202",
+        "total_position_im": "486.31273202",
+        "total_haircut": "2388.054",
+        "total_maintenance_margin": "1437.18336601",
+        "total_position_cost": "14517.54641301",
+        "total_cash_balance": "7890.00320721",
+        "total_collateral_value": "7651.18811483",
+        "total_session_unrealized_pnl": "-55.76239701",
+        "instrument_name": "USD",
+        "total_session_realized_pnl": "0.00000000",
+        "is_liquidating": false,
+        "total_effective_leverage": "1.90401230",
+        "position_limit": "3000000.00000000",
+        "used_position_limit": "40674.69622001",
+        "position_balances": [
+          {
+            "instrument_name": "CRO",
+            "quantity": "24422.72427884",
+            "market_value": "4776.107959969951",
+            "collateral_eligible": "true",
+            "haircut": "0.5",
+            "collateral_amount": "4537.302561971453",
+            "max_withdrawal_balance": "24422.72427884",
+            "reserved_qty" : "0.00000000"
+          },
+          {
+            "instrument_name": "USD",
+            "quantity": "3113.50747209",
+            "market_value": "3113.50747209",
+            "collateral_eligible": "true",
+            "haircut": "0",
+            "collateral_amount": "3113.50747209",
+            "max_withdrawal_balance": "3113.50747209",
+            "reserved_qty" : "0.00000000"
+          },
+          {
+            "instrument_name": "USDT",
+            "quantity": "0.19411607",
+            "market_value": "0.19389555414448",
+            "collateral_eligible": "true",
+            "haircut": "0.02",
+            "collateral_amount": "0.18904816529086801",
+            "max_withdrawal_balance": "0.19411607",
+            "reserved_qty" : "0.00000000"
+          },
+          {
+            "instrument_name": "DAI",
+            "quantity": "0.19387960",
+            "market_value": "0.1938796",
+            "collateral_eligible": "false",
+            "haircut": "0.975",
+            "collateral_amount": "0.18903261000000002",
+            "max_withdrawal_balance": "0.1938796",
+            "reserved_qty" : "0.00000000"
+          }
+        ]
+      }
+    ]
+  }
+}

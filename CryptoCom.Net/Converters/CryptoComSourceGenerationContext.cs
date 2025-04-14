@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 namespace CryptoCom.Net.Converters
 {
     [JsonSerializable(typeof(ParameterCollection))]
+    [JsonSerializable(typeof(CryptoComResponse<CryptoComListOrderResult>))]
     // End manual defined attributes
 
     [JsonSerializable(typeof(CryptoComResponse<CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>))]

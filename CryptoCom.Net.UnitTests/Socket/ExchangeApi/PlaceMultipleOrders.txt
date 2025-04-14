@@ -1,0 +1,25 @@
+> {"id":"|1|","method":"public/auth","params":{},"api_key":"|2|","nonce":1744613205975,"sig":"|3|"}
+< {"id":|1|,"method":"public/auth","code":0}
+> { "id": "|4|", "nonce" : "|5|", "method": "private/create-order-list", "params": { } }
+=
+{
+  "id": |4|,
+  "method": "private/create-order-list",
+  "code": 0,
+  "result": {
+    "result_list": [
+      {
+        "index": 0,
+        "code": 0,
+        "order_id": "2015106383706015873",
+        "client_oid": "my_order_0001"
+      },
+      {
+        "index": 1,
+        "code": 0,
+        "order_id": "2015119459882149857",
+        "client_oid": "my_order_0002"
+      }
+    ]
+  }
+}

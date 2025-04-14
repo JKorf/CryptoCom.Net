@@ -7,13 +7,6 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
-    [SerializationModel]
-    internal record CryptoComOrderResultWrapper
-    {
-        [JsonPropertyName("result_list")]
-        public CryptoComOrderResult[] Results { get; set; } = [];
-    }
-
     /// <summary>
     /// Order result
     /// </summary>

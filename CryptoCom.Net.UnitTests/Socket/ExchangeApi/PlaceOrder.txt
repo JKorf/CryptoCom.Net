@@ -1,0 +1,13 @@
+> {"id":"|1|","method":"public/auth","params":{},"api_key":"|2|","nonce":1744613205975,"sig":"|3|"}
+< {"id":|1|,"method":"public/auth","code":0}
+> { "id": "|4|", "nonce" : "|5|", "method": "private/create-order", "params": { } }
+=
+{
+  "id": |4|,
+  "method": "private/create-order",
+  "code": 0,
+  "result": {
+    "client_oid": "c5f682ed-7108-4f1c-b755-972fcdca0f02",
+    "order_id": "18342311"
+  }
+}

@@ -161,6 +161,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("contingency_type")]
         public string? ContingencyType { get; set; }
         /// <summary>
+        /// Execution instructions
+        /// </summary>
+        [JsonPropertyName("exec_inst")]
+        public ExecutionInstruction[] ExecutionInstructions { get; set; } = [];
+        /// <summary>
         /// Trigger price
         /// </summary>
         [JsonPropertyName("ref_price")]
