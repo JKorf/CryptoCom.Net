@@ -90,7 +90,6 @@ namespace CryptoCom.Net.Converters
     [JsonSerializable(typeof(CryptoComOrderBookUpdate[]))]
     [JsonSerializable(typeof(CryptoComOrderBookEntry[]))]
     [JsonSerializable(typeof(CryptoComOrderRequest[]))]
-    [JsonSerializable(typeof(CryptoComOrderResultWrapper[]))]
     [JsonSerializable(typeof(CryptoComPositionWrapper[]))]
     [JsonSerializable(typeof(CryptoComRiskParameters[]))]
     [JsonSerializable(typeof(CryptoComRiskParametersAsset[]))]
