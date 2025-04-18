@@ -118,7 +118,7 @@ namespace CryptoCom.Net
                 if (converterAttr != null)
                 {
                     var options = new JsonSerializerOptions();
-                    options.TypeInfoResolver = CryptoComExchange.SerializerContext.Options.TypeInfoResolver;
+                    options.TypeInfoResolver = CryptoComExchange._serializerContext.Options.TypeInfoResolver;
                     options.Converters.Add((JsonConverter)Activator.CreateInstance(converterAttr.ConverterType!)!);
                     propValue = JsonSerializer.Serialize(propValue, options).Replace("\"", "");
                 }

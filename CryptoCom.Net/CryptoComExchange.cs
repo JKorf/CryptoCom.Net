@@ -50,7 +50,7 @@ namespace CryptoCom.Net
         /// </summary>
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
-        internal static JsonSerializerContext SerializerContext = new CryptoComSourceGenerationContext();
+        internal static JsonSerializerContext _serializerContext = new CryptoComSourceGenerationContext();
 
         /// <summary>
         /// Format a base and quote asset to a Crypto.com recognized symbol 
@@ -90,6 +90,11 @@ namespace CryptoCom.Net
         /// </summary>
         public event Action<RateLimitEvent> RateLimitTriggered;
 
+        /// <summary>
+        /// Event when the rate limit is updated. Note that it's only updated when a request is send, so there are no specific updates when the current usage is decaying.
+        /// </summary>
+        public event Action<RateLimitUpdateEvent> RateLimitUpdated;
+
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         internal CryptoComRateLimiters()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -113,10 +118,15 @@ namespace CryptoCom.Net
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, [new LimitItemTypeFilter(RateLimitItemType.Request), new ExactPathFilter("/exchange/v1/market")], 100, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding))
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerHost, [new LimitItemTypeFilter(RateLimitItemType.Request), new ExactPathFilter("/exchange/v1/user")], 150, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             RestPrivate.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            RestPrivate.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             RestPrivateSpecific.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            RestPrivateSpecific.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             RestPublic.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            RestPublic.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             RestStaking.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            RestStaking.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             Socket.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            Socket.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
         }
 
 
