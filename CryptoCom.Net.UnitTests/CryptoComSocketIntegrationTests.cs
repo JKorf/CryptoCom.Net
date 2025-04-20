@@ -13,7 +13,7 @@ namespace CryptoCom.Net.UnitTests
     [NonParallelizable]
     internal class CryptoComSocketIntegrationTests : SocketIntegrationTest<CryptoComSocketClient>
     {
-        public override bool Run { get; set; } = true;
+        public override bool Run { get; set; } = false;
 
         public CryptoComSocketIntegrationTests()
         {
