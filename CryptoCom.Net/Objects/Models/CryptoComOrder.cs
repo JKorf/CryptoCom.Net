@@ -121,10 +121,10 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("update_user_id")]
         public string UpdateUserId { get; set; } = string.Empty;
         /// <summary>
-        /// Reason
+        /// Reason as enum
         /// </summary>
-        [JsonPropertyName("reason"), JsonConverter(typeof(NumberStringConverter))]
-        public string? Reason { get; set; }
+        [JsonPropertyName("reason")]
+        public OrderRejectedReason? Reason { get; set; }
         /// <summary>
         /// Order date
         /// </summary>
