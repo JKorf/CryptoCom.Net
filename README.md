@@ -136,6 +136,31 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 2.0.0-beta1 - 22 Apr 2025
+    * Updated CryptoExchange.Net to version 9.0.0-beta1, see https://github.com/JKorf/CryptoExchange.Net/releases/
+    * Added support for Native AOT compilation
+    * Added RateLimitUpdated event
+    * Added SharedSymbol response property to all Shared interfaces response models returning a symbol name
+    * Added GenerateClientOrderId method to ExchangeApi Shared client
+    * Added IBookTickerRestClient implementation to ExchangeApi Shared client
+    * Added ISpotOrderClientIdClient implementation to ExchangeApi Shared client
+    * Added IFuturesOrderClientIdClient implementation to ExchangeApi Shared client
+    * Added ISpotTriggerOrderRestClient implementation to ExchangeApi Shared client
+    * Added IFuturesTriggerOrderRestClient implementation to ExchangeApi Shared client
+    * Added IFuturesTpSlRestClient implementation to ExchangeApi Shared client
+    * Added MaxLongLeverage, MaxShortLeverage to SharedFuturesSymbol model
+    * Added TriggerPrice, IsTriggerOrder properties to SharedSpotOrder model
+    * Added TriggerPrice, IsTriggerOrder properties to SharedFuturesOrder model
+    * Added OptionalExchangeParameters and Supported properties to EndpointOptions
+    * Refactored Shared clients quantity parameters and responses to use SharedQuantity
+    * Updated all IEnumerable response and model types to array response types
+    * Updated PlaceMultipleOrdersAsync endpoints to return a list of CallResult models and an error if all orders fail to place
+    * Renamed CryptoComExchangeSymbolOrderBook to CryptoComSymbolOrderBook
+    * Removed Newtonsoft.Json dependency
+    * Removed legacy AddCryptoCom(restOptions, socketOptions) DI overload
+    * Improved socket client order placement response processing
+    * Fixed some typos
+
 * Version 1.6.0 - 11 Feb 2025
     * Updated CryptoExchange.Net to version 8.8.0, see https://github.com/JKorf/CryptoExchange.Net/releases/
     * Added support for more SharedKlineInterval values
