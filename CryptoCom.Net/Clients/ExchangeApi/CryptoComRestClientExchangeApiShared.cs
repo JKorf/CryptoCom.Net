@@ -100,7 +100,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result)
                 return result.AsExchangeResult<SharedBalance[]>(Exchange, null, default);
 
-            return result.AsExchangeResult<SharedBalance[]>(Exchange, TradingMode.Spot, result.Data.SelectMany(x => x.PositionBalances.Select(x => new SharedBalance(x.Asset, x.Quantity - x.ReservedQuantity, x.Quantity))).ToArray());
+            return result.AsExchangeResult<SharedBalance[]>(Exchange, SupportedTradingModes, result.Data.SelectMany(x => x.PositionBalances.Select(x => new SharedBalance(x.Asset, x.Quantity - x.ReservedQuantity, x.Quantity))).ToArray());
         }
 
         #endregion
@@ -220,7 +220,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ct: ct
                 ).ConfigureAwait(false);
             if (!result)
-                return new ExchangeWebResult<SharedKline[]>(Exchange, TradingMode.Spot, result.As<SharedKline[]>(default));
+                return new ExchangeWebResult<SharedKline[]>(Exchange, request.Symbol.TradingMode, result.As<SharedKline[]>(default));
 
             // Get next token
             DateTimeToken? nextToken = null;
@@ -251,7 +251,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result)
                 return result.AsExchangeResult<SharedOrderBook>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedOrderBook(result.Data.Asks, result.Data.Bids));
+            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedOrderBook(result.Data.Asks, result.Data.Bids));
         }
 
         #endregion
@@ -274,7 +274,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedTrade[]>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult<SharedTrade[]>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)
+            return result.AsExchangeResult<SharedTrade[]>(Exchange, request.Symbol.TradingMode, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)
             {
                 Side = x.Side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell
             }).ToArray());
@@ -809,7 +809,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var data = result.Data.Where(x => x.SymbolType != SymbolType.Spot && x.SymbolType != SymbolType.CroStake);
             if (request.TradingMode != null)
                 data = data.Where(x => request.TradingMode == TradingMode.PerpetualLinear ? x.SymbolType == SymbolType.PerpetualSwap : x.SymbolType == SymbolType.DeliveryFuture);
-            var response = result.AsExchangeResult<SharedFuturesSymbol[]>(Exchange, TradingMode.Spot, data.Select(s => new SharedFuturesSymbol(
+            var response = result.AsExchangeResult<SharedFuturesSymbol[]>(Exchange, SupportedFuturesModes, data.Select(s => new SharedFuturesSymbol(
                 s.SymbolType == SymbolType.PerpetualSwap ? TradingMode.PerpetualLinear : TradingMode.DeliveryLinear, s.BaseAsset, s.QuoteAsset, s.Symbol, s.Tradable)
             {
                 QuantityStep = s.QuantityTickSize,
@@ -853,7 +853,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var ticker = tickerTask.Result.Data.Single();
             var time = DateTime.UtcNow;
-            return tickerTask.Result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, ticker.PriceChange * 100)
+            return tickerTask.Result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, ticker.PriceChange * 100)
             {
                 FundingRate = fundingTask.Result.Data?.Single().Value,
                 MarkPrice = markTask.Result.Data?.Single().Value,
@@ -875,7 +875,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var time = DateTime.UtcNow;
             var nextFundingTime = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, DateTimeKind.Utc).AddHours(1);
-            return result.AsExchangeResult<SharedFuturesTicker[]>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), x.Symbol, x.LastPrice, x.HighPrice, x.LowPrice, x.Volume, x.PriceChange * 100)
+            return result.AsExchangeResult<SharedFuturesTicker[]>(Exchange, SupportedFuturesModes, result.Data.Select(x => new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), x.Symbol, x.LastPrice, x.HighPrice, x.LowPrice, x.Volume, x.PriceChange * 100)
             {
                 NextFundingTime = nextFundingTime
             }).ToArray());
@@ -1156,7 +1156,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (orders.Data.Count() == (request.Limit ?? 100))
                 nextToken = new DateTimeToken(orders.Data.Min(o => o.CreateTime).AddMilliseconds(-1));
 
-            return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, TradingMode.Spot, orders.Data.Select(x => new SharedUserTrade(
+            return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, request.Symbol.TradingMode, orders.Data.Select(x => new SharedUserTrade(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), 
                 x.Symbol,
                 x.OrderId,
@@ -1298,7 +1298,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedFee>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFee(result.Data.EffectiveMakerRateBps / 100, result.Data.EffectiveTakerRateBps / 100));
+            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFee(result.Data.EffectiveMakerRateBps / 100, result.Data.EffectiveTakerRateBps / 100));
         }
         #endregion
 
