@@ -4,439 +4,526 @@ using CryptoExchange.Net.Attributes;
 
 namespace CryptoCom.Net.Enums
 {
-    /// <summary>
-    /// Enum representing Crypto.com order rejection reasons.
-    /// </summary>
-    public enum OrderRejectedReason : int
+	/// <summary>
+	/// Enum representing Crypto.com order rejection reasons.
+	/// </summary>
+	[JsonConverter(typeof(EnumConverter<OrderRejectedReason>))]
+	public enum OrderRejectedReason
     {
         /// <summary>
         /// Success (no error or rejection)
         /// </summary>
-        Success = 0,
+        [Map("0")]
+        Success,
 
         /// <summary>
         /// No position available.
         /// </summary>
-        NoPosition = 201,
+        [Map("201")]
+        NoPosition,
 
         /// <summary>
         /// Account is suspended.
         /// </summary>
-        AccountIsSuspended = 202,
+        [Map("202")]
+        AccountIsSuspended,
 
         /// <summary>
         /// Accounts do not match.
         /// </summary>
-        AccountsDoNotMatch = 203,
+        [Map("203")]
+        AccountsDoNotMatch,
 
         /// <summary>
         /// Duplicate client order ID.
         /// </summary>
-        DuplicateClientOrderId = 204,
+        [Map("204")]
+        DuplicateClientOrderId,
 
         /// <summary>
         /// Duplicate order ID.
         /// </summary>
-        DuplicateOrderId = 205,
+        [Map("205")]
+        DuplicateOrderId,
 
         /// <summary>
         /// Instrument has expired.
         /// </summary>
-        InstrumentExpired = 206,
+        [Map("206")]
+        InstrumentExpired,
 
         /// <summary>
         /// No mark price available.
         /// </summary>
-        NoMarkPrice = 207,
+        [Map("207")]
+        NoMarkPrice,
 
         /// <summary>
         /// Instrument is not tradable.
         /// </summary>
-        InstrumentNotTradable = 208,
+        [Map("208")]
+        InstrumentNotTradable,
 
         /// <summary>
         /// Instrument is invalid.
         /// </summary>
-        InvalidInstrument = 209,
+        [Map("209")]
+        InvalidInstrument,
 
         /// <summary>
         /// Account is invalid.
         /// </summary>
-        InvalidAccount = 210,
+        [Map("210")]
+        InvalidAccount,
 
         /// <summary>
         /// Currency is invalid.
         /// </summary>
-        InvalidCurrency = 211,
+        [Map("211")]
+        InvalidCurrency,
 
         /// <summary>
         /// Invalid order ID.
         /// </summary>
-        InvalidOrderId = 212,
+        [Map("212")]
+        InvalidOrderId,
 
         /// <summary>
         /// Invalid order quantity.
         /// </summary>
-        InvalidOrderQuantity = 213,
+        [Map("213")]
+        InvalidOrderQuantity,
 
         /// <summary>
         /// Invalid settlement currency.
         /// </summary>
-        InvalidSettleCurrency = 214,
+        [Map("214")]
+        InvalidSettleCurrency,
 
         /// <summary>
         /// Invalid fee currency.
         /// </summary>
-        InvalidFeeCurrency = 215,
+        [Map("215")]
+        InvalidFeeCurrency,
 
         /// <summary>
         /// Invalid position quantity.
         /// </summary>
-        InvalidPositionQuantity = 216,
+        [Map("216")]
+        InvalidPositionQuantity,
 
         /// <summary>
         /// Invalid open quantity.
         /// </summary>
-        InvalidOpenQuantity = 217,
+        [Map("217")]
+        InvalidOpenQuantity,
 
         /// <summary>
         /// Invalid order type.
         /// </summary>
-        InvalidOrderType = 218,
+        [Map("218")]
+        InvalidOrderType,
 
         /// <summary>
         /// Invalid execution instruction.
         /// </summary>
-        InvalidExecutionInstruction = 219,
+        [Map("219")]
+        InvalidExecutionInstruction,
 
         /// <summary>
         /// Invalid side.
         /// </summary>
-        InvalidSide = 220,
+        [Map("220")]
+        InvalidSide,
 
         /// <summary>
         /// Invalid time in force.
         /// </summary>
-        InvalidTimeInForce = 221,
+        [Map("221")]
+        InvalidTimeInForce,
 
         /// <summary>
         /// Stale mark price.
         /// </summary>
-        StaleMarkPrice = 222,
+        [Map("222")]
+        StaleMarkPrice,
 
         /// <summary>
         /// No client order ID provided.
         /// </summary>
-        NoClientOrderId = 223,
+        [Map("223")]
+        NoClientOrderId,
 
         /// <summary>
         /// Rejected by matching engine.
         /// </summary>
-        RejectedByMatchingEngine = 224,
+        [Map("224")]
+        RejectedByMatchingEngine,
 
         /// <summary>
         /// Exceeds maximum entry leverage.
         /// </summary>
-        ExceedMaximumEntryLeverage = 225,
+        [Map("225")]
+        ExceedMaximumEntryLeverage,
 
         /// <summary>
         /// Invalid leverage.
         /// </summary>
-        InvalidLeverage = 226,
+        [Map("226")]
+        InvalidLeverage,
 
         /// <summary>
         /// Invalid slippage.
         /// </summary>
-        InvalidSlippage = 227,
+        [Map("227")]
+        InvalidSlippage,
 
         /// <summary>
         /// Invalid floor price.
         /// </summary>
-        InvalidFloorPrice = 228,
+        [Map("228")]
+        InvalidFloorPrice,
 
         /// <summary>
         /// Invalid reference price.
         /// </summary>
-        InvalidReferencePrice = 229,
+        [Map("229")]
+        InvalidReferencePrice,
 
         /// <summary>
         /// Invalid trigger type.
         /// </summary>
-        InvalidTriggerType = 230,
+        [Map("230")]
+        InvalidTriggerType,
 
         /// <summary>
         /// Account is in margin call.
         /// </summary>
-        AccountIsInMarginCall = 301,
+        [Map("301")]
+        AccountIsInMarginCall,
 
         /// <summary>
         /// Exceeds account risk limit.
         /// </summary>
-        ExceedsAccountRiskLimit = 302,
+        [Map("302")]
+        ExceedsAccountRiskLimit,
 
         /// <summary>
         /// Exceeds position risk limit.
         /// </summary>
-        ExceedsPositionRiskLimit = 303,
+        [Map("303")]
+        ExceedsPositionRiskLimit,
 
         /// <summary>
         /// Order will lead to immediate liquidation.
         /// </summary>
-        OrderWillLeadToImmediateLiquidation = 304,
+        [Map("304")]
+        OrderWillLeadToImmediateLiquidation,
 
         /// <summary>
         /// Order will trigger margin call.
         /// </summary>
-        OrderWillTriggerMarginCall = 305,
+        [Map("305")]
+        OrderWillTriggerMarginCall,
 
         /// <summary>
         /// Insufficient available balance.
         /// </summary>
-        InsufficientAvailableBalance = 306,
+        [Map("306")]
+        InsufficientAvailableBalance,
 
         /// <summary>
         /// Invalid order status.
         /// </summary>
-        InvalidOrderStatus = 307,
+        [Map("307")]
+        InvalidOrderStatus,
 
         /// <summary>
         /// Invalid price.
         /// </summary>
-        InvalidPrice = 308,
+        [Map("308")]
+        InvalidPrice,
 
         /// <summary>
         /// Market is not open.
         /// </summary>
-        MarketIsNotOpen = 309,
+        [Map("309")]
+        MarketIsNotOpen,
 
         /// <summary>
         /// Order price beyond liquidation price.
         /// </summary>
-        OrderPriceBeyondLiquidationPrice = 310,
+        [Map("310")]
+        OrderPriceBeyondLiquidationPrice,
 
         /// <summary>
         /// Position is in liquidation.
         /// </summary>
-        PositionIsInLiquidation = 311,
+        [Map("311")]
+        PositionIsInLiquidation,
 
         /// <summary>
         /// Order price is greater than the limit up price.
         /// </summary>
-        OrderPriceGreaterThanLimitUpPrice = 312,
+        [Map("312")]
+        OrderPriceGreaterThanLimitUpPrice,
 
         /// <summary>
         /// Order price is less than the limit down price.
         /// </summary>
-        OrderPriceLessThanLimitDownPrice = 313,
+        [Map("313")]
+        OrderPriceLessThanLimitDownPrice,
 
         /// <summary>
         /// Exceeds maximum order size.
         /// </summary>
-        ExceedsMaxOrderSize = 314,
+        [Map("314")]
+        ExceedsMaxOrderSize,
 
         /// <summary>
         /// Far away limit price.
         /// </summary>
-        FarAwayLimitPrice = 315,
+        [Map("315")]
+        FarAwayLimitPrice,
 
         /// <summary>
         /// No active order.
         /// </summary>
-        NoActiveOrder = 316,
+        [Map("316")]
+        NoActiveOrder,
 
         /// <summary>
         /// Position does not exist.
         /// </summary>
-        PositionDoesNotExist = 317,
+        [Map("317")]
+        PositionDoesNotExist,
 
         /// <summary>
         /// Exceeds maximum allowed orders.
         /// </summary>
-        ExceedsMaxAllowedOrders = 318,
+        [Map("318")]
+        ExceedsMaxAllowedOrders,
 
         /// <summary>
         /// Exceeds maximum position size.
         /// </summary>
-        ExceedsMaxPositionSize = 319,
+        [Map("319")]
+        ExceedsMaxPositionSize,
 
         /// <summary>
         /// Exceeds initial margin.
         /// </summary>
-        ExceedsInitialMargin = 320,
+        [Map("320")]
+        ExceedsInitialMargin,
 
         /// <summary>
         /// Exceeds maximum available balance.
         /// </summary>
-        ExceedsMaxAvailableBalance = 321,
+        [Map("321")]
+        ExceedsMaxAvailableBalance,
 
         /// <summary>
         /// Account does not exist.
         /// </summary>
-        AccountDoesNotExist = 401,
+        [Map("401")]
+        AccountDoesNotExist,
 
         /// <summary>
         /// Account is not active.
         /// </summary>
-        AccountIsNotActive = 406,
+        [Map("406")]
+        AccountIsNotActive,
 
         /// <summary>
         /// Margin unit does not exist.
         /// </summary>
-        MarginUnitDoesNotExist = 407,
+        [Map("407")]
+        MarginUnitDoesNotExist,
 
         /// <summary>
         /// Margin unit is suspended.
         /// </summary>
-        MarginUnitIsSuspended = 408,
+        [Map("408")]
+        MarginUnitIsSuspended,
 
         /// <summary>
         /// Invalid user.
         /// </summary>
-        InvalidUser = 409,
+        [Map("409")]
+        InvalidUser,
 
         /// <summary>
         /// User is not active.
         /// </summary>
-        UserIsNotActive = 410,
+        [Map("410")]
+        UserIsNotActive,
 
         /// <summary>
         /// User does not have derivative access.
         /// </summary>
-        UserNoDerivativeAccess = 411,
+        [Map("411")]
+        UserNoDerivativeAccess,
 
         /// <summary>
         /// Account does not have derivative access.
         /// </summary>
-        AccountNoDerivativeAccess = 412,
+        [Map("412")]
+        AccountNoDerivativeAccess,
 
         /// <summary>
         /// Below minimum order size.
         /// </summary>
-        BelowMinimumOrderSize = 415,
+        [Map("415")]
+        BelowMinimumOrderSize,
 
         /// <summary>
         /// Exceeds maximum effective leverage.
         /// </summary>
-        ExceedMaximumEffectiveLeverage = 501,
+        [Map("501")]
+        ExceedMaximumEffectiveLeverage,
 
         /// <summary>
         /// Invalid collateral price.
         /// </summary>
-        InvalidCollateralPrice = 604,
+        [Map("604")]
+        InvalidCollateralPrice,
 
         /// <summary>
         /// Invalid margin calculation.
         /// </summary>
-        InvalidMarginCalculation = 605,
+        [Map("605")]
+        InvalidMarginCalculation,
 
         /// <summary>
         /// Exceeds allowed slippage.
         /// </summary>
-        ExceedAllowedSlippage = 606,
+        [Map("606")]
+        ExceedAllowedSlippage,
 
         /// <summary>
         /// Maximum amount violated.
         /// </summary>
-        MaxAmountViolated = 30024,
+        [Map("30024")]
+        MaxAmountViolated,
 
         /// <summary>
         /// Bad request.
         /// </summary>
-        BadRequest = 40001,
+        [Map("40001")]
+        BadRequest,
 
         /// <summary>
         /// Method not found.
         /// </summary>
-        MethodNotFound = 40002,
+        [Map("40002")]
+        MethodNotFound,
 
         /// <summary>
         /// Invalid request.
         /// </summary>
-        InvalidRequest = 40003,
+        [Map("40003")]
+        InvalidRequest,
 
         /// <summary>
         /// Missing or invalid argument.
         /// </summary>
-        MissingOrInvalidArgument = 40004,
+        [Map("40004")]
+        MissingOrInvalidArgument,
 
         /// <summary>
         /// Invalid date.
         /// </summary>
-        InvalidDate = 40005,
+        [Map("40005")]
+        InvalidDate,
 
         /// <summary>
         /// Duplicate request received.
         /// </summary>
-        DuplicateRequest = 40006,
+        [Map("40006")]
+        DuplicateRequest,
 
         /// <summary>
         /// Unauthorized access.
         /// </summary>
-        Unauthorized = 40101,
+        [Map("40101")]
+        Unauthorized,
 
         /// <summary>
         /// Invalid nonce value.
         /// </summary>
-        InvalidNonce = 40102,
+        [Map("40102")]
+        InvalidNonce,
 
         /// <summary>
         /// IP address not whitelisted.
         /// </summary>
-        IpIllegal = 40103,
+        [Map("40103")]
+        IpIllegal,
 
         /// <summary>
         /// User tier is invalid.
         /// </summary>
-        UserTierInvalid = 40104,
+        [Map("40104")]
+        UserTierInvalid,
 
         /// <summary>
         /// Exceeds maximum subscriptions.
         /// </summary>
-        ExceedMaxSubscriptions = 40107,
+        [Map("40107")]
+        ExceedMaxSubscriptions,
 
         /// <summary>
         /// Not found.
         /// </summary>
-        NotFound = 40401,
+        [Map("40401")]
+        NotFound,
 
         /// <summary>
         /// Request has timed out.
         /// </summary>
-        RequestTimeout = 40801,
+        [Map("40801")]
+        RequestTimeout,
 
         /// <summary>
         /// Too many requests.
         /// </summary>
-        TooManyRequests = 42901,
+        [Map("42901")]
+        TooManyRequests,
 
         /// <summary>
         /// FOK order not filled and canceled.
         /// </summary>
-        FillOrKill = 43003,
+        [Map("43003")]
+        FillOrKill,
 
         /// <summary>
         /// IOC order not filled and canceled.
         /// </summary>
-        ImmediateOrCancel = 43004,
+        [Map("43004")]
+        ImmediateOrCancel,
 
         /// <summary>
         /// Rejected POST_ONLY create-order request.
         /// </summary>
-        PostOnlyRejected = 43005,
+        [Map("43005")]
+        PostOnlyRejected,
 
         /// <summary>
         /// Canceled due to self-trade prevention.
         /// </summary>
-        SelfTradePrevention = 43012,
+        [Map("43012")]
+        SelfTradePrevention,
 
         /// <summary>
         /// Credit line not maintained.
         /// </summary>
-        CreditLineNotMaintained = 50001,
+        [Map("50001")]
+        CreditLineNotMaintained,
 
         /// <summary>
         /// Internal error occurred.
         /// </summary>
-        InternalError = 50002
+        [Map("50002")]
+        InternalError,
     }
 }

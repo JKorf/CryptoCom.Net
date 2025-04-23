@@ -125,7 +125,6 @@ namespace CryptoCom.Net.Objects.Models
         /// Reason as enum
         /// </summary>
         [JsonPropertyName("reason")]
-        [JsonConverter(typeof(OrderRejectedReasonConverter))]
         public OrderRejectedReason Reason { get; set; }
         /// <summary>
         /// Order date
