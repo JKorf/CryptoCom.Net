@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
+using CryptoCom.Net.Converters;
 
 namespace CryptoCom.Net.Objects.Models
 {
@@ -124,6 +125,7 @@ namespace CryptoCom.Net.Objects.Models
         /// Reason as enum
         /// </summary>
         [JsonPropertyName("reason")]
+        [JsonConverter(typeof(OrderRejectedReasonConverter))]
         public OrderRejectedReason? Reason { get; set; }
         /// <summary>
         /// Order date

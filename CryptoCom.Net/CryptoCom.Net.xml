@@ -1628,6 +1628,11 @@
         <member name="M:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.GetTypeInfo(System.Type)">
             <inheritdoc/>
         </member>
+        <member name="T:CryptoCom.Net.Converters.OrderRejectedReasonConverter">
+            <summary>
+            Custom converter to handle integer-to-enum conversion for OrderRejectedReason.
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.CryptoComEnvironment">
             <summary>
             CryptoCom environments
