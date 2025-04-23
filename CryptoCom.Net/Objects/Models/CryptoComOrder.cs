@@ -126,7 +126,7 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("reason")]
         [JsonConverter(typeof(OrderRejectedReasonConverter))]
-        public OrderRejectedReason? Reason { get; set; }
+        public OrderRejectedReason Reason { get; set; }
         /// <summary>
         /// Order date
         /// </summary>
