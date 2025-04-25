@@ -224,7 +224,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var topics = symbols.Select(x => "user.order." + x).ToArray();
             var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data)
-                .WithDataTimestamp(x.Data.Data.Max(x => x.UpdateTime))), true, firstUpdateSnapshot: true);
+                .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.UpdateTime) : null)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -234,7 +234,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var topics = new[] { "user.order" };
             var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, topics, [], x => onMessage(
                 x.As(x.Data.Data)
-                .WithDataTimestamp(x.Data.Data.Max(x => x.UpdateTime))), true, firstUpdateSnapshot: true);
+                .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.UpdateTime) : null)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -248,7 +248,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var topics = symbols.Select(x => "user.trade." + x).ToArray();
             var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data)
-                .WithDataTimestamp(x.Data.Data.Max(x => x.CreateTime))), true);
+                .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.CreateTime) : null)), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -258,7 +258,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var topics = new [] {"user.trade"};
             var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, topics, [], x => onMessage(
                 x.As(x.Data.Data)
-                .WithDataTimestamp(x.Data.Data.Max(x => x.CreateTime))), true);
+                .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.CreateTime) : null)), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -277,7 +277,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var topics = new [] { "user.positions" };
             var subscription = new CryptoComSubscription<CryptoComPosition[]>(_logger, topics, [], x => onMessage(
                 x.As(x.Data.Data)
-                .WithDataTimestamp(x.Data.Data.Max(x => x.UpdateTime))), true, firstUpdateSnapshot: true);
+                .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.UpdateTime) : null)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
