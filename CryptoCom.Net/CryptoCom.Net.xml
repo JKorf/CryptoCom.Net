@@ -439,6 +439,11 @@
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.OrderRejectedReason">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.OrderSide">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
@@ -1865,6 +1870,441 @@
         <member name="F:CryptoCom.Net.Enums.KlineInterval.OneMonth">
             <summary>
             One month
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.OrderRejectedReason">
+            <summary>
+            Enum representing Crypto.com order rejection reasons.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.Success">
+            <summary>
+            Success (no error or rejection)
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoPosition">
+            <summary>
+            No position available.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountIsSuspended">
+            <summary>
+            Account is suspended.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountsDoNotMatch">
+            <summary>
+            Accounts do not match.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.DuplicateClientOrderId">
+            <summary>
+            Duplicate client order ID.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.DuplicateOrderId">
+            <summary>
+            Duplicate order ID.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InstrumentExpired">
+            <summary>
+            Instrument has expired.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoMarkPrice">
+            <summary>
+            No mark price available.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InstrumentNotTradable">
+            <summary>
+            Instrument is not tradable.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidInstrument">
+            <summary>
+            Instrument is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidAccount">
+            <summary>
+            Account is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidCurrency">
+            <summary>
+            Currency is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderId">
+            <summary>
+            Invalid order ID.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderQuantity">
+            <summary>
+            Invalid order quantity.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidSettleCurrency">
+            <summary>
+            Invalid settlement currency.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidFeeCurrency">
+            <summary>
+            Invalid fee currency.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidPositionQuantity">
+            <summary>
+            Invalid position quantity.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOpenQuantity">
+            <summary>
+            Invalid open quantity.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderType">
+            <summary>
+            Invalid order type.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidExecutionInstruction">
+            <summary>
+            Invalid execution instruction.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidSide">
+            <summary>
+            Invalid side.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidTimeInForce">
+            <summary>
+            Invalid time in force.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.StaleMarkPrice">
+            <summary>
+            Stale mark price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoClientOrderId">
+            <summary>
+            No client order ID provided.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.RejectedByMatchingEngine">
+            <summary>
+            Rejected by matching engine.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedMaximumEntryLeverage">
+            <summary>
+            Exceeds maximum entry leverage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidLeverage">
+            <summary>
+            Invalid leverage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidSlippage">
+            <summary>
+            Invalid slippage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidFloorPrice">
+            <summary>
+            Invalid floor price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidReferencePrice">
+            <summary>
+            Invalid reference price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidTriggerType">
+            <summary>
+            Invalid trigger type.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountIsInMarginCall">
+            <summary>
+            Account is in margin call.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsAccountRiskLimit">
+            <summary>
+            Exceeds account risk limit.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsPositionRiskLimit">
+            <summary>
+            Exceeds position risk limit.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderWillLeadToImmediateLiquidation">
+            <summary>
+            Order will lead to immediate liquidation.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderWillTriggerMarginCall">
+            <summary>
+            Order will trigger margin call.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InsufficientAvailableBalance">
+            <summary>
+            Insufficient available balance.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderStatus">
+            <summary>
+            Invalid order status.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidPrice">
+            <summary>
+            Invalid price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MarketIsNotOpen">
+            <summary>
+            Market is not open.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderPriceBeyondLiquidationPrice">
+            <summary>
+            Order price beyond liquidation price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.PositionIsInLiquidation">
+            <summary>
+            Position is in liquidation.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderPriceGreaterThanLimitUpPrice">
+            <summary>
+            Order price is greater than the limit up price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderPriceLessThanLimitDownPrice">
+            <summary>
+            Order price is less than the limit down price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxOrderSize">
+            <summary>
+            Exceeds maximum order size.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.FarAwayLimitPrice">
+            <summary>
+            Far away limit price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoActiveOrder">
+            <summary>
+            No active order.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.PositionDoesNotExist">
+            <summary>
+            Position does not exist.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxAllowedOrders">
+            <summary>
+            Exceeds maximum allowed orders.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxPositionSize">
+            <summary>
+            Exceeds maximum position size.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsInitialMargin">
+            <summary>
+            Exceeds initial margin.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxAvailableBalance">
+            <summary>
+            Exceeds maximum available balance.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountDoesNotExist">
+            <summary>
+            Account does not exist.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountIsNotActive">
+            <summary>
+            Account is not active.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MarginUnitDoesNotExist">
+            <summary>
+            Margin unit does not exist.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MarginUnitIsSuspended">
+            <summary>
+            Margin unit is suspended.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidUser">
+            <summary>
+            Invalid user.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.UserIsNotActive">
+            <summary>
+            User is not active.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.UserNoDerivativeAccess">
+            <summary>
+            User does not have derivative access.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountNoDerivativeAccess">
+            <summary>
+            Account does not have derivative access.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.BelowMinimumOrderSize">
+            <summary>
+            Below minimum order size.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedMaximumEffectiveLeverage">
+            <summary>
+            Exceeds maximum effective leverage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidCollateralPrice">
+            <summary>
+            Invalid collateral price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidMarginCalculation">
+            <summary>
+            Invalid margin calculation.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedAllowedSlippage">
+            <summary>
+            Exceeds allowed slippage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MaxAmountViolated">
+            <summary>
+            Maximum amount violated.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.BadRequest">
+            <summary>
+            Bad request.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MethodNotFound">
+            <summary>
+            Method not found.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidRequest">
+            <summary>
+            Invalid request.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MissingOrInvalidArgument">
+            <summary>
+            Missing or invalid argument.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidDate">
+            <summary>
+            Invalid date.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.DuplicateRequest">
+            <summary>
+            Duplicate request received.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.Unauthorized">
+            <summary>
+            Unauthorized access.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidNonce">
+            <summary>
+            Invalid nonce value.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.IpIllegal">
+            <summary>
+            IP address not whitelisted.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.UserTierInvalid">
+            <summary>
+            User tier is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedMaxSubscriptions">
+            <summary>
+            Exceeds maximum subscriptions.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NotFound">
+            <summary>
+            Not found.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.RequestTimeout">
+            <summary>
+            Request has timed out.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.TooManyRequests">
+            <summary>
+            Too many requests.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.FillOrKill">
+            <summary>
+            FOK order not filled and canceled.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ImmediateOrCancel">
+            <summary>
+            IOC order not filled and canceled.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.PostOnlyRejected">
+            <summary>
+            Rejected POST_ONLY create-order request.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.SelfTradePrevention">
+            <summary>
+            Canceled due to self-trade prevention.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.CreditLineNotMaintained">
+            <summary>
+            Credit line not maintained.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InternalError">
+            <summary>
+            Internal error occurred.
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Enums.OrderSide">
@@ -4411,7 +4851,7 @@
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Reason">
             <summary>
-            Reason
+            Reason as enum
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderDate">
