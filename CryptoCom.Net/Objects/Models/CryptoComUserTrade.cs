@@ -48,10 +48,10 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("traded_price")]
         public decimal Price { get; set; }
-		/// <summary>
-		/// Trade fees, the negative sign means a deduction on balance
-		/// </summary>
-		[JsonPropertyName("fees")]
+        /// <summary>
+        /// Trade fees, the negative sign means a deduction on balance
+        /// </summary>
+        [JsonPropertyName("fees")]
         public decimal Fee { get; set; }
         /// <summary>
         /// Order id
@@ -98,10 +98,10 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("create_time_ns")]
         public DateTime CreateTime { get; set; }
-		/// <summary>
-		/// Time that this trade was executed at
-		/// </summary>
-		[JsonPropertyName("transact_time_ns")]
-		public DateTime TransactTime { get; set; }
+        /// <summary>
+        /// Time that this trade was executed at
+        /// </summary>
+        [JsonPropertyName("transact_time_ns")]
+        public DateTime TransactTime { get; set; }
     }
 }
