@@ -1648,6 +1648,12 @@
             Get the CryptoCom environment by name
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.CryptoComEnvironment.All">
+            <summary>
+            Available environment names
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:CryptoCom.Net.CryptoComEnvironment.Live">
             <summary>
             Live environment

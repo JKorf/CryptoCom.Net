@@ -50,6 +50,12 @@ namespace CryptoCom.Net
          };
 
         /// <summary>
+        /// Available environment names
+        /// </summary>
+        /// <returns></returns>
+        public static string[] All => [Live.Name, Sandbox.Name];
+
+        /// <summary>
         /// Live environment
         /// </summary>
         public static CryptoComEnvironment Live { get; }
