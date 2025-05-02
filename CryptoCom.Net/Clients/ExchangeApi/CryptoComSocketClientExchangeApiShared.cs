@@ -204,7 +204,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         {
                             ClientOrderId = x.ClientOrderId,
                             OrderPrice = x.Price == 0 ? null : x.Price,
-                            OrderQuantity = new SharedOrderQuantity(x.Quantity, x.OrderValue),
+                            OrderQuantity = new SharedOrderQuantity(x.Quantity, Math.Max(x.OrderValue, x.QuoteQuantityFilled)), // For market orders the value can be returned as smaller than the filled value
                             QuantityFilled = new SharedOrderQuantity(x.QuantityFilled, x.QuoteQuantityFilled),
                             UpdateTime = x.UpdateTime,
                             Fee = Math.Abs(x.Fee),

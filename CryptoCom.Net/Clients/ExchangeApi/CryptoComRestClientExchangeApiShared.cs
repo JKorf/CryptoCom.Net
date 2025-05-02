@@ -513,7 +513,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ClientOrderId = order.Data.ClientOrderId,
                 AveragePrice = order.Data.AveragePrice == 0 ? null : order.Data.AveragePrice,
                 OrderPrice = order.Data.Price,
-                OrderQuantity = new SharedOrderQuantity(order.Data.Quantity, order.Data.OrderValue),
+                OrderQuantity = new SharedOrderQuantity(order.Data.Quantity, Math.Max(order.Data.OrderValue, order.Data.QuoteQuantityFilled)), // For market orders the value can be returned as smaller than the filled value
                 QuantityFilled = new SharedOrderQuantity(order.Data.QuantityFilled, order.Data.QuoteQuantityFilled),
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
@@ -548,7 +548,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ClientOrderId = x.ClientOrderId,
                 AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
                 OrderPrice = x.Price,
-                OrderQuantity = new SharedOrderQuantity(x.Quantity, x.OrderValue),
+                OrderQuantity = new SharedOrderQuantity(x.Quantity, Math.Max(x.OrderValue, x.QuoteQuantityFilled)), // For market orders the value can be returned as smaller than the filled value
                 QuantityFilled = new SharedOrderQuantity(x.QuantityFilled, x.QuoteQuantityFilled),
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
@@ -597,7 +597,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ClientOrderId = x.ClientOrderId,
                 AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
                 OrderPrice = x.Price,
-                OrderQuantity = new SharedOrderQuantity(x.Quantity, x.OrderValue),
+                OrderQuantity = new SharedOrderQuantity(x.Quantity, Math.Max(x.OrderValue, x.QuoteQuantityFilled)), // For market orders the value can be returned as smaller than the filled value
                 QuantityFilled = new SharedOrderQuantity(x.QuantityFilled, x.QuoteQuantityFilled),
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 UpdateTime = x.UpdateTime,
@@ -734,7 +734,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ClientOrderId = order.Data.ClientOrderId,
                 AveragePrice = order.Data.AveragePrice == 0 ? null : order.Data.AveragePrice,
                 OrderPrice = order.Data.Price,
-                OrderQuantity = new SharedOrderQuantity(order.Data.Quantity, order.Data.OrderValue),
+                OrderQuantity = new SharedOrderQuantity(order.Data.Quantity, Math.Max(order.Data.OrderValue, order.Data.QuoteQuantityFilled)), // For market orders the value can be returned as smaller than the filled value
                 QuantityFilled = new SharedOrderQuantity(order.Data.QuantityFilled, order.Data.QuoteQuantityFilled),
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 UpdateTime = order.Data.UpdateTime,
