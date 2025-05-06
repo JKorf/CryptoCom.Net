@@ -10,6 +10,7 @@ using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net;
 using System.Text.Json.Serialization;
 using CryptoCom.Net.Converters;
+using CryptoExchange.Net.Converters;
 
 namespace CryptoCom.Net
 {
@@ -50,7 +51,7 @@ namespace CryptoCom.Net
         /// </summary>
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
-        internal static JsonSerializerContext _serializerContext = new CryptoComSourceGenerationContext();
+        internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<CryptoComSourceGenerationContext>();
 
         /// <summary>
         /// Format a base and quote asset to a Crypto.com recognized symbol 
