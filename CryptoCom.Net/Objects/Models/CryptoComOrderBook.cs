@@ -68,7 +68,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Order book entry
     /// </summary>
-    [JsonConverter(typeof(ArrayConverter<CryptoComOrderBookEntry, CryptoComSourceGenerationContext>))]
+    [JsonConverter(typeof(ArrayConverter<CryptoComOrderBookEntry>))]
     [SerializationModel]
     public record CryptoComOrderBookEntry : ISymbolOrderBookEntry
     {

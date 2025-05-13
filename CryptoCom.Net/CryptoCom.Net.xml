@@ -5867,7 +5867,7 @@
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Fee">
             <summary>
-            Fee
+            Trade fees, the negative sign means a deduction on balance
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.OrderId">
@@ -5912,7 +5912,12 @@
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.CreateTime">
             <summary>
-            Create time
+            Time that the original order was created
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.TransactTime">
+            <summary>
+            Time that this trade was executed at
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuationWrapper.Data">
