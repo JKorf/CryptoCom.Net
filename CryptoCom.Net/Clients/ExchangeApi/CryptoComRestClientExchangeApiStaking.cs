@@ -55,13 +55,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Staking Positions
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComStakePosition>>> GetStakingPositionsAsync(string symbol, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComStakePosition[]>> GetStakingPositionsAsync(string symbol, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("instrument_name", symbol);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/staking/get-staking-position", CryptoComExchange.RateLimiter.RestStaking, 1, true);
             var result = await _baseClient.SendAsync<CryptoComStakePositionWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComStakePosition>>(result.Data?.Data);
+            return result.As<CryptoComStakePosition[]>(result.Data?.Data);
         }
 
         #endregion
@@ -69,12 +69,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Staking Symbols
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComStakingSymbol>>> GetStakingSymbolsAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComStakingSymbol[]>> GetStakingSymbolsAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/staking/get-staking-instruments", CryptoComExchange.RateLimiter.RestStaking, 1, true);
             var result = await _baseClient.SendAsync<CryptoComStakingSymbolWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComStakingSymbol>>(result.Data?.Data);
+            return result.As<CryptoComStakingSymbol[]>(result.Data?.Data);
         }
 
         #endregion
@@ -82,7 +82,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Open Staking Requests
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComStakingRequest>>> GetOpenStakingRequestsAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComStakingRequest[]>> GetOpenStakingRequestsAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
@@ -91,7 +91,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/staking/get-open-stake", CryptoComExchange.RateLimiter.RestStaking, 1, true);
             var result = await _baseClient.SendAsync<CryptoComStakingRequestWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComStakingRequest>>(result.Data?.Data);
+            return result.As<CryptoComStakingRequest[]>(result.Data?.Data);
         }
 
         #endregion
@@ -99,7 +99,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Staking History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComStakingRequest>>> GetStakingHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComStakingRequest[]>> GetStakingHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
@@ -108,7 +108,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/staking/get-stake-history", CryptoComExchange.RateLimiter.RestStaking, 1, true);
             var result = await _baseClient.SendAsync<CryptoComStakingRequestWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComStakingRequest>>(result.Data?.Data);
+            return result.As<CryptoComStakingRequest[]>(result.Data?.Data);
         }
 
         #endregion
@@ -116,7 +116,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Staking Reward History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComStakingReward>>> GetStakingRewardHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComStakingReward[]>> GetStakingRewardHistoryAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
@@ -125,7 +125,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/staking/get-reward-history", CryptoComExchange.RateLimiter.RestStaking, 1, false);
             var result = await _baseClient.SendAsync<CryptoComStakingRewardWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComStakingReward>>(result.Data?.Data);
+            return result.As<CryptoComStakingReward[]>(result.Data?.Data);
         }
 
         #endregion
@@ -151,7 +151,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Open Convert Requests
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<CryptoComConvertRequest>>> GetOpenConvertRequestsAsync(DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComConvertRequest[]>> GetOpenConvertRequestsAsync(DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptionalMillisecondsString("start_time", startTime);
@@ -159,7 +159,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/staking/get-open-convert", CryptoComExchange.RateLimiter.RestStaking, 1, true);
             var result = await _baseClient.SendAsync<CryptoComConvertRequestWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<IEnumerable<CryptoComConvertRequest>>(result.Data?.Data);
+            return result.As<CryptoComConvertRequest[]>(result.Data?.Data);
         }
 
         #endregion

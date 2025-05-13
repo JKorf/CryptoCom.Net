@@ -1,4 +1,5 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoCom.Net.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Account info
     /// </summary>
+    [SerializationModel]
     public record CryptoComAccountInfo
     {
         /// <summary>
@@ -20,12 +22,13 @@ namespace CryptoCom.Net.Objects.Models
         /// Sub account list
         /// </summary>
         [JsonPropertyName("sub_account_list")]
-        public IEnumerable<CryptoComAccountDetails> SubAccountList { get; set; } = Array.Empty<CryptoComAccountDetails>();
+        public CryptoComAccountDetails[] SubAccountList { get; set; } = Array.Empty<CryptoComAccountDetails>();
     }
 
     /// <summary>
     /// Account details
     /// </summary>
+    [SerializationModel]
     public record CryptoComAccountDetails
     {
         /// <summary>

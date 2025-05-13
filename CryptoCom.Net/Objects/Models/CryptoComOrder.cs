@@ -1,24 +1,27 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoCom.Net.Enums;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
+using CryptoCom.Net.Converters;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComOrderWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComOrder> Data { get; set; } = Array.Empty<CryptoComOrder>();
+        public CryptoComOrder[] Data { get; set; } = Array.Empty<CryptoComOrder>();
     }
 
     /// <summary>
     /// Order info
     /// </summary>
+    [SerializationModel]
     public record CryptoComOrder
     {
         /// <summary>
@@ -119,10 +122,10 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("update_user_id")]
         public string UpdateUserId { get; set; } = string.Empty;
         /// <summary>
-        /// Reason
+        /// Reason as enum
         /// </summary>
-        [JsonPropertyName("reason"), JsonConverter(typeof(NumberStringConverter))]
-        public string? Reason { get; set; }
+        [JsonPropertyName("reason")]
+        public OrderRejectedReason Reason { get; set; }
         /// <summary>
         /// Order date
         /// </summary>
@@ -158,6 +161,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("contingency_type")]
         public string? ContingencyType { get; set; }
+        /// <summary>
+        /// Execution instructions
+        /// </summary>
+        [JsonPropertyName("exec_inst")]
+        public ExecutionInstruction[] ExecutionInstructions { get; set; } = [];
         /// <summary>
         /// Trigger price
         /// </summary>

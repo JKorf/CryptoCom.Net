@@ -1,0 +1,19 @@
+> {"id":"|1|","method":"public/auth","params":{},"api_key":"|2|","nonce":1744613205975,"sig":"|3|"}
+< {"id":|1|,"method":"public/auth","code":0}
+> { "id": "|4|", "nonce" : "|5|", "method": "private/create-withdrawal", "params": { } }
+=
+{
+  "id":|4|,
+  "method":"private/create-withdrawal",
+  "code":0,
+  "result": {
+    "id": 2220,
+    "amount": 1,
+    "fee": 0.0004,
+    "symbol": "BTC",
+    "address": "2NBqqD5GRJ8wHy1PYyCXTe9ke5226FhavBf",
+    "client_wid": "my_withdrawal_002",
+    "create_time":1607063412000,
+    "network_id": null
+  }
+}

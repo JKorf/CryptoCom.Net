@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Net.Attributes;
+using CryptoCom.Net.Converters;
+using CryptoExchange.Net.Attributes;
 using CryptoExchange.Net.Converters;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
@@ -9,34 +10,37 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComOrderBookWrapper
     {
         [JsonPropertyName("depth")]
         public int Depth { get; set; }
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComOrderBook> Data { get; set; } = [];
+        public CryptoComOrderBook[] Data { get; set; } = [];
     }
 
     /// <summary>
     /// Order book info
     /// </summary>
+    [SerializationModel]
     public record CryptoComOrderBook
     {
         /// <summary>
         /// Asks
         /// </summary>
         [JsonPropertyName("asks")]
-        public IEnumerable<CryptoComOrderBookEntry> Asks { get; set; } = [];
+        public CryptoComOrderBookEntry[] Asks { get; set; } = [];
         /// <summary>
         /// Bids
         /// </summary>
         [JsonPropertyName("bids")]
-        public IEnumerable<CryptoComOrderBookEntry> Bids { get; set; } = [];
+        public CryptoComOrderBookEntry[] Bids { get; set; } = [];
     }
 
     /// <summary>
     /// Order book info
     /// </summary>
+    [SerializationModel]
     public record CryptoComOrderBookUpdate: CryptoComOrderBook
     {
         /// <summary>
@@ -64,7 +68,8 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Order book entry
     /// </summary>
-    [JsonConverter(typeof(ArrayConverter))]
+    [JsonConverter(typeof(ArrayConverter<CryptoComOrderBookEntry>))]
+    [SerializationModel]
     public record CryptoComOrderBookEntry : ISymbolOrderBookEntry
     {
         /// <summary>

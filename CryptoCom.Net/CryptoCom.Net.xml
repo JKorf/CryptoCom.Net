@@ -302,16 +302,16 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTrade[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTrade[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComKline[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComKline[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
@@ -347,28 +347,28 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalances}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComPosition[]}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate}},System.Threading.CancellationToken)">
@@ -404,6 +404,1225 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
             <inheritdoc />
         </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.Decimal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableDecimal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.AccessType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.DepositStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.ExecutionInstruction">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.ExecutionInstructionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.OrderRejectedReason">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.OrderSide">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableOrderSide">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.OrderStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.OrderType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.PriceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullablePriceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.SelfTradePreventionMode">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableSelfTradePreventionMode">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.SelfTradePreventionScope">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableSelfTradePreventionScope">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.StakeRequestStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.StakeSide">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.StakeStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.SymbolType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.TimeInForce">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableTimeInForce">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.TradeRole">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableTradeRole">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.TransactionType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.UnstakeStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.WithdrawalStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderIdArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookUpdateInt">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookUpdateIntArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComOrderId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComOrderBookUpdateIntArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComBalancePositionUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComBalancesArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComPositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComUserTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSubscriptionEventCryptoComValuationArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComAccountInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComAccountSettingsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComAssetWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComBalanceHistory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComBalancesWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComCancelOrderResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComConversionRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComConvertRequestWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComConvertResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComDepositAddressWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComDepositWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComExpiredPriceWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComKlineWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComListOrderResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComOcoResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComOrderBookWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComOrderResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComOrderWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComPositionWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComRiskParameters">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComStakePositionWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComStakeResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComStakingRequestWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComStakingRewardWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComStakingSymbolWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSymbolFeeRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComSymbolWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComTickersWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComTradeWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComTransactionWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComUnstakeResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComUserFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComUserTradeWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComValuationWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComWithdrawalResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComWithdrawalWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComOrderBookUpdateIntArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComBalancePositionUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComBalancesArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComPositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComUserTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComValuationArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountDetails">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountDetailsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountSettings">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountSettingsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAssetArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAssetNetwork">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAssetNetworkArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAssetWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAssetWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceHistory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceHistoryArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceHistoryValue">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceHistoryValueArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalancePositionUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalancePositionUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalances">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalancesArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalancesWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalancesWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComBalanceUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComCancelOrderRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComCancelOrderRequestArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComCancelOrderResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComCancelOrderResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConversionRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConversionRateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConvertRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConvertRequestArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConvertRequestWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConvertRequestWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConvertResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComConvertResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDeposit">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositAddress">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositAddressArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositAddressWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositAddressWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComDepositWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComExpiredPrice">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComExpiredPriceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComExpiredPriceWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComExpiredPriceWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComKline">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComKlineWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComKlineWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComListOrderResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOcoResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOcoResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookEntry">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookEntryArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderBookWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderRequestArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComOrderWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComPosition">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComPositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComPositionWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComPositionWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComRiskParameters">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComRiskParametersArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComRiskParametersAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComRiskParametersAssetArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakePosition">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakePositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakePositionWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakePositionWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakeResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakeResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRequestArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRequestWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRequestWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingReward">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRewardArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRewardWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingRewardWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingSymbol">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingSymbolArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingSymbolWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComStakingSymbolWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSymbol">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSymbolArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSymbolFeeRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSymbolFeeRateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSymbolWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSymbolWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTickersWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTickersWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTradeWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTradeWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTransaction">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTransactionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTransactionWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComTransactionWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUnstakeResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUnstakeResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUserFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUserFeeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUserTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUserTradeWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComUserTradeWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComValuation">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComValuationArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComValuationWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComValuationWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComWithdrawal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComWithdrawalArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComWithdrawalResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComWithdrawalResultArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComWithdrawalWrapper">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComWithdrawalWrapperArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.ParameterCollection">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.DictionaryStringCryptoComAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.IDictionaryStringObject">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.DateTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableDateTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableInt32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.Int64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.NullableInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.Object">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.StringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
         <member name="T:CryptoCom.Net.CryptoComEnvironment">
             <summary>
             CryptoCom environments
@@ -428,6 +1647,12 @@
             <summary>
             Get the CryptoCom environment by name
             </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComEnvironment.All">
+            <summary>
+            Available environment names
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:CryptoCom.Net.CryptoComEnvironment.Live">
             <summary>
@@ -508,6 +1733,11 @@
             Event for when a rate limit is triggered
             </summary>
         </member>
+        <member name="E:CryptoCom.Net.CryptoComRateLimiters.RateLimitUpdated">
+            <summary>
+            Event when the rate limit is updated. Note that it's only updated when a request is send, so there are no specific updates when the current usage is decaying.
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.CryptoComTrackerFactory">
             <inheritdoc />
         </member>
@@ -566,6 +1796,21 @@
         <member name="F:CryptoCom.Net.Enums.DepositStatus.Pending">
             <summary>
             Pending
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.ExecutionInstruction">
+            <summary>
+            Execution mode
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ExecutionInstruction.PostOnly">
+            <summary>
+            Post only order
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.ExecutionInstruction.Liquidation">
+            <summary>
+            Liquidation order
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Enums.KlineInterval">
@@ -631,6 +1876,441 @@
         <member name="F:CryptoCom.Net.Enums.KlineInterval.OneMonth">
             <summary>
             One month
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.OrderRejectedReason">
+            <summary>
+            Enum representing Crypto.com order rejection reasons.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.Success">
+            <summary>
+            Success (no error or rejection)
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoPosition">
+            <summary>
+            No position available.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountIsSuspended">
+            <summary>
+            Account is suspended.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountsDoNotMatch">
+            <summary>
+            Accounts do not match.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.DuplicateClientOrderId">
+            <summary>
+            Duplicate client order ID.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.DuplicateOrderId">
+            <summary>
+            Duplicate order ID.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InstrumentExpired">
+            <summary>
+            Instrument has expired.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoMarkPrice">
+            <summary>
+            No mark price available.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InstrumentNotTradable">
+            <summary>
+            Instrument is not tradable.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidInstrument">
+            <summary>
+            Instrument is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidAccount">
+            <summary>
+            Account is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidCurrency">
+            <summary>
+            Currency is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderId">
+            <summary>
+            Invalid order ID.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderQuantity">
+            <summary>
+            Invalid order quantity.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidSettleCurrency">
+            <summary>
+            Invalid settlement currency.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidFeeCurrency">
+            <summary>
+            Invalid fee currency.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidPositionQuantity">
+            <summary>
+            Invalid position quantity.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOpenQuantity">
+            <summary>
+            Invalid open quantity.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderType">
+            <summary>
+            Invalid order type.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidExecutionInstruction">
+            <summary>
+            Invalid execution instruction.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidSide">
+            <summary>
+            Invalid side.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidTimeInForce">
+            <summary>
+            Invalid time in force.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.StaleMarkPrice">
+            <summary>
+            Stale mark price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoClientOrderId">
+            <summary>
+            No client order ID provided.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.RejectedByMatchingEngine">
+            <summary>
+            Rejected by matching engine.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedMaximumEntryLeverage">
+            <summary>
+            Exceeds maximum entry leverage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidLeverage">
+            <summary>
+            Invalid leverage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidSlippage">
+            <summary>
+            Invalid slippage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidFloorPrice">
+            <summary>
+            Invalid floor price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidReferencePrice">
+            <summary>
+            Invalid reference price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidTriggerType">
+            <summary>
+            Invalid trigger type.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountIsInMarginCall">
+            <summary>
+            Account is in margin call.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsAccountRiskLimit">
+            <summary>
+            Exceeds account risk limit.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsPositionRiskLimit">
+            <summary>
+            Exceeds position risk limit.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderWillLeadToImmediateLiquidation">
+            <summary>
+            Order will lead to immediate liquidation.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderWillTriggerMarginCall">
+            <summary>
+            Order will trigger margin call.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InsufficientAvailableBalance">
+            <summary>
+            Insufficient available balance.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidOrderStatus">
+            <summary>
+            Invalid order status.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidPrice">
+            <summary>
+            Invalid price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MarketIsNotOpen">
+            <summary>
+            Market is not open.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderPriceBeyondLiquidationPrice">
+            <summary>
+            Order price beyond liquidation price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.PositionIsInLiquidation">
+            <summary>
+            Position is in liquidation.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderPriceGreaterThanLimitUpPrice">
+            <summary>
+            Order price is greater than the limit up price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.OrderPriceLessThanLimitDownPrice">
+            <summary>
+            Order price is less than the limit down price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxOrderSize">
+            <summary>
+            Exceeds maximum order size.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.FarAwayLimitPrice">
+            <summary>
+            Far away limit price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NoActiveOrder">
+            <summary>
+            No active order.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.PositionDoesNotExist">
+            <summary>
+            Position does not exist.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxAllowedOrders">
+            <summary>
+            Exceeds maximum allowed orders.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxPositionSize">
+            <summary>
+            Exceeds maximum position size.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsInitialMargin">
+            <summary>
+            Exceeds initial margin.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedsMaxAvailableBalance">
+            <summary>
+            Exceeds maximum available balance.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountDoesNotExist">
+            <summary>
+            Account does not exist.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountIsNotActive">
+            <summary>
+            Account is not active.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MarginUnitDoesNotExist">
+            <summary>
+            Margin unit does not exist.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MarginUnitIsSuspended">
+            <summary>
+            Margin unit is suspended.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidUser">
+            <summary>
+            Invalid user.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.UserIsNotActive">
+            <summary>
+            User is not active.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.UserNoDerivativeAccess">
+            <summary>
+            User does not have derivative access.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.AccountNoDerivativeAccess">
+            <summary>
+            Account does not have derivative access.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.BelowMinimumOrderSize">
+            <summary>
+            Below minimum order size.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedMaximumEffectiveLeverage">
+            <summary>
+            Exceeds maximum effective leverage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidCollateralPrice">
+            <summary>
+            Invalid collateral price.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidMarginCalculation">
+            <summary>
+            Invalid margin calculation.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedAllowedSlippage">
+            <summary>
+            Exceeds allowed slippage.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MaxAmountViolated">
+            <summary>
+            Maximum amount violated.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.BadRequest">
+            <summary>
+            Bad request.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MethodNotFound">
+            <summary>
+            Method not found.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidRequest">
+            <summary>
+            Invalid request.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.MissingOrInvalidArgument">
+            <summary>
+            Missing or invalid argument.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidDate">
+            <summary>
+            Invalid date.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.DuplicateRequest">
+            <summary>
+            Duplicate request received.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.Unauthorized">
+            <summary>
+            Unauthorized access.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InvalidNonce">
+            <summary>
+            Invalid nonce value.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.IpIllegal">
+            <summary>
+            IP address not whitelisted.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.UserTierInvalid">
+            <summary>
+            User tier is invalid.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ExceedMaxSubscriptions">
+            <summary>
+            Exceeds maximum subscriptions.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.NotFound">
+            <summary>
+            Not found.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.RequestTimeout">
+            <summary>
+            Request has timed out.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.TooManyRequests">
+            <summary>
+            Too many requests.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.FillOrKill">
+            <summary>
+            FOK order not filled and canceled.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.ImmediateOrCancel">
+            <summary>
+            IOC order not filled and canceled.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.PostOnlyRejected">
+            <summary>
+            Rejected POST_ONLY create-order request.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.SelfTradePrevention">
+            <summary>
+            Canceled due to self-trade prevention.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.CreditLineNotMaintained">
+            <summary>
+            Credit line not maintained.
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.OrderRejectedReason.InternalError">
+            <summary>
+            Internal error occurred.
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Enums.OrderSide">
@@ -1212,25 +2892,29 @@
             <summary>
             Endpoints related to account settings, info or actions
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.ExchangeData">
             <summary>
             Endpoints related to retrieving market and system data
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Staking">
             <summary>
             Endpoints related to staking
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.Trading">
             <summary>
             Endpoints related to orders and trades
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading"/>
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi.SharedClient">
             <summary>
-            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared rest requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount">
@@ -1773,7 +3457,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComKline[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to kline/candlestick updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /></para>
@@ -1784,7 +3468,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComKline}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComKline[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to kline/candlestick updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /></para>
@@ -1815,7 +3499,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to public trade updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /></para>
@@ -1825,7 +3509,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to public trade updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /></para>
@@ -1944,7 +3628,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user order updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
@@ -1953,7 +3637,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user order updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
@@ -1963,7 +3647,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrder}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user order updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
@@ -1973,7 +3657,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user trade updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
@@ -1982,7 +3666,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user trade updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
@@ -1992,7 +3676,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComUserTrade}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user trade updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
@@ -2011,7 +3695,7 @@
             <param name="ct">Cancellation token for closing this subscription</param>
             <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComPosition}}},System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComPosition[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user position updates
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-positions" /></para>
@@ -2152,7 +3836,7 @@
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SetCancelOnDisconnectAsync(System.Threading.CancellationToken)">
             <summary>
-            Set all open orders created by this connection to cancel when the connection is interupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
+            Set all open orders created by this connection to cancel when the connection is interrupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /></para>
             </summary>
             <param name="ct"></param>
@@ -2160,7 +3844,7 @@
         </member>
         <member name="P:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SharedClient">
             <summary>
-            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApiShared">
@@ -2177,12 +3861,13 @@
             <summary>
             Exchange API endpoints
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApi"/>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
             <summary>
             Update specific options
             </summary>
-            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+            <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
@@ -2199,12 +3884,13 @@
             <summary>
             Exchange API endpoints
             </summary>
+            <see cref="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi"/>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
             <summary>
             Update specific options
             </summary>
-            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+            <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
@@ -3034,6 +4720,36 @@
             Open timestamp
             </summary>
         </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComListOrderResult">
+            <summary>
+            Order result
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComListOrderResult.ListId">
+            <summary>
+            List id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComListOrderResult.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComListOrderResult.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComListOrderResult.ErrorCode">
+            <summary>
+            Error code
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComListOrderResult.ErrorMessage">
+            <summary>
+            Error message
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Objects.Models.CryptoComOcoResult">
             <summary>
             OCO order result
@@ -3141,7 +4857,7 @@
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.Reason">
             <summary>
-            Reason
+            Reason as enum
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.OrderDate">
@@ -3177,6 +4893,11 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.ContingencyType">
             <summary>
             Contingency type
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.ExecutionInstructions">
+            <summary>
+            Execution instructions
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrder.TriggerPrice">
@@ -4146,7 +5867,7 @@
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.Fee">
             <summary>
-            Fee
+            Trade fees, the negative sign means a deduction on balance
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.OrderId">
@@ -4191,7 +5912,12 @@
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.CreateTime">
             <summary>
-            Create time
+            Time that the original order was created
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComUserTrade.TransactTime">
+            <summary>
+            Time that this trade was executed at
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComValuationWrapper.Data">
@@ -4418,38 +6144,6 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
             <inheritdoc />
         </member>
-        <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook">
-            <summary>
-            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
-            Make sure to check the State property to see if the order book is synced.
-            </summary>
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
-            <summary>
-            Create a new order book instance
-            </summary>
-            <param name="symbol">The symbol the order book is for</param>
-            <param name="optionsDelegate">Option configuration delegate</param>
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient,CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient)">
-            <summary>
-            Create a new order book instance
-            </summary>
-            <param name="symbol">The symbol the order book is for</param>
-            <param name="optionsDelegate">Option configuration delegate</param>
-            <param name="logger">Logger</param>
-            <param name="restClient">Rest client instance</param>
-            <param name="socketClient">Socket client instance</param>
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComExchangeSymbolOrderBook.Dispose(System.Boolean)">
-            <inheritdoc />
-        </member>
         <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory">
             <summary>
             CryptoCom order book factory
@@ -4468,6 +6162,38 @@
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.Create(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook">
+            <summary>
+            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
+            Make sure to check the State property to see if the order book is synced.
+            </summary>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions})">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.#ctor(System.String,System.Action{CryptoCom.Net.Objects.Options.CryptoComOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,CryptoCom.Net.Interfaces.Clients.ICryptoComRestClient,CryptoCom.Net.Interfaces.Clients.ICryptoComSocketClient)">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="logger">Logger</param>
+            <param name="restClient">Rest client instance</param>
+            <param name="socketClient">Socket client instance</param>
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComSymbolOrderBook.Dispose(System.Boolean)">
             <inheritdoc />
         </member>
         <member name="T:CryptoExchange.Net.Interfaces.CryptoClientExtensions">
@@ -4509,11 +6235,6 @@
             <param name="services">The service collection</param>
             <param name="optionsDelegate">Set options for the CryptoCom services</param>
             <returns></returns>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComRestOptions},System.Action{CryptoCom.Net.Objects.Options.CryptoComSocketOptions},System.Nullable{Microsoft.Extensions.DependencyInjection.ServiceLifetime})">
-            <summary>
-            DEPRECATED; use <see cref="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddCryptoCom(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{CryptoCom.Net.Objects.Options.CryptoComOptions})" /> instead
-            </summary>
         </member>
     </members>
 </doc>

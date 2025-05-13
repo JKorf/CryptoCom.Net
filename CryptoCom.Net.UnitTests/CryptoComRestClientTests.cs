@@ -1,9 +1,6 @@
-using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
-using CryptoExchange.Net.Converters.JsonNet;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Net.Http;
 using CryptoCom.Net.Clients;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

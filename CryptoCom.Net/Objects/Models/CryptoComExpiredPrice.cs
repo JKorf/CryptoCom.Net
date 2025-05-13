@@ -1,22 +1,25 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComExpiredPriceWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComExpiredPrice> Data { get; set; } = Array.Empty<CryptoComExpiredPrice>();
+        public CryptoComExpiredPrice[] Data { get; set; } = Array.Empty<CryptoComExpiredPrice>();
     }
 
     /// <summary>
     /// Price info
     /// </summary>
+    [SerializationModel]
     public record CryptoComExpiredPrice
     {
         /// <summary>

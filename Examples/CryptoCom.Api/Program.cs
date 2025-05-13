@@ -11,13 +11,10 @@ builder.Services.AddCryptoCom();
 
 // OR to provide API credentials for accessing private endpoints, or setting other options:
 /*
-builder.Services.AddCryptoCom(restOptions =>
-{
-    restOptions.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
-    restOptions.RequestTimeout = TimeSpan.FromSeconds(5);
-}, socketOptions =>
-{
-    socketOptions.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+builder.Services.AddCryptoCom(options =>
+{    
+   options.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+   options.Rest.RequestTimeout = TimeSpan.FromSeconds(5);
 });
 */
 

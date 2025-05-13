@@ -21,7 +21,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComPosition>>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new order
@@ -79,7 +79,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComOrder>>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get info on a specific order
@@ -99,7 +99,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComOrder>>> GetClosedOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user trade history
@@ -110,7 +110,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComUserTrade>>> GetUserTradesAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
@@ -118,7 +118,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="orders">Orders to place, max 10</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComOrderResult>>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default);
+        Task<WebCallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
@@ -126,7 +126,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="orders">Orders to cancel</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<CryptoComCancelOrderResult>>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new OCO (One Cancels Other) order
@@ -155,6 +155,6 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="listId">Id</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<IEnumerable<CryptoComOrder>>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
     }
 }

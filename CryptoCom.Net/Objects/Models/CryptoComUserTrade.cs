@@ -1,4 +1,5 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoCom.Net.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,18 +7,20 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComUserTradeWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComUserTrade> Data { get; set; } = Array.Empty<CryptoComUserTrade>();
+        public CryptoComUserTrade[] Data { get; set; } = Array.Empty<CryptoComUserTrade>();
     }
 
     /// <summary>
     /// User trade
     /// </summary>
+    [SerializationModel]
     public record CryptoComUserTrade
     {
         /// <summary>
@@ -46,7 +49,7 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("traded_price")]
         public decimal Price { get; set; }
         /// <summary>
-        /// Fee
+        /// Trade fees, the negative sign means a deduction on balance
         /// </summary>
         [JsonPropertyName("fees")]
         public decimal Fee { get; set; }
@@ -91,11 +94,14 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("fee_instrument_name")]
         public string FeeAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Create time
+        /// Time that the original order was created
         /// </summary>
         [JsonPropertyName("create_time_ns")]
         public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// Time that this trade was executed at
+        /// </summary>
+        [JsonPropertyName("transact_time_ns")]
+        public DateTime TransactTime { get; set; }
     }
-
-
 }

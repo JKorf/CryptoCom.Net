@@ -10,16 +10,17 @@ namespace CryptoCom.Net.Interfaces.Clients
     /// </summary>
     public interface ICryptoComRestClient : IRestClient
     {
-        
+
         /// <summary>
         /// Exchange API endpoints
         /// </summary>
+        /// <see cref="ICryptoComRestClientExchangeApi"/>
         public ICryptoComRestClientExchangeApi ExchangeApi { get; }
 
         /// <summary>
         /// Update specific options
         /// </summary>
-        /// <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+        /// <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         void SetOptions(UpdateOptions options);
 
         /// <summary>

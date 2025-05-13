@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Net.Attributes;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Cancel order result
     /// </summary>
+    [SerializationModel]
     public record CryptoComCancelOrderResult
     {
         /// <summary>

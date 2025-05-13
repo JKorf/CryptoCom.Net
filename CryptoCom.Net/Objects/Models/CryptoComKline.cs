@@ -1,22 +1,25 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComKlineWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComKline> Data { get; set; } = Array.Empty<CryptoComKline>();
+        public CryptoComKline[] Data { get; set; } = Array.Empty<CryptoComKline>();
     }
 
     /// <summary>
     /// Kline/candlestick data
     /// </summary>
+    [SerializationModel]
     public record CryptoComKline
     {
         /// <summary>

@@ -1,22 +1,25 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComStakingRewardWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComStakingReward> Data { get; set; } = Array.Empty<CryptoComStakingReward>();
+        public CryptoComStakingReward[] Data { get; set; } = Array.Empty<CryptoComStakingReward>();
     }
 
     /// <summary>
     /// Reward info
     /// </summary>
+    [SerializationModel]
     public record CryptoComStakingReward
     {
         /// <summary>

@@ -1,19 +1,22 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComTickersWrapper
     {
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComTicker> Tickers { get; set; } = [];
+        public CryptoComTicker[] Tickers { get; set; } = [];
     }
 
     /// <summary>
     /// Ticker info
     /// </summary>
+    [SerializationModel]
     public record CryptoComTicker
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using CryptoCom.Net.Enums;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoCom.Net.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CryptoCom.Net.Objects.Models
     /// <summary>
     /// Account settings
     /// </summary>
+    [SerializationModel]
     public record CryptoComAccountSettings
     {
         /// <summary>

@@ -1,22 +1,25 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models
 {
+    [SerializationModel]
     internal record CryptoComBalancesWrapper
     {
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("data")]
-        public IEnumerable<CryptoComBalances> Data { get; set; } = Array.Empty<CryptoComBalances>();
+        public CryptoComBalances[] Data { get; set; } = Array.Empty<CryptoComBalances>();
     }
 
     /// <summary>
     /// 
     /// </summary>
+    [SerializationModel]
     public record CryptoComBalances
     {
         /// <summary>
@@ -103,12 +106,13 @@ namespace CryptoCom.Net.Objects.Models
         /// Position balances
         /// </summary>
         [JsonPropertyName("position_balances")]
-        public IEnumerable<CryptoComBalance> PositionBalances { get; set; } = Array.Empty<CryptoComBalance>();
+        public CryptoComBalance[] PositionBalances { get; set; } = Array.Empty<CryptoComBalance>();
     }
 
     /// <summary>
     /// Asset balance
     /// </summary>
+    [SerializationModel]
     public record CryptoComBalance
     {
         /// <summary>
