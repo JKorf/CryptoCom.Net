@@ -1,5 +1,5 @@
 POST
-/private/amend-order
+/exchange/v1/private/amend-order
 true
 {
     "id": 53,
