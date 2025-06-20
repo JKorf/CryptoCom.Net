@@ -98,6 +98,7 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetClosedOrdersAsync(), "GetClosedOrders", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time" });
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetUserTradesAsync(), "GetUserTrades", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time" });
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetOcoOrderAsync("ETH_USDT", "123"), "GetOcoOrder", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "create_time", "trigger_price", "price", "type", "exec_inst", "trigger_price_type" });
+            await tester.ValidateAsync(client => client.ExchangeApi.Trading.EditOrderAsync(0.1m, 0.1m), "EditOrder", nestedJsonProperty: "result");
         }
 
         private bool IsAuthenticated(WebCallResult result)

@@ -255,6 +255,9 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.EditOrderAsync(System.Decimal,System.Decimal,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -3527,6 +3530,17 @@
             <param name="listId">Id</param>
             <param name="ct">Cancellation token</param>
             <returns></returns>
+        </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.EditOrderAsync(System.Decimal,System.Decimal,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Edit an order price and/or quantity. ote that amend order is designed as a convenience function such that it performs cancel and then create behind the scene. The new order will lose queue priority, except if the amend is only to amend down order quantity. For faster performance, it is recommended to use CancelOrderAsync and then PlaceOrderAsync instead.
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /></para>
+            </summary>
+            <param name="orderId">Order id, either this or clientOrderId should be provided</param>
+            <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+            <param name="newPrice">New price</param>
+            <param name="newQuantity">New quantity</param>
+            <param name="ct">Cancellation token</param>
         </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi">
             <summary>

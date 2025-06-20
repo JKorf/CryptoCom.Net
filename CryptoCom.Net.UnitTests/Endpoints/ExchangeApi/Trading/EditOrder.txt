@@ -1,0 +1,12 @@
+POST
+/private/amend-order
+true
+{
+    "id": 53,
+    "method": "private/amend-order",
+    "code": 0,
+    "result": {
+        "client_oid": "53",
+        "order_id": "6530219466236720401"
+    }
+}

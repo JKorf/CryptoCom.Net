@@ -156,5 +156,17 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
         Task<WebCallResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
+
+        /// <summary>
+        /// Edit an order price and/or quantity. ote that amend order is designed as a convenience function such that it performs cancel and then create behind the scene. The new order will lose queue priority, except if the amend is only to amend down order quantity. For faster performance, it is recommended to use CancelOrderAsync and then PlaceOrderAsync instead.
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /></para>
+        /// </summary>
+        /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
+        /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+        /// <param name="newPrice">New price</param>
+        /// <param name="newQuantity">New quantity</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
+
     }
 }

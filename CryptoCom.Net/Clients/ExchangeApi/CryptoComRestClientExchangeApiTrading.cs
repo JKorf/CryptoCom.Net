@@ -71,6 +71,23 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #endregion
 
+        #region Edit Order
+
+        /// <inheritdoc />
+        public async Task<WebCallResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
+        {
+            var parameters = new ParameterCollection();
+            parameters.Add("new_price", newPrice);
+            parameters.Add("new_quantity", newQuantity);
+            parameters.AddOptional("order_id", orderId);
+            parameters.AddOptional("orig_client_oid", clientOrderId);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/amend-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
+            return result;
+        }
+
+        #endregion
+
         #region Cancel Order
 
         /// <inheritdoc />
