@@ -180,5 +180,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #endregion
 
+        #region Get Announcements
+
+        /// <inheritdoc />
+        public async Task<WebCallResult<CryptoComAnnouncement[]>> GetAnnouncementsAsync(AnnouncementCategory? category = null, string? productType = null, CancellationToken ct = default)
+        {
+            var parameters = new ParameterCollection();
+            parameters.AddOptionalEnum("category", category);
+            parameters.AddOptional("product_type", productType);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, "v1/public/get-announcements", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var result = await _baseClient.SendToAddressAsync<CryptoComAnnouncementWrapper>(_baseClient.ClientOptions.Environment.RestClientAddress, request, parameters, ct).ConfigureAwait(false);
+            return result.As<CryptoComAnnouncement[]>(result.Data?.Data);
+        }
+
+        #endregion
+
     }
 }

@@ -10,6 +10,7 @@ namespace CryptoCom.Net.Converters
 {
     [JsonSerializable(typeof(ParameterCollection))]
     [JsonSerializable(typeof(CryptoComResponse<CryptoComListOrderResult>))]
+    [JsonSerializable(typeof(CryptoComResponse<CryptoComAnnouncementWrapper>))]
     // End manual defined attributes
 
     [JsonSerializable(typeof(CryptoComResponse<CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>))]

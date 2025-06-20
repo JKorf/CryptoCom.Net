@@ -107,6 +107,14 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComValuation[]>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
+        /// <summary>
+        /// Get announcements
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-announcements" /></para>
+        /// </summary>
+        /// <param name="category">Filter by category</param>
+        /// <param name="productType">Filter by product type</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult<CryptoComAnnouncement[]>> GetAnnouncementsAsync(AnnouncementCategory? category = null, string? productType = null, CancellationToken ct = default);
 
     }
 }

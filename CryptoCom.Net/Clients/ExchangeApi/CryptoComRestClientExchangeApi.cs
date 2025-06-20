@@ -23,6 +23,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
     {
         #region fields 
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Exchange Api");
+
+        internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
         #endregion
 
         #region Api clients

@@ -55,7 +55,9 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetValuationsAsync("123", Enums.ValuationType.EstimatedFundingRate), "GetValuations", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetExpiredSettlementPriceAsync(Enums.SymbolType.DeliveryFuture, 123), "GetExpiredSettlementPrice", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetInsuranceAsync("123"), "GetInsurance", nestedJsonProperty: "result.data");
+            await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetAnnouncementsAsync(), "GetAnnouncements", nestedJsonProperty: "result.data");
         }
+
         [Test]
         public async Task ValidateExchangeStakingCalls()
         {

@@ -1,0 +1,35 @@
+GET
+/v1/public/get-announcements
+false
+{
+  "id": 0,
+  "method": "public/get-announcements",
+  "code": 0,
+  "result": {
+    "data": [
+      {
+        "id": "67ea25c534909545bfc81232",
+        "category": "system",
+        "product_type": "Spot,Margin,Derivative,TradingArena,VIPProgramme,MMProgramme,Supercharger,TradingBot,Documents,DefiStaking,Staking,LiquidStaking,Affiliate,Referral,CROLockup,AccountManagement,OtcConvert,Transfer,ZeroFeeToken",
+        "announced_at": 1743379200000,
+        "title": "No Otc, lending, broker, affiliate_dashboard",
+        "content": "<p>test system</p>",
+        "instrument_name": null,
+        "impacted_params": {
+          "spot_trading_impacted": "PARTIAL",
+          "derivative_trading_impacted": "BAU",
+          "margin_trading_impacted": "BAU",
+          "otc_trading_impacted": "PARTIAL",
+          "convert_impacted": "PARTIAL",
+          "staking_impacted": "PARTIAL",
+          "trading_bot_impacted": "PARTIAL",
+          "crypto_wallet_impacted": "PARTIAL",
+          "fiat_wallet_impacted": "PARTIAL",
+          "login_impacted": "PARTIAL"
+        },
+        "start_time": 1743426900000,
+        "end_time": 1743434100000
+      }
+    ]
+  }
+}

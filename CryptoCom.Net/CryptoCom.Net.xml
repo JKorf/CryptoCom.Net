@@ -210,6 +210,9 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetInsuranceAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiExchangeData.GetAnnouncementsAsync(System.Nullable{CryptoCom.Net.Enums.AnnouncementCategory},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiStaking">
             <inheritdoc />
         </member>
@@ -447,6 +450,16 @@
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.AnnouncementCategory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.AnnouncementImpact">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.DepositStatus">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
@@ -663,6 +676,11 @@
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComAccountSettingsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseCryptoComAnnouncementWrapper">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
@@ -918,6 +936,26 @@
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAccountSettingsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAnnouncement">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAnnouncementArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAnnouncementImpact">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComAnnouncementWrapper">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
@@ -1794,6 +1832,56 @@
         <member name="F:CryptoCom.Net.Enums.AccessType.Disabled">
             <summary>
             Disabled
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.AnnouncementCategory">
+            <summary>
+            Announcement category
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementCategory.Delisting">
+            <summary>
+            Delist
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementCategory.Listing">
+            <summary>
+            Listing
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementCategory.Event">
+            <summary>
+            Event
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementCategory.Product">
+            <summary>
+            Product
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementCategory.System">
+            <summary>
+            System
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Enums.AnnouncementImpact">
+            <summary>
+            Announcement impact
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementImpact.Impacted">
+            <summary>
+            Impacted
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementImpact.NotImpacted">
+            <summary>
+            Not impacted
+            </summary>
+        </member>
+        <member name="F:CryptoCom.Net.Enums.AnnouncementImpact.PartiallyImpacted">
+            <summary>
+            Partially impacted
             </summary>
         </member>
         <member name="T:CryptoCom.Net.Enums.DepositStatus">
@@ -3178,6 +3266,15 @@
             <param name="limit">Max number of results</param>
             <param name="ct">Cancellation token</param>
         </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetAnnouncementsAsync(System.Nullable{CryptoCom.Net.Enums.AnnouncementCategory},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get announcements
+            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-announcements" /></para>
+            </summary>
+            <param name="category">Filter by category</param>
+            <param name="productType">Filter by product type</param>
+            <param name="ct">Cancellation token</param>
+        </member>
         <member name="T:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiShared">
             <summary>
             Shared interface for Exchange rest API usage
@@ -4195,6 +4292,121 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComAccountSettings.StpMode">
             <summary>
             Self trade prevention mode
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementWrapper.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAnnouncement">
+            <summary>
+            Announcement
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.ProductType">
+            <summary>
+            Product type
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.AnnounceTime">
+            <summary>
+            Announced at time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.Title">
+            <summary>
+            Title
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.Content">
+            <summary>
+            Content
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.InstrumentName">
+            <summary>
+            Instrument name
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.Impact">
+            <summary>
+            Impacted params
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.StartTime">
+            <summary>
+            Start time
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncement.EndTime">
+            <summary>
+            End time
+            </summary>
+        </member>
+        <member name="T:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact">
+            <summary>
+            System impact
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.SpotTradingImpacted">
+            <summary>
+            Spot trading impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.DerivativeTradingImpacted">
+            <summary>
+            Derivative trading impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.MarginTradingImpacted">
+            <summary>
+            Margin trading impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.OtcTradingImpacted">
+            <summary>
+            Otc trading impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.ConvertImpacted">
+            <summary>
+            Convert impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.StakingImpacted">
+            <summary>
+            Staking impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.TradingBotImpacted">
+            <summary>
+            Trading bot impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.CryptoWalletImpacted">
+            <summary>
+            Crypto wallet impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.FiatWalletImpacted">
+            <summary>
+            Fiat wallet impacted
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComAnnouncementImpact.LoginImpacted">
+            <summary>
+            Login impacted
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComAssetWrapper.AssetMap">
