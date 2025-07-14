@@ -23,6 +23,7 @@ using CryptoCom.Net.Objects.Internal;
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects.Sockets;
 using CryptoCom.Net.Objects;
+using System.Net.WebSockets;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -55,7 +56,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Subscriptions
 
         /// <inheritdoc />
-        protected override IByteMessageAccessor CreateAccessor() => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));
+        protected override IByteMessageAccessor CreateAccessor(WebSocketMessageType type) => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));
 
