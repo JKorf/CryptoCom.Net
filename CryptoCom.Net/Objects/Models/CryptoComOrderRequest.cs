@@ -25,8 +25,22 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonIgnore]
         public bool PostOnly { get; set; }
+        /// <summary>
+        /// Smart post only
+        /// </summary>
+        [JsonIgnore]
+        public bool SmartPostOnly { get; set; }
         [JsonInclude, JsonPropertyName("exec_inst"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        internal string[]? ExecutionMode => PostOnly ? new[] { "POST_ONLY" } : null;
+        internal string[]? ExecutionMode 
+        { 
+            get
+            {
+                var result = new List<string>();
+                if (PostOnly == true) result.Add("POST_ONLY");
+                if (SmartPostOnly == true) result.Add("SMART_POST_ONLY");
+                return result.ToArray();
+            }
+        }
         /// <summary>
         /// Symbol
         /// </summary>

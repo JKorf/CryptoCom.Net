@@ -24,6 +24,11 @@ namespace CryptoCom.Net.Enums
         /// Liquidation order
         /// </summary>
         [Map("LIQUIDATION")]
-        Liquidation
+        Liquidation,
+        /// <summary>
+        /// Smart post only
+        /// </summary>
+        [Map("SMART_POST_ONLY")]
+        SmartPostOnly
     }
 }

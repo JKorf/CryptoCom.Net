@@ -252,7 +252,7 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Nullable{System.Boolean},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApiTrading.EditOrderAsync(System.Decimal,System.Decimal,System.String,System.String,System.Threading.CancellationToken)">
@@ -1927,6 +1927,11 @@
             Liquidation order
             </summary>
         </member>
+        <member name="F:CryptoCom.Net.Enums.ExecutionInstruction.SmartPostOnly">
+            <summary>
+            Smart post only
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.KlineInterval">
             <summary>
             Interval for klines/candlesticks
@@ -3397,7 +3402,7 @@
             <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
             <param name="ct">Cancellation token</param>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Threading.CancellationToken)">
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Nullable{System.Boolean},System.Threading.CancellationToken)">
             <summary>
             Place a new order
             <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
@@ -3417,6 +3422,7 @@
             <param name="selfTradePreventionScope">Scope for self trade prevention</param>
             <param name="selfTradePreventionMode">Mode for self trade prevention</param>
             <param name="selfTradePreventionId">Id for self trade prevention</param>
+            <param name="smartPostOnly">Smart post only order</param>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
@@ -5261,6 +5267,11 @@
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.PostOnly">
             <summary>
             Post only
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.SmartPostOnly">
+            <summary>
+            Smart post only
             </summary>
         </member>
         <member name="P:CryptoCom.Net.Objects.Models.CryptoComOrderRequest.Symbol">

@@ -42,8 +42,9 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="selfTradePreventionScope">Scope for self trade prevention</param>
         /// <param name="selfTradePreventionMode">Mode for self trade prevention</param>
         /// <param name="selfTradePreventionId">Id for self trade prevention</param>
+        /// <param name="smartPostOnly">Smart post only order</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, bool? smartPostOnly = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel an order by id

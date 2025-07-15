@@ -46,8 +46,32 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Place Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(
+            string symbol,
+            OrderSide side, 
+            OrderType type,
+            decimal? quantity = null, 
+            decimal? quoteQuantity = null, 
+            decimal? price = null, 
+            string? clientOrderId = null, 
+            bool? postOnly = null, 
+            TimeInForce? timeInForce = null,
+            decimal? triggerPrice = null,
+            PriceType? triggerPriceType = null,
+            bool? margin = null,
+            SelfTradePreventionScope? selfTradePreventionScope = null, 
+            SelfTradePreventionMode? selfTradePreventionMode = null,
+            string? selfTradePreventionId = null,
+            bool? smartPostOnly = null,
+            CancellationToken ct = default)
         {
+            if (postOnly == true && smartPostOnly == true)
+                throw new ArgumentException("Only one of [postOnly, smartPostOnly] can be set to true");
+
+            var execInsts = new List<string>();
+            if (postOnly == true) execInsts.Add("POST_ONLY");
+            if (smartPostOnly == true) execInsts.Add("SMART_POST_ONLY");
+
             var parameters = new ParameterCollection();
             parameters.Add("instrument_name", symbol);
             parameters.AddEnum("side", side);
@@ -56,7 +80,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptionalString("notional", quoteQuantity);
             parameters.AddOptionalString("price", price);
             parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
-            parameters.AddOptional("exec_inst", postOnly == true ? new[] { "POST_ONLY" } : null);
+            parameters.AddOptional("exec_inst", execInsts.Any() ? execInsts.ToArray() : null);
             parameters.AddOptionalEnum("time_in_force", timeInForce);
             parameters.AddOptionalString("ref_price", triggerPrice);
             parameters.AddOptionalEnum("ref_price_type", triggerPriceType);
