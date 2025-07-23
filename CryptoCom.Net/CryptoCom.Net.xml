@@ -6407,16 +6407,7 @@
         <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComHeartBeatSubscription">
             <inheritdoc />
         </member>
-        <member name="P:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComHeartBeatSubscription.ListenerIdentifiers">
-            <inheritdoc />
-        </member>
         <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1">
-            <inheritdoc />
-        </member>
-        <member name="P:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.ListenerIdentifiers">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
@@ -6430,7 +6421,7 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}})">
             <inheritdoc />
         </member>
         <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory">

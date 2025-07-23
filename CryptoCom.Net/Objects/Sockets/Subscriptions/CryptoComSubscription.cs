@@ -16,19 +16,11 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
     /// <inheritdoc />
     internal class CryptoComSubscription<T> : Subscription<CryptoComResponse<CryptoComSubscriptionEvent<T>>, CryptoComResponse>
     {
-        /// <inheritdoc />
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         private readonly string[] _symbols;
         private readonly Action<DataEvent<CryptoComSubscriptionEvent<T>>> _handler;
         private readonly Dictionary<string, object>? _parameters;
         private readonly bool _firstUpdateSnapshot;
-
-        /// <inheritdoc />
-        public override Type? GetMessageType(IMessageAccessor message)
-        {
-            return typeof(CryptoComResponse<CryptoComSubscriptionEvent<T>>);
-        }
+        private readonly string[] _listenerIdentifiers;
 
         /// <summary>
         /// ctor
@@ -39,7 +31,9 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             _parameters = parameters;
             _symbols = symbols;
             _firstUpdateSnapshot = firstUpdateSnapshot;
-            ListenerIdentifiers = new HashSet<string>(listenerIdentifiers);
+            _listenerIdentifiers = listenerIdentifiers;
+
+            MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -52,7 +46,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
                 Nonce = DateTimeConverter.ConvertToMilliseconds(DateTime.UtcNow),
                 Parameters = new ParameterCollection
                 {
-                    { "channels", ListenerIdentifiers.ToArray() }
+                    { "channels", _listenerIdentifiers }
                 }
             };
 
@@ -64,7 +58,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 
             return new CryptoComQuery<CryptoComSubscriptionEvent<T>>(request, Authenticated)
             {
-                RequiredResponses = ListenerIdentifiers.Count
+                RequiredResponses = _listenerIdentifiers.Length
             };
         }
 
@@ -78,7 +72,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
                 Nonce = DateTimeConverter.ConvertToMilliseconds(DateTime.UtcNow),
                 Parameters = new ParameterCollection
                 {
-                    { "channels", ListenerIdentifiers.ToArray() }
+                    { "channels", _listenerIdentifiers.ToArray() }
                 }
             }, Authenticated);
         }
@@ -92,15 +86,13 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override CallResult DoHandleMessage(SocketConnection connection, DataEvent<object> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<CryptoComResponse<CryptoComSubscriptionEvent<T>>> message)
         {
-            var data = (CryptoComResponse<CryptoComSubscriptionEvent<T>>)message.Data;
-
-            if (_symbols.Any() && !_symbols.Contains(data.Result.Symbol))
+            if (_symbols.Any() && !_symbols.Contains(message.Data.Result.Symbol))
                 return message.ToCallResult();
 
             var updateType = (ConnectionInvocations == 1 && _firstUpdateSnapshot) ? SocketUpdateType.Snapshot : SocketUpdateType.Update;
-            _handler.Invoke(message.As(data.Result!, data.Result.Subscription, data.Result.Symbol, updateType));
+            _handler.Invoke(message.As(message.Data.Result!, message.Data.Result.Subscription, message.Data.Result.Symbol, updateType));
             return message.ToCallResult();
         }
     }

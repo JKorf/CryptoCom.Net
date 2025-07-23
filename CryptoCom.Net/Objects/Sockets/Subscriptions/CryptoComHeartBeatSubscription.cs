@@ -15,25 +15,19 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
     /// <inheritdoc />
     internal class CryptoComHeartBeatSubscription : SystemSubscription
     {
-        /// <inheritdoc />
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         public CryptoComHeartBeatSubscription(ILogger logger) : base(logger, false)
         {
-            ListenerIdentifiers = new HashSet<string> { "public/heartbeat" };
+            MessageMatcher = MessageMatcher.Create<CryptoComResponse>("public/heartbeat", DoHandleMessage);
         }
 
-        public override CallResult DoHandleMessage(SocketConnection connection, DataEvent<object> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<CryptoComResponse> message)
         {
-            var data = (CryptoComResponse)message.Data;
             connection.Send(ExchangeHelpers.NextId(), new CryptoComRequest
             {
-                Id = data.Id,
+                Id = message.Data.Id,
                 Method = "public/respond-heartbeat"
             }, 1);
             return message.ToCallResult();
         }
-
-        public override Type? GetMessageType(IMessageAccessor message) => typeof(CryptoComResponse);
     }
 }

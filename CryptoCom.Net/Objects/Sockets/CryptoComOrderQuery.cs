@@ -5,33 +5,38 @@ using System.Collections.Generic;
 using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Internal;
 using System.Linq;
+using CryptoExchange.Net.Interfaces;
+using System;
 
 namespace CryptoCom.Net.Objects.Sockets
 {
-    internal class CryptoComOrderQuery : Query<CryptoComResponse<CryptoComListOrderResult>, CryptoComListOrderResult[]>
+    internal class CryptoComOrderQuery : Query<CryptoComListOrderResult[]>
     {
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         private List<CryptoComListOrderResult> _result = new List<CryptoComListOrderResult>();
 
         public CryptoComOrderQuery(CryptoComRequest request, int expectedResponses) : base(request, true, 1)
         {
-            ListenerIdentifiers = new HashSet<string> { request.Id.ToString() };
+            MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
             RequiredResponses = expectedResponses;
         }
 
-        public override bool ValidateMessage(DataEvent<CryptoComResponse<CryptoComListOrderResult>> message)
+        public override CallResult<object> Deserialize(IMessageAccessor message, Type type)
         {
-            if (message.Data.Result == null)
+            var result = base.Deserialize(message, type);
+            if (result)
             {
-                // Request fails, only a single response
-                RequiredResponses = 1;
+                var success = result.Data is CryptoComResponse<CryptoComListOrderResult> { Result: not null };
+                if (!success)
+                {
+                    // Request fails, only a single response
+                    RequiredResponses = 1;
+                }
             }
 
-            return true;
+            return result;
         }
 
-        public override CallResult<CryptoComListOrderResult[]> HandleMessage(SocketConnection connection, DataEvent<CryptoComResponse<CryptoComListOrderResult>> message)
+        public CallResult<CryptoComListOrderResult[]> HandleMessage(SocketConnection connection, DataEvent<CryptoComResponse<CryptoComListOrderResult>> message)
         {
             if (message.Data.Result == null)
             {
