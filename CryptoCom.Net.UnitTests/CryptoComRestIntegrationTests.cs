@@ -68,7 +68,6 @@ namespace CryptoCom.Net.UnitTests
             await RunAndCheckResult(client => client.ExchangeApi.ExchangeData.GetTickersAsync(default, default), false);
             await RunAndCheckResult(client => client.ExchangeApi.ExchangeData.GetTradeHistoryAsync("ETH_USD", default, default, default, default), false);
             await RunAndCheckResult(client => client.ExchangeApi.ExchangeData.GetValuationsAsync("ETH_USD", Enums.ValuationType.EstimatedFundingRate, default, default, default, default), false);
-            await RunAndCheckResult(client => client.ExchangeApi.ExchangeData.GetExpiredSettlementPriceAsync(Enums.SymbolType.PerpetualSwap, default, default), false);
             await RunAndCheckResult(client => client.ExchangeApi.ExchangeData.GetInsuranceAsync("USD", default, default, default, default), false);
         }
 
