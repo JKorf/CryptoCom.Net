@@ -189,7 +189,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!Enum.IsDefined(typeof(Enums.KlineInterval), interval))
                 return new ExchangeWebResult<SharedKline[]>(Exchange, new ArgumentError("Interval not supported"));
 
-            var validationError = ((IKlineRestClient)this).GetKlinesOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IKlineRestClient)this).GetKlinesOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedKline[]>(Exchange, validationError);
 
@@ -212,7 +212,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             // Get data
             var result = await ExchangeData.GetKlinesAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 interval,
                 startTime,
                 endTime,
@@ -220,7 +220,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ct: ct
                 ).ConfigureAwait(false);
             if (!result)
-                return new ExchangeWebResult<SharedKline[]>(Exchange, request.Symbol.TradingMode, result.As<SharedKline[]>(default));
+                return new ExchangeWebResult<SharedKline[]>(Exchange, request.Symbol!.TradingMode, result.As<SharedKline[]>(default));
 
             // Get next token
             DateTimeToken? nextToken = null;
@@ -231,7 +231,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     nextToken = new DateTimeToken(minOpenTime.AddSeconds(-(int)(interval - 1)));
             }
 
-            return result.AsExchangeResult<SharedKline[]>(Exchange, request.Symbol.TradingMode, result.Data.Reverse().Select(x => new SharedKline(x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume)).ToArray(), nextToken);
+            return result.AsExchangeResult<SharedKline[]>(Exchange, request.Symbol!.TradingMode, result.Data.Reverse().Select(x => new SharedKline(x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume)).ToArray(), nextToken);
         }
 
         #endregion
@@ -240,18 +240,18 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         GetOrderBookOptions IOrderBookRestClient.GetOrderBookOptions { get; } = new GetOrderBookOptions(1, 50, false);
         async Task<ExchangeWebResult<SharedOrderBook>> IOrderBookRestClient.GetOrderBookAsync(GetOrderBookRequest request, CancellationToken ct)
         {
-            var validationError = ((IOrderBookRestClient)this).GetOrderBookOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IOrderBookRestClient)this).GetOrderBookOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedOrderBook>(Exchange, validationError);
 
             var result = await ExchangeData.GetOrderBookAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 depth: request.Limit ?? 50,
                 ct: ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<SharedOrderBook>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedOrderBook(result.Data.Asks, result.Data.Bids));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedOrderBook(result.Data.Asks, result.Data.Bids));
         }
 
         #endregion
@@ -261,20 +261,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         async Task<ExchangeWebResult<SharedTrade[]>> IRecentTradeRestClient.GetRecentTradesAsync(GetRecentTradesRequest request, CancellationToken ct)
         {
-            var validationError = ((IRecentTradeRestClient)this).GetRecentTradesOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IRecentTradeRestClient)this).GetRecentTradesOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedTrade[]>(Exchange, validationError);
 
             // Get data
             var result = await ExchangeData.GetTradeHistoryAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 limit: request.Limit,
                 ct: ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<SharedTrade[]>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult<SharedTrade[]>(Exchange, request.Symbol.TradingMode, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)
+            return result.AsExchangeResult<SharedTrade[]>(Exchange, request.Symbol!.TradingMode, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)
             {
                 Side = x.Side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell
             }).ToArray());
@@ -385,11 +385,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetTickerRequest> ISpotTickerRestClient.GetSpotTickerOptions { get; } = new EndpointOptions<GetTickerRequest>(false);
         async Task<ExchangeWebResult<SharedSpotTicker>> ISpotTickerRestClient.GetSpotTickerAsync(GetTickerRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotTickerRestClient)this).GetSpotTickerOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotTickerRestClient)this).GetSpotTickerOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedSpotTicker>(Exchange, validationError);
 
-            var result = await ExchangeData.GetTickersAsync(request.Symbol.GetSymbol(FormatSymbol), ct).ConfigureAwait(false);
+            var result = await ExchangeData.GetTickersAsync(request.Symbol!.GetSymbol(FormatSymbol), ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<SharedSpotTicker>(Exchange, null, default);
 
@@ -421,11 +421,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetBookTickerRequest> IBookTickerRestClient.GetBookTickerOptions { get; } = new EndpointOptions<GetBookTickerRequest>(false);
         async Task<ExchangeWebResult<SharedBookTicker>> IBookTickerRestClient.GetBookTickerAsync(GetBookTickerRequest request, CancellationToken ct)
         {
-            var validationError = ((IBookTickerRestClient)this).GetBookTickerOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IBookTickerRestClient)this).GetBookTickerOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedBookTicker>(Exchange, validationError);
 
-            var symbol = request.Symbol.GetSymbol(FormatSymbol);
+            var symbol = request.Symbol!.GetSymbol(FormatSymbol);
             var resultTicker = await ExchangeData.GetOrderBookAsync(symbol, 1, ct: ct).ConfigureAwait(false);
             if (!resultTicker)
                 return resultTicker.AsExchangeResult<SharedBookTicker>(Exchange, null, default);
@@ -433,8 +433,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (resultTicker.Data.Asks.Length == 0)
                 return resultTicker.AsExchangeError<SharedBookTicker>(Exchange, new ServerError("Symbol not found"));
 
-            return resultTicker.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedBookTicker(
-                ExchangeSymbolCache.ParseSymbol(request.Symbol.TradingMode == TradingMode.Spot ? _topicSpotId : _topicFuturesId, symbol),
+            return resultTicker.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedBookTicker(
+                ExchangeSymbolCache.ParseSymbol(request.Symbol!.TradingMode == TradingMode.Spot ? _topicSpotId : _topicFuturesId, symbol),
                 symbol,
                 resultTicker.Data.Asks[0].Price,
                 resultTicker.Data.Asks[0].Quantity,
@@ -464,7 +464,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var validationError = ((ISpotOrderRestClient)this).PlaceSpotOrderOptions.ValidateRequest(
                 Exchange,
                 request,
-                request.Symbol.TradingMode,
+                request.Symbol!.TradingMode,
                 SupportedTradingModes,
                 ((ISpotOrderRestClient)this).SpotSupportedOrderTypes,
                 ((ISpotOrderRestClient)this).SpotSupportedTimeInForce,
@@ -473,7 +473,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             var result = await Trading.PlaceOrderAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 request.Side == SharedOrderSide.Buy ? Enums.OrderSide.Buy : Enums.OrderSide.Sell,
                 request.OrderType == SharedOrderType.Limit ? Enums.OrderType.Limit : request.OrderType == SharedOrderType.Market ? Enums.OrderType.Market : Enums.OrderType.Limit,
                 quantity: request.Quantity?.QuantityInBaseAsset,
@@ -493,7 +493,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetOrderRequest> ISpotOrderRestClient.GetSpotOrderOptions { get; } = new EndpointOptions<GetOrderRequest>(true);
         async Task<ExchangeWebResult<SharedSpotOrder>> ISpotOrderRestClient.GetSpotOrderAsync(GetOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotOrderRestClient)this).GetSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotOrderRestClient)this).GetSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedSpotOrder>(Exchange, validationError);
 
@@ -562,7 +562,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         PaginatedEndpointOptions<GetClosedOrdersRequest> ISpotOrderRestClient.GetClosedSpotOrdersOptions { get; } = new PaginatedEndpointOptions<GetClosedOrdersRequest>(SharedPaginationSupport.Ascending, true, 100, true);
         async Task<ExchangeWebResult<SharedSpotOrder[]>> ISpotOrderRestClient.GetClosedSpotOrdersAsync(GetClosedOrdersRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
-            var validationError = ((ISpotOrderRestClient)this).GetClosedSpotOrdersOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotOrderRestClient)this).GetClosedSpotOrdersOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedSpotOrder[]>(Exchange, validationError);
 
@@ -572,7 +572,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 fromTime = dateTimeToken.LastTime;
 
             // Get data
-            var orders = await Trading.GetClosedOrdersAsync(request.Symbol.GetSymbol(FormatSymbol),
+            var orders = await Trading.GetClosedOrdersAsync(request.Symbol!.GetSymbol(FormatSymbol),
                 startTime: request.StartTime,
                 endTime: fromTime ?? request.EndTime,
                 limit: request.Limit ?? 100,
@@ -620,7 +620,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         PaginatedEndpointOptions<GetUserTradesRequest> ISpotOrderRestClient.GetSpotUserTradesOptions { get; } = new PaginatedEndpointOptions<GetUserTradesRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<SharedUserTrade[]>> ISpotOrderRestClient.GetSpotUserTradesAsync(GetUserTradesRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
-            var validationError = ((ISpotOrderRestClient)this).GetSpotUserTradesOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotOrderRestClient)this).GetSpotUserTradesOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedUserTrade[]>(Exchange, validationError);
 
@@ -630,7 +630,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 fromTimestamp = dateTimeToken.LastTime;
 
             // Get data
-            var orders = await Trading.GetUserTradesAsync(request.Symbol.GetSymbol(FormatSymbol),
+            var orders = await Trading.GetUserTradesAsync(request.Symbol!.GetSymbol(FormatSymbol),
                 startTime: request.StartTime,
                 endTime: fromTimestamp ?? request.EndTime,
                 limit: request.Limit ?? 100,
@@ -663,7 +663,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<CancelOrderRequest> ISpotOrderRestClient.CancelSpotOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
         async Task<ExchangeWebResult<SharedId>> ISpotOrderRestClient.CancelSpotOrderAsync(CancelOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotOrderRestClient)this).CancelSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotOrderRestClient)this).CancelSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
@@ -714,7 +714,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetOrderRequest> ISpotOrderClientIdRestClient.GetSpotOrderByClientOrderIdOptions { get; } = new EndpointOptions<GetOrderRequest>(true);
         async Task<ExchangeWebResult<SharedSpotOrder>> ISpotOrderClientIdRestClient.GetSpotOrderByClientOrderIdAsync(GetOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotOrderRestClient)this).GetSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotOrderRestClient)this).GetSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedSpotOrder>(Exchange, validationError);
 
@@ -748,7 +748,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<CancelOrderRequest> ISpotOrderClientIdRestClient.CancelSpotOrderByClientOrderIdOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
         async Task<ExchangeWebResult<SharedId>> ISpotOrderClientIdRestClient.CancelSpotOrderByClientOrderIdAsync(CancelOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotOrderRestClient)this).CancelSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotOrderRestClient)this).CancelSpotOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
@@ -765,7 +765,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         async Task<ExchangeWebResult<SharedFundingRate[]>> IFundingRateRestClient.GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
-            var validationError = ((IFundingRateRestClient)this).GetFundingRateHistoryOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFundingRateRestClient)this).GetFundingRateHistoryOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFundingRate[]>(Exchange, validationError);
 
@@ -775,7 +775,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             // Get data
             var result = await ExchangeData.GetValuationsAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 ValuationType.FundingHistory,
                 startTime: request.StartTime,
                 endTime: fromTime ?? request.EndTime,
@@ -789,7 +789,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 nextToken = new DateTimeToken(result.Data.Min(x => x.Timestamp).AddSeconds(-1));
 
             // Return
-            return result.AsExchangeResult<SharedFundingRate[]>(Exchange, request.Symbol.TradingMode, result.Data.Select(x => new SharedFundingRate(x.Value, x.Timestamp)).ToArray(), nextToken);
+            return result.AsExchangeResult<SharedFundingRate[]>(Exchange, request.Symbol!.TradingMode, result.Data.Select(x => new SharedFundingRate(x.Value, x.Timestamp)).ToArray(), nextToken);
         }
         #endregion
 
@@ -833,11 +833,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetTickerRequest> IFuturesTickerRestClient.GetFuturesTickerOptions { get; } = new EndpointOptions<GetTickerRequest>(false);
         async Task<ExchangeWebResult<SharedFuturesTicker>> IFuturesTickerRestClient.GetFuturesTickerAsync(GetTickerRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesTickerRestClient)this).GetFuturesTickerOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFuturesTickerRestClient)this).GetFuturesTickerOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFuturesTicker>(Exchange, validationError);
 
-            var symbol = request.Symbol.GetSymbol(FormatSymbol);
+            var symbol = request.Symbol!.GetSymbol(FormatSymbol);
             var tickerTask = ExchangeData.GetTickersAsync(symbol, ct);
             var markTask = ExchangeData.GetValuationsAsync(symbol, ValuationType.MarkPrice, limit: 1, ct: ct);
             var indexTask = ExchangeData.GetValuationsAsync(symbol, ValuationType.IndexPrice, limit: 1, ct: ct);
@@ -853,7 +853,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var ticker = tickerTask.Result.Data.Single();
             var time = DateTime.UtcNow;
-            return tickerTask.Result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, ticker.PriceChange * 100)
+            return tickerTask.Result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, ticker.PriceChange * 100)
             {
                 FundingRate = fundingTask.Result.Data?.Single().Value,
                 MarkPrice = markTask.Result.Data?.Single().Value,
@@ -892,7 +892,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         };
         async Task<ExchangeWebResult<SharedLeverage>> ILeverageRestClient.GetLeverageAsync(GetLeverageRequest request, CancellationToken ct)
         {
-            var validationError = ((ILeverageRestClient)this).GetLeverageOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ILeverageRestClient)this).GetLeverageOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedLeverage>(Exchange, validationError);
 
@@ -903,7 +903,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result.Data.Any())
                 return result.AsExchangeError<SharedLeverage>(Exchange, new ServerError("Not found"));
 
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedLeverage(result.Data.First().Leverage));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedLeverage(result.Data.First().Leverage));
         }
 
         SetLeverageOptions ILeverageRestClient.SetLeverageOptions { get; } = new SetLeverageOptions()
@@ -912,7 +912,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         };
         async Task<ExchangeWebResult<SharedLeverage>> ILeverageRestClient.SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
         {
-            var validationError = ((ILeverageRestClient)this).SetLeverageOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ILeverageRestClient)this).SetLeverageOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedLeverage>(Exchange, validationError);
 
@@ -930,7 +930,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result)
                 return result.AsExchangeResult<SharedLeverage>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedLeverage((int)request.Leverage));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedLeverage((int)request.Leverage));
         }
         #endregion
 
@@ -939,11 +939,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetOpenInterestRequest> IOpenInterestRestClient.GetOpenInterestOptions { get; } = new EndpointOptions<GetOpenInterestRequest>(true);
         async Task<ExchangeWebResult<SharedOpenInterest>> IOpenInterestRestClient.GetOpenInterestAsync(GetOpenInterestRequest request, CancellationToken ct)
         {
-            var validationError = ((IOpenInterestRestClient)this).GetOpenInterestOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IOpenInterestRestClient)this).GetOpenInterestOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedOpenInterest>(Exchange, validationError);
 
-            var result = await ExchangeData.GetTickersAsync(request.Symbol.GetSymbol(FormatSymbol), ct: ct).ConfigureAwait(false);
+            var result = await ExchangeData.GetTickersAsync(request.Symbol!.GetSymbol(FormatSymbol), ct: ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<SharedOpenInterest>(Exchange, null, default);
 
@@ -951,7 +951,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeError<SharedOpenInterest>(Exchange, new ServerError("Symbol not found"));
 
             var symbol = result.Data.Single();
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedOpenInterest(result.Data.Single().OpenInterest ?? 0));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedOpenInterest(result.Data.Single().OpenInterest ?? 0));
         }
 
         #endregion
@@ -977,7 +977,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var validationError = ((IFuturesOrderRestClient)this).PlaceFuturesOrderOptions.ValidateRequest(
                 Exchange,
                 request,
-                request.Symbol.TradingMode,
+                request.Symbol!.TradingMode,
                 SupportedFuturesModes,
                 ((IFuturesOrderRestClient)this).FuturesSupportedOrderTypes,
                 ((IFuturesOrderRestClient)this).FuturesSupportedTimeInForce,
@@ -986,7 +986,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             var result = await Trading.PlaceOrderAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 request.Side == SharedOrderSide.Buy ? Enums.OrderSide.Buy : Enums.OrderSide.Sell,
                 request.OrderType == SharedOrderType.Limit ? Enums.OrderType.Limit : OrderType.Market,
                 quantity: request.Quantity?.QuantityInBaseAsset ?? request.Quantity?.QuantityInContracts,
@@ -999,13 +999,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result)
                 return result.AsExchangeResult<SharedId>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.OrderId));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(result.Data.OrderId));
         }
 
         EndpointOptions<GetOrderRequest> IFuturesOrderRestClient.GetFuturesOrderOptions { get; } = new EndpointOptions<GetOrderRequest>(true);
         async Task<ExchangeWebResult<SharedFuturesOrder>> IFuturesOrderRestClient.GetFuturesOrderAsync(GetOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).GetFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFuturesOrderRestClient)this).GetFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFuturesOrder>(Exchange, validationError);
 
@@ -1013,7 +1013,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!order)
                 return order.AsExchangeResult<SharedFuturesOrder>(Exchange, null, default);
 
-            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesOrder(
+            return order.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedFuturesOrder(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, order.Data.Symbol),
                 order.Data.Symbol,
                 order.Data.OrderId,
@@ -1048,7 +1048,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!orders)
                 return orders.AsExchangeResult<SharedFuturesOrder[]>(Exchange, null, default);
 
-            return orders.AsExchangeResult<SharedFuturesOrder[]>(Exchange, request.Symbol == null ? SupportedTradingModes : new[] { request.Symbol.TradingMode }, orders.Data.Select(x => new SharedFuturesOrder(
+            return orders.AsExchangeResult<SharedFuturesOrder[]>(Exchange, request.Symbol == null ? SupportedTradingModes : new[] { request.Symbol!.TradingMode }, orders.Data.Select(x => new SharedFuturesOrder(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), 
                 x.Symbol,
                 x.OrderId,
@@ -1074,7 +1074,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         PaginatedEndpointOptions<GetClosedOrdersRequest> IFuturesOrderRestClient.GetClosedFuturesOrdersOptions { get; } = new PaginatedEndpointOptions<GetClosedOrdersRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<SharedFuturesOrder[]>> IFuturesOrderRestClient.GetClosedFuturesOrdersAsync(GetClosedOrdersRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).GetClosedFuturesOrdersOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFuturesOrderRestClient)this).GetClosedFuturesOrdersOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFuturesOrder[]>(Exchange, validationError);
 
@@ -1084,7 +1084,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 fromTimestamp = dateTimeToken.LastTime;
 
             // Get data
-            var orders = await Trading.GetClosedOrdersAsync(request.Symbol.GetSymbol(FormatSymbol),
+            var orders = await Trading.GetClosedOrdersAsync(request.Symbol!.GetSymbol(FormatSymbol),
                 startTime: request.StartTime,
                 endTime: fromTimestamp ?? request.EndTime,
                 limit: request.Limit ?? 100,
@@ -1097,7 +1097,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (orders.Data.Any())
                 nextToken = new DateTimeToken(orders.Data.Min(o => o.CreateTime).AddMilliseconds(-1));
 
-            return orders.AsExchangeResult<SharedFuturesOrder[]>(Exchange, request.Symbol.TradingMode, orders.Data.Select(x => new SharedFuturesOrder(
+            return orders.AsExchangeResult<SharedFuturesOrder[]>(Exchange, request.Symbol!.TradingMode, orders.Data.Select(x => new SharedFuturesOrder(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), 
                 x.Symbol,
                 x.OrderId,
@@ -1132,7 +1132,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         PaginatedEndpointOptions<GetUserTradesRequest> IFuturesOrderRestClient.GetFuturesUserTradesOptions { get; } = new PaginatedEndpointOptions<GetUserTradesRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<SharedUserTrade[]>> IFuturesOrderRestClient.GetFuturesUserTradesAsync(GetUserTradesRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).GetFuturesUserTradesOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFuturesOrderRestClient)this).GetFuturesUserTradesOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedUserTrade[]>(Exchange, validationError);
 
@@ -1142,7 +1142,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 fromTimestamp = dateTimeToken.LastTime;
 
             // Get data
-            var orders = await Trading.GetUserTradesAsync(request.Symbol.GetSymbol(FormatSymbol),
+            var orders = await Trading.GetUserTradesAsync(request.Symbol!.GetSymbol(FormatSymbol),
                 startTime: request.StartTime,
                 endTime: fromTimestamp ?? request.EndTime,
                 limit: request.Limit ?? 100,
@@ -1156,7 +1156,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (orders.Data.Count() == (request.Limit ?? 100))
                 nextToken = new DateTimeToken(orders.Data.Min(o => o.CreateTime).AddMilliseconds(-1));
 
-            return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, request.Symbol.TradingMode, orders.Data.Select(x => new SharedUserTrade(
+            return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, request.Symbol!.TradingMode, orders.Data.Select(x => new SharedUserTrade(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), 
                 x.Symbol,
                 x.OrderId,
@@ -1175,7 +1175,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<CancelOrderRequest> IFuturesOrderRestClient.CancelFuturesOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
         async Task<ExchangeWebResult<SharedId>> IFuturesOrderRestClient.CancelFuturesOrderAsync(CancelOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).CancelFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFuturesOrderRestClient)this).CancelFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
@@ -1183,7 +1183,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!order)
                 return order.AsExchangeResult<SharedId>(Exchange, null, default);
 
-            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(order.Data.OrderId));
+            return order.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(order.Data.OrderId));
         }
 
         EndpointOptions<GetPositionsRequest> IFuturesOrderRestClient.GetPositionsOptions { get; } = new EndpointOptions<GetPositionsRequest>(true);
@@ -1199,9 +1199,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             IEnumerable<CryptoComPosition> data = result.Data;
             if (request.TradingMode.HasValue)
-                data = data.Where(x => request.TradingMode == TradingMode.DeliveryLinear ? x.Symbol.Contains('_') : !x.Symbol.Contains('_'));
+                data = data.Where(x => request.TradingMode == TradingMode.DeliveryLinear ? x.Symbol!.Contains('_') : !x.Symbol!.Contains('_'));
 
-            var resultTypes = request.Symbol == null && request.TradingMode == null ? SupportedTradingModes : request.Symbol != null ? new[] { request.Symbol.TradingMode } : new[] { request.TradingMode!.Value };
+            var resultTypes = request.Symbol == null && request.TradingMode == null ? SupportedTradingModes : request.Symbol != null ? new[] { request.Symbol!.TradingMode } : new[] { request.TradingMode!.Value };
             return result.AsExchangeResult<SharedPosition[]>(Exchange, resultTypes, data.Select(x => new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), x.Symbol, Math.Abs(x.Quantity), x.UpdateTime)
             {
                 UnrealizedPnl = x.SessionPnl,
@@ -1214,11 +1214,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<ClosePositionRequest> IFuturesOrderRestClient.ClosePositionOptions { get; } = new EndpointOptions<ClosePositionRequest>(true);
         async Task<ExchangeWebResult<SharedId>> IFuturesOrderRestClient.ClosePositionAsync(ClosePositionRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).ClosePositionOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedFuturesModes);
+            var validationError = ((IFuturesOrderRestClient)this).ClosePositionOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedFuturesModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
-            var symbol = request.Symbol.GetSymbol(FormatSymbol);
+            var symbol = request.Symbol!.GetSymbol(FormatSymbol);
 
             var result = await Trading.ClosePositionAsync(
                 symbol,
@@ -1227,7 +1227,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result)
                 return result.AsExchangeResult<SharedId>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.OrderId));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(result.Data.OrderId));
         }
 
         #endregion
@@ -1237,7 +1237,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<GetOrderRequest> IFuturesOrderClientIdRestClient.GetFuturesOrderByClientOrderIdOptions { get; } = new EndpointOptions<GetOrderRequest>(true);
         async Task<ExchangeWebResult<SharedFuturesOrder>> IFuturesOrderClientIdRestClient.GetFuturesOrderByClientOrderIdAsync(GetOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).GetFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFuturesOrderRestClient)this).GetFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFuturesOrder>(Exchange, validationError);
 
@@ -1245,7 +1245,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!order)
                 return order.AsExchangeResult<SharedFuturesOrder>(Exchange, null, default);
 
-            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesOrder(
+            return order.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedFuturesOrder(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, order.Data.Symbol),
                 order.Data.Symbol,
                 order.Data.OrderId,
@@ -1271,7 +1271,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<CancelOrderRequest> IFuturesOrderClientIdRestClient.CancelFuturesOrderByClientOrderIdOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
         async Task<ExchangeWebResult<SharedId>> IFuturesOrderClientIdRestClient.CancelFuturesOrderByClientOrderIdAsync(CancelOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesOrderRestClient)this).CancelFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFuturesOrderRestClient)this).CancelFuturesOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
@@ -1279,7 +1279,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!order)
                 return order.AsExchangeResult<SharedId>(Exchange, null, default);
 
-            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(order.Data.OrderId));
+            return order.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(order.Data.OrderId));
         }
         #endregion
 
@@ -1288,17 +1288,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         async Task<ExchangeWebResult<SharedFee>> IFeeRestClient.GetFeesAsync(GetFeeRequest request, CancellationToken ct)
         {
-            var validationError = ((IFeeRestClient)this).GetFeeOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFeeRestClient)this).GetFeeOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFee>(Exchange, validationError);
 
             // Get data
-            var result = await Account.GetSymbolFeeRateAsync(request.Symbol.GetSymbol(FormatSymbol), ct: ct).ConfigureAwait(false);
+            var result = await Account.GetSymbolFeeRateAsync(request.Symbol!.GetSymbol(FormatSymbol), ct: ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<SharedFee>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFee(result.Data.EffectiveMakerRateBps / 100, result.Data.EffectiveTakerRateBps / 100));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedFee(result.Data.EffectiveMakerRateBps / 100, result.Data.EffectiveTakerRateBps / 100));
         }
         #endregion
 
@@ -1306,12 +1306,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         PlaceSpotTriggerOrderOptions ISpotTriggerOrderRestClient.PlaceSpotTriggerOrderOptions { get; } = new PlaceSpotTriggerOrderOptions(false);
         async Task<ExchangeWebResult<SharedId>> ISpotTriggerOrderRestClient.PlaceSpotTriggerOrderAsync(PlaceSpotTriggerOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotTriggerOrderRestClient)this).PlaceSpotTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes, ((ISpotOrderRestClient)this).SpotSupportedOrderQuantity);
+            var validationError = ((ISpotTriggerOrderRestClient)this).PlaceSpotTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes, ((ISpotOrderRestClient)this).SpotSupportedOrderQuantity);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             var result = await Trading.PlaceOrderAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 request.OrderSide == SharedOrderSide.Buy ? OrderSide.Buy : OrderSide.Sell,
                 GetOrderType(request),
                 quantity: request.Quantity.QuantityInBaseAsset,
@@ -1348,7 +1348,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         };
         async Task<ExchangeWebResult<SharedSpotTriggerOrder>> ISpotTriggerOrderRestClient.GetSpotTriggerOrderAsync(GetOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotTriggerOrderRestClient)this).GetSpotTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotTriggerOrderRestClient)this).GetSpotTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedSpotTriggerOrder>(Exchange, validationError);
 
@@ -1393,7 +1393,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<CancelOrderRequest> ISpotTriggerOrderRestClient.CancelSpotTriggerOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
         async Task<ExchangeWebResult<SharedId>> ISpotTriggerOrderRestClient.CancelSpotTriggerOrderAsync(CancelOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((ISpotTriggerOrderRestClient)this).CancelSpotTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((ISpotTriggerOrderRestClient)this).CancelSpotTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
@@ -1415,12 +1415,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         async Task<ExchangeWebResult<SharedId>> IFuturesTriggerOrderRestClient.PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
         {
             var side = GetOrderDirection(request);
-            var validationError = ((IFuturesTriggerOrderRestClient)this).PlaceFuturesTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes, side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell, ((IFuturesOrderRestClient)this).FuturesSupportedOrderQuantity);
+            var validationError = ((IFuturesTriggerOrderRestClient)this).PlaceFuturesTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes, side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell, ((IFuturesOrderRestClient)this).FuturesSupportedOrderQuantity);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             var result = await Trading.PlaceOrderAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 side,
                 GetOrderType(request),
                 quantity: request.Quantity.QuantityInBaseAsset ?? request.Quantity.QuantityInContracts,
@@ -1435,7 +1435,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedId>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.OrderId));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(result.Data.OrderId));
         }
 
         private PriceType? GetPriceType(PlaceFuturesTriggerOrderRequest request)
@@ -1475,7 +1475,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         };
         async Task<ExchangeWebResult<SharedFuturesTriggerOrder>> IFuturesTriggerOrderRestClient.GetFuturesTriggerOrderAsync(GetOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesTriggerOrderRestClient)this).GetFuturesTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFuturesTriggerOrderRestClient)this).GetFuturesTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedFuturesTriggerOrder>(Exchange, validationError);
 
@@ -1483,7 +1483,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!order)
                 return order.AsExchangeResult<SharedFuturesTriggerOrder>(Exchange, null, default);
 
-            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesTriggerOrder(
+            return order.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedFuturesTriggerOrder(
                 ExchangeSymbolCache.ParseSymbol(_topicFuturesId, order.Data.Symbol),
                 order.Data.Symbol,
                 order.Data.OrderId,
@@ -1510,7 +1510,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         EndpointOptions<CancelOrderRequest> IFuturesTriggerOrderRestClient.CancelFuturesTriggerOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);
         async Task<ExchangeWebResult<SharedId>> IFuturesTriggerOrderRestClient.CancelFuturesTriggerOrderAsync(CancelOrderRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesTriggerOrderRestClient)this).CancelFuturesTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFuturesTriggerOrderRestClient)this).CancelFuturesTriggerOrderOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
@@ -1520,7 +1520,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!order)
                 return order.AsExchangeResult<SharedId>(Exchange, null, default);
 
-            return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(request.OrderId));
+            return order.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(request.OrderId));
         }
 
         #endregion
@@ -1536,12 +1536,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         async Task<ExchangeWebResult<SharedId>> IFuturesTpSlRestClient.SetFuturesTpSlAsync(SetTpSlRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesTpSlRestClient)this).SetFuturesTpSlOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFuturesTpSlRestClient)this).SetFuturesTpSlOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             var result = await Trading.PlaceOrderAsync(
-                request.Symbol.GetSymbol(FormatSymbol),
+                request.Symbol!.GetSymbol(FormatSymbol),
                 request.PositionSide == SharedPositionSide.Long ? OrderSide.Buy : OrderSide.Sell,
                 request.TpSlSide == SharedTpSlSide.TakeProfit ? OrderType.TakeProfit : OrderType.StopLoss,
                 quantity: request.Quantity,
@@ -1552,7 +1552,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedId>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.OrderId));
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedId(result.Data.OrderId));
         }
 
         EndpointOptions<CancelTpSlRequest> IFuturesTpSlRestClient.CancelFuturesTpSlOptions { get; } = new EndpointOptions<CancelTpSlRequest>(true)
@@ -1565,7 +1565,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         async Task<ExchangeWebResult<bool>> IFuturesTpSlRestClient.CancelFuturesTpSlAsync(CancelTpSlRequest request, CancellationToken ct)
         {
-            var validationError = ((IFuturesTpSlRestClient)this).CancelFuturesTpSlOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            var validationError = ((IFuturesTpSlRestClient)this).CancelFuturesTpSlOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<bool>(Exchange, validationError);
 
@@ -1574,7 +1574,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<bool>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, true);
+            return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, true);
         }
 
         #endregion

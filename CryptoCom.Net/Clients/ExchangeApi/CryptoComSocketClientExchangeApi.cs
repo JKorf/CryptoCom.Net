@@ -47,6 +47,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         internal CryptoComSocketClientExchangeApi(ILogger logger, CryptoComSocketOptions options) :
             base(logger, options.Environment.SocketClientAddress!, options, options.ExchangeOptions)
         {
+            MessageSendSizeLimit = 4000;
             RateLimiter = CryptoComExchange.RateLimiter.Socket;
 
             AddSystemSubscription(new CryptoComHeartBeatSubscription(_logger));
