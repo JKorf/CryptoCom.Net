@@ -24,6 +24,7 @@ using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects.Sockets;
 using CryptoCom.Net.Objects;
 using System.Net.WebSockets;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -37,6 +38,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         private static readonly MessagePath _methodPath = MessagePath.Get().Property("method");
         private static readonly MessagePath _subscriptionPath = MessagePath.Get().Property("result").Property("subscription");
         private static readonly MessagePath _channelPath = MessagePath.Get().Property("result").Property("channel");
+
         #endregion
 
         #region constructor/destructor
@@ -73,7 +75,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => $"book.{x}.{depth}").ToArray();
-            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, topics, symbols.ToArray(), x => onMessage(x.As<CryptoComOrderBookUpdate>(x.Data.Data.First()).WithUpdateType(SocketUpdateType.Snapshot)), false);
+            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(x.As<CryptoComOrderBookUpdate>(x.Data.Data.First()).WithUpdateType(SocketUpdateType.Snapshot)), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -85,7 +87,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => $"book.{x}.{depth}").ToArray();
-            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, topics, symbols.ToArray(), 
+            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, this, topics, symbols.ToArray(), 
                 x => onMessage(
                     x.As(x.Data.Data.First().Update ?? x.Data.Data.First())
                     .WithUpdateType(x.Data.Channel == "book.update" ? SocketUpdateType.Update : SocketUpdateType.Snapshot)
@@ -102,7 +104,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTicker>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "ticker." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComTicker[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComTicker[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -116,7 +118,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTrade[]>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "trade." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComTrade[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComTrade[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data)
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -130,7 +132,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(IEnumerable<string> symbols, KlineInterval interval, Action<DataEvent<CryptoComKline[]>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => $"candlestick.{EnumConverter.GetString(interval)}.{x}").ToArray();
-            var subscription = new CryptoComSubscription<CryptoComKline[]>(_logger, topics, symbols.ToArray(),
+            var subscription = new CryptoComSubscription<CryptoComKline[]>(_logger, this, topics, symbols.ToArray(),
                 x => onMessage(x.As(x.Data.Data)),
                 false, new Dictionary<string, object> { { "book_subscription_type", "SNAPSHOT_AND_UPDATE" } });
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -144,7 +146,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "index." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -158,7 +160,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "mark." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -172,7 +174,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "settlement." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -182,7 +184,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = new[] { "settlement" };
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, [], x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -196,7 +198,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "funding." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -210,7 +212,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToEstimatedFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "estimatedfunding." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data.First())
                 .WithDataTimestamp(x.Data.Data.Max(x => x.Timestamp))), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
@@ -224,7 +226,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "user.order." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data)
                 .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.UpdateTime) : null)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
@@ -234,7 +236,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
         {
             var topics = new[] { "user.order" };
-            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, this, topics, [], x => onMessage(
                 x.As(x.Data.Data)
                 .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.UpdateTime) : null)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
@@ -248,7 +250,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
         {
             var topics = symbols.Select(x => "user.trade." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, topics, symbols.ToArray(), x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, this, topics, symbols.ToArray(), x => onMessage(
                 x.As(x.Data.Data)
                 .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.CreateTime) : null)), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
@@ -258,7 +260,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] {"user.trade"};
-            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, this, topics, [], x => onMessage(
                 x.As(x.Data.Data)
                 .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.CreateTime) : null)), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
@@ -268,7 +270,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<CryptoComBalances>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.balance" };
-            var subscription = new CryptoComSubscription<CryptoComBalances[]>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComBalances[]>(_logger, this, topics, [], x => onMessage(
                 x.As(x.Data.Data.First())), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
@@ -277,7 +279,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<CryptoComPosition[]>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.positions" };
-            var subscription = new CryptoComSubscription<CryptoComPosition[]>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComPosition[]>(_logger, this, topics, [], x => onMessage(
                 x.As(x.Data.Data)
                 .WithDataTimestamp(x.Data.Data.Any() ? x.Data.Data.Max(x => x.UpdateTime) : null)), true, firstUpdateSnapshot: true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
@@ -287,7 +289,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToPositionBalanceUpdatesAsync(Action<DataEvent<CryptoComBalancePositionUpdate>> onMessage, CancellationToken ct = default)
         {
             var topics = new [] { "user.position_balance" };
-            var subscription = new CryptoComSubscription<CryptoComBalancePositionUpdate[]>(_logger, topics, [], x => onMessage(
+            var subscription = new CryptoComSubscription<CryptoComBalancePositionUpdate[]>(_logger, this, topics, [], x => onMessage(
                 x.As(x.Data.Data.First())), true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
@@ -305,7 +307,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 Method = "private/user-balance"
             };
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComBalancesWrapper>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComBalancesWrapper>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComBalances[]>(result.Data?.Result.Data);
         }
 
@@ -320,7 +322,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             };
             request.Parameters.AddOptional("instrument_name", symbol);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComPositionWrapper>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComPositionWrapper>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComPosition[]>(result.Data?.Result.Data);
         }
 
@@ -350,7 +352,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
             request.Parameters.AddOptional("stp_id", selfTradePreventionId);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOrderId>(result.Data?.Result);
         }
 
@@ -366,7 +368,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptional("order_id", orderId);
             request.Parameters.AddOptional("client_oid", clientOrderId);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOrderId>(result.Data?.Result);
         }
 
@@ -382,7 +384,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptional("instrument_name", symbol);
             request.Parameters.AddOptionalEnum("type", type);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(this, request, true, 1), ct).ConfigureAwait(false);
             return result.AsDataless();
         }
 
@@ -399,7 +401,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddEnum("type", orderType);
             request.Parameters.AddOptionalString("price", price);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOrderId>(result.Data?.Result);
         }
 
@@ -415,7 +417,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             request.Parameters.AddOptional("instrument_name", symbol);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderWrapper>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderWrapper>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOrder[]>(result.Data?.Result.Data);
         }
 
@@ -434,7 +436,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("contingency_type", "LIST");
             request.Parameters.Add("order_list", orders.ToArray());
 
-            var resultData = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(request, orders.Count()), ct).ConfigureAwait(false);
+            var resultData = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(this, request, orders.Count()), ct).ConfigureAwait(false);
             if (!resultData)
                 return resultData.As<CallResult<CryptoComListOrderResult>[]>(default);
 
@@ -442,13 +444,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             foreach (var item in resultData.Data)
             {
                 if (item.ErrorCode != null)
-                    result.Add(new CallResult<CryptoComListOrderResult>(new ServerError(item.ErrorCode!.Value, item.ErrorMessage!)));
+                    result.Add(new CallResult<CryptoComListOrderResult>(new ServerError(item.ErrorCode.Value, GetErrorInfo(item.ErrorCode.Value, item.ErrorMessage!))));
                 else
                     result.Add(new CallResult<CryptoComListOrderResult>(item));
             }
 
             if (result.All(x => !x.Success))
-                return resultData.AsErrorWithData(new ServerError("All orders failed"), result.ToArray());
+                return resultData.AsErrorWithData(new ServerError(new ErrorInfo(ErrorType.AllOrdersFailed, "All orders failed")), result.ToArray());
 
             return resultData.As(result.ToArray());
         }
@@ -465,7 +467,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("contingency_type", "LIST");
             request.Parameters.Add("order_list", orders.ToArray());
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(request, orders.Count()), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(this, request, orders.Count()), ct).ConfigureAwait(false);
             return result.As<CryptoComListOrderResult[]>(result.Data);
         }
 
@@ -484,7 +486,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("contingency_type", "OCO");
             request.Parameters.Add("order_list", new[] { order1, order2 });
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOcoResult>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOcoResult>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOcoResult> (result.Data?.Result);
         }
 
@@ -501,7 +503,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("list_id", listId);
             request.Parameters.Add("instrument_name", symbol);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(this, request, true, 1), ct).ConfigureAwait(false);
             return result.AsDataless();
         }
 
@@ -521,7 +523,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptional("network_id", network);
             request.Parameters.AddOptional("client_wid", clientWithdrawId);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComWithdrawalResult>(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComWithdrawalResult>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComWithdrawalResult>(result.Data?.Result);
         }
 
@@ -537,7 +539,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 }
             };
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(this, request, true, 1), ct).ConfigureAwait(false);
             return result.AsDataless();
         }
 
@@ -575,7 +577,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             };
 
             authProvider.AuthenticateRequest(null, request);
-            return Task.FromResult<Query?>(new CryptoComQuery(request, false, 1));
+            return Task.FromResult<Query?>(new CryptoComQuery(this, request, false, 1));
         }
 
         /// <inheritdoc />

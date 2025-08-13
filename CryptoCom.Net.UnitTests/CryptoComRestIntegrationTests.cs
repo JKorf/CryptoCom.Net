@@ -41,7 +41,7 @@ namespace CryptoCom.Net.UnitTests
             var result = await CreateClient().ExchangeApi.ExchangeData.GetTickersAsync("TSTTST", default);
 
             Assert.That(result.Success, Is.False);
-            Assert.That(result.Error.Code, Is.EqualTo(40004));
+            Assert.That(result.Error.ErrorCode, Is.EqualTo("40004"));
         }
 
         [Test]
