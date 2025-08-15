@@ -39,6 +39,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         private static readonly MessagePath _subscriptionPath = MessagePath.Get().Property("result").Property("subscription");
         private static readonly MessagePath _channelPath = MessagePath.Get().Property("result").Property("channel");
 
+        protected override ErrorCollection ErrorMapping => CryptoComErrors.Errors;
+
         #endregion
 
         #region constructor/destructor
