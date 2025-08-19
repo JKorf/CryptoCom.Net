@@ -27,7 +27,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
 
-        protected override ErrorCollection ErrorMapping => CryptoComErrors.Errors;
+        protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
         #endregion
 
         #region Api clients
@@ -75,7 +75,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 wrapperParameters.SetBody(new CryptoComRequest
                 {
                     Id = ExchangeHelpers.NextId(),
-                    Method = definition.Path,
+                    Method = definition.Path.TrimStart('/'),
                     Parameters = parameters ?? new ParameterCollection()
                 });
             }
@@ -102,7 +102,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 wrapperParameters.SetBody(new CryptoComRequest
                 {
                     Id = ExchangeHelpers.NextId(),
-                    Method = definition.Path,
+                    Method = definition.Path.TrimStart('/'),
                     Parameters = parameters ?? new ParameterCollection()
                 });
             }

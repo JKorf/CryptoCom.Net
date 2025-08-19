@@ -243,7 +243,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             foreach (var item in resultData.Data!)
             {
                 if (item.Code != 0)
-                    result.Add(new CallResult<CryptoComOrderResult>(new ServerError(item.Code, _baseClient.GetErrorInfo(item.Code, item.Message!))));
+                    result.Add(new CallResult<CryptoComOrderResult>(item, null, new ServerError(item.Code, _baseClient.GetErrorInfo(item.Code, item.Message!))));
                 else
                     result.Add(new CallResult<CryptoComOrderResult>(item));
             }

@@ -39,7 +39,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         private static readonly MessagePath _subscriptionPath = MessagePath.Get().Property("result").Property("subscription");
         private static readonly MessagePath _channelPath = MessagePath.Get().Property("result").Property("channel");
 
-        protected override ErrorCollection ErrorMapping => CryptoComErrors.Errors;
+        protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
 
         #endregion
 
@@ -446,7 +446,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             foreach (var item in resultData.Data)
             {
                 if (item.ErrorCode != null)
-                    result.Add(new CallResult<CryptoComListOrderResult>(new ServerError(item.ErrorCode.Value, GetErrorInfo(item.ErrorCode.Value, item.ErrorMessage!))));
+                    result.Add(new CallResult<CryptoComListOrderResult>(item, null, new ServerError(item.ErrorCode.Value, GetErrorInfo(item.ErrorCode.Value, item.ErrorMessage!))));
                 else
                     result.Add(new CallResult<CryptoComListOrderResult>(item));
             }

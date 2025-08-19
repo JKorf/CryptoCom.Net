@@ -2,6 +2,7 @@ using CryptoCom.Net.Enums;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -38,7 +39,7 @@ namespace CryptoCom.Net.Objects.Models
                 var result = new List<string>();
                 if (PostOnly == true) result.Add("POST_ONLY");
                 if (SmartPostOnly == true) result.Add("SMART_POST_ONLY");
-                return result.ToArray();
+                return result.Any() ? result.ToArray() : null;
             }
         }
         /// <summary>

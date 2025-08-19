@@ -9,7 +9,7 @@ namespace CryptoCom.Net
 {
     internal static class CryptoComErrors
     {
-        public static ErrorCollection Errors { get; } = new ErrorCollection([
+        public static ErrorMapping Errors { get; } = new ErrorMapping([
             new ErrorInfo(ErrorType.Unauthorized, false, "Account suspended", "202"),
             new ErrorInfo(ErrorType.Unauthorized, false, "User does not have derivatives access", "411", "412"),
             new ErrorInfo(ErrorType.Unauthorized, false, "Unauthorized", "40101"),
