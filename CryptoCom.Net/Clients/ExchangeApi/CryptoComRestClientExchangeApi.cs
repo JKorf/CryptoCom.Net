@@ -15,6 +15,7 @@ using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.SharedApis;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -25,6 +26,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Exchange Api");
 
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
+
+        protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
         #endregion
 
         #region Api clients
@@ -72,7 +75,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 wrapperParameters.SetBody(new CryptoComRequest
                 {
                     Id = ExchangeHelpers.NextId(),
-                    Method = definition.Path,
+                    Method = definition.Path.TrimStart('/'),
                     Parameters = parameters ?? new ParameterCollection()
                 });
             }
@@ -82,7 +85,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsDataless();
 
             if (result.Data.Code != 0)
-                return result.AsDatalessError(new ServerError(result.Data.Code, result.Data.Message!));
+                return result.AsDatalessError(new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
 
             return result.AsDataless();
         }
@@ -99,7 +102,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 wrapperParameters.SetBody(new CryptoComRequest
                 {
                     Id = ExchangeHelpers.NextId(),
-                    Method = definition.Path,
+                    Method = definition.Path.TrimStart('/'),
                     Parameters = parameters ?? new ParameterCollection()
                 });
             }
@@ -109,7 +112,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.As<T>(default);
 
             if (result.Data.Code != 0)
-                return result.AsError<T>(new ServerError(result.Data.Code, result.Data.Message!));
+                return result.AsError<T>(new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
 
             return result.As(result.Data.Result);
         }
@@ -117,17 +120,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
         {
             if (!accessor.IsValid)
-                return new ServerError(null, "Unknown request error", exception: exception);
+                return new ServerError(ErrorInfo.Unknown, exception: exception);
 
             var code = accessor.GetValue<int?>(MessagePath.Get().Property("code"));
             var msg = accessor.GetValue<string>(MessagePath.Get().Property("message"));
             if (msg == null)
-                return new ServerError(null, "Unknown request error", exception: exception);
+                return new ServerError(ErrorInfo.Unknown, exception: exception);
 
             if (code == null)
-                return new ServerError(null, msg, exception);
+                return new ServerError(ErrorInfo.Unknown with { Message = msg }, exception);
 
-            return new ServerError(code.Value, msg, exception);
+            return new ServerError(code.Value, GetErrorInfo(code.Value, msg), exception);
         }
 
         /// <inheritdoc />

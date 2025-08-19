@@ -13,6 +13,7 @@ using CryptoCom.Net.Objects;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System.Linq;
 using CryptoExchange.Net;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -242,13 +243,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             foreach (var item in resultData.Data!)
             {
                 if (item.Code != 0)
-                    result.Add(new CallResult<CryptoComOrderResult>(new ServerError(item.Code, item.Message!)));
+                    result.Add(new CallResult<CryptoComOrderResult>(item, null, new ServerError(item.Code, _baseClient.GetErrorInfo(item.Code, item.Message!))));
                 else
                     result.Add(new CallResult<CryptoComOrderResult>(item));
             }
 
             if (result.All(x => !x.Success))
-                return resultData.AsErrorWithData(new ServerError("All orders failed"), result.ToArray());
+                return resultData.AsErrorWithData(new ServerError(new ErrorInfo(ErrorType.AllOrdersFailed, "All orders failed")), result.ToArray());
 
             return resultData.As(result.ToArray());
         }

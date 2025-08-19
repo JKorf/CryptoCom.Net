@@ -12,6 +12,7 @@ using System.Timers;
 using CryptoExchange.Net;
 using CryptoCom.Net.Objects.Models;
 using System.Drawing;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -69,7 +70,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var asset = assets.Data.SingleOrDefault(x => x.Key.Equals(request.Asset, StringComparison.InvariantCultureIgnoreCase));
             if (asset.Value == null)
-                return assets.AsExchangeError<SharedAsset>(Exchange, new ServerError("Asset not found"));
+                return assets.AsExchangeError<SharedAsset>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownAsset, "Asset not found")));
 
             return assets.AsExchangeResult(Exchange, TradingMode.Spot, new SharedAsset(asset.Key)
             {
@@ -187,7 +188,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var interval = (Enums.KlineInterval)request.Interval;
             if (!Enum.IsDefined(typeof(Enums.KlineInterval), interval))
-                return new ExchangeWebResult<SharedKline[]>(Exchange, new ArgumentError("Interval not supported"));
+                return new ExchangeWebResult<SharedKline[]>(Exchange, ArgumentError.Invalid(nameof(GetKlinesRequest.Interval), "Interval not supported"));
 
             var validationError = ((IKlineRestClient)this).GetKlinesOptions.ValidateRequest(Exchange, request, request.Symbol!.TradingMode, SupportedTradingModes);
             if (validationError != null)
@@ -394,7 +395,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedSpotTicker>(Exchange, null, default);
 
             if (!result.Data.Any())
-                return result.AsExchangeError<SharedSpotTicker>(Exchange, new ServerError("Symbol not found"));
+                return result.AsExchangeError<SharedSpotTicker>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
             var symbol = result.Data.Single();
             return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicSpotId, symbol.Symbol), symbol.Symbol, symbol.LastPrice, symbol.HighPrice, symbol.LowPrice, symbol.Volume, symbol.PriceChange * 100));
@@ -431,7 +432,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return resultTicker.AsExchangeResult<SharedBookTicker>(Exchange, null, default);
 
             if (resultTicker.Data.Asks.Length == 0)
-                return resultTicker.AsExchangeError<SharedBookTicker>(Exchange, new ServerError("Symbol not found"));
+                return resultTicker.AsExchangeError<SharedBookTicker>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
             return resultTicker.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedBookTicker(
                 ExchangeSymbolCache.ParseSymbol(request.Symbol!.TradingMode == TradingMode.Spot ? _topicSpotId : _topicFuturesId, symbol),
@@ -849,7 +850,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return tickerTask.Result.AsExchangeResult<SharedFuturesTicker>(Exchange, null, default);
 
             if (!tickerTask.Result.Data.Any())
-                return tickerTask.Result.AsExchangeError<SharedFuturesTicker>(Exchange, new ServerError("Symbol not found"));
+                return tickerTask.Result.AsExchangeError<SharedFuturesTicker>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
             var ticker = tickerTask.Result.Data.Single();
             var time = DateTime.UtcNow;
@@ -901,7 +902,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedLeverage>(Exchange, null, default);
 
             if (!result.Data.Any())
-                return result.AsExchangeError<SharedLeverage>(Exchange, new ServerError("Not found"));
+                return result.AsExchangeError<SharedLeverage>(Exchange, new ServerError(new ErrorInfo(ErrorType.Unknown, "Not found")));
 
             return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedLeverage(result.Data.First().Leverage));
         }
@@ -948,7 +949,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsExchangeResult<SharedOpenInterest>(Exchange, null, default);
 
             if (!result.Data.Any())
-                return result.AsExchangeError<SharedOpenInterest>(Exchange, new ServerError("Symbol not found"));
+                return result.AsExchangeError<SharedOpenInterest>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
             var symbol = result.Data.Single();
             return result.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedOpenInterest(result.Data.Single().OpenInterest ?? 0));

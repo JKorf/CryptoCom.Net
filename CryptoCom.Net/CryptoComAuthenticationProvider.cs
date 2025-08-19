@@ -23,25 +23,13 @@ namespace CryptoCom.Net
         {
         }
 
-        public override void AuthenticateRequest(
-            RestApiClient apiClient,
-            Uri uri,
-            HttpMethod method,
-            ref IDictionary<string, object>? uriParameters,
-            ref IDictionary<string, object>? bodyParameters,
-            ref Dictionary<string, string>? headers,
-            bool auth,
-            ArrayParametersSerialization arraySerialization,
-            HttpMethodParameterPosition parameterPosition,
-            RequestBodyFormat requestBodyFormat)
+        public override void ProcessRequest(RestApiClient apiClient, RestRequestConfiguration request)
         {
-            headers = new Dictionary<string, string>() { };
-
-            if (!auth || bodyParameters == null)
+            if (!request.Authenticated || !request.BodyParameters.Any())
                 return;
 
-            var x = (CryptoComRequest)bodyParameters["_BODY_"];
-            AuthenticateRequest(apiClient, x);
+            var ccRequest = (CryptoComRequest)request.BodyParameters["_BODY_"];
+            AuthenticateRequest(apiClient, ccRequest);
         }
 
         public void AuthenticateRequest(RestApiClient? client, CryptoComRequest request)
@@ -136,5 +124,6 @@ namespace CryptoCom.Net
 
             return result;
         }
+
     }
 }

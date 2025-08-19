@@ -7,15 +7,18 @@ using CryptoCom.Net.Objects.Internal;
 using System.Linq;
 using CryptoExchange.Net.Interfaces;
 using System;
+using CryptoExchange.Net.Clients;
 
 namespace CryptoCom.Net.Objects.Sockets
 {
     internal class CryptoComOrderQuery : Query<CryptoComListOrderResult[]>
     {
+        private readonly SocketApiClient _client;
         private List<CryptoComListOrderResult> _result = new List<CryptoComListOrderResult>();
 
-        public CryptoComOrderQuery(CryptoComRequest request, int expectedResponses) : base(request, true, 1)
+        public CryptoComOrderQuery(SocketApiClient client, CryptoComRequest request, int expectedResponses) : base(request, true, 1)
         {
+            _client = client;
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
             RequiredResponses = expectedResponses;
         }
@@ -41,7 +44,7 @@ namespace CryptoCom.Net.Objects.Sockets
             if (message.Data.Result == null)
             {
                 // Request fails, only a single response
-                return new CallResult<CryptoComListOrderResult[]>(new ServerError(message.Data.Code, message.Data.Message!));
+                return new CallResult<CryptoComListOrderResult[]>(new ServerError(message.Data.Code, _client.GetErrorInfo(message.Data.Code, message.Data.Message!)));
             }
 
             if (message.Data.Code != 0)
