@@ -36,7 +36,7 @@ namespace CryptoCom.Net
             new ErrorInfo(ErrorType.InvalidParameter, false, "Max effective leverage exceeded", "501"),
             new ErrorInfo(ErrorType.InvalidParameter, false, "Invalid collateral price", "604"),
             new ErrorInfo(ErrorType.InvalidParameter, false, "Max allowed slippage exceeded", "606"),
-            new ErrorInfo(ErrorType.InvalidParameter, false, "Bad/invalid request", "40001", "40003"),
+            new ErrorInfo(ErrorType.InvalidParameter, false, "Bad/invalid request", "40001"),
             new ErrorInfo(ErrorType.InvalidParameter, false, "Invalid timestamp", "40005"),
 
             new ErrorInfo(ErrorType.InvalidPrice, false, "Invalid floor price", "228"),
@@ -99,6 +99,13 @@ namespace CryptoCom.Net
                         return new ErrorInfo(ErrorType.UnknownSymbol, false, "Invalid symbol name", code);
 
                     return new ErrorInfo(ErrorType.InvalidParameter, false, "Missing or empty parameter", code);
+                }),
+                new ErrorEvaluator("40003", (code, msg) =>
+                {
+                    if (msg?.Equals("Unknown symbol") == true)
+                        return new ErrorInfo(ErrorType.UnknownSymbol, false, "Invalid symbol", code);
+
+                    return new ErrorInfo(ErrorType.InvalidParameter, false, "Bad/invalid request", code);
                 })
                 ]);
     }
