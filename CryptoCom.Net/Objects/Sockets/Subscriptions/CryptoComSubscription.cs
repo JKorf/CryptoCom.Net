@@ -40,7 +40,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override Query? GetSubQuery(SocketConnection connection)
+        protected override Query? GetSubQuery(SocketConnection connection)
         {
             var request = new CryptoComRequest
             {
@@ -66,7 +66,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override Query? GetUnsubQuery()
+        protected override Query? GetUnsubQuery(SocketConnection connection)
         {
             return new CryptoComQuery(_client, new CryptoComRequest
             {

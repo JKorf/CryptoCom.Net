@@ -84,6 +84,9 @@
         <member name="M:CryptoCom.Net.Clients.CryptoComUserClientProvider.InitializeUserClient(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
             <inheritdoc />
         </member>
+        <member name="M:CryptoCom.Net.Clients.CryptoComUserClientProvider.ClearUserClients(System.String)">
+            <inheritdoc />
+        </member>
         <member name="M:CryptoCom.Net.Clients.CryptoComUserClientProvider.GetRestClient(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
             <inheritdoc />
         </member>
@@ -4051,6 +4054,11 @@
             <param name="credentials">The credentials for the user</param>
             <param name="environment">The environment to use</param>
         </member>
+        <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComUserClientProvider.ClearUserClients(System.String)">
+            <summary>
+            Reset the cached clients for a user. This can be useful when a user changes API credentials.
+            </summary>
+        </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComUserClientProvider.GetRestClient(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
             <summary>
             Get the Rest client for a specific user. In case the client does not exist yet it will be created and the <paramref name="credentials"/> should be provided, unless <see cref="M:CryptoCom.Net.Interfaces.Clients.ICryptoComUserClientProvider.InitializeUserClient(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)" /> has been called prior for this user.
@@ -6418,7 +6426,7 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetSubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}}})">
