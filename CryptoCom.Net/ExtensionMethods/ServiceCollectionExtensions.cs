@@ -102,6 +102,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<ICryptoSocketClient, CryptoSocketClient>();
             services.AddTransient<ICryptoComOrderBookFactory, CryptoComOrderBookFactory>();
             services.AddTransient<ICryptoComTrackerFactory, CryptoComTrackerFactory>();
+            services.AddTransient<ITrackerFactory, CryptoComTrackerFactory>();
             services.AddSingleton<ICryptoComUserClientProvider, CryptoComUserClientProvider>(x =>
             new CryptoComUserClientProvider(
                 x.GetRequiredService<HttpClient>(),

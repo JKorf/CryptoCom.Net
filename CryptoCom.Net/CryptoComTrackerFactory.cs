@@ -31,6 +31,17 @@ namespace CryptoCom.Net
             _serviceProvider = serviceProvider;
         }
 
+
+        /// <inheritdoc />
+        public bool CanCreateKlineTracker(SharedSymbol symbol, SharedKlineInterval interval)
+        {
+            var client = (_serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient());
+            return client.ExchangeApi.SharedClient.SubscribeKlineOptions.IsSupported(interval);
+        }
+
+        /// <inheritdoc />
+        public bool CanCreateTradeTracker(SharedSymbol symbol) => true;
+
         /// <inheritdoc />
         public IKlineTracker CreateKlineTracker(SharedSymbol symbol, SharedKlineInterval interval, int? limit = null, TimeSpan? period = null)
         {

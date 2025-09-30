@@ -52,7 +52,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     DepositEnabled = x.DepositEnabled,
                     MinWithdrawQuantity = x.MinWithdrawalQuantity,
                     WithdrawEnabled = x.WithdrawEnabled,
-                    WithdrawFee = x.WithdrawalFee,
+                    WithdrawFee = x.WithdrawalFee
                 }).ToArray()
             }).ToArray());
         }
