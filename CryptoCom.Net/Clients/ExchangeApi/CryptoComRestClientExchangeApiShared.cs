@@ -89,11 +89,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         #region Balance Client
-        EndpointOptions<GetBalancesRequest> IBalanceRestClient.GetBalancesOptions { get; } = new EndpointOptions<GetBalancesRequest>(true);
+        GetBalancesOptions IBalanceRestClient.GetBalancesOptions { get; } = new GetBalancesOptions(AccountTypeFilter.Funding, AccountTypeFilter.Spot, AccountTypeFilter.Futures, AccountTypeFilter.Margin);
 
         async Task<ExchangeWebResult<SharedBalance[]>> IBalanceRestClient.GetBalancesAsync(GetBalancesRequest request, CancellationToken ct)
         {
-            var validationError = ((IBalanceRestClient)this).GetBalancesOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
+            var validationError = ((IBalanceRestClient)this).GetBalancesOptions.ValidateRequest(Exchange, request, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeWebResult<SharedBalance[]>(Exchange, validationError);
 
@@ -655,6 +655,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 x.Price,
                 x.CreateTime)
             {
+                ClientOrderId = x.ClientOrderId,
                 Fee = Math.Abs(x.Fee),
                 FeeAsset = x.FeeAsset,
                 Role = x.Role == TradeRole.Maker ? SharedRole.Maker : SharedRole.Taker
@@ -1167,6 +1168,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 x.Price,
                 x.CreateTime)
             {
+                ClientOrderId = x.ClientOrderId,
                 Fee = Math.Abs(x.Fee),
                 FeeAsset = x.FeeAsset,
                 Role = x.Role == TradeRole.Maker ? SharedRole.Maker : SharedRole.Taker

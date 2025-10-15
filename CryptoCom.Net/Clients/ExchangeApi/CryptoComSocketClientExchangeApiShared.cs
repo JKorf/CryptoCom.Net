@@ -181,6 +181,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     x.Price,
                     x.CreateTime)
                 {
+                    ClientOrderId = x.ClientOrderId,
                     FeeAsset = x.FeeAsset,
                     Fee = Math.Abs(x.Fee),
                     Role = x.Role == Enums.TradeRole.Taker ? SharedRole.Taker : SharedRole.Maker
