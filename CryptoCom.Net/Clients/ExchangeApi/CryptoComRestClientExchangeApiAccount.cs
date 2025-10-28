@@ -212,8 +212,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptionalMillisecondsString("start_ts", startTime);
             parameters.AddOptionalMillisecondsString("end_ts", endTime);
             parameters.AddOptionalEnum("status", status);
-            parameters.AddOptional("page_size", page);
-            parameters.AddOptional("page", pageSize);
+            parameters.AddOptional("page_size", pageSize);
+            parameters.AddOptional("page", page);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-deposit-history", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComDepositWrapper>(request, parameters, ct).ConfigureAwait(false);
             return result.As<CryptoComDeposit[]>(result.Data?.DepositList);
