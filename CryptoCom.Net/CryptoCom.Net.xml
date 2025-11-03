@@ -1775,6 +1775,11 @@
             Type of exchange
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.AssetAliases">
+            <summary>
+            Aliases for Crypto.com assets
+            </summary>
+        </member>
         <member name="M:CryptoCom.Net.CryptoComExchange.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
             <summary>
             Format a base and quote asset to a Crypto.com recognized symbol 
