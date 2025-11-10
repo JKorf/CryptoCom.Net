@@ -70,6 +70,9 @@
         <member name="T:CryptoCom.Net.Clients.CryptoComUserClientProvider">
             <inheritdoc />
         </member>
+        <member name="P:CryptoCom.Net.Clients.CryptoComUserClientProvider.ExchangeName">
+            <inheritdoc />
+        </member>
         <member name="M:CryptoCom.Net.Clients.CryptoComUserClientProvider.#ctor(System.Action{CryptoCom.Net.Objects.Options.CryptoComOptions})">
             <summary>
             ctor
@@ -4055,7 +4058,7 @@
         <member name="T:CryptoCom.Net.Interfaces.Clients.ICryptoComUserClientProvider">
             <summary>
             Provider for clients with credentials for specific users
-            </summary>
+            </summary> 
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ICryptoComUserClientProvider.InitializeUserClient(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
             <summary>
@@ -6428,6 +6431,9 @@
             <summary>
             CryptoCom order book factory
             </summary>
+        </member>
+        <member name="P:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.ExchangeName">
+            <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory.#ctor(System.IServiceProvider)">
             <summary>

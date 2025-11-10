@@ -17,6 +17,9 @@ namespace CryptoCom.Net.SymbolOrderBooks
     {
         private readonly IServiceProvider _serviceProvider;
 
+        /// <inheritdoc />
+        public string ExchangeName => CryptoComExchange.ExchangeName;
+
         /// <summary>
         /// ctor
         /// </summary>

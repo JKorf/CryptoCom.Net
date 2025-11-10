@@ -8,7 +8,7 @@ namespace CryptoCom.Net.Interfaces
     /// <summary>
     /// CryptoCom local order book factory
     /// </summary>
-    public interface ICryptoComOrderBookFactory
+    public interface ICryptoComOrderBookFactory : IExchangeService
     {
         
         /// <summary>
