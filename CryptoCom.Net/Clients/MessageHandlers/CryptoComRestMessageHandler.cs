@@ -1,0 +1,47 @@
+﻿using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Converters.SystemTextJson.MessageConverters;
+using CryptoExchange.Net.Objects;
+using CryptoExchange.Net.Objects.Errors;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace CryptoCom.Net.Clients.MessageHandlers
+{
+    internal class CryptoComRestMessageHandler : JsonRestMessageHandler
+    {
+        private readonly ErrorMapping _errorMapping;
+
+        public override JsonSerializerOptions Options { get; } = SerializerOptions.WithConverters(CryptoComExchange._serializerContext);
+
+        public CryptoComRestMessageHandler(ErrorMapping errorMapping)
+        {
+            _errorMapping = errorMapping;
+        }
+
+        public override async ValueTask<Error> ParseErrorResponse(
+            int httpStatusCode,
+            object? state,
+            HttpResponseHeaders responseHeaders,
+            Stream responseStream)
+        {
+            if (httpStatusCode == 401 || httpStatusCode == 403)
+                return new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Unauthorized"));
+
+            var (jsonError, jsonDocument) = await GetJsonDocument(responseStream, state).ConfigureAwait(false);
+            if (jsonError != null)
+                return jsonError;
+
+            int? code = jsonDocument!.RootElement.TryGetProperty("code", out var codeProp) ? codeProp.GetInt32() : null;
+            var msg = jsonDocument.RootElement.TryGetProperty("message", out var msgProp) ? msgProp.GetString() : null;
+            if (msg == null)
+                return new ServerError(ErrorInfo.Unknown);
+
+            if (code == null)
+                return new ServerError(ErrorInfo.Unknown with { Message = msg });
+
+            return new ServerError(code.Value, _errorMapping.GetErrorInfo(code.Value.ToString(), msg));
+        }
+    }
+}

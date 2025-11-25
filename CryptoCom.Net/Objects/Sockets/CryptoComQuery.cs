@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Clients;
+using System;
 
 namespace CryptoCom.Net.Objects.Sockets
 {
@@ -18,12 +19,12 @@ namespace CryptoCom.Net.Objects.Sockets
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<T>>(request.Id.ToString(), HandleMessage);
         }
 
-        public CallResult<CryptoComResponse<T>> HandleMessage(SocketConnection connection, DataEvent<CryptoComResponse<T>> message)
+        public CallResult<CryptoComResponse<T>> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<T> message)
         {
-            if (message.Data.Code != 0)
-                return new CallResult<CryptoComResponse<T>>(new ServerError(message.Data.Code, _client.GetErrorInfo(message.Data.Code, message.Data.Message!)));
+            if (message.Code != 0)
+                return new CallResult<CryptoComResponse<T>>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);
 
-            return message.ToCallResult();
+            return new CallResult<CryptoComResponse<T>>(message, originalData, null);
         }
     }
 
@@ -37,12 +38,12 @@ namespace CryptoCom.Net.Objects.Sockets
             MessageMatcher = MessageMatcher.Create<CryptoComResponse>(request.Id.ToString(), HandleMessage);
         }
 
-        public CallResult<CryptoComResponse> HandleMessage(SocketConnection connection, DataEvent<CryptoComResponse> message)
+        public CallResult<CryptoComResponse> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse message)
         {
-            if (message.Data.Code != 0)
-                return new CallResult<CryptoComResponse>(new ServerError(message.Data.Code, _client.GetErrorInfo(message.Data.Code, message.Data.Message!)));
+            if (message.Code != 0)
+                return new CallResult<CryptoComResponse>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);
 
-            return message.ToCallResult();
+            return new CallResult<CryptoComResponse>(message, originalData, null);
         }
     }
 }

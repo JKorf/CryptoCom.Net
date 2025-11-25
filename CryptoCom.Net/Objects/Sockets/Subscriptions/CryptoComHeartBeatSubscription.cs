@@ -20,14 +20,14 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             MessageMatcher = MessageMatcher.Create<CryptoComResponse>("public/heartbeat", DoHandleMessage);
         }
 
-        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<CryptoComResponse> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse message)
         {
-            connection.Send(ExchangeHelpers.NextId(), new CryptoComRequest
+            _ = connection.SendAsync(ExchangeHelpers.NextId(), new CryptoComRequest
             {
-                Id = message.Data.Id,
+                Id = message.Id,
                 Method = "public/respond-heartbeat"
             }, 1);
-            return message.ToCallResult();
+            return CallResult.SuccessResult;
         }
     }
 }

@@ -19,21 +19,19 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
     {
         private readonly SocketApiClient _client;
         private readonly string[] _symbols;
-        private readonly Action<DataEvent<CryptoComSubscriptionEvent<T>>> _handler;
+        private readonly Action<DateTime, string?, int, CryptoComSubscriptionEvent<T>> _handler;
         private readonly Dictionary<string, object>? _parameters;
-        private readonly bool _firstUpdateSnapshot;
         private readonly string[] _listenerIdentifiers;
 
         /// <summary>
         /// ctor
         /// </summary>
-        public CryptoComSubscription(ILogger logger, SocketApiClient client, string[] listenerIdentifiers, string[] symbols, Action<DataEvent<CryptoComSubscriptionEvent<T>>> handler, bool auth, Dictionary<string, object>? parameters = null, bool firstUpdateSnapshot = false) : base(logger, auth)
+        public CryptoComSubscription(ILogger logger, SocketApiClient client, string[] listenerIdentifiers, string[] symbols, Action<DateTime, string?, int, CryptoComSubscriptionEvent<T>> handler, bool auth, Dictionary<string, object>? parameters = null) : base(logger, auth)
         {
             _client = client;
             _handler = handler;
             _parameters = parameters;
             _symbols = symbols;
-            _firstUpdateSnapshot = firstUpdateSnapshot;
             _listenerIdentifiers = listenerIdentifiers;
 
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
@@ -80,23 +78,23 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             }, Authenticated);
         }
 
-        public override void HandleSubQueryResponse(CryptoComResponse<CryptoComSubscriptionEvent<T>> message)
+        /// <inheritdoc />
+        public override void HandleSubQueryResponse(CryptoComResponse<CryptoComSubscriptionEvent<T>>? message)
         {
             if (message?.Code != 0 || message?.Result == null)
                 return;
 
-            _handler.Invoke(new DataEvent<CryptoComSubscriptionEvent<T>>(message.Result, message.Result.Subscription, message.Result.Symbol, null, DateTime.UtcNow, SocketUpdateType.Snapshot));
+            _handler.Invoke(DateTime.UtcNow, null, ConnectionInvocations, message.Result);
         }
 
         /// <inheritdoc />
-        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<CryptoComResponse<CryptoComSubscriptionEvent<T>>> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<CryptoComSubscriptionEvent<T>> message)
         {
-            if (_symbols.Any() && !_symbols.Contains(message.Data.Result.Symbol))
-                return message.ToCallResult();
+            if (_symbols.Any() && !_symbols.Contains(message.Result.Symbol))
+                return CallResult.SuccessResult;
 
-            var updateType = (ConnectionInvocations == 1 && _firstUpdateSnapshot) ? SocketUpdateType.Snapshot : SocketUpdateType.Update;
-            _handler.Invoke(message.As(message.Data.Result!, message.Data.Result.Subscription, message.Data.Result.Symbol, updateType));
-            return message.ToCallResult();
+            _handler.Invoke(receiveTime, originalData, ConnectionInvocations, message.Result);
+            return CallResult.SuccessResult;
         }
     }
 }

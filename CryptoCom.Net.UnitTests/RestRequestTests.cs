@@ -12,12 +12,14 @@ namespace CryptoCom.Net.UnitTests
     [TestFixture]
     public class RestRequestTests
     {
-        [Test]
-        public async Task ValidateExchangeAccountDataCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateExchangeAccountDataCalls(bool useUpdatedDeserialization)
         {
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Account", "https://api.crypto.com", IsAuthenticated);
@@ -37,12 +39,14 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetWithdrawalHistoryAsync(), "GetWithdrawalHistory", nestedJsonProperty: "result.withdrawal_list");
         }
 
-        [Test]
-        public async Task ValidateExchangeExchangeDataCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateExchangeExchangeDataCalls(bool useUpdatedDeserialization)
         {
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/ExchangeData", "https://api.crypto.com", IsAuthenticated);
@@ -58,12 +62,14 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetAnnouncementsAsync(), "GetAnnouncements", nestedJsonProperty: "result.data");
         }
 
-        [Test]
-        public async Task ValidateExchangeStakingCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateExchangeStakingCalls(bool useUpdatedDeserialization)
         {
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Staking", "https://api.crypto.com", IsAuthenticated);
@@ -79,12 +85,14 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Staking.GetConvertRateAsync("123"), "GetConvertRate", nestedJsonProperty: "result");
         }
 
-        [Test]
-        public async Task ValidateExchangeTradingDataCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateExchangeTradingDataCalls(bool useUpdatedDeserialization)
         {
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Trading", "https://api.crypto.com", IsAuthenticated);

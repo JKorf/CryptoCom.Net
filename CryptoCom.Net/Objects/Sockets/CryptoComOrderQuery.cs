@@ -39,19 +39,19 @@ namespace CryptoCom.Net.Objects.Sockets
             return result;
         }
 
-        public CallResult<CryptoComListOrderResult[]> HandleMessage(SocketConnection connection, DataEvent<CryptoComResponse<CryptoComListOrderResult>> message)
+        public CallResult<CryptoComListOrderResult[]> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<CryptoComListOrderResult> message)
         {
-            if (message.Data.Result == null)
+            if (message.Result == null)
             {
                 // Request fails, only a single response
-                return new CallResult<CryptoComListOrderResult[]>(new ServerError(message.Data.Code, _client.GetErrorInfo(message.Data.Code, message.Data.Message!)));
+                return new CallResult<CryptoComListOrderResult[]>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);
             }
 
-            if (message.Data.Code != 0)
-                _result.Add(message.Data.Result with { ErrorCode = message.Data.Code, ErrorMessage = message.Data.Message });
+            if (message.Code != 0)
+                _result.Add(message.Result with { ErrorCode = message.Code, ErrorMessage = message.Message });
             else
-                _result.Add(message.Data.Result);
-            return new CallResult<CryptoComListOrderResult[]>(_result.OrderBy(x => x.OrderId).ToArray());
+                _result.Add(message.Result);
+            return new CallResult<CryptoComListOrderResult[]>(_result.OrderBy(x => x.OrderId).ToArray(), originalData, null);
         }
     }
 }

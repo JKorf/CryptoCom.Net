@@ -16,6 +16,9 @@ using CryptoExchange.Net.SharedApis;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing;
 using CryptoExchange.Net.Objects.Errors;
+using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
+using CryptoCom.Net.Clients.MessageHandlers;
+using System.Net.Http.Headers;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -28,6 +31,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
+        protected override IRestMessageHandler MessageHandler { get; } = new CryptoComRestMessageHandler(CryptoComErrors.Errors);
         #endregion
 
         #region Api clients
@@ -117,7 +121,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return result.As(result.Data.Result);
         }
 
-        protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
+        protected override Error ParseErrorResponse(int httpStatusCode, HttpResponseHeaders responseHeaders, IMessageAccessor accessor, Exception? exception)
         {
             if (!accessor.IsValid)
                 return new ServerError(ErrorInfo.Unknown, exception: exception);
