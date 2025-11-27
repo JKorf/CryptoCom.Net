@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Clients.MessageHandlers
     {
         public override JsonSerializerOptions Options { get; } = SerializerOptions.WithConverters(CryptoComExchange._serializerContext);
 
-        protected override MessageEvaluator[] MessageEvaluators { get; } = [
+        protected override MessageEvaluator[] TypeEvaluators { get; } = [
 
             new MessageEvaluator {
                 Priority = 1,
