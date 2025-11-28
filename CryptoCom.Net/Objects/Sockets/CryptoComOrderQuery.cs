@@ -19,8 +19,10 @@ namespace CryptoCom.Net.Objects.Sockets
         public CryptoComOrderQuery(SocketApiClient client, CryptoComRequest request, int expectedResponses) : base(request, true, 1)
         {
             _client = client;
-            MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
             RequiredResponses = expectedResponses;
+
+            MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
+            MessageRouter = MessageRouter.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), request.Id.ToString(), HandleMessage);
         }
 
         public override CallResult<object> Deserialize(IMessageAccessor message, Type type)

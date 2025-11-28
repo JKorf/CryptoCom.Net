@@ -35,6 +35,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             _listenerIdentifiers = listenerIdentifiers;
 
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
+            MessageRouter = MessageRouter.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, _listenerIdentifiers, DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -66,7 +67,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         protected override Query? GetUnsubQuery(SocketConnection connection)
         {
-            return new CryptoComQuery(_client, new CryptoComRequest
+            return new CryptoComQuery<object>(_client, new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "unsubscribe",

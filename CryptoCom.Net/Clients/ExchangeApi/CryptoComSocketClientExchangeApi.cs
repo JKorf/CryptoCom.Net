@@ -553,7 +553,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptional("instrument_name", symbol);
             request.Parameters.AddOptionalEnum("type", type);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(this, request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<object>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.AsDataless();
         }
 
@@ -672,7 +672,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("list_id", listId);
             request.Parameters.Add("instrument_name", symbol);
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(this, request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<object>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.AsDataless();
         }
 
@@ -708,7 +708,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 }
             };
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery(this, request, true, 1), ct).ConfigureAwait(false);
+            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<object>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.AsDataless();
         }
 
@@ -746,7 +746,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             };
 
             authProvider.AuthenticateRequest(null, request);
-            return Task.FromResult<Query?>(new CryptoComQuery(this, request, false, 1));
+            return Task.FromResult<Query?>(new CryptoComQuery<object>(this, request, false, 1));
         }
 
         /// <inheritdoc />

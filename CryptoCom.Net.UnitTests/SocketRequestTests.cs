@@ -23,6 +23,7 @@ namespace CryptoCom.Net.UnitTests
             var client = new CryptoComSocketClient(Options.Create(new CryptoComSocketOptions
             {
                 UseUpdatedDeserialization = useUpdatedDeserialization,
+                OutputOriginalData = true,
                 RequestTimeout = TimeSpan.FromSeconds(5),
                 ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
             }), fact);

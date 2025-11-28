@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
+﻿using CryptoCom.Net.Objects.Internal;
+using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Text.Json;
@@ -8,6 +9,19 @@ namespace CryptoCom.Net.Clients.MessageHandlers
     internal class CryptoComSocketMessageHandler : JsonSocketMessageHandler
     {
         public override JsonSerializerOptions Options { get; } = SerializerOptions.WithConverters(CryptoComExchange._serializerContext);
+
+        public CryptoComSocketMessageHandler()
+        {
+            AddTopicMapping<CryptoComResponse>(x => {
+                if (x.Method == "public/heartbeat")
+                    return "heartbeat";
+
+                if (x.Id > 0)
+                    return x.Id.ToString();
+
+                return null;
+            });
+        }
 
         protected override MessageEvaluator[] TypeEvaluators { get; } = [
 

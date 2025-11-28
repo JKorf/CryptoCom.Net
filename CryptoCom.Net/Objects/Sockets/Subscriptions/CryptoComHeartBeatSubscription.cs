@@ -18,6 +18,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         public CryptoComHeartBeatSubscription(ILogger logger) : base(logger, false)
         {
             MessageMatcher = MessageMatcher.Create<CryptoComResponse>("public/heartbeat", DoHandleMessage);
+            MessageRouter = MessageRouter.Create<CryptoComResponse>("public/heartbeat", "heartbeat", DoHandleMessage);
         }
 
         public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse message)
