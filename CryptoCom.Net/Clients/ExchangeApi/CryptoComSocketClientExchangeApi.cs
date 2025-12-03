@@ -92,8 +92,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => $"book.{x}.{depth}").ToArray();
-            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var topics = symbols.Select(x => $"{x}.{depth}").ToArray();
+            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, this, "book", topics, symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -115,8 +115,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => $"book.{x}.{depth}").ToArray();
-            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, this, topics, symbols.ToArray(), handler,
+            var topics = symbols.Select(x => $"{x}.{depth}").ToArray();
+            var subscription = new CryptoComSubscription<CryptoComOrderBookUpdateInt[]>(_logger, this, "book", topics, symbols?.ToArray(), handler,
                 false, new Dictionary<string, object> { { "book_subscription_type", "SNAPSHOT_AND_UPDATE" } });
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -139,8 +139,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "ticker." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComTicker[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var subscription = new CryptoComSubscription<CryptoComTicker[]>(_logger, this, "ticker", symbols.ToArray(), symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -162,8 +161,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "trade." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComTrade[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var subscription = new CryptoComSubscription<CryptoComTrade[]>(_logger, this, "trade", symbols.ToArray(), symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -184,8 +182,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => $"candlestick.{EnumConverter.GetString(interval)}.{x}").ToArray();
-            var subscription = new CryptoComSubscription<CryptoComKline[]>(_logger, this, topics, symbols.ToArray(), handler,
+            var subscription = new CryptoComSubscription<CryptoComKline[]>(_logger, this, $"candlestick", symbols.Select(x => $"{EnumConverter.GetString(interval)}.{x}").ToArray(), symbols?.ToArray(), handler,
                 false, new Dictionary<string, object> { { "book_subscription_type", "SNAPSHOT_AND_UPDATE" } });
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -208,8 +205,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "index." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, "index", symbols.ToArray(), symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -231,8 +227,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "mark." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, "mark", symbols.ToArray(), symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -254,8 +249,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "settlement." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, "settlement", symbols.ToArray(), symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -273,8 +267,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = new[] { "settlement" };
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, [], handler, false);
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, "settlement", null, null, handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -296,8 +289,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "funding." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), handler, false);
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, "funding", symbols.ToArray(), symbols?.ToArray(), handler, false);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -319,8 +311,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "estimatedfunding." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, topics, symbols.ToArray(), handler, true);
+            var subscription = new CryptoComSubscription<CryptoComValuation[]>(_logger, this, "estimatedfunding", symbols.ToArray(), symbols?.ToArray(), handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -342,8 +333,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "user.order." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, this, topics, symbols.ToArray(), handler, true);
+            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, this, "user.order", symbols.ToArray(), symbols?.ToArray(), handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -362,7 +352,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             });
 
             var topics = new[] { "user.order" };
-            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, this, topics, [], handler, true);
+            var subscription = new CryptoComSubscription<CryptoComOrder[]>(_logger, this, "user.order", null, null, handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -384,8 +374,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = symbols.Select(x => "user.trade." + x).ToArray();
-            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, this, topics, symbols.ToArray(), handler, true);
+            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, this, "user.trade", symbols.ToArray(), symbols?.ToArray(), handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -403,8 +392,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = new [] {"user.trade"};
-            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, this, topics, [], handler, true);
+            var subscription = new CryptoComSubscription<CryptoComUserTrade[]>(_logger, this, "user.trade", null, null, handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -421,8 +409,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = new [] { "user.balance" };
-            var subscription = new CryptoComSubscription<CryptoComBalances[]>(_logger, this, topics, [], handler, true);
+            var subscription = new CryptoComSubscription<CryptoComBalances[]>(_logger, this, "user.balance", null, null, handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -440,8 +427,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = new [] { "user.positions" };
-            var subscription = new CryptoComSubscription<CryptoComPosition[]>(_logger, this, topics, [], handler, true);
+            var subscription = new CryptoComSubscription<CryptoComPosition[]>(_logger, this, "user.positions", null, null, handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -458,8 +444,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     );
             });
 
-            var topics = new [] { "user.position_balance" };
-            var subscription = new CryptoComSubscription<CryptoComBalancePositionUpdate[]>(_logger, this, topics, [], handler, true);
+            var subscription = new CryptoComSubscription<CryptoComBalancePositionUpdate[]>(_logger, this, "user.position_balance", null, null, handler, true);
             return await SubscribeAsync(BaseAddress.AppendPath("exchange/v1/user"), subscription, ct).ConfigureAwait(false);
         }
 

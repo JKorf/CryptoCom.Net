@@ -22,7 +22,7 @@ namespace CryptoCom.Net.Objects.Sockets
             RequiredResponses = expectedResponses;
 
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
-            MessageRouter = MessageRouter.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), request.Id.ToString(), HandleMessage);
+            MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
         }
 
         public override CallResult<object> Deserialize(IMessageAccessor message, Type type)

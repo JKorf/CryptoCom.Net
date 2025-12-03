@@ -872,6 +872,11 @@
             Defines the source generated JSON serialization contract metadata for a given type.
             </summary>
         </member>
+        <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComResponseObject">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
         <member name="P:CryptoCom.Net.Converters.CryptoComSourceGenerationContext.CryptoComSubscriptionEventCryptoComOrderBookUpdateIntArray">
             <summary>
             Defines the source generated JSON serialization contract metadata for a given type.
@@ -6416,7 +6421,7 @@
         <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String[],System.String[],System.Action{System.DateTime,System.String,System.Int32,CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String[],System.String[],System.Action{System.DateTime,System.String,System.Int32,CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             ctor
             </summary>
@@ -6431,6 +6436,9 @@
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleRouteMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
             <inheritdoc />
         </member>
         <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory">

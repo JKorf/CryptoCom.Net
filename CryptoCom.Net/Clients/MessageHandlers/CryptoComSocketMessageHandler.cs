@@ -13,14 +13,24 @@ namespace CryptoCom.Net.Clients.MessageHandlers
         public CryptoComSocketMessageHandler()
         {
             AddTopicMapping<CryptoComResponse>(x => {
-                if (x.Method == "public/heartbeat")
-                    return "heartbeat";
-
                 if (x.Id > 0)
                     return x.Id.ToString();
 
+                var result = x.GetResult();
+                if (result is CryptoComSubscriptionEvent evnt)
+                {
+                    if (evnt.Depth != null)
+                        return $"{evnt.Symbol}.{evnt.Depth}";
+
+                    if (evnt.Interval != null)
+                        return $"{evnt.Interval}.{evnt.Symbol}";
+
+                    return evnt.Symbol;
+                }
+
                 return null;
             });
+
         }
 
         protected override MessageEvaluator[] TypeEvaluators { get; } = [
@@ -42,25 +52,25 @@ namespace CryptoCom.Net.Clients.MessageHandlers
                 IdentifyMessageCallback = x => x.FieldValue("id")!
             },
 
-            new MessageEvaluator {
-                Priority = 3,
-                ForceIfFound = true,
-                Fields = [
-                    new PropertyFieldReference("channel")
-                    { 
-                        Depth = 2,
-                        Constraint = x => x.Equals("user.order", StringComparison.Ordinal) || x.Equals("user.trade", StringComparison.Ordinal)
-                    },
-                ],
-                IdentifyMessageCallback = x => x.FieldValue("channel")!
-            },
+            //new MessageEvaluator {
+            //    Priority = 3,
+            //    ForceIfFound = true,
+            //    Fields = [
+            //        new PropertyFieldReference("channel")
+            //        { 
+            //            Depth = 2,
+            //            Constraint = x => x.Equals("user.order", StringComparison.Ordinal) || x.Equals("user.trade", StringComparison.Ordinal)
+            //        },
+            //    ],
+            //    IdentifyMessageCallback = x => x.FieldValue("channel")!
+            //},
 
             new MessageEvaluator {
                 Priority = 4,
                 Fields = [
-                    new PropertyFieldReference("subscription") { Depth = 2 },
+                    new PropertyFieldReference("channel") { Depth = 2 },
                 ],
-                IdentifyMessageCallback = x => x.FieldValue("subscription")!
+                IdentifyMessageCallback = x => x.FieldValue("channel")!
             },
         ];
     }

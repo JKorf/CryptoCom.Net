@@ -26,16 +26,16 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public CryptoComSubscription(ILogger logger, SocketApiClient client, string[] listenerIdentifiers, string[] symbols, Action<DateTime, string?, int, CryptoComSubscriptionEvent<T>> handler, bool auth, Dictionary<string, object>? parameters = null) : base(logger, auth)
+        public CryptoComSubscription(ILogger logger, SocketApiClient client, string topic, string[]? filters, string[]? symbols, Action<DateTime, string?, int, CryptoComSubscriptionEvent<T>> handler, bool auth, Dictionary<string, object>? parameters = null) : base(logger, auth)
         {
             _client = client;
             _handler = handler;
             _parameters = parameters;
-            _symbols = symbols;
-            _listenerIdentifiers = listenerIdentifiers;
+            _symbols = symbols ?? [];
+            _listenerIdentifiers = filters == null ? [topic] : filters.Select(x => $"{topic}.{x}").ToArray();
 
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
-            MessageRouter = MessageRouter.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, _listenerIdentifiers, DoHandleMessage);
+            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topic, filters, DoHandleRouteMessage);
         }
 
         /// <inheritdoc />
@@ -94,6 +94,13 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             if (_symbols.Any() && !_symbols.Contains(message.Result.Symbol))
                 return CallResult.SuccessResult;
 
+            _handler.Invoke(receiveTime, originalData, ConnectionInvocations, message.Result);
+            return CallResult.SuccessResult;
+        }
+
+        /// <inheritdoc />
+        public CallResult DoHandleRouteMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<CryptoComSubscriptionEvent<T>> message)
+        {
             _handler.Invoke(receiveTime, originalData, ConnectionInvocations, message.Result);
             return CallResult.SuccessResult;
         }
