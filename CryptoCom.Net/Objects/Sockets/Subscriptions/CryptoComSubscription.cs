@@ -15,7 +15,7 @@ using CryptoExchange.Net.Clients;
 namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 {
     /// <inheritdoc />
-    internal class CryptoComSubscription<T> : Subscription<CryptoComResponse<CryptoComSubscriptionEvent<T>>, CryptoComResponse>
+    internal class CryptoComSubscription<T> : Subscription
     {
         private readonly SocketApiClient _client;
         private readonly string[] _symbols;
@@ -80,12 +80,14 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override void HandleSubQueryResponse(CryptoComResponse<CryptoComSubscriptionEvent<T>>? message)
+        public override void HandleSubQueryResponse(object? message)
         {
-            if (message?.Code != 0 || message?.Result == null)
+            var data = (CryptoComResponse<CryptoComSubscriptionEvent<T>>?)message;
+
+            if (data?.Code != 0 || data?.Result == null)
                 return;
 
-            _handler.Invoke(DateTime.UtcNow, null, ConnectionInvocations, message.Result);
+            _handler.Invoke(DateTime.UtcNow, null, ConnectionInvocations, data.Result);
         }
 
         /// <inheritdoc />

@@ -6432,7 +6432,7 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.HandleSubQueryResponse(CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.HandleSubQueryResponse(System.Object)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
