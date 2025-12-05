@@ -19,6 +19,27 @@ namespace CryptoCom.Net.UnitTests
     {
         [TestCase(false)]
         [TestCase(true)]
+        public async Task ValidateConcurrentSpotSubscriptions(bool newDeserialization)
+        {
+            var logger = new LoggerFactory();
+            logger.AddProvider(new TraceLoggerProvider());
+
+            var client = new CryptoComSocketClient(Options.Create(new CryptoComSocketOptions
+            {
+                OutputOriginalData = true,
+                DelayAfterConnect = TimeSpan.Zero,
+                UseUpdatedDeserialization = newDeserialization
+            }), logger);
+
+            var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com");
+            await tester.ValidateConcurrentAsync<CryptoComKline[]>(
+                (client, handler) => client.ExchangeApi.SubscribeToKlineUpdatesAsync("ETH_USDT", Enums.KlineInterval.OneDay, handler),
+                (client, handler) => client.ExchangeApi.SubscribeToKlineUpdatesAsync("ETH_USDT", Enums.KlineInterval.OneHour, handler),
+                "Concurrent");
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
         public async Task ValidateSpotExchangeDataSubscriptions(bool useUpdatedDeserialization)
         {
             var loggerFactory = new LoggerFactory();
