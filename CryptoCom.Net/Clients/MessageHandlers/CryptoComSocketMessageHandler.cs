@@ -33,44 +33,28 @@ namespace CryptoCom.Net.Clients.MessageHandlers
 
         }
 
-        protected override MessageEvaluator[] TypeEvaluators { get; } = [
+        protected override MessageTypeDefinition[] TypeEvaluators { get; } = [
 
-            new MessageEvaluator {
-                Priority = 1,
+            new MessageTypeDefinition {
                 ForceIfFound = true,
                 Fields = [
-                    new PropertyFieldReference("method") { Constraint = x => x!.Equals("public/heartbeat", StringComparison.Ordinal) },
+                    new PropertyFieldReference("method").WithEqualContstraint("public/heartbeat"),
                 ],
                 StaticIdentifier = "public/heartbeat"
             },
 
-            new MessageEvaluator {
-                Priority = 2,
+            new MessageTypeDefinition {
                 Fields = [
-                    new PropertyFieldReference("id") { Constraint = x => long.Parse(x!) > 0 },
+                    new PropertyFieldReference("id").WithCustomContstraint(x => long.Parse(x!) > 0),
                 ],
-                IdentifyMessageCallback = x => x.FieldValue("id")!
+                TypeIdentifierCallback = x => x.FieldValue("id")!
             },
 
-            //new MessageEvaluator {
-            //    Priority = 3,
-            //    ForceIfFound = true,
-            //    Fields = [
-            //        new PropertyFieldReference("channel")
-            //        { 
-            //            Depth = 2,
-            //            Constraint = x => x.Equals("user.order", StringComparison.Ordinal) || x.Equals("user.trade", StringComparison.Ordinal)
-            //        },
-            //    ],
-            //    IdentifyMessageCallback = x => x.FieldValue("channel")!
-            //},
-
-            new MessageEvaluator {
-                Priority = 4,
+            new MessageTypeDefinition {
                 Fields = [
                     new PropertyFieldReference("channel") { Depth = 2 },
                 ],
-                IdentifyMessageCallback = x => x.FieldValue("channel")!
+                TypeIdentifierCallback = x => x.FieldValue("channel")!
             },
         ];
     }

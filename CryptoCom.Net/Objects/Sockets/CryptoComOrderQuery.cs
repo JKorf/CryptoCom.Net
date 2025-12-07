@@ -27,6 +27,7 @@ namespace CryptoCom.Net.Objects.Sockets
 
         public override CallResult<object> Deserialize(IMessageAccessor message, Type type)
         {
+#warning apply this for updated deserialization
             var result = base.Deserialize(message, type);
             if (result)
             {
