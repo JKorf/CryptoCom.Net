@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Internal
 {
@@ -24,6 +21,6 @@ namespace CryptoCom.Net.Objects.Internal
         [JsonPropertyName("result")]
         public T Result { get; set; } = default!;
 
-        public override object GetResult() => Result;
+        public override object GetResult() => Result!;
     }
 }

@@ -1,11 +1,9 @@
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.Sockets;
-using System.Collections.Generic;
-using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Clients;
 using System;
+using CryptoExchange.Net.Sockets.Default;
 
 namespace CryptoCom.Net.Objects.Sockets
 {

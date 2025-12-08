@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Web;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
@@ -25,7 +22,7 @@ namespace CryptoCom.Net
 
         public override void ProcessRequest(RestApiClient apiClient, RestRequestConfiguration request)
         {
-            if (!request.Authenticated || !request.BodyParameters.Any())
+            if (!request.Authenticated || request.BodyParameters?.Any() != true)
                 return;
 
             var ccRequest = (CryptoComRequest)request.BodyParameters["_BODY_"];

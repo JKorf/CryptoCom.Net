@@ -1,7 +1,7 @@
 ﻿using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
 using CryptoExchange.Net.Converters.SystemTextJson;
-using System;
+using CryptoExchange.Net.Converters.SystemTextJson.MessageHandlers;
 using System.Text.Json;
 
 namespace CryptoCom.Net.Clients.MessageHandlers

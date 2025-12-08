@@ -16,7 +16,6 @@ using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Options;
 using CryptoCom.Net.Objects.Sockets.Subscriptions;
 using CryptoExchange.Net;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CryptoCom.Net.Objects.Internal;
@@ -27,6 +26,7 @@ using System.Net.WebSockets;
 using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
 using CryptoCom.Net.Clients.MessageHandlers;
+using CryptoExchange.Net.Sockets.Default;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {

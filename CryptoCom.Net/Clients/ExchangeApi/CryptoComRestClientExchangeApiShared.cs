@@ -1,17 +1,14 @@
 using CryptoExchange.Net.SharedApis;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Linq;
 using CryptoExchange.Net.Objects;
 using CryptoCom.Net.Enums;
-using System.Timers;
 using CryptoExchange.Net;
 using CryptoCom.Net.Objects.Models;
-using System.Drawing;
 using CryptoExchange.Net.Objects.Errors;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
@@ -233,7 +230,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     nextToken = new DateTimeToken(minOpenTime.AddSeconds(-(int)(interval - 1)));
             }
 
-            return result.AsExchangeResult<SharedKline[]>(Exchange, request.Symbol!.TradingMode, result.Data.Reverse().Select(x => 
+            return result.AsExchangeResult<SharedKline[]>(Exchange, request.Symbol!.TradingMode, result.Data.AsEnumerable().Reverse().Select(x => 
                 new SharedKline(request.Symbol, symbol, x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume)).ToArray(), nextToken);
         }
 

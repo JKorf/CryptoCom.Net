@@ -1,11 +1,7 @@
-using CryptoCom.Net.Converters;
-using CryptoExchange.Net.Attributes;
 using CryptoExchange.Net.Converters;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Models

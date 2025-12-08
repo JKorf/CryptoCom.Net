@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
 using CryptoCom.Net.Objects.Models;
-using System.Drawing;
 using System;
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects;

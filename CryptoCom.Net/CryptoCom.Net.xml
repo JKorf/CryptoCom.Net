@@ -433,7 +433,7 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.SocketConnection)">
+        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.Default.SocketConnection)">
             <inheritdoc />
         </member>
         <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SharedClient">
@@ -6426,19 +6426,19 @@
             ctor
             </summary>
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetSubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetSubQuery(CryptoExchange.Net.Sockets.Default.SocketConnection)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.Default.SocketConnection)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.HandleSubQueryResponse(System.Object)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.Default.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleRouteMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleRouteMessage(CryptoExchange.Net.Sockets.Default.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">
             <inheritdoc />
         </member>
         <member name="T:CryptoCom.Net.SymbolOrderBooks.CryptoComOrderBookFactory">
@@ -6501,14 +6501,14 @@
             Extensions for the ICryptoRestClient and ICryptoSocketClient interfaces
             </summary>
         </member>
-        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.CryptoCom(CryptoExchange.Net.Interfaces.ICryptoRestClient)">
+        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.CryptoCom(CryptoExchange.Net.Interfaces.Clients.ICryptoRestClient)">
             <summary>
             Get the CryptoCom REST Api client
             </summary>
             <param name="baseClient"></param>
             <returns></returns>
         </member>
-        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.CryptoCom(CryptoExchange.Net.Interfaces.ICryptoSocketClient)">
+        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.CryptoCom(CryptoExchange.Net.Interfaces.Clients.ICryptoSocketClient)">
             <summary>
             Get the CryptoCom Websocket Api client
             </summary>
