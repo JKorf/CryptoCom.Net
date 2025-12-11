@@ -38,14 +38,14 @@ namespace CryptoCom.Net.Clients.MessageHandlers
             new MessageTypeDefinition {
                 ForceIfFound = true,
                 Fields = [
-                    new PropertyFieldReference("method").WithEqualContstraint("public/heartbeat"),
+                    new PropertyFieldReference("method").WithEqualConstraint("public/heartbeat"),
                 ],
                 StaticIdentifier = "public/heartbeat"
             },
 
             new MessageTypeDefinition {
                 Fields = [
-                    new PropertyFieldReference("id").WithCustomContstraint(x => long.Parse(x!) > 0),
+                    new PropertyFieldReference("id").WithCustomConstraint(x => long.Parse(x!) > 0),
                 ],
                 TypeIdentifierCallback = x => x.FieldValue("id")!
             },
