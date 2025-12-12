@@ -32,6 +32,8 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             _symbols = symbols ?? [];
             _listenerIdentifiers = filters == null ? [topic] : filters.Select(x => $"{topic}.{x}").ToArray();
 
+            IndividualSubscriptionCount = symbols?.Length ?? 1;
+
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
             MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topic, filters, DoHandleRouteMessage);
         }
