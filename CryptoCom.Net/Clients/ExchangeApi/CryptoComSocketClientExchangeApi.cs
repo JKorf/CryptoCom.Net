@@ -154,7 +154,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             {
                 onMessage(
                     new DataEvent<CryptoComTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
-                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
                         .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
