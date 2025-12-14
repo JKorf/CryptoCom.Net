@@ -84,7 +84,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComOrderBookUpdate>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Snapshot)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -107,7 +107,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComOrderBookUpdate>(data.Data.First().Update ?? data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, data.Data.First().Update ?? data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(data.Channel.Equals("book.update", StringComparison.Ordinal) ? SocketUpdateType.Update : SocketUpdateType.Snapshot)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -131,7 +131,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComTicker[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComTicker>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComTicker>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -153,7 +153,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComTrade[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -175,7 +175,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComKline[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComKline[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComKline[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -197,7 +197,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComValuation>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -219,7 +219,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComValuation>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -241,7 +241,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComValuation>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -259,7 +259,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComValuation>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -281,7 +281,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComValuation>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -303,7 +303,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComValuation>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -325,7 +325,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrder[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComOrder[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComOrder[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -343,7 +343,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrder[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComOrder[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComOrder[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -366,7 +366,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComUserTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComUserTrade[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComUserTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -384,7 +384,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComUserTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComUserTrade[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComUserTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -402,7 +402,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComBalances[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComBalances>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComBalances>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -419,7 +419,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComPosition[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComPosition[]>(data.Data, receiveTime, originalData)
+                    new DataEvent<CryptoComPosition[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
@@ -437,7 +437,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComBalancePositionUpdate[]>>((receiveTime, originalData, invocations, data) =>
             {
                 onMessage(
-                    new DataEvent<CryptoComBalancePositionUpdate>(data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComBalancePositionUpdate>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
