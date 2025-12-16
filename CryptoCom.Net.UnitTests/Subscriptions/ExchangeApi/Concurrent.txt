@@ -1,0 +1,6 @@
+>1 { "method": "subscribe", "params": { "channels": ["candlestick.1D.ETH_USDT"] }, "nonce": "|*|", "id": "|*|" }
+>2 { "method": "subscribe", "params": { "channels": ["candlestick.1h.ETH_USDT"] }, "nonce": "|*|", "id": "|*|" }
+<1 { "id": |id|, "code": 0, "method": "subscribe" }
+<2 { "id": |id|, "code": 0, "method": "subscribe" }
+=1 { "id": -1, "method": "subscribe", "code": 0, "result": { "instrument_name": "ETH_USDT", "subscription": "candlestick.1D.ETH_USDT", "channel": "candlestick", "interval": "1D", "data": [{ "o": "51140.500000" }] }}
+=2 { "id": -1, "method": "subscribe", "code": 0, "result": { "instrument_name": "ETH_USDT", "subscription": "candlestick.1h.ETH_USDT", "channel": "candlestick", "interval": "1h", "data": [{ "o": "51140.500000" }] }}

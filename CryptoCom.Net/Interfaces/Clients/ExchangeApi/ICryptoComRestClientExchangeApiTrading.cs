@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using CryptoExchange.Net.Objects;
 using CryptoCom.Net.Objects.Models;
-using System.Drawing;
 using System;
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects;

@@ -3,7 +3,6 @@ using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +15,9 @@ using CryptoExchange.Net.SharedApis;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing;
 using CryptoExchange.Net.Objects.Errors;
+using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
+using CryptoCom.Net.Clients.MessageHandlers;
+using System.Net.Http.Headers;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -28,6 +30,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
+        protected override IRestMessageHandler MessageHandler { get; } = new CryptoComRestMessageHandler(CryptoComErrors.Errors);
         #endregion
 
         #region Api clients
@@ -115,22 +118,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return result.AsError<T>(new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
 
             return result.As(result.Data.Result);
-        }
-
-        protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
-        {
-            if (!accessor.IsValid)
-                return new ServerError(ErrorInfo.Unknown, exception: exception);
-
-            var code = accessor.GetValue<int?>(MessagePath.Get().Property("code"));
-            var msg = accessor.GetValue<string>(MessagePath.Get().Property("message"));
-            if (msg == null)
-                return new ServerError(ErrorInfo.Unknown, exception: exception);
-
-            if (code == null)
-                return new ServerError(ErrorInfo.Unknown with { Message = msg }, exception);
-
-            return new ServerError(code.Value, GetErrorInfo(code.Value, msg), exception);
         }
 
         /// <inheritdoc />

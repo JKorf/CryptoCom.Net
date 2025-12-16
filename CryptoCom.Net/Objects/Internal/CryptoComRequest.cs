@@ -1,7 +1,4 @@
 ﻿using CryptoExchange.Net.Objects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Objects.Internal

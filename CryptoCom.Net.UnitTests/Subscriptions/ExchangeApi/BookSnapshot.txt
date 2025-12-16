@@ -9,7 +9,7 @@
     "instrument_name": "ETH_USDT",
     "subscription": "book.ETH_USDT.10",
     "channel": "book",
-    "depth": 50,
+    "depth": 10,
     "data": [{
       "asks": [
         ["50126.000000", "0.400000", "0"],

@@ -1,6 +1,6 @@
-using CryptoExchange.Net.Interfaces;
 using CryptoCom.Net.Clients;
 using CryptoCom.Net.Interfaces.Clients;
+using CryptoExchange.Net.Interfaces.Clients;
 
 namespace CryptoExchange.Net.Interfaces
 {

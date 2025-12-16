@@ -4,8 +4,6 @@ using CryptoExchange.Net.RateLimiting.Guards;
 using CryptoExchange.Net.RateLimiting.Interfaces;
 using CryptoExchange.Net.RateLimiting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net;
 using System.Text.Json.Serialization;

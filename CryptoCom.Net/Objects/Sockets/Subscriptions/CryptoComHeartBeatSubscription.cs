@@ -1,14 +1,10 @@
-using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.Sockets;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using CryptoCom.Net.Objects.Models;
 using CryptoExchange.Net;
-using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoCom.Net.Objects.Internal;
+using CryptoExchange.Net.Sockets.Default;
 
 namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 {
@@ -18,16 +14,17 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         public CryptoComHeartBeatSubscription(ILogger logger) : base(logger, false)
         {
             MessageMatcher = MessageMatcher.Create<CryptoComResponse>("public/heartbeat", DoHandleMessage);
+            MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse>("public/heartbeat", DoHandleMessage);
         }
 
-        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<CryptoComResponse> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse message)
         {
-            connection.Send(ExchangeHelpers.NextId(), new CryptoComRequest
+            _ = connection.SendAsync(ExchangeHelpers.NextId(), new CryptoComRequest
             {
-                Id = message.Data.Id,
+                Id = message.Id,
                 Method = "public/respond-heartbeat"
             }, 1);
-            return message.ToCallResult();
+            return CallResult.SuccessResult;
         }
     }
 }

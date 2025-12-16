@@ -1,5 +1,4 @@
 using CryptoExchange.Net.Objects;
-using CryptoCom.Net.Clients.ExchangeApi;
 using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
 using System.Collections.Generic;
 using System.Net.Http;

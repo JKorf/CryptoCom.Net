@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using CryptoExchange.Net.Objects;
 using CryptoCom.Net.Objects.Models;
 using System;
-using CryptoCom.Net.Enums;
 
 namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 {
