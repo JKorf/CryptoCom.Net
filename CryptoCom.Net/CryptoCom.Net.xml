@@ -6421,7 +6421,7 @@
         <member name="T:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String[],System.String[],System.Action{System.DateTime,System.String,System.Int32,CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String,System.String[],System.String[],System.Action{System.DateTime,System.String,System.Int32,CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}},System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             ctor
             </summary>

@@ -24,7 +24,16 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public CryptoComSubscription(ILogger logger, SocketApiClient client, string topic, string[]? filters, string[]? symbols, Action<DateTime, string?, int, CryptoComSubscriptionEvent<T>> handler, bool auth, Dictionary<string, object>? parameters = null) : base(logger, auth)
+        public CryptoComSubscription(
+            ILogger logger, 
+            SocketApiClient client,
+            string topic,
+            string? additionalUpdateTopic,
+            string[]? filters, 
+            string[]? symbols,
+            Action<DateTime, string?, int, CryptoComSubscriptionEvent<T>> handler,
+            bool auth,
+            Dictionary<string, object>? parameters = null) : base(logger, auth)
         {
             _client = client;
             _handler = handler;
@@ -35,7 +44,9 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             IndividualSubscriptionCount = symbols?.Length ?? 1;
 
             MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
-            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topic, filters, DoHandleRouteMessage);
+
+            string[] topics = additionalUpdateTopic == null ? [topic] : [additionalUpdateTopic, topic];
+            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topics, filters, DoHandleRouteMessage);
         }
 
         /// <inheritdoc />
