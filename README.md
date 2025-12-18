@@ -143,6 +143,9 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 3.0.2 - 18 Dec 2025
+    * Fixed Shared API Spot Ticker updates not calling callback
+
 * Version 3.0.1 - 16 Dec 2025
     * Fixed socketClient.ExchangeApi.SubscribeToOrderUpdatesAsync subscription not recognizing messages
 
