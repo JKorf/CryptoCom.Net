@@ -125,6 +125,11 @@ namespace CryptoCom.Net.Enums
         /// </summary>
         [Map("FIAT_WITHDRAWAL_CANCEL")]
         FiatWithdrawalCancel,
+        /// <summary>
+        /// Soft stake reward
+        /// </summary>
+        [Map("SOFT_STAKE_REWARD")]
+        SoftStakeReward
     }
 
 }

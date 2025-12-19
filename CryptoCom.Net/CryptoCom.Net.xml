@@ -2917,6 +2917,11 @@
             Fiat withdrawal cancel
             </summary>
         </member>
+        <member name="F:CryptoCom.Net.Enums.TransactionType.SoftStakeReward">
+            <summary>
+            Soft stake reward
+            </summary>
+        </member>
         <member name="T:CryptoCom.Net.Enums.UnstakeStatus">
             <summary>
             Unstake status
