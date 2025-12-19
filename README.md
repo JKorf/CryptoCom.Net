@@ -143,6 +143,11 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 3.0.3 - 19 Dec 2025
+    * Added missing value TransactionType enum
+    * Fixed first first trade update not getting marked as snapshot
+    * Updated CryptoExchange.Net to 10.0.2 to fix parameter serialization error
+
 * Version 3.0.2 - 18 Dec 2025
     * Fixed Shared API Spot Ticker updates not calling callback
 
