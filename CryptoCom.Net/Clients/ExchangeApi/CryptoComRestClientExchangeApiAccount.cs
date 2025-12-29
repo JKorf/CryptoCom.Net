@@ -8,6 +8,7 @@ using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoCom.Net.Objects.Models;
 using System;
 using CryptoCom.Net.Enums;
+using System.Globalization;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
