@@ -120,8 +120,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
             parameters.AddOptionalEnum("journal_type", transactionType);
-            parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime)?.ToString(CultureInfo.InvariantCulture));
-            parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime)?.ToString(CultureInfo.InvariantCulture));
+            parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
+            parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-transactions", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComTransactionWrapper>(request, parameters, ct).ConfigureAwait(false);
