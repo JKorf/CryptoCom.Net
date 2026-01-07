@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
+using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoCom.Net.Objects.Models;
 using System;
 using CryptoCom.Net.Enums;
+using System.Globalization;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -118,8 +120,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
             parameters.AddOptionalEnum("journal_type", transactionType);
-            parameters.AddOptionalMillisecondsString("start_time", startTime);
-            parameters.AddOptionalMillisecondsString("end_time", endTime);
+            parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
+            parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-transactions", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComTransactionWrapper>(request, parameters, ct).ConfigureAwait(false);
