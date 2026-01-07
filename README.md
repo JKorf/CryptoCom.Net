@@ -143,6 +143,12 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 3.1.0 - 07 Jan 2026
+    * Updated CryptoExchange.Net version to 10.1.0, see https://github.com/JKorf/CryptoExchange.Net/releases/ for full release notes
+    * Added DataTimeLocal and DataAge properties to DataEvent object
+    * Added UpdateServerTime, UpdateLocalTime and DataAge properties to (I)SymbolOrderBook
+    * Updated GetTransactionHistory to send time as nanoseconds
+
 * Version 3.0.3 - 19 Dec 2025
     * Added missing value TransactionType enum
     * Fixed first first trade update not getting marked as snapshot
