@@ -48,7 +48,7 @@ namespace CryptoCom.Net.Objects.Models
         /// Book update time
         /// </summary>
         [JsonPropertyName("tt")]
-        public DateTime UpdateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
         /// <summary>
         /// Sequence number
         /// </summary>

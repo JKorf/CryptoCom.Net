@@ -83,12 +83,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.UpdateTime!.Value);
+
                 onMessage(
-                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Snapshot)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.First().UpdateTime)
+                        .WithDataTimestamp(item.UpdateTime, GetTimeOffset())
                     );
             });
 
@@ -106,12 +109,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                var timestamp = item.UpdateTime ?? item.Update!.UpdateTime;
+                UpdateTimeOffset(timestamp!.Value);
+
                 onMessage(
-                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, data.Data.First().Update ?? data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, item.Update ?? item, receiveTime, originalData)
                         .WithUpdateType(data.Channel.Equals("book.update", StringComparison.Ordinal) ? SocketUpdateType.Update : SocketUpdateType.Snapshot)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.First().UpdateTime)
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -130,12 +137,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComTicker[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComTicker>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComTicker>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -152,12 +162,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var timestamp = data.Data.Max(x => x.Timestamp);
+                if (invocations != 0)
+                    UpdateTimeOffset(timestamp);
+
                 onMessage(
                     new DataEvent<CryptoComTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 0 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -196,12 +210,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -218,12 +235,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -240,12 +260,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -258,12 +281,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -280,12 +306,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -302,12 +331,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
+                var item = data.Data.First();
+                UpdateTimeOffset(item.Timestamp);
+
                 onMessage(
-                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, data.Data.First(), receiveTime, originalData)
+                    new DataEvent<CryptoComValuation>(CryptoComExchange.ExchangeName, item, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Max(x => x.Timestamp))
+                        .WithDataTimestamp(item.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -324,12 +356,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrder[]>>((receiveTime, originalData, invocations, data) =>
             {
+                DateTime? timestamp = data.Data.Any() ? data.Data.Max(x => x.UpdateTime) : null;
+                if (invocations != 1 && timestamp != null)
+                    UpdateTimeOffset(timestamp.Value);
+
                 onMessage(
                     new DataEvent<CryptoComOrder[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Any() ? data.Data.Max(x => x.UpdateTime) : null)
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -342,12 +378,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrder[]>>((receiveTime, originalData, invocations, data) =>
             {
+                DateTime? timestamp = data.Data.Any() ? data.Data.Max(x => x.UpdateTime) : null;
+                if (invocations != 1 && timestamp != null)
+                    UpdateTimeOffset(timestamp.Value);
+
                 onMessage(
                     new DataEvent<CryptoComOrder[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Any() ? data.Data.Max(x => x.UpdateTime) : null)
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -365,12 +405,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComUserTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
+                DateTime? timestamp = data.Data.Any() ? data.Data.Max(x => x.CreateTime) : null;
+                if (timestamp != null)
+                    UpdateTimeOffset(timestamp.Value);
+
                 onMessage(
                     new DataEvent<CryptoComUserTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Any() ? data.Data.Max(x => x.CreateTime) : null)
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -383,12 +427,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComUserTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
+                DateTime? timestamp = data.Data.Any() ? data.Data.Max(x => x.CreateTime) : null;
+                if (timestamp != null)
+                    UpdateTimeOffset(timestamp.Value);
+
                 onMessage(
                     new DataEvent<CryptoComUserTrade[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Any() ? data.Data.Max(x => x.CreateTime) : null)
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -418,12 +466,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComPosition[]>>((receiveTime, originalData, invocations, data) =>
             {
+                DateTime? timestamp = data.Data.Any() ? data.Data.Max(x => x.UpdateTime) : null;
+                if (invocations != 1 && timestamp != null)
+                    UpdateTimeOffset(timestamp.Value);
+
                 onMessage(
                     new DataEvent<CryptoComPosition[]>(CryptoComExchange.ExchangeName, data.Data, receiveTime, originalData)
                         .WithUpdateType(invocations == 1 ? SocketUpdateType.Snapshot : SocketUpdateType.Update)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
-                        .WithDataTimestamp(data.Data.Any() ? data.Data.Max(x => x.UpdateTime) : null)
+                        .WithDataTimestamp(timestamp, GetTimeOffset())
                     );
             });
 
@@ -717,21 +769,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var subscription = message.GetValue<string>(_subscriptionPath);
             return subscription;
-        }
-
-        /// <inheritdoc />
-        protected override Task<Query?> GetAuthenticationRequestAsync(SocketConnection connection)
-        {
-            var authProvider = (CryptoComAuthenticationProvider)AuthenticationProvider!;
-            var request = new CryptoComRequest
-            {
-                Id = ExchangeHelpers.NextId(),
-                ApiKey = authProvider.ApiKey,
-                Method = "public/auth"
-            };
-
-            authProvider.AuthenticateRequest(null, request);
-            return Task.FromResult<Query?>(new CryptoComQuery<object>(this, request, false, 1));
         }
 
         /// <inheritdoc />

@@ -126,12 +126,6 @@
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.GetServerTimestampAsync">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.GetTimeSyncInfo">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.GetTimeOffset">
-            <inheritdoc />
-        </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
             <inheritdoc />
         </member>
@@ -431,9 +425,6 @@
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.Default.SocketConnection)">
             <inheritdoc />
         </member>
         <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SharedClient">
@@ -6437,7 +6428,7 @@
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.Default.SocketConnection)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.HandleSubQueryResponse(System.Object)">
+        <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.HandleSubQueryResponse(CryptoExchange.Net.Sockets.Default.SocketConnection,System.Object)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Objects.Sockets.Subscriptions.CryptoComSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.Default.SocketConnection,System.DateTime,System.String,CryptoCom.Net.Objects.Internal.CryptoComResponse{CryptoCom.Net.Objects.Internal.CryptoComSubscriptionEvent{`0}})">

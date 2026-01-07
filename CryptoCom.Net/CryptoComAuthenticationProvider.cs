@@ -1,3 +1,12 @@
+using CryptoCom.Net.Objects.Internal;
+using CryptoCom.Net.Objects.Sockets;
+using CryptoExchange.Net;
+using CryptoExchange.Net.Authentication;
+using CryptoExchange.Net.Clients;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Objects;
+using CryptoExchange.Net.Sockets;
+using CryptoExchange.Net.Sockets.Default;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -6,11 +15,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using CryptoCom.Net.Objects.Internal;
-using CryptoExchange.Net.Authentication;
-using CryptoExchange.Net.Clients;
-using CryptoExchange.Net.Converters.SystemTextJson;
-using CryptoExchange.Net.Objects;
 
 namespace CryptoCom.Net
 {
@@ -30,12 +34,29 @@ namespace CryptoCom.Net
             AuthenticateRequest(apiClient, ccRequest);
         }
 
-        public void AuthenticateRequest(RestApiClient? client, CryptoComRequest request)
+        public override Query? GetAuthenticationQuery(SocketApiClient apiClient, SocketConnection connection, Dictionary<string, object?>? context = null)
+        {
+            var request = new CryptoComRequest
+            {
+                Id = ExchangeHelpers.NextId(),
+                ApiKey = ApiKey,
+                Method = "public/auth"
+            };
+
+            AuthenticateRequest(apiClient, request);
+            return new CryptoComQuery<object>(apiClient, request, false, 1);
+        }
+
+        public void AuthenticateRequest(BaseApiClient? client, CryptoComRequest request)
         {
             var paramString = ToParamString(request.Parameters);
-            var nonce = DateTimeConverter.ConvertToMilliseconds(client != null ? GetTimestamp(client) : DateTime.UtcNow);
-            var signString = $"{request.Method}{request.Id}{ApiKey}{paramString}{nonce}";
+            long nonce = 0;
+            if (client is RestApiClient restClient)
+                nonce = DateTimeConverter.ConvertToMilliseconds(GetTimestamp(restClient)).Value;
+            else if(client is SocketApiClient socketClient)
+                nonce = DateTimeConverter.ConvertToMilliseconds(GetTimestamp(socketClient)).Value;
 
+            var signString = $"{request.Method}{request.Id}{ApiKey}{paramString}{nonce}";
             var sign = SignHMACSHA256(signString, SignOutputType.Hex).ToLowerInvariant();
             request.Nonce = nonce;
             request.ApiKey = ApiKey;

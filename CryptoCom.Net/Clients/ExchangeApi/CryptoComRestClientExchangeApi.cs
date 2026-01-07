@@ -25,8 +25,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
     internal partial class CryptoComRestClientExchangeApi : RestApiClient, ICryptoComRestClientExchangeApi
     {
         #region fields 
-        internal static TimeSyncState _timeSyncState = new TimeSyncState("Exchange Api");
-
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
@@ -123,14 +121,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <inheritdoc />
         protected override Task<WebCallResult<DateTime>> GetServerTimestampAsync()
             => ExchangeData.GetServerTimeAsync();
-
-        /// <inheritdoc />
-        public override TimeSyncInfo? GetTimeSyncInfo()
-            => new TimeSyncInfo(_logger, ApiOptions.AutoTimestamp ?? ClientOptions.AutoTimestamp, ApiOptions.TimestampRecalculationInterval ?? ClientOptions.TimestampRecalculationInterval, _timeSyncState);
-
-        /// <inheritdoc />
-        public override TimeSpan? GetTimeOffset()
-            => _timeSyncState.TimeOffset;
 
         /// <inheritdoc />
         public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverTime = null)

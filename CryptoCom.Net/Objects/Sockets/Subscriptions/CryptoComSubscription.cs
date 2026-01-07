@@ -91,7 +91,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override void HandleSubQueryResponse(object? message)
+        public override void HandleSubQueryResponse(SocketConnection connection, object? message)
         {
             var data = (CryptoComResponse<CryptoComSubscriptionEvent<T>>?)message;
 
