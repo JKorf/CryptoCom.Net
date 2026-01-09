@@ -113,8 +113,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 var timestamp = item.UpdateTime ?? item.Update!.UpdateTime;
                 UpdateTimeOffset(timestamp!.Value);
 
+                var seq = item.SequenceNumber != 0 ? item.SequenceNumber : item.Update!.SequenceNumber;
+                var prevSeq = item.PreviousSequenceNumber ?? item.Update?.PreviousSequenceNumber;
+
+                var update = item.Update ?? item;
+                update.SequenceNumber = seq;
+                update.PreviousSequenceNumber = prevSeq;
+
                 onMessage(
-                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, item.Update ?? item, receiveTime, originalData)
+                    new DataEvent<CryptoComOrderBookUpdate>(CryptoComExchange.ExchangeName, update, receiveTime, originalData)
                         .WithUpdateType(data.Channel.Equals("book.update", StringComparison.Ordinal) ? SocketUpdateType.Update : SocketUpdateType.Snapshot)
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
