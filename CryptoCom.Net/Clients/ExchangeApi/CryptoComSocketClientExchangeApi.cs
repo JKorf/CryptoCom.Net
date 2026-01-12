@@ -92,6 +92,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
                         .WithDataTimestamp(item.UpdateTime, GetTimeOffset())
+                        .WithSequenceNumber(item.SequenceNumber)
                     );
             });
 
@@ -126,6 +127,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                         .WithStreamId(data.Subscription)
                         .WithSymbol(data.Symbol)
                         .WithDataTimestamp(timestamp, GetTimeOffset())
+                        .WithSequenceNumber(item.SequenceNumber)
                     );
             });
 
@@ -580,7 +582,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptionalString("notional", quoteQuantity);
             request.Parameters.AddOptionalString("price", price);
             request.Parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
-            request.Parameters.AddOptional("exec_inst", execInsts);
+            request.Parameters.AddOptional("exec_inst", execInsts.ToArray());
             request.Parameters.AddOptionalEnum("time_in_force", timeInForce);
             request.Parameters.AddOptionalString("ref_price", triggerPrice);
             request.Parameters.AddOptionalEnum("ref_price_type", triggerPriceType);
