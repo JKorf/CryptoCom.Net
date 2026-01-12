@@ -32,6 +32,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("order_id")]
         public string OrderId { get; set; } = string.Empty;
         /// <summary>
+        /// Isolation id
+        /// </summary>
+        [JsonPropertyName("isolation_id")]
+        public string? IsolationId { get; set; }
+        /// <summary>
         /// Client order id
         /// </summary>
         [JsonPropertyName("client_oid")]

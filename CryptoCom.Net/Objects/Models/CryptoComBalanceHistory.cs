@@ -38,6 +38,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("c")]
         public decimal Balance { get; set; }
+        /// <summary>
+        /// Isolated position balance
+        /// </summary>
+        [JsonPropertyName("i")]
+        public decimal IsolatedBalance { get; set; }
     }
 
 

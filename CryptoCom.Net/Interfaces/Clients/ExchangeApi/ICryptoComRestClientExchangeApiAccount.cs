@@ -72,11 +72,19 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="transactionType">Filter by transaction type</param>
+        /// <param name="isolationId">Filter by isolation id</param>
         /// <param name="startTime">Filter by start time</param>
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(string? symbol = null, TransactionType? transactionType = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(
+            string? symbol = null,
+            TransactionType? transactionType = null,
+            string? isolationId = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
+            int? limit = null,
+            CancellationToken ct = default);
 
         /// <summary>
         /// Get user fee rates
@@ -147,5 +155,23 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComWithdrawal[]>> GetWithdrawalHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, WithdrawalStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
+        /// <summary>
+        /// Create transfer from or to an isolated position
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-isolated-margin-transfer" /></para>
+        /// </summary>
+        /// <param name="isolationId">Isolated position id</param>
+        /// <param name="direction">Direction</param>
+        /// <param name="quantity">Quantity to transfer</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult> CreateIsolatedMarginTransferAsync(string isolationId, TransferDirection direction, decimal quantity, CancellationToken ct = default);
+
+        /// <summary>
+        /// Set leverage for isolated margin position
+        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-isolated-margin-leverage" /></para>
+        /// </summary>
+        /// <param name="isolationId">Isolated position id</param>
+        /// <param name="leverage">Leverage</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<WebCallResult> SetIsolatedMarginLeverageAsync(string isolationId, int leverage, CancellationToken ct = default);
     }
 }

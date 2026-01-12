@@ -42,8 +42,33 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="selfTradePreventionMode">Mode for self trade prevention</param>
         /// <param name="selfTradePreventionId">Id for self trade prevention</param>
         /// <param name="smartPostOnly">Smart post only order</param>
+        /// <param name="isolatedMargin">Isolated margin or not</param>
+        /// <param name="isolationId">If isolationId is not specified then the order will create a new isolated position. If isolationId is specified then the order will be created for the specified existing isolated position</param>
+        /// <param name="leverage">The maximum leverage to be used for the isolated position</param>
+        /// <param name="isolatedMarginQuantity">Amount needed to transfer to the isolated position - must a be positive number. If it is not given, the transfer amount will be calculated by the leverage of the isolated position</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, bool? smartPostOnly = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(
+            string symbol, 
+            OrderSide side,
+            OrderType type,
+            decimal? quantity = null, 
+            decimal? quoteQuantity = null,
+            decimal? price = null, 
+            string? clientOrderId = null,
+            bool? postOnly = null, 
+            TimeInForce? timeInForce = null,
+            decimal? triggerPrice = null,
+            PriceType? triggerPriceType = null,
+            bool? margin = null,
+            SelfTradePreventionScope? selfTradePreventionScope = null,
+            SelfTradePreventionMode? selfTradePreventionMode = null,
+            string? selfTradePreventionId = null,
+            bool? smartPostOnly = null,
+            bool? isolatedMargin = null,
+            string? isolationId = null,
+            int? leverage = null,
+            decimal? isolatedMarginQuantity = null,
+            CancellationToken ct = default);
 
         /// <summary>
         /// Cancel an order by id
@@ -70,8 +95,9 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="orderType">Type of order to use</param>
         /// <param name="price">Price for limit order</param>
+        /// <param name="isolationId">Isolated position id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default);
         
         /// <summary>
         /// Get user open orders
@@ -95,22 +121,36 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /></para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
+        /// <param name="isolationId">Filter by isolation id</param>
         /// <param name="startTime">Filter by start time</param>
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(
+            string? symbol = null,
+            string? isolationId = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
+            int? limit = null,
+            CancellationToken ct = default);
 
         /// <summary>
         /// Get user trade history
         /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /></para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
+        /// <param name="isolationId">Filter by isolation id</param>
         /// <param name="startTime">Filter by start time</param>
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(
+            string? symbol = null,
+            string? isolationId = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null, 
+            int? limit = null, 
+            CancellationToken ct = default);
 
         /// <summary>
         /// Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.

@@ -101,6 +101,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("used_position_limit")]
         public decimal UsedPositionLimit { get; set; }
         /// <summary>
+        /// Total isolated cash balance
+        /// </summary>
+        [JsonPropertyName("total_isolated_cash_balance ")]
+        public decimal TotalIsolatedCashBalance { get; set; }
+        /// <summary>
         /// Position balances
         /// </summary>
         [JsonPropertyName("position_balances")]

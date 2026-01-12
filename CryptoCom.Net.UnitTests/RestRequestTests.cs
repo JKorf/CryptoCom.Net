@@ -35,6 +35,8 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetDepositAddressesAsync("123"), "GetDepositAddresses", nestedJsonProperty: "result.deposit_address_list");
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetDepositHistoryAsync(), "GetDepositHistory", nestedJsonProperty: "result.deposit_list");
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetWithdrawalHistoryAsync(), "GetWithdrawalHistory", nestedJsonProperty: "result.withdrawal_list");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.CreateIsolatedMarginTransferAsync("123", TransferDirection.Debit, 1), "CreateIsolatedMarginTransfer");
+            await tester.ValidateAsync(client => client.ExchangeApi.Account.SetIsolatedMarginLeverageAsync("123", 1), "SetIsolatedMarginLeverage");
         }
 
         [Test]

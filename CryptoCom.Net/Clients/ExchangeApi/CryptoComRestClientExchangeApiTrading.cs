@@ -63,6 +63,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             SelfTradePreventionMode? selfTradePreventionMode = null,
             string? selfTradePreventionId = null,
             bool? smartPostOnly = null,
+            bool? isolatedMargin = null,
+            string? isolationId = null,
+            int? leverage = null,
+            decimal? isolatedMarginQuantity = null,
             CancellationToken ct = default)
         {
             if (postOnly == true && smartPostOnly == true)
@@ -71,6 +75,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             var execInsts = new List<string>();
             if (postOnly == true) execInsts.Add("POST_ONLY");
             if (smartPostOnly == true) execInsts.Add("SMART_POST_ONLY");
+            if (isolatedMargin == true) execInsts.Add("ISOLATED_MARGIN");
 
             var parameters = new ParameterCollection();
             parameters.Add("instrument_name", symbol);
@@ -88,6 +93,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             parameters.AddOptionalEnum("stp_scope", selfTradePreventionScope);
             parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
             parameters.AddOptional("stp_id", selfTradePreventionId);
+            parameters.AddOptional("isolation_id", isolationId);
+            parameters.AddOptionalString("leverage", leverage);
+            parameters.AddOptionalString("isolated_margin_amount", isolatedMarginQuantity);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
@@ -145,12 +153,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Close Position
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("instrument_name", symbol);
             parameters.AddEnum("type", orderType);
             parameters.AddOptionalString("price", price);
+            parameters.AddOptional("isolation_id", isolationId);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "private/close-position", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
@@ -190,10 +199,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Closed Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(
+            string? symbol = null,
+            string? isolationId = null,
+            DateTime? startTime = null, 
+            DateTime? endTime = null, 
+            int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
+            parameters.AddOptional("isolation_id", isolationId);
             parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
             parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
             parameters.AddOptional("limit", limit);
@@ -207,10 +222,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get User Trades
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(
+            string? symbol = null,
+            string? isolationId = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
+            int? limit = null,
+            CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
+            parameters.AddOptional("isolation_id", isolationId);
             parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
             parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
             parameters.AddOptional("limit", limit);

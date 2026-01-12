@@ -350,8 +350,32 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="selfTradePreventionScope">Scope for self trade prevention</param>
         /// <param name="selfTradePreventionMode">Mode for self trade prevention</param>
         /// <param name="selfTradePreventionId">Id for self trade prevention</param>
+        /// <param name="isolatedMargin">Isolated margin or not</param>
+        /// <param name="isolationId">If isolationId is not specified then the order will create a new isolated position. If isolationId is specified then the order will be created for the specified existing isolated position</param>
+        /// <param name="leverage">The maximum leverage to be used for the isolated position</param>
+        /// <param name="isolatedMarginQuantity">Amount needed to transfer to the isolated position - must a be positive number. If it is not given, the transfer amount will be calculated by the leverage of the isolated position</param>
         /// <param name="ct">Cancellation token</param>
-        Task<CallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, CancellationToken ct = default);
+        Task<CallResult<CryptoComOrderId>> PlaceOrderAsync(
+            string symbol,
+            OrderSide side,
+            OrderType type,
+            decimal? quantity = null,
+            decimal? quoteQuantity = null,
+            decimal? price = null,
+            string? clientOrderId = null, 
+            bool? postOnly = null, 
+            TimeInForce? timeInForce = null,
+            decimal? triggerPrice = null,
+            PriceType? triggerPriceType = null, 
+            bool? margin = null,
+            SelfTradePreventionScope? selfTradePreventionScope = null,
+            SelfTradePreventionMode? selfTradePreventionMode = null,
+            string? selfTradePreventionId = null,
+            bool? isolatedMargin = null,
+            string? isolationId = null,
+            int? leverage = null,
+            decimal? isolatedMarginQuantity = null,
+            CancellationToken ct = default);
         
         /// <summary>
         /// Cancel an order by id
@@ -378,8 +402,9 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="orderType">Type of order to use</param>
         /// <param name="price">Price for limit order</param>
+        /// <param name="isolationId">Isolated position id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<CallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, CancellationToken ct = default);
+        Task<CallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user open orders

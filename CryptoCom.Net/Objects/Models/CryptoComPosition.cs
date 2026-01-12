@@ -27,6 +27,26 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("account_id")]
         public string AccountId { get; set; } = string.Empty;
         /// <summary>
+        /// Id of isolated position
+        /// </summary>
+        [JsonPropertyName("isolation_id")]
+        public string? IsolationId { get; set; }
+        /// <summary>
+        /// Isolated position max leverage
+        /// </summary>
+        [JsonPropertyName("leverage")]
+        public int? Leverage { get; set; }
+        /// <summary>
+        /// Isolated position liquidation price
+        /// </summary>
+        [JsonPropertyName("liquidation_price")]
+        public decimal LiquidationPrice { get; set; }
+        /// <summary>
+        /// Isolated position margin balance
+        /// </summary>
+        [JsonPropertyName("isolated_margin_balance")]
+        public decimal IsolatedMarginBalance { get; set; }
+        /// <summary>
         /// Position size
         /// </summary>
         [JsonPropertyName("quantity")]

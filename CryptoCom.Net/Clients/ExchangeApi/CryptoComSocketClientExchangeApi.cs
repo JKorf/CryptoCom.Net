@@ -540,8 +540,32 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComOrderId>> PlaceOrderAsync(string symbol, OrderSide side, OrderType type, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, bool? postOnly = null, TimeInForce? timeInForce = null, decimal? triggerPrice = null, PriceType? triggerPriceType = null, bool? margin = null, SelfTradePreventionScope? selfTradePreventionScope = null, SelfTradePreventionMode? selfTradePreventionMode = null, string? selfTradePreventionId = null, CancellationToken ct = default)
+        public async Task<CallResult<CryptoComOrderId>> PlaceOrderAsync(
+            string symbol,
+            OrderSide side,
+            OrderType type,
+            decimal? quantity = null, 
+            decimal? quoteQuantity = null, 
+            decimal? price = null, 
+            string? clientOrderId = null,
+            bool? postOnly = null,
+            TimeInForce? timeInForce = null,
+            decimal? triggerPrice = null,
+            PriceType? triggerPriceType = null, 
+            bool? margin = null, 
+            SelfTradePreventionScope? selfTradePreventionScope = null, 
+            SelfTradePreventionMode? selfTradePreventionMode = null,
+            string? selfTradePreventionId = null,
+            bool? isolatedMargin = null,
+            string? isolationId = null,
+            int? leverage = null,
+            decimal? isolatedMarginQuantity = null,
+            CancellationToken ct = default)
         {
+            var execInsts = new List<string>();
+            if (postOnly == true) execInsts.Add("POST_ONLY");
+            if (isolatedMargin == true) execInsts.Add("ISOLATED_MARGIN");
+
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
@@ -556,7 +580,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptionalString("notional", quoteQuantity);
             request.Parameters.AddOptionalString("price", price);
             request.Parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
-            request.Parameters.AddOptional("exec_inst", postOnly == true ? new[] { "POST_ONLY" } : null);
+            request.Parameters.AddOptional("exec_inst", execInsts);
             request.Parameters.AddOptionalEnum("time_in_force", timeInForce);
             request.Parameters.AddOptionalString("ref_price", triggerPrice);
             request.Parameters.AddOptionalEnum("ref_price_type", triggerPriceType);
@@ -564,6 +588,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.AddOptionalEnum("stp_scope", selfTradePreventionScope);
             request.Parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
             request.Parameters.AddOptional("stp_id", selfTradePreventionId);
+            request.Parameters.AddOptional("isolation_id", isolationId);
+            request.Parameters.AddOptionalString("leverage", leverage);
+            request.Parameters.AddOptionalString("isolated_margin_amount", isolatedMarginQuantity);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOrderId>(result.Data?.Result);
@@ -602,7 +629,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, CancellationToken ct = default)
+        public async Task<CallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
@@ -613,6 +640,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("instrument_name", symbol);
             request.Parameters.AddEnum("type", orderType);
             request.Parameters.AddOptionalString("price", price);
+            request.Parameters.AddOptional("isolation_id", isolationId);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
             return result.As<CryptoComOrderId>(result.Data?.Result);
