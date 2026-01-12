@@ -1,0 +1,8 @@
+POST
+/exchange/v1/private/create-isolated-margin-transfer
+true
+{
+  "id": 11,
+  "method": "private/create-isolated-margin-transfer",
+  "code": 0
+}

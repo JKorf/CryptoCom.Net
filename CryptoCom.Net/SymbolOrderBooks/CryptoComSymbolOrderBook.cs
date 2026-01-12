@@ -54,7 +54,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
             Initialize(options);
 
             _strictLevels = false;
-            _sequencesAreConsecutive = options?.Limit == null;
+            _sequencesAreConsecutive = true;
 
             Levels = options?.Limit;
             _initialDataTimeout = options?.InitialDataTimeout ?? TimeSpan.FromSeconds(30);
@@ -90,9 +90,9 @@ namespace CryptoCom.Net.SymbolOrderBooks
         private void HandleUpdate(DataEvent<CryptoComOrderBookUpdate> data)
         {
             if (data.UpdateType == SocketUpdateType.Snapshot)
-                SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
+                SetSnapshot(data.Data.SequenceNumber, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
             else
-                UpdateOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
+                UpdateOrderBook(data.Data.PreviousSequenceNumber!.Value + 1, data.Data.SequenceNumber, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
         }
 
         /// <inheritdoc />

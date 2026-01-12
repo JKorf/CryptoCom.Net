@@ -24,6 +24,11 @@ namespace CryptoCom.Net.Enums
         /// Smart post only
         /// </summary>
         [Map("SMART_POST_ONLY")]
-        SmartPostOnly
+        SmartPostOnly,
+        /// <summary>
+        /// Isolated margin
+        /// </summary>
+        [Map("ISOLATED_MARGIN")]
+        IsolatedMargin
     }
 }

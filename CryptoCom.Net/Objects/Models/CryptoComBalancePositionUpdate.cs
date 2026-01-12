@@ -23,7 +23,7 @@ namespace CryptoCom.Net.Objects.Models
     }
 
     /// <summary>
-    /// Balanace update
+    /// Balance update
     /// </summary>
     [SerializationModel]
     public record CryptoComBalanceUpdate

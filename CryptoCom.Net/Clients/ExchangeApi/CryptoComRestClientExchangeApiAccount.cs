@@ -115,10 +115,18 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Transaction History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(string? symbol = null, TransactionType? transactionType = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(
+            string? symbol = null,
+            TransactionType? transactionType = null,
+            string? isolationId = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
+            int? limit = null,
+            CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("instrument_name", symbol);
+            parameters.AddOptional("isolation_id", isolationId);
             parameters.AddOptionalEnum("journal_type", transactionType);
             parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
             parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
@@ -241,5 +249,35 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #endregion
 
+        #region Create Isolated Margin Transfer
+
+        /// <inheritdoc />
+        public async Task<WebCallResult> CreateIsolatedMarginTransferAsync(string isolationId, TransferDirection direction, decimal quantity, CancellationToken ct = default)
+        {
+            var parameters = new ParameterCollection();
+            parameters.Add("isolation_id", isolationId);
+            parameters.AddString("amount", quantity);
+            parameters.AddEnum("direction", direction);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-isolated-margin-transfer", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
+            return result;
+        }
+
+        #endregion
+
+        #region Create Isolated Margin Transfer
+
+        /// <inheritdoc />
+        public async Task<WebCallResult> SetIsolatedMarginLeverageAsync(string isolationId, int leverage, CancellationToken ct = default)
+        {
+            var parameters = new ParameterCollection();
+            parameters.Add("isolation_id", isolationId);
+            parameters.Add("leverage", leverage);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/change-isolated-margin-leverage", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
+            return result;
+        }
+
+        #endregion
     }
 }

@@ -27,6 +27,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("account_id")]
         public string AccountId { get; set; } = string.Empty;
         /// <summary>
+        /// Isolation id
+        /// </summary>
+        [JsonPropertyName("isolation_id")]
+        public string? IsolationId { get; set; }
+        /// <summary>
         /// Event date
         /// </summary>
         [JsonPropertyName("event_date")]
