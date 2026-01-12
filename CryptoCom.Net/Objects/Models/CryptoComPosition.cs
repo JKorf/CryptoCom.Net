@@ -40,12 +40,12 @@ namespace CryptoCom.Net.Objects.Models
         /// Isolated position liquidation price
         /// </summary>
         [JsonPropertyName("liquidation_price")]
-        public decimal LiquidationPrice { get; set; }
+        public decimal? LiquidationPrice { get; set; }
         /// <summary>
         /// Isolated position margin balance
         /// </summary>
         [JsonPropertyName("isolated_margin_balance")]
-        public decimal IsolatedMarginBalance { get; set; }
+        public decimal? IsolatedMarginBalance { get; set; }
         /// <summary>
         /// Position size
         /// </summary>
