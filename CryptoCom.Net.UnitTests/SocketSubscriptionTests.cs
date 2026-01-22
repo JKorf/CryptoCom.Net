@@ -17,9 +17,8 @@ namespace CryptoCom.Net.UnitTests
     [TestFixture]
     public class SocketSubscriptionTests
     {
-        [TestCase(false)]
-        [TestCase(true)]
-        public async Task ValidateConcurrentSpotSubscriptions(bool newDeserialization)
+        [Test]
+        public async Task ValidateConcurrentSpotSubscriptions()
         {
             var logger = new LoggerFactory();
             logger.AddProvider(new TraceLoggerProvider());
@@ -28,7 +27,6 @@ namespace CryptoCom.Net.UnitTests
             {
                 OutputOriginalData = true,
                 DelayAfterConnect = TimeSpan.Zero,
-                UseUpdatedDeserialization = newDeserialization
             }), logger);
 
             var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com");
@@ -38,9 +36,8 @@ namespace CryptoCom.Net.UnitTests
                 "Concurrent");
         }
 
-        [TestCase(false)]
-        [TestCase(true)]
-        public async Task ValidateSpotExchangeDataSubscriptions(bool useUpdatedDeserialization)
+        [Test]
+        public async Task ValidateSpotExchangeDataSubscriptions()
         {
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddProvider(new TraceLoggerProvider());
@@ -48,7 +45,6 @@ namespace CryptoCom.Net.UnitTests
             {
                 OutputOriginalData = true,
                 DelayAfterConnect = TimeSpan.Zero,
-                UseUpdatedDeserialization = useUpdatedDeserialization,
                 ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
             }), loggerFactory);
             var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com");

@@ -20,7 +20,6 @@ namespace CryptoCom.Net.Objects.Sockets
             _client = client;
             RequiredResponses = expectedResponses;
 
-            MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
             MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
         }
 

@@ -43,8 +43,6 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 
             IndividualSubscriptionCount = symbols?.Length ?? 1;
 
-            MessageMatcher = MessageMatcher.Create<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(_listenerIdentifiers, DoHandleMessage);
-
             string[] topics = additionalUpdateTopic == null ? [topic] : [additionalUpdateTopic, topic];
             MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topics, filters, DoHandleRouteMessage);
         }

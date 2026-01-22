@@ -15,7 +15,6 @@ namespace CryptoCom.Net.Objects.Sockets
         {
             _client = client;
 
-            MessageMatcher = MessageMatcher.Create<CryptoComResponse<T>>(request.Id.ToString(), HandleMessage);
             MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse<T>>(request.Id.ToString(), HandleMessage);
         }
 

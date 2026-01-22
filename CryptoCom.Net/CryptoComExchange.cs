@@ -18,6 +18,19 @@ namespace CryptoCom.Net
     public static class CryptoComExchange
     {
         /// <summary>
+        /// Platform metadata
+        /// </summary>
+        public static PlatformInfo Metadata { get; } = new PlatformInfo(
+                "CryptoCom",
+                "Crypto.com",
+                "https://raw.githubusercontent.com/JKorf/CryptoCom.Net/master/CryptoCom.Net/Icon/icon.png",
+                "https://www.crypto.com",
+                ["https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction"],
+                PlatformType.CryptoCurrencyExchange,
+                CentralizationType.Centralized
+                );
+
+        /// <summary>
         /// Exchange name
         /// </summary>
         public static string ExchangeName => "CryptoCom";

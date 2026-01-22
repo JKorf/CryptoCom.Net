@@ -36,11 +36,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
     internal partial class CryptoComSocketClientExchangeApi : SocketApiClient, ICryptoComSocketClientExchangeApi
     {
         #region fields
-        private static readonly MessagePath _idPath = MessagePath.Get().Property("id");
-        private static readonly MessagePath _methodPath = MessagePath.Get().Property("method");
-        private static readonly MessagePath _subscriptionPath = MessagePath.Get().Property("result").Property("subscription");
-        private static readonly MessagePath _channelPath = MessagePath.Get().Property("result").Property("channel");
-
         protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
 
         #endregion
@@ -62,8 +57,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #region Subscriptions
 
-        /// <inheritdoc />
-        protected override IByteMessageAccessor CreateAccessor(WebSocketMessageType type) => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));
 
@@ -787,26 +780,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         #endregion
-
-
-        /// <inheritdoc />
-        public override string? GetListenerIdentifier(IMessageAccessor message)
-        {
-            var method = message.GetValue<string>(_methodPath);
-            if (method?.Equals("public/heartbeat") == true)
-                return method;
-
-            var id = message.GetValue<long>(_idPath);
-            if (id >= 0)
-                return id.ToString();
-
-            var channel = message.GetValue<string>(_channelPath);
-            if (channel == "user.order" || channel == "user.trade")
-                return channel;
-
-            var subscription = message.GetValue<string>(_subscriptionPath);
-            return subscription;
-        }
 
         /// <inheritdoc />
         public ICryptoComSocketClientExchangeApiShared SharedClient => this;

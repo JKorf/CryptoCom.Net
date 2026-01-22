@@ -13,7 +13,6 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
     {
         public CryptoComHeartBeatSubscription(ILogger logger) : base(logger, false)
         {
-            MessageMatcher = MessageMatcher.Create<CryptoComResponse>("public/heartbeat", DoHandleMessage);
             MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse>("public/heartbeat", DoHandleMessage);
         }
 

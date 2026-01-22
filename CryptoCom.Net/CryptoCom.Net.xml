@@ -114,9 +114,6 @@
         <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.ExchangeName">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.CreateAccessor">
-            <inheritdoc />
-        </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComRestClientExchangeApi.CreateSerializer">
             <inheritdoc />
         </member>
@@ -310,9 +307,6 @@
             ctor
             </summary>
         </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateAccessor(System.Net.WebSockets.WebSocketMessageType)">
-            <inheritdoc />
-        </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.CreateSerializer">
             <inheritdoc />
         </member>
@@ -428,9 +422,6 @@
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.String,System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
         <member name="P:CryptoCom.Net.Clients.ExchangeApi.CryptoComSocketClientExchangeApi.SharedClient">
@@ -1751,6 +1742,11 @@
         <member name="T:CryptoCom.Net.CryptoComExchange">
             <summary>
             CryptoCom exchange information and configuration
+            </summary>
+        </member>
+        <member name="P:CryptoCom.Net.CryptoComExchange.Metadata">
+            <summary>
+            Platform metadata
             </summary>
         </member>
         <member name="P:CryptoCom.Net.CryptoComExchange.ExchangeName">
