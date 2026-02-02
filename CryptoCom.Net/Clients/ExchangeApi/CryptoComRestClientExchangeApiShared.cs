@@ -1286,6 +1286,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             {
                 UnrealizedPnl = x.SessionPnl,
                 AverageOpenPrice = Math.Abs(x.OpenPosCost),
+                PositionMode = SharedPositionMode.OneWay,
                 PositionSide = x.Quantity < 0 ? SharedPositionSide.Short : SharedPositionSide.Long,
                 UpdateTime = x.UpdateTime                
             }).ToArray());
