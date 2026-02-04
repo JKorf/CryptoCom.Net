@@ -158,7 +158,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (deposits.Data.Count() == pageSize)
                 nextToken = new PageToken(page + 1, pageSize);
 
-            return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Select(x => new SharedDeposit(x.Asset, x.Quantity, x.DepositStatus == Enums.DepositStatus.Arrived, x.CreateTime)
+            return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Select(x => 
+            new SharedDeposit(
+                x.Asset, 
+                x.Quantity,
+                x.DepositStatus == Enums.DepositStatus.Arrived,
+                x.CreateTime,
+                x.DepositStatus == DepositStatus.Arrived ? SharedTransferStatus.Completed
+                : x.DepositStatus == DepositStatus.Failed ? SharedTransferStatus.Failed
+                : SharedTransferStatus.InProgress)
             {
                 Id = x.Id
             }).ToArray(), nextToken);
