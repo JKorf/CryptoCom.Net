@@ -1843,13 +1843,13 @@
         <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateUserSpotDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
+        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,CryptoCom.Net.CryptoComEnvironment)">
             <inheritdoc />
         </member>
         <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateUserFuturesDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig)">
             <inheritdoc />
         </member>
-        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateUserFuturesDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
+        <member name="M:CryptoCom.Net.CryptoComTrackerFactory.CreateUserFuturesDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,CryptoCom.Net.CryptoComEnvironment)">
             <inheritdoc />
         </member>
         <member name="T:CryptoCom.Net.CryptoComUserSpotDataTracker">
@@ -4206,7 +4206,7 @@
             Tracker factory
             </summary>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,CryptoCom.Net.CryptoComEnvironment)">
             <summary>
             Create a new Spot user data tracker
             </summary>
@@ -4221,7 +4221,7 @@
             </summary>
             <param name="config">Configuration</param>
         </member>
-        <member name="M:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory.CreateUserFuturesDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,CryptoCom.Net.CryptoComEnvironment)">
+        <member name="M:CryptoCom.Net.Interfaces.ICryptoComTrackerFactory.CreateUserFuturesDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,CryptoCom.Net.CryptoComEnvironment)">
             <summary>
             Create a new futures user data tracker
             </summary>

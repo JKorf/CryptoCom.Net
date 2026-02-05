@@ -80,7 +80,7 @@ namespace CryptoCom.Net
         }
 
         /// <inheritdoc />
-        public IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig config)
+        public IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig? config = null)
         {
             var restClient = _serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient();
             var socketClient = _serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient();
@@ -94,7 +94,7 @@ namespace CryptoCom.Net
         }
 
         /// <inheritdoc />
-        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, SpotUserDataTrackerConfig config, ApiCredentials credentials, CryptoComEnvironment? environment = null)
+        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<ICryptoComUserClientProvider>() ?? new CryptoComUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
@@ -109,7 +109,7 @@ namespace CryptoCom.Net
         }
 
         /// <inheritdoc />
-        public IUserFuturesDataTracker CreateUserFuturesDataTracker(FuturesUserDataTrackerConfig config)
+        public IUserFuturesDataTracker CreateUserFuturesDataTracker(FuturesUserDataTrackerConfig? config = null)
         {
             var restClient = _serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient();
             var socketClient = _serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient();
@@ -123,7 +123,7 @@ namespace CryptoCom.Net
         }
 
         /// <inheritdoc />
-        public IUserFuturesDataTracker CreateUserFuturesDataTracker(string userIdentifier, FuturesUserDataTrackerConfig config, ApiCredentials credentials, CryptoComEnvironment? environment = null)
+        public IUserFuturesDataTracker CreateUserFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<ICryptoComUserClientProvider>() ?? new CryptoComUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
