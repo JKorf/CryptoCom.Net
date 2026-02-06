@@ -158,7 +158,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (deposits.Data.Count() == pageSize)
                 nextToken = new PageToken(page + 1, pageSize);
 
-            return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Select(x => new SharedDeposit(x.Asset, x.Quantity, x.DepositStatus == Enums.DepositStatus.Arrived, x.CreateTime)
+            return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Select(x => 
+            new SharedDeposit(
+                x.Asset, 
+                x.Quantity,
+                x.DepositStatus == Enums.DepositStatus.Arrived,
+                x.CreateTime,
+                x.DepositStatus == DepositStatus.Arrived ? SharedTransferStatus.Completed
+                : x.DepositStatus == DepositStatus.Failed ? SharedTransferStatus.Failed
+                : SharedTransferStatus.InProgress)
             {
                 Id = x.Id
             }).ToArray(), nextToken);
@@ -380,6 +388,44 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return response;
         }
 
+        async Task<ExchangeResult<SharedSymbol[]>> ISpotSymbolRestClient.GetSpotSymbolsForBaseAssetAsync(string baseAsset)
+        {
+            if (!ExchangeSymbolCache.HasCached(_topicSpotId))
+            {
+                var symbols = await ((ISpotSymbolRestClient)this).GetSpotSymbolsAsync(new GetSymbolsRequest()).ConfigureAwait(false);
+                if (!symbols)
+                    return new ExchangeResult<SharedSymbol[]>(Exchange, symbols.Error!);
+            }
+
+            return new ExchangeResult<SharedSymbol[]>(Exchange, ExchangeSymbolCache.GetSymbolsForBaseAsset(_topicSpotId, baseAsset));
+        }
+
+        async Task<ExchangeResult<bool>> ISpotSymbolRestClient.SupportsSpotSymbolAsync(SharedSymbol symbol)
+        {
+            if (symbol.TradingMode != TradingMode.Spot)
+                throw new ArgumentException(nameof(symbol), "Only Spot symbols allowed");
+
+            if (!ExchangeSymbolCache.HasCached(_topicSpotId))
+            {
+                var symbols = await ((ISpotSymbolRestClient)this).GetSpotSymbolsAsync(new GetSymbolsRequest()).ConfigureAwait(false);
+                if (!symbols)
+                    return new ExchangeResult<bool>(Exchange, symbols.Error!);
+            }
+
+            return new ExchangeResult<bool>(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicSpotId, symbol));
+        }
+
+        async Task<ExchangeResult<bool>> ISpotSymbolRestClient.SupportsSpotSymbolAsync(string symbolName)
+        {
+            if (!ExchangeSymbolCache.HasCached(_topicSpotId))
+            {
+                var symbols = await ((ISpotSymbolRestClient)this).GetSpotSymbolsAsync(new GetSymbolsRequest()).ConfigureAwait(false);
+                if (!symbols)
+                    return new ExchangeResult<bool>(Exchange, symbols.Error!);
+            }
+
+            return new ExchangeResult<bool>(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicSpotId, symbolName));
+        }
         #endregion
 
         #region Spot Ticker client
@@ -829,6 +875,44 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return response;
         }
 
+        async Task<ExchangeResult<SharedSymbol[]>> IFuturesSymbolRestClient.GetFuturesSymbolsForBaseAssetAsync(string baseAsset)
+        {
+            if (!ExchangeSymbolCache.HasCached(_topicFuturesId))
+            {
+                var symbols = await ((IFuturesSymbolRestClient)this).GetFuturesSymbolsAsync(new GetSymbolsRequest()).ConfigureAwait(false);
+                if (!symbols)
+                    return new ExchangeResult<SharedSymbol[]>(Exchange, symbols.Error!);
+            }
+
+            return new ExchangeResult<SharedSymbol[]>(Exchange, ExchangeSymbolCache.GetSymbolsForBaseAsset(_topicFuturesId, baseAsset));
+        }
+
+        async Task<ExchangeResult<bool>> IFuturesSymbolRestClient.SupportsFuturesSymbolAsync(SharedSymbol symbol)
+        {
+            if (symbol.TradingMode == TradingMode.Spot)
+                throw new ArgumentException(nameof(symbol), "Spot symbols not allowed");
+
+            if (!ExchangeSymbolCache.HasCached(_topicFuturesId))
+            {
+                var symbols = await ((IFuturesSymbolRestClient)this).GetFuturesSymbolsAsync(new GetSymbolsRequest()).ConfigureAwait(false);
+                if (!symbols)
+                    return new ExchangeResult<bool>(Exchange, symbols.Error!);
+            }
+
+            return new ExchangeResult<bool>(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicFuturesId, symbol));
+        }
+
+        async Task<ExchangeResult<bool>> IFuturesSymbolRestClient.SupportsFuturesSymbolAsync(string symbolName)
+        {
+            if (!ExchangeSymbolCache.HasCached(_topicFuturesId))
+            {
+                var symbols = await ((IFuturesSymbolRestClient)this).GetFuturesSymbolsAsync(new GetSymbolsRequest()).ConfigureAwait(false);
+                if (!symbols)
+                    return new ExchangeResult<bool>(Exchange, symbols.Error!);
+            }
+
+            return new ExchangeResult<bool>(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicFuturesId, symbolName));
+        }
         #endregion
 
         #region Futures Ticker client
@@ -1210,6 +1294,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             {
                 UnrealizedPnl = x.SessionPnl,
                 AverageOpenPrice = Math.Abs(x.OpenPosCost),
+                PositionMode = SharedPositionMode.OneWay,
                 PositionSide = x.Quantity < 0 ? SharedPositionSide.Short : SharedPositionSide.Long,
                 UpdateTime = x.UpdateTime                
             }).ToArray());

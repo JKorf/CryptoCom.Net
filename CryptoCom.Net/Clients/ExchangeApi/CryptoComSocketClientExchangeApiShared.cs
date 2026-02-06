@@ -327,6 +327,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     handler(update.ToType<SharedPosition[]>(update.Data.Select(x => new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, x.Symbol), x.Symbol, Math.Abs(x.Quantity), x.UpdateTime)
                     {
                         AverageOpenPrice = x.OpenPosCost,
+                        PositionMode = SharedPositionMode.OneWay,
                         PositionSide = x.Quantity < 0 ? SharedPositionSide.Short : SharedPositionSide.Long,
                         UnrealizedPnl = x.SessionPnl
                     }).ToArray()));

@@ -1,11 +1,15 @@
 ﻿using CryptoCom.Net.Clients;
 using CryptoCom.Net.Interfaces;
 using CryptoCom.Net.Interfaces.Clients;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net.Trackers.Klines;
 using CryptoExchange.Net.Trackers.Trades;
+using CryptoExchange.Net.Trackers.UserData.Interfaces;
+using CryptoExchange.Net.Trackers.UserData.Objects;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 
 namespace CryptoCom.Net
@@ -72,6 +76,64 @@ namespace CryptoCom.Net
                 symbol,
                 limit,
                 period
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig? config = null)
+        {
+            var restClient = _serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient();
+            var socketClient = _serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient();
+            return new CryptoComUserSpotDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<CryptoComUserSpotDataTracker>>() ?? new NullLogger<CryptoComUserSpotDataTracker>(),
+                restClient,
+                socketClient,
+                null,
+                config
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
+        {
+            var clientProvider = _serviceProvider?.GetRequiredService<ICryptoComUserClientProvider>() ?? new CryptoComUserClientProvider();
+            var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
+            var socketClient = clientProvider.GetSocketClient(userIdentifier, credentials, environment);
+            return new CryptoComUserSpotDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<CryptoComUserSpotDataTracker>>() ?? new NullLogger<CryptoComUserSpotDataTracker>(),
+                restClient,
+                socketClient,
+                userIdentifier,
+                config
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserFuturesDataTracker CreateUserFuturesDataTracker(FuturesUserDataTrackerConfig? config = null)
+        {
+            var restClient = _serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient();
+            var socketClient = _serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient();
+            return new CryptoComUserFuturesDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<CryptoComUserFuturesDataTracker>>() ?? new NullLogger<CryptoComUserFuturesDataTracker>(),
+                restClient,
+                socketClient,
+                null,
+                config
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserFuturesDataTracker CreateUserFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
+        {
+            var clientProvider = _serviceProvider?.GetRequiredService<ICryptoComUserClientProvider>() ?? new CryptoComUserClientProvider();
+            var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
+            var socketClient = clientProvider.GetSocketClient(userIdentifier, credentials, environment);
+            return new CryptoComUserFuturesDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<CryptoComUserFuturesDataTracker>>() ?? new NullLogger<CryptoComUserFuturesDataTracker>(),
+                restClient,
+                socketClient,
+                userIdentifier,
+                config
                 );
         }
     }
