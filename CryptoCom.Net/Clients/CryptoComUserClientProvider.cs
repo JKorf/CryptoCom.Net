@@ -12,8 +12,8 @@ namespace CryptoCom.Net.Clients
     /// <inheritdoc />
     public class CryptoComUserClientProvider : ICryptoComUserClientProvider
     {
-        private static ConcurrentDictionary<string, ICryptoComRestClient> _restClients = new ConcurrentDictionary<string, ICryptoComRestClient>();
-        private static ConcurrentDictionary<string, ICryptoComSocketClient> _socketClients = new ConcurrentDictionary<string, ICryptoComSocketClient>();
+        private ConcurrentDictionary<string, ICryptoComRestClient> _restClients = new ConcurrentDictionary<string, ICryptoComRestClient>();
+        private ConcurrentDictionary<string, ICryptoComSocketClient> _socketClients = new ConcurrentDictionary<string, ICryptoComSocketClient>();
 
         private readonly IOptions<CryptoComRestOptions> _restOptions;
         private readonly IOptions<CryptoComSocketOptions> _socketOptions;
