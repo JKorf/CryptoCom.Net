@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 using CryptoExchange.Net.Interfaces.Clients;
+using System.Threading;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -94,8 +95,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new CryptoComRestClient(client, serviceProvider.GetRequiredService<ILoggerFactory>(), serviceProvider.GetRequiredService<IOptions<CryptoComRestOptions>>());
             }).ConfigurePrimaryHttpMessageHandler((serviceProvider) => {
                 var options = serviceProvider.GetRequiredService<IOptions<CryptoComRestOptions>>().Value;
-                return LibraryHelpers.CreateHttpClientMessageHandler(options.Proxy, options.HttpKeepAliveInterval);
-            });
+                return LibraryHelpers.CreateHttpClientMessageHandler(options);
+            }).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
             services.Add(new ServiceDescriptor(typeof(ICryptoComSocketClient), x => { return new CryptoComSocketClient(x.GetRequiredService<IOptions<CryptoComSocketOptions>>(), x.GetRequiredService<ILoggerFactory>()); }, socketClientLifeTime ?? ServiceLifetime.Singleton));
 
             services.AddTransient<ICryptoRestClient, CryptoRestClient>();
@@ -105,7 +106,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<ITrackerFactory, CryptoComTrackerFactory>();
             services.AddSingleton<ICryptoComUserClientProvider, CryptoComUserClientProvider>(x =>
             new CryptoComUserClientProvider(
-                x.GetRequiredService<HttpClient>(),
+                x.GetRequiredService<IHttpClientFactory>().CreateClient(typeof(ICryptoComRestClient).Name),
                 x.GetRequiredService<ILoggerFactory>(),
                 x.GetRequiredService<IOptions<CryptoComRestOptions>>(),
                 x.GetRequiredService<IOptions<CryptoComSocketOptions>>()));
