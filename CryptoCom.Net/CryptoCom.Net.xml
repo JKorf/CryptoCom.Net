@@ -3118,14 +3118,24 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetBalancesAsync(System.Threading.CancellationToken)">
             <summary>
             Get user account balances
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /><br />
+            Endpoint:<br />
+            POST /private/user-balance
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetBalanceHistoryAsync(CryptoCom.Net.Enums.Timeframe,System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get account cash balance history 
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance-history" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance-history" /><br />
+            Endpoint:<br />
+            POST /private/user-balance-history
+            </para>
             </summary>
             <param name="interval">Interval of the data, either OneHour or OneDay</param>
             <param name="endTime">Filter by end time</param>
@@ -3135,7 +3145,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetAccountInfoAsync(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get master and sub account info
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-accounts" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-accounts" /><br />
+            Endpoint:<br />
+            POST /private/get-accounts
+            </para>
             </summary>
             <param name="page">Page</param>
             <param name="pageSize">Max number of results per page</param>
@@ -3144,7 +3159,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetAccountLeverageAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Set account leverage. Not that each symbol has it's own max leverage, the lower of the two will be used
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /><br />
+            Endpoint:<br />
+            POST /private/change-account-leverage
+            </para>
             </summary>
             <param name="accountId">Id of the current account</param>
             <param name="leverage">New leverage setting</param>
@@ -3153,7 +3173,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetAccountSettingsAsync(System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.Nullable{System.Int64},System.Nullable{System.Decimal},System.Threading.CancellationToken)">
             <summary>
             Update account settings
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-settings" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-settings" /><br />
+            Endpoint:<br />
+            POST /private/change-account-settings
+            </para>
             </summary>
             <param name="stpScope">Self trade prevention scope</param>
             <param name="stpMode">Self trade prevention mode</param>
@@ -3164,14 +3189,24 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetAccountSettingsAsync(System.Threading.CancellationToken)">
             <summary>
             Get current account settings
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /><br />
+            Endpoint:<br />
+            POST /private/get-account-settings
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetTransactionHistoryAsync(System.String,System.Nullable{CryptoCom.Net.Enums.TransactionType},System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get account transaction history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-transactions" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-transactions" /><br />
+            Endpoint:<br />
+            POST /private/get-transactions
+            </para>
             </summary>
             <param name="symbol">Filter by symbol</param>
             <param name="transactionType">Filter by transaction type</param>
@@ -3184,14 +3219,24 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetFeeRatesAsync(System.Threading.CancellationToken)">
             <summary>
             Get user fee rates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-fee-rate" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-fee-rate" /><br />
+            Endpoint:<br />
+            POST /private/get-fee-rate
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetSymbolFeeRateAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get symbol fee rates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-instrument-fee-rate" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-instrument-fee-rate" /><br />
+            Endpoint:<br />
+            POST /private/get-instrument-fee-rate
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSDT`</param>
             <param name="ct">Cancellation token</param>
@@ -3199,7 +3244,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.WithdrawAsync(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Withdraw funds
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /><br />
+            Endpoint:<br />
+            POST /private/create-withdrawal
+            </para>
             </summary>
             <param name="asset">Asset to withdraw</param>
             <param name="quantity">Quantity</param>
@@ -3212,14 +3262,24 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetAssetsAsync(System.Threading.CancellationToken)">
             <summary>
             Get asset network info
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-currency-networks" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-currency-networks" /><br />
+            Endpoint:<br />
+            POST /private/get-currency-networks
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetDepositAddressesAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get deposit addresses for an asset
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-address" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-address" /><br />
+            Endpoint:<br />
+            POST /private/get-deposit-address
+            </para>
             </summary>
             <param name="asset">Asset name</param>
             <param name="ct">Cancellation token</param>
@@ -3227,7 +3287,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetDepositHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{CryptoCom.Net.Enums.DepositStatus},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get deposit history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-history" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-history" /><br />
+            Endpoint:<br />
+            POST /private/get-deposit-history
+            </para>
             </summary>
             <param name="asset">Filter by asset</param>
             <param name="startTime">Filter by start time</param>
@@ -3240,7 +3305,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.GetWithdrawalHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{CryptoCom.Net.Enums.WithdrawalStatus},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get withdrawal history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-withdrawal-history" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-withdrawal-history" /><br />
+            Endpoint:<br />
+            POST /private/get-withdrawal-history
+            </para>
             </summary>
             <param name="asset">Filter by asset</param>
             <param name="startTime">Filter by start time</param>
@@ -3253,7 +3323,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.CreateIsolatedMarginTransferAsync(System.String,CryptoCom.Net.Enums.TransferDirection,System.Decimal,System.Threading.CancellationToken)">
             <summary>
             Create transfer from or to an isolated position
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-isolated-margin-transfer" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-isolated-margin-transfer" /><br />
+            Endpoint:<br />
+            POST /private/create-isolated-margin-transfer
+            </para>
             </summary>
             <param name="isolationId">Isolated position id</param>
             <param name="direction">Direction</param>
@@ -3263,7 +3338,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiAccount.SetIsolatedMarginLeverageAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Set leverage for isolated margin position
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-isolated-margin-leverage" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-isolated-margin-leverage" /><br />
+            Endpoint:<br />
+            POST /private/change-isolated-margin-leverage
+            </para>
             </summary>
             <param name="isolationId">Isolated position id</param>
             <param name="leverage">Leverage</param>
@@ -3277,7 +3357,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
             <summary>
             
-            <para><a href="XXX" /></para>
+            <para>
+            Docs:<br />
+            <a href="XXX" /><br />
+            Endpoint:<br />
+            GET /public/get-tickers
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
             <returns></returns>
@@ -3285,21 +3370,36 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetRiskParametersAsync(System.Threading.CancellationToken)">
             <summary>
             Get risk parameters
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-risk-parameters" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-risk-parameters" /><br />
+            Endpoint:<br />
+            GET /public/get-risk-parameters
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetSymbolsAsync(System.Threading.CancellationToken)">
             <summary>
             Get symbols/instruments
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /><br />
+            Endpoint:<br />
+            GET /public/get-instruments
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetOrderBookAsync(System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Get the order book for a symbol
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-book" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-book" /><br />
+            Endpoint:<br />
+            GET /public/get-book
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSDT`</param>
             <param name="depth">Order book depth, max 50</param>
@@ -3308,7 +3408,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetTickersAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get tickers
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-tickers" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-tickers" /><br />
+            Endpoint:<br />
+            GET /public/get-tickers
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETH_USDT`</param>
             <param name="ct">Cancellation token</param>
@@ -3316,7 +3421,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetTradeHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get trade history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-trades" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-trades" /><br />
+            Endpoint:<br />
+            GET /public/get-trades
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETH_USDT`</param>
             <param name="startTime">Filter by start time</param>
@@ -3327,7 +3437,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetKlinesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get Kline/Candlestick data
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-candlestick" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-candlestick" /><br />
+            Endpoint:<br />
+            GET /public/get-candlestick
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSDT`</param>
             <param name="interval">Kline interval</param>
@@ -3339,7 +3454,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetValuationsAsync(System.String,CryptoCom.Net.Enums.ValuationType,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get various statistics
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-valuations" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-valuations" /><br />
+            Endpoint:<br />
+            GET /public/get-valuations
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSDT`</param>
             <param name="type">Stat type</param>
@@ -3351,7 +3471,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetExpiredSettlementPriceAsync(CryptoCom.Net.Enums.SymbolType,System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get expired contracts settlement price
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-expired-settlement-price" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-expired-settlement-price" /><br />
+            Endpoint:<br />
+            GET /public/get-expired-settlement-price
+            </para>
             </summary>
             <param name="symbolType">Symbol type</param>
             <param name="pageNumber">Page number</param>
@@ -3360,7 +3485,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetInsuranceAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get the balance of Insurance Fund for a particular asset.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-insurance" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-insurance" /><br />
+            Endpoint:<br />
+            GET /public/get-insurance
+            </para>
             </summary>
             <param name="asset">Asset</param>
             <param name="startTime">Filter by start time</param>
@@ -3371,7 +3501,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiExchangeData.GetAnnouncementsAsync(System.Nullable{CryptoCom.Net.Enums.AnnouncementCategory},System.String,System.Threading.CancellationToken)">
             <summary>
             Get announcements
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-announcements" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-announcements" /><br />
+            Endpoint:<br />
+            GET /v1/public/get-announcements
+            </para>
             </summary>
             <param name="category">Filter by category</param>
             <param name="productType">Filter by product type</param>
@@ -3390,7 +3525,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.StakeAsync(System.String,System.Decimal,System.Threading.CancellationToken)">
             <summary>
             Create a new stake request
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-stake" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-stake" /><br />
+            Endpoint:<br />
+            POST /private/staking/stake
+            </para>
             </summary>
             <param name="symbol">The symbol, for example SOL.staked</param>
             <param name="quantity">Quantity to stake</param>
@@ -3399,7 +3539,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.UnstakeAsync(System.String,System.Decimal,System.Threading.CancellationToken)">
             <summary>
             Create a new unstake request
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-unstake" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-unstake" /><br />
+            Endpoint:<br />
+            POST /private/staking/unstake
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `SOL.staked`</param>
             <param name="quantity">Quantity to unstake</param>
@@ -3408,7 +3553,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingPositionsAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get current staking positions
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-position" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-position" /><br />
+            Endpoint:<br />
+            POST /private/staking/get-staking-position
+            </para>
             </summary>
             <param name="symbol">Filter by symbol, for example `SOL.staked`</param>
             <param name="ct">Cancellation token</param>
@@ -3416,14 +3566,24 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingSymbolsAsync(System.Threading.CancellationToken)">
             <summary>
             Get staking symbols
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /><br />
+            Endpoint:<br />
+            POST /private/staking/get-staking-instruments
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetOpenStakingRequestsAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get open stake/unstake requests
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-stake" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-stake" /><br />
+            Endpoint:<br />
+            POST /private/staking/get-open-stake
+            </para>
             </summary>
             <param name="symbol">Filter by staking symbol, for example `SOL.staked`</param>
             <param name="startTime">Filter by start time</param>
@@ -3434,7 +3594,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get staking request history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-stake-history" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-stake-history" /><br />
+            Endpoint:<br />
+            POST /private/staking/get-stake-history
+            </para>
             </summary>
             <param name="symbol">Filter by staking symbol</param>
             <param name="startTime">Filter by start time</param>
@@ -3445,7 +3610,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetStakingRewardHistoryAsync(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get staking reward history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-reward-history" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-reward-history" /><br />
+            Endpoint:<br />
+            POST /private/staking/get-reward-history
+            </para>
             </summary>
             <param name="symbol">Filter by staking symbol, for example 'SOL.staked'</param>
             <param name="startTime">Filter by start time</param>
@@ -3456,7 +3626,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.ConvertAsync(System.String,System.String,System.Decimal,System.Decimal,System.Decimal,System.Threading.CancellationToken)">
             <summary>
             Create a new convert request
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-convert" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-convert" /><br />
+            Endpoint:<br />
+            POST /private/staking/convert
+            </para>
             </summary>
             <param name="fromSymbol">Symbol to convert from, for example `ETH.staked` or `CDCETH`</param>
             <param name="toSymbol">Symbol to convert to, for example `ETH.staked` or `CDCETH`</param>
@@ -3468,7 +3643,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetOpenConvertRequestsAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get open convert requests
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-convert" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-convert" /><br />
+            Endpoint:<br />
+            POST /private/staking/get-open-convert
+            </para>
             </summary>
             <param name="startTime">Filter by start time</param>
             <param name="endTime">Filter by end time</param>
@@ -3478,7 +3658,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiStaking.GetConvertRateAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get conversion rate
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-staking-get-conversion-rate" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-staking-get-conversion-rate" /><br />
+            Endpoint:<br />
+            POST /public/staking/get-conversion-rate
+            </para>
             </summary>
             <param name="symbol">Symbol name, for example 'CDCETH'</param>
             <param name="ct">Cancellation token</param>
@@ -3491,7 +3676,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get positions for the account
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /><br />
+            Endpoint:<br />
+            POST /private/get-positions
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
             <param name="ct">Cancellation token</param>
@@ -3499,7 +3689,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Threading.CancellationToken)">
             <summary>
             Place a new order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /><br />
+            Endpoint:<br />
+            POST /private/create-order
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETH_USDT`</param>
             <param name="side">Order side</param>
@@ -3526,7 +3721,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Cancel an order by id
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /><br />
+            Endpoint:<br />
+            POST /private/cancel-order
+            </para>
             </summary>
             <param name="orderId">Order id, either this or clientOrderId should be provided</param>
             <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
@@ -3535,7 +3735,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelAllOrdersAsync(System.String,System.Nullable{CryptoCom.Net.Enums.OrderTypeFilter},System.Threading.CancellationToken)">
             <summary>
             Cancel all order fitting the parameters
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /><br />
+            Endpoint:<br />
+            POST /private/cancel-all-orders
+            </para>
             </summary>
             <param name="symbol">Filter by symbol</param>
             <param name="type">Filter by type</param>
@@ -3544,7 +3749,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.String,System.Threading.CancellationToken)">
             <summary>
             Close an open position
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /><br />
+            Endpoint:<br />
+            POST /private/close-position
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
             <param name="orderType">Type of order to use</param>
@@ -3555,7 +3765,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOpenOrdersAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get user open orders
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /><br />
+            Endpoint:<br />
+            POST /private/get-open-orders
+            </para>
             </summary>
             <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
             <param name="ct">Cancellation token</param>
@@ -3563,7 +3778,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Get info on a specific order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /><br />
+            Endpoint:<br />
+            POST /private/get-order-detail
+            </para>
             </summary>
             <param name="orderId">Order id, either this or clientOrderId should be provided</param>
             <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
@@ -3572,7 +3792,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetClosedOrdersAsync(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get closed order history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /><br />
+            Endpoint:<br />
+            POST /private/get-order-history
+            </para>
             </summary>
             <param name="symbol">Filter by symbol</param>
             <param name="isolationId">Filter by isolation id</param>
@@ -3584,7 +3809,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetUserTradesAsync(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Get user trade history
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /><br />
+            Endpoint:<br />
+            POST /private/get-trades
+            </para>
             </summary>
             <param name="symbol">Filter by symbol</param>
             <param name="isolationId">Filter by isolation id</param>
@@ -3596,7 +3826,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceMultipleOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrderRequest},System.Threading.CancellationToken)">
             <summary>
             Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /><br />
+            Endpoint:<br />
+            POST /private/create-order-list
+            </para>
             </summary>
             <param name="orders">Orders to place, max 10</param>
             <param name="ct">Cancellation token</param>
@@ -3604,7 +3839,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest},System.Threading.CancellationToken)">
             <summary>
             Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /><br />
+            Endpoint:<br />
+            POST /private/cancel-order-list
+            </para>
             </summary>
             <param name="orders">Orders to cancel</param>
             <param name="ct">Cancellation token</param>
@@ -3612,7 +3852,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.PlaceOcoOrderAsync(CryptoCom.Net.Objects.Models.CryptoComOrderRequest,CryptoCom.Net.Objects.Models.CryptoComOrderRequest,System.Threading.CancellationToken)">
             <summary>
             Place a new OCO (One Cancels Other) order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /><br />
+            Endpoint:<br />
+            POST /private/create-order-list
+            </para>
             </summary>
             <param name="order1">First order</param>
             <param name="order2">Second order</param>
@@ -3621,7 +3866,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.CancelOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Cancel an OCO order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /><br />
+            Endpoint:<br />
+            POST /private/cancel-order-list
+            </para>
             </summary>
             <param name="symbol">Symbol</param>
             <param name="listId">List id to cancel</param>
@@ -3631,7 +3881,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.GetOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Get info on an OCO order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-list-oco" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-list-oco" /><br />
+            Endpoint:<br />
+            POST /private/get-order-list
+            </para>
             </summary>
             <param name="symbol">Symbol</param>
             <param name="listId">Id</param>
@@ -3641,7 +3896,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComRestClientExchangeApiTrading.EditOrderAsync(System.Decimal,System.Decimal,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Edit an order price and/or quantity. ote that amend order is designed as a convenience function such that it performs cancel and then create behind the scene. The new order will lose queue priority, except if the amend is only to amend down order quantity. For faster performance, it is recommended to use CancelOrderAsync and then PlaceOrderAsync instead.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /><br />
+            Endpoint:<br />
+            POST /private/amend-order
+            </para>
             </summary>
             <param name="orderId">Order id, either this or clientOrderId should be provided</param>
             <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
@@ -3657,7 +3917,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to order book snapshot updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /><br />
+            Endpoint:<br />
+            book.{instrument_name}.{depth}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="depth">The book depth, either 10 or 50</param>
@@ -3668,7 +3933,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to order book snapshot updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /><br />
+            Endpoint:<br />
+            book.{instrument_name}.{depth}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="depth">The book depth, either 10 or 50</param>
@@ -3679,7 +3949,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /><br />
+            Endpoint:<br />
+            book.update.{instrument_name}.{depth}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="depth">The book depth, either 10 or 50</param>
@@ -3690,7 +3965,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrderBookUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /><br />
+            Endpoint:<br />
+            book.update.{instrument_name}.{depth}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="depth">The book depth, either 10 or 50</param>
@@ -3701,7 +3981,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.String,CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComKline[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to kline/candlestick updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /><br />
+            Endpoint:<br />
+            candlestick.{time_frame}.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="interval">The interval of the kline/candles</param>
@@ -3712,7 +3997,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},CryptoCom.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComKline[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to kline/candlestick updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /><br />
+            Endpoint:<br />
+            candlestick.{time_frame}.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="interval">The interval of the kline/candles</param>
@@ -3723,7 +4013,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to ticker updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /><br />
+            Endpoint:<br />
+            ticker.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3733,7 +4028,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTickerUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTicker}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to ticker updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /><br />
+            Endpoint:<br />
+            ticker.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3743,7 +4043,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to public trade updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /><br />
+            Endpoint:<br />
+            trade.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3753,7 +4058,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to public trade updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /><br />
+            Endpoint:<br />
+            trade.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3763,7 +4073,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to index price updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /><br />
+            Endpoint:<br />
+            index.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3773,7 +4088,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToIndexPriceUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to index price updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /><br />
+            Endpoint:<br />
+            index.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3783,7 +4103,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToMarkPriceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to mark price updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /><br />
+            Endpoint:<br />
+            mark.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3793,7 +4118,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToMarkPriceUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to mark price updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /><br />
+            Endpoint:<br />
+            mark.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3803,7 +4133,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to settlement prices
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /><br />
+            Endpoint:<br />
+            settlement.{instrument_name}
+            </para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -3812,7 +4147,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to settlement prices
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /><br />
+            Endpoint:<br />
+            settlement.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3822,7 +4162,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToSettlementUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to settlement prices
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /><br />
+            Endpoint:<br />
+            settlement.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3832,7 +4177,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToFundingRateUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to funding rate updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /><br />
+            Endpoint:<br />
+            funding.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3842,7 +4192,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to funding rate updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /><br />
+            Endpoint:<br />
+            funding.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3852,7 +4207,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to estimated funding rate updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /><br />
+            Endpoint:<br />
+            estimatedfunding.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3862,7 +4222,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToEstimatedFundingRateUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComValuation}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to estimated funding rate updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /><br />
+            Endpoint:<br />
+            estimatedfunding.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3872,7 +4237,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user order updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /><br />
+            Endpoint:<br />
+            user.order.{instrument_name}
+            </para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -3881,7 +4251,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user order updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /><br />
+            Endpoint:<br />
+            user.order.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3891,7 +4266,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToOrderUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComOrder[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user order updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /><br />
+            Endpoint:<br />
+            user.order.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3901,7 +4281,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user trade updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /><br />
+            Endpoint:<br />
+            user.trade.{instrument_name}
+            </para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -3910,7 +4295,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user trade updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /><br />
+            Endpoint:<br />
+            user.trade.{instrument_name}
+            </para>
             </summary>
             <param name="symbol">The symbol</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3920,7 +4310,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToUserTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComUserTrade[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user trade updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /><br />
+            Endpoint:<br />
+            user.trade.{instrument_name}
+            </para>
             </summary>
             <param name="symbols">The symbols</param>
             <param name="onMessage">The event handler for the received data</param>
@@ -3930,7 +4325,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalances}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user balance updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-balance" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-balance" /><br />
+            Endpoint:<br />
+            user.balance
+            </para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -3939,7 +4339,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComPosition[]}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user position updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-positions" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-positions" /><br />
+            Endpoint:<br />
+            user.positions
+            </para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -3948,7 +4353,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SubscribeToPositionBalanceUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{CryptoCom.Net.Objects.Models.CryptoComBalancePositionUpdate}},System.Threading.CancellationToken)">
             <summary>
             Subscribe to user position and balance updates
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-position_balance" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-position_balance" /><br />
+            Endpoint:<br />
+            user.position_balance
+            </para>
             </summary>
             <param name="onMessage">The event handler for the received data</param>
             <param name="ct">Cancellation token for closing this subscription</param>
@@ -3957,14 +4367,24 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.GetBalancesAsync(System.Threading.CancellationToken)">
             <summary>
             Get user account balances
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /><br />
+            Endpoint:<br />
+            private/user-balance
+            </para>
             </summary>
             <param name="ct">Cancellation token</param>
         </member>
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.GetPositionsAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get positions for the account
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /><br />
+            Endpoint:<br />
+            private/get-positions
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
             <param name="ct">Cancellation token</param>
@@ -3972,7 +4392,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.PlaceOrderAsync(System.String,CryptoCom.Net.Enums.OrderSide,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.TimeInForce},System.Nullable{System.Decimal},System.Nullable{CryptoCom.Net.Enums.PriceType},System.Nullable{System.Boolean},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionScope},System.Nullable{CryptoCom.Net.Enums.SelfTradePreventionMode},System.String,System.Nullable{System.Boolean},System.String,System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Threading.CancellationToken)">
             <summary>
             Place a new order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /><br />
+            Endpoint:<br />
+            private/create-order
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETH_USDT`</param>
             <param name="side">Order side</param>
@@ -3998,7 +4423,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Cancel an order by id
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /><br />
+            Endpoint:<br />
+            private/cancel-order
+            </para>
             </summary>
             <param name="orderId">Order id, either this or clientOrderId should be provided</param>
             <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
@@ -4007,7 +4437,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelAllOrdersAsync(System.String,System.Nullable{CryptoCom.Net.Enums.OrderTypeFilter},System.Threading.CancellationToken)">
             <summary>
             Cancel all order fitting the parameters
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /><br />
+            Endpoint:<br />
+            private/cancel-all-orders
+            </para>
             </summary>
             <param name="symbol">Filter by symbol</param>
             <param name="type">Filter by type</param>
@@ -4016,7 +4451,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.ClosePositionAsync(System.String,CryptoCom.Net.Enums.OrderType,System.Nullable{System.Decimal},System.String,System.Threading.CancellationToken)">
             <summary>
             Close an open position
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /><br />
+            Endpoint:<br />
+            private/close-position
+            </para>
             </summary>
             <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
             <param name="orderType">Type of order to use</param>
@@ -4027,7 +4467,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.GetOpenOrdersAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Get user open orders
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /><br />
+            Endpoint:<br />
+            private/get-open-orders
+            </para>
             </summary>
             <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
             <param name="ct">Cancellation token</param>
@@ -4035,7 +4480,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.PlaceMultipleOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComOrderRequest},System.Threading.CancellationToken)">
             <summary>
             Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /><br />
+            Endpoint:<br />
+            private/create-order-list
+            </para>
             </summary>
             <param name="orders">Orders to place, max 10</param>
             <param name="ct">Cancellation token</param>
@@ -4043,7 +4493,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelOrdersAsync(System.Collections.Generic.IEnumerable{CryptoCom.Net.Objects.Models.CryptoComCancelOrderRequest},System.Threading.CancellationToken)">
             <summary>
             Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /><br />
+            Endpoint:<br />
+            private/cancel-order-list
+            </para>
             </summary>
             <param name="orders">Orders to cancel</param>
             <param name="ct">Cancellation token</param>
@@ -4051,7 +4506,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.PlaceOcoOrderAsync(CryptoCom.Net.Objects.Models.CryptoComOrderRequest,CryptoCom.Net.Objects.Models.CryptoComOrderRequest,System.Threading.CancellationToken)">
             <summary>
             Place a new OCO (One Cancels Other) order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /><br />
+            Endpoint:<br />
+            private/create-order-list
+            </para>
             </summary>
             <param name="order1">First order</param>
             <param name="order2">Second order</param>
@@ -4060,7 +4520,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.CancelOcoOrderAsync(System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Cancel an OCO order
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /><br />
+            Endpoint:<br />
+            private/cancel-order-list
+            </para>
             </summary>
             <param name="symbol">Symbol</param>
             <param name="listId">List id to cancel</param>
@@ -4070,7 +4535,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.WithdrawAsync(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Withdraw funds
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /><br />
+            Endpoint:<br />
+            private/create-withdrawal
+            </para>
             </summary>
             <param name="asset">Asset to withdraw</param>
             <param name="quantity">Quantity</param>
@@ -4083,7 +4553,12 @@
         <member name="M:CryptoCom.Net.Interfaces.Clients.ExchangeApi.ICryptoComSocketClientExchangeApi.SetCancelOnDisconnectAsync(System.Threading.CancellationToken)">
             <summary>
             Set all open orders created by this connection to cancel when the connection is interrupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
-            <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /></para>
+            <para>
+            Docs:<br />
+            <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /><br />
+            Endpoint:<br />
+            private/set-cancel-on-disconnect
+            </para>
             </summary>
             <param name="ct"></param>
             <returns></returns>

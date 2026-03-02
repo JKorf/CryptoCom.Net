@@ -16,7 +16,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     {
         /// <summary>
         /// Get positions for the account
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-positions
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="ct">Cancellation token</param>
@@ -24,7 +29,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Place a new order
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /><br />
+        /// Endpoint:<br />
+        /// POST /private/create-order
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="side">Order side</param>
@@ -72,7 +82,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Cancel an order by id
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /><br />
+        /// Endpoint:<br />
+        /// POST /private/cancel-order
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
         /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
@@ -81,7 +96,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Cancel all order fitting the parameters
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /><br />
+        /// Endpoint:<br />
+        /// POST /private/cancel-all-orders
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="type">Filter by type</param>
@@ -90,7 +110,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Close an open position
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /><br />
+        /// Endpoint:<br />
+        /// POST /private/close-position
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="orderType">Type of order to use</param>
@@ -101,7 +126,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         
         /// <summary>
         /// Get user open orders
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-open-orders
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -109,7 +139,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get info on a specific order
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-order-detail
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
         /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
@@ -118,7 +153,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get closed order history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-order-history
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="isolationId">Filter by isolation id</param>
@@ -136,7 +176,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get user trade history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-trades
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="isolationId">Filter by isolation id</param>
@@ -154,7 +199,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /><br />
+        /// Endpoint:<br />
+        /// POST /private/create-order-list
+        /// </para>
         /// </summary>
         /// <param name="orders">Orders to place, max 10</param>
         /// <param name="ct">Cancellation token</param>
@@ -162,7 +212,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /><br />
+        /// Endpoint:<br />
+        /// POST /private/cancel-order-list
+        /// </para>
         /// </summary>
         /// <param name="orders">Orders to cancel</param>
         /// <param name="ct">Cancellation token</param>
@@ -170,7 +225,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Place a new OCO (One Cancels Other) order
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-oco" /><br />
+        /// Endpoint:<br />
+        /// POST /private/create-order-list
+        /// </para>
         /// </summary>
         /// <param name="order1">First order</param>
         /// <param name="order2">Second order</param>
@@ -179,7 +239,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Cancel an OCO order
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-oco" /><br />
+        /// Endpoint:<br />
+        /// POST /private/cancel-order-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol</param>
         /// <param name="listId">List id to cancel</param>
@@ -189,7 +254,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get info on an OCO order
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-list-oco" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-list-oco" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-order-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol</param>
         /// <param name="listId">Id</param>
@@ -199,7 +269,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Edit an order price and/or quantity. ote that amend order is designed as a convenience function such that it performs cancel and then create behind the scene. The new order will lose queue priority, except if the amend is only to amend down order quantity. For faster performance, it is recommended to use CancelOrderAsync and then PlaceOrderAsync instead.
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /><br />
+        /// Endpoint:<br />
+        /// POST /private/amend-order
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
         /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>

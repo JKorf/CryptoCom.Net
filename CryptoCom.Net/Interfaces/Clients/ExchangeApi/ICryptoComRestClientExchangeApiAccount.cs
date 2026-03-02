@@ -15,14 +15,24 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     {
         /// <summary>
         /// Get user account balances
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /><br />
+        /// Endpoint:<br />
+        /// POST /private/user-balance
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComBalances[]>> GetBalancesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account cash balance history 
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance-history" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance-history" /><br />
+        /// Endpoint:<br />
+        /// POST /private/user-balance-history
+        /// </para>
         /// </summary>
         /// <param name="interval">Interval of the data, either OneHour or OneDay</param>
         /// <param name="endTime">Filter by end time</param>
@@ -32,7 +42,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get master and sub account info
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-accounts" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-accounts" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-accounts
+        /// </para>
         /// </summary>
         /// <param name="page">Page</param>
         /// <param name="pageSize">Max number of results per page</param>
@@ -41,7 +56,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Set account leverage. Not that each symbol has it's own max leverage, the lower of the two will be used
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /><br />
+        /// Endpoint:<br />
+        /// POST /private/change-account-leverage
+        /// </para>
         /// </summary>
         /// <param name="accountId">Id of the current account</param>
         /// <param name="leverage">New leverage setting</param>
@@ -50,7 +70,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Update account settings
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-settings" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-settings" /><br />
+        /// Endpoint:<br />
+        /// POST /private/change-account-settings
+        /// </para>
         /// </summary>
         /// <param name="stpScope">Self trade prevention scope</param>
         /// <param name="stpMode">Self trade prevention mode</param>
@@ -61,14 +86,24 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get current account settings
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-account-settings
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComAccountSettings[]>> GetAccountSettingsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account transaction history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-transactions" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-transactions" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-transactions
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="transactionType">Filter by transaction type</param>
@@ -88,14 +123,24 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get user fee rates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-fee-rate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-fee-rate" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-fee-rate
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComUserFee>> GetFeeRatesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get symbol fee rates
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-instrument-fee-rate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-instrument-fee-rate" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-instrument-fee-rate
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -103,7 +148,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Withdraw funds
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /><br />
+        /// Endpoint:<br />
+        /// POST /private/create-withdrawal
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset to withdraw</param>
         /// <param name="quantity">Quantity</param>
@@ -116,14 +166,24 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get asset network info
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-currency-networks" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-currency-networks" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-currency-networks
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<Dictionary<string, CryptoComAsset>>> GetAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get deposit addresses for an asset
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-address" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-address" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-deposit-address
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="ct">Cancellation token</param>
@@ -131,7 +191,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get deposit history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-history" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-history" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-deposit-history
+        /// </para>
         /// </summary>
         /// <param name="asset">Filter by asset</param>
         /// <param name="startTime">Filter by start time</param>
@@ -144,7 +209,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get withdrawal history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-withdrawal-history" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-withdrawal-history" /><br />
+        /// Endpoint:<br />
+        /// POST /private/get-withdrawal-history
+        /// </para>
         /// </summary>
         /// <param name="asset">Filter by asset</param>
         /// <param name="startTime">Filter by start time</param>
@@ -157,7 +227,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Create transfer from or to an isolated position
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-isolated-margin-transfer" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-isolated-margin-transfer" /><br />
+        /// Endpoint:<br />
+        /// POST /private/create-isolated-margin-transfer
+        /// </para>
         /// </summary>
         /// <param name="isolationId">Isolated position id</param>
         /// <param name="direction">Direction</param>
@@ -167,7 +242,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Set leverage for isolated margin position
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-isolated-margin-leverage" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-isolated-margin-leverage" /><br />
+        /// Endpoint:<br />
+        /// POST /private/change-isolated-margin-leverage
+        /// </para>
         /// </summary>
         /// <param name="isolationId">Isolated position id</param>
         /// <param name="leverage">Leverage</param>

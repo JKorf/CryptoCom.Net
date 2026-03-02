@@ -14,7 +14,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     {
         /// <summary>
         /// 
-        /// <para><a href="XXX" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="XXX" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-tickers
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
@@ -22,21 +27,36 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get risk parameters
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-risk-parameters" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-risk-parameters" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-risk-parameters
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComRiskParameters>> GetRiskParametersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get symbols/instruments
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-instruments
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComSymbol[]>> GetSymbolsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get the order book for a symbol
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-book" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-book" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-book
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
         /// <param name="depth">Order book depth, max 50</param>
@@ -45,7 +65,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get tickers
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-tickers" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-tickers" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-tickers
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -53,7 +78,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get trade history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-trades" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-trades" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-trades
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="startTime">Filter by start time</param>
@@ -64,7 +94,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get Kline/Candlestick data
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-candlestick" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-candlestick" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-candlestick
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
         /// <param name="interval">Kline interval</param>
@@ -76,7 +111,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get various statistics
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-valuations" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-valuations" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-valuations
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
         /// <param name="type">Stat type</param>
@@ -88,7 +128,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get expired contracts settlement price
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-expired-settlement-price" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-expired-settlement-price" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-expired-settlement-price
+        /// </para>
         /// </summary>
         /// <param name="symbolType">Symbol type</param>
         /// <param name="pageNumber">Page number</param>
@@ -97,7 +142,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get the balance of Insurance Fund for a particular asset.
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-insurance" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-insurance" /><br />
+        /// Endpoint:<br />
+        /// GET /public/get-insurance
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset</param>
         /// <param name="startTime">Filter by start time</param>
@@ -108,7 +158,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get announcements
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-announcements" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-announcements" /><br />
+        /// Endpoint:<br />
+        /// GET /v1/public/get-announcements
+        /// </para>
         /// </summary>
         /// <param name="category">Filter by category</param>
         /// <param name="productType">Filter by product type</param>

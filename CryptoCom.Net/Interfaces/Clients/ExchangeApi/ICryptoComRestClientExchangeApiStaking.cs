@@ -13,7 +13,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     {
         /// <summary>
         /// Create a new stake request
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-stake" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-stake" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/stake
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example SOL.staked</param>
         /// <param name="quantity">Quantity to stake</param>
@@ -22,7 +27,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         
         /// <summary>
         /// Create a new unstake request
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-unstake" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-unstake" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/unstake
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `SOL.staked`</param>
         /// <param name="quantity">Quantity to unstake</param>
@@ -31,7 +41,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         
         /// <summary>
         /// Get current staking positions
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-position" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-position" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/get-staking-position
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `SOL.staked`</param>
         /// <param name="ct">Cancellation token</param>
@@ -39,14 +54,24 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         
         /// <summary>
         /// Get staking symbols
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/get-staking-instruments
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComStakingSymbol[]>> GetStakingSymbolsAsync(CancellationToken ct = default);
         
         /// <summary>
         /// Get open stake/unstake requests
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-stake" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-stake" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/get-open-stake
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by staking symbol, for example `SOL.staked`</param>
         /// <param name="startTime">Filter by start time</param>
@@ -57,7 +82,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get staking request history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-stake-history" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-stake-history" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/get-stake-history
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by staking symbol</param>
         /// <param name="startTime">Filter by start time</param>
@@ -68,7 +98,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get staking reward history
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-reward-history" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-reward-history" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/get-reward-history
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by staking symbol, for example 'SOL.staked'</param>
         /// <param name="startTime">Filter by start time</param>
@@ -79,7 +114,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Create a new convert request
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-convert" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-convert" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/convert
+        /// </para>
         /// </summary>
         /// <param name="fromSymbol">Symbol to convert from, for example `ETH.staked` or `CDCETH`</param>
         /// <param name="toSymbol">Symbol to convert to, for example `ETH.staked` or `CDCETH`</param>
@@ -91,7 +131,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get open convert requests
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-convert" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-convert" /><br />
+        /// Endpoint:<br />
+        /// POST /private/staking/get-open-convert
+        /// </para>
         /// </summary>
         /// <param name="startTime">Filter by start time</param>
         /// <param name="endTime">Filter by end time</param>
@@ -101,7 +146,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
 
         /// <summary>
         /// Get conversion rate
-        /// <para><a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-staking-get-conversion-rate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-staking-get-conversion-rate" /><br />
+        /// Endpoint:<br />
+        /// POST /public/staking/get-conversion-rate
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name, for example 'CDCETH'</param>
         /// <param name="ct">Cancellation token</param>
