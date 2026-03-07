@@ -34,9 +34,9 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/user-balance-history
         /// </para>
         /// </summary>
-        /// <param name="interval">Interval of the data, either OneHour or OneDay</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="interval">["<c>timeframe</c>"] Interval of the data, either OneHour or OneDay</param>
+        /// <param name="endTime">["<c>end_time</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComBalanceHistory>> GetBalanceHistoryAsync(Timeframe interval, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
@@ -49,8 +49,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-accounts
         /// </para>
         /// </summary>
-        /// <param name="page">Page</param>
-        /// <param name="pageSize">Max number of results per page</param>
+        /// <param name="page">["<c>page</c>"] Page</param>
+        /// <param name="pageSize">["<c>page_size</c>"] Max number of results per page</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComAccountInfo>> GetAccountInfoAsync(int? page = null, int? pageSize = null, CancellationToken ct = default);
 
@@ -63,8 +63,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/change-account-leverage
         /// </para>
         /// </summary>
-        /// <param name="accountId">Id of the current account</param>
-        /// <param name="leverage">New leverage setting</param>
+        /// <param name="accountId">["<c>account_id</c>"] Id of the current account</param>
+        /// <param name="leverage">["<c>leverage</c>"] New leverage setting</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> SetAccountLeverageAsync(string accountId, int leverage, CancellationToken ct = default);
 
@@ -77,10 +77,10 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/change-account-settings
         /// </para>
         /// </summary>
-        /// <param name="stpScope">Self trade prevention scope</param>
-        /// <param name="stpMode">Self trade prevention mode</param>
-        /// <param name="stpId">Self trade prevention id</param>
-        /// <param name="leverage">Leverage</param>
+        /// <param name="stpScope">["<c>stp_scope</c>"] Self trade prevention scope</param>
+        /// <param name="stpMode">["<c>stp_inst</c>"] Self trade prevention mode</param>
+        /// <param name="stpId">["<c>stp_id</c>"] Self trade prevention id</param>
+        /// <param name="leverage">["<c>leverage</c>"] Leverage</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> SetAccountSettingsAsync(SelfTradePreventionScope? stpScope = null, SelfTradePreventionMode? stpMode = null, long? stpId = null, decimal? leverage = null, CancellationToken ct = default);
 
@@ -105,12 +105,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-transactions
         /// </para>
         /// </summary>
-        /// <param name="symbol">Filter by symbol</param>
-        /// <param name="transactionType">Filter by transaction type</param>
-        /// <param name="isolationId">Filter by isolation id</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol</param>
+        /// <param name="transactionType">["<c>journal_type</c>"] Filter by transaction type</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] Filter by isolation id</param>
+        /// <param name="startTime">["<c>start_time</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>end_time</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComTransaction[]>> GetTransactionHistoryAsync(
             string? symbol = null,
@@ -142,7 +142,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-instrument-fee-rate
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETHUSDT`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComSymbolFeeRate>> GetSymbolFeeRateAsync(string symbol, CancellationToken ct = default);
 
@@ -155,12 +155,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/create-withdrawal
         /// </para>
         /// </summary>
-        /// <param name="asset">Asset to withdraw</param>
-        /// <param name="quantity">Quantity</param>
-        /// <param name="address">Target address</param>
-        /// <param name="addressTag">Address tag</param>
-        /// <param name="network">Network to use</param>
-        /// <param name="clientWithdrawId">Client id</param>
+        /// <param name="asset">["<c>currency</c>"] Asset to withdraw</param>
+        /// <param name="quantity">["<c>amount</c>"] Quantity</param>
+        /// <param name="address">["<c>address</c>"] Target address</param>
+        /// <param name="addressTag">["<c>address_tag</c>"] Address tag</param>
+        /// <param name="network">["<c>network_id</c>"] Network to use</param>
+        /// <param name="clientWithdrawId">["<c>client_wid</c>"] Client id</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComWithdrawalResult>> WithdrawAsync(string asset, decimal quantity, string address, string? addressTag = null, string? network = null, string? clientWithdrawId = null, CancellationToken ct = default);
 
@@ -185,7 +185,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-deposit-address
         /// </para>
         /// </summary>
-        /// <param name="asset">Asset name</param>
+        /// <param name="asset">["<c>currency</c>"] Asset name</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComDepositAddress[]>> GetDepositAddressesAsync(string asset, CancellationToken ct = default);
 
@@ -198,12 +198,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-deposit-history
         /// </para>
         /// </summary>
-        /// <param name="asset">Filter by asset</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="status">Filter by status</param>
-        /// <param name="page">Page</param>
-        /// <param name="pageSize">Page size</param>
+        /// <param name="asset">["<c>currency</c>"] Filter by asset</param>
+        /// <param name="startTime">["<c>start_ts</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>end_ts</c>"] Filter by end time</param>
+        /// <param name="status">["<c>status</c>"] Filter by status</param>
+        /// <param name="page">["<c>page</c>"] Page</param>
+        /// <param name="pageSize">["<c>page_size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComDeposit[]>> GetDepositHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, DepositStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
@@ -216,12 +216,12 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-withdrawal-history
         /// </para>
         /// </summary>
-        /// <param name="asset">Filter by asset</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="status">Filter by status</param>
-        /// <param name="page">Page number</param>
-        /// <param name="pageSize">Page size</param>
+        /// <param name="asset">["<c>currency</c>"] Filter by asset</param>
+        /// <param name="startTime">["<c>start_ts</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>end_ts</c>"] Filter by end time</param>
+        /// <param name="status">["<c>status</c>"] Filter by status</param>
+        /// <param name="page">["<c>page</c>"] Page number</param>
+        /// <param name="pageSize">["<c>page_size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComWithdrawal[]>> GetWithdrawalHistoryAsync(string? asset = null, DateTime? startTime = null, DateTime? endTime = null, WithdrawalStatus? status = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
@@ -234,9 +234,9 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/create-isolated-margin-transfer
         /// </para>
         /// </summary>
-        /// <param name="isolationId">Isolated position id</param>
-        /// <param name="direction">Direction</param>
-        /// <param name="quantity">Quantity to transfer</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] Isolated position id</param>
+        /// <param name="direction">["<c>direction</c>"] Direction</param>
+        /// <param name="quantity">["<c>amount</c>"] Quantity to transfer</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> CreateIsolatedMarginTransferAsync(string isolationId, TransferDirection direction, decimal quantity, CancellationToken ct = default);
 
@@ -249,8 +249,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/change-isolated-margin-leverage
         /// </para>
         /// </summary>
-        /// <param name="isolationId">Isolated position id</param>
-        /// <param name="leverage">Leverage</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] Isolated position id</param>
+        /// <param name="leverage">["<c>leverage</c>"] Leverage</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> SetIsolatedMarginLeverageAsync(string isolationId, int leverage, CancellationToken ct = default);
     }

@@ -23,7 +23,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-positions
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
 
@@ -36,26 +36,26 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/create-order
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
-        /// <param name="side">Order side</param>
-        /// <param name="type">Order type</param>
-        /// <param name="quantity">Order quantity</param>
-        /// <param name="quoteQuantity">Quantity in quote asset</param>
-        /// <param name="price">Limit price</param>
-        /// <param name="clientOrderId">Client order id</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETH_USDT`</param>
+        /// <param name="side">["<c>side</c>"] Order side</param>
+        /// <param name="type">["<c>type</c>"] Order type</param>
+        /// <param name="quantity">["<c>quantity</c>"] Order quantity</param>
+        /// <param name="quoteQuantity">["<c>notional</c>"] Quantity in quote asset</param>
+        /// <param name="price">["<c>price</c>"] Limit price</param>
+        /// <param name="clientOrderId">["<c>client_oid</c>"] Client order id</param>
         /// <param name="postOnly">Post only order</param>
-        /// <param name="timeInForce">Time in force</param>
-        /// <param name="triggerPrice">Trigger price</param>
-        /// <param name="triggerPriceType">Type of trigger price</param>
-        /// <param name="margin">True for spot margin order</param>
-        /// <param name="selfTradePreventionScope">Scope for self trade prevention</param>
-        /// <param name="selfTradePreventionMode">Mode for self trade prevention</param>
-        /// <param name="selfTradePreventionId">Id for self trade prevention</param>
+        /// <param name="timeInForce">["<c>time_in_force</c>"] Time in force</param>
+        /// <param name="triggerPrice">["<c>ref_price</c>"] Trigger price</param>
+        /// <param name="triggerPriceType">["<c>ref_price_type</c>"] Type of trigger price</param>
+        /// <param name="margin">["<c>spot_margin</c>"] True for spot margin order</param>
+        /// <param name="selfTradePreventionScope">["<c>stp_scope</c>"] Scope for self trade prevention</param>
+        /// <param name="selfTradePreventionMode">["<c>stp_inst</c>"] Mode for self trade prevention</param>
+        /// <param name="selfTradePreventionId">["<c>stp_id</c>"] Id for self trade prevention</param>
         /// <param name="smartPostOnly">Smart post only order</param>
         /// <param name="isolatedMargin">Isolated margin or not</param>
-        /// <param name="isolationId">If isolationId is not specified then the order will create a new isolated position. If isolationId is specified then the order will be created for the specified existing isolated position</param>
-        /// <param name="leverage">The maximum leverage to be used for the isolated position</param>
-        /// <param name="isolatedMarginQuantity">Amount needed to transfer to the isolated position - must a be positive number. If it is not given, the transfer amount will be calculated by the leverage of the isolated position</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] If isolationId is not specified then the order will create a new isolated position. If isolationId is specified then the order will be created for the specified existing isolated position</param>
+        /// <param name="leverage">["<c>leverage</c>"] The maximum leverage to be used for the isolated position</param>
+        /// <param name="isolatedMarginQuantity">["<c>isolated_margin_amount</c>"] Amount needed to transfer to the isolated position - must a be positive number. If it is not given, the transfer amount will be calculated by the leverage of the isolated position</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(
             string symbol, 
@@ -89,8 +89,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/cancel-order
         /// </para>
         /// </summary>
-        /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
-        /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+        /// <param name="orderId">["<c>order_id</c>"] Order id, either this or clientOrderId should be provided</param>
+        /// <param name="clientOrderId">["<c>client_oid</c>"] Client order id, either this or orderId should be provided</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
 
@@ -103,8 +103,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/cancel-all-orders
         /// </para>
         /// </summary>
-        /// <param name="symbol">Filter by symbol</param>
-        /// <param name="type">Filter by type</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol</param>
+        /// <param name="type">["<c>type</c>"] Filter by type</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default);
 
@@ -117,10 +117,10 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/close-position
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSD_PERP`</param>
-        /// <param name="orderType">Type of order to use</param>
-        /// <param name="price">Price for limit order</param>
-        /// <param name="isolationId">Isolated position id</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETHUSD_PERP`</param>
+        /// <param name="orderType">["<c>type</c>"] Type of order to use</param>
+        /// <param name="price">["<c>price</c>"] Price for limit order</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] Isolated position id</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default);
         
@@ -133,7 +133,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-open-orders
         /// </para>
         /// </summary>
-        /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
 
@@ -146,8 +146,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-order-detail
         /// </para>
         /// </summary>
-        /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
-        /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
+        /// <param name="orderId">["<c>order_id</c>"] Order id, either this or clientOrderId should be provided</param>
+        /// <param name="clientOrderId">["<c>client_oid</c>"] Client order id, either this or orderId should be provided</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrder>> GetOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
 
@@ -160,11 +160,11 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-order-history
         /// </para>
         /// </summary>
-        /// <param name="symbol">Filter by symbol</param>
-        /// <param name="isolationId">Filter by isolation id</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] Filter by isolation id</param>
+        /// <param name="startTime">["<c>start_time</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>end_time</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(
             string? symbol = null,
@@ -183,11 +183,11 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-trades
         /// </para>
         /// </summary>
-        /// <param name="symbol">Filter by symbol</param>
-        /// <param name="isolationId">Filter by isolation id</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol</param>
+        /// <param name="isolationId">["<c>isolation_id</c>"] Filter by isolation id</param>
+        /// <param name="startTime">["<c>start_time</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>end_time</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(
             string? symbol = null,
@@ -206,7 +206,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/create-order-list
         /// </para>
         /// </summary>
-        /// <param name="orders">Orders to place, max 10</param>
+        /// <param name="orders">["<c>order_list</c>"] Orders to place, max 10</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default);
 
@@ -219,7 +219,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/cancel-order-list
         /// </para>
         /// </summary>
-        /// <param name="orders">Orders to cancel</param>
+        /// <param name="orders">["<c>order_list</c>"] Orders to cancel</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default);
 
@@ -246,8 +246,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/cancel-order-list
         /// </para>
         /// </summary>
-        /// <param name="symbol">Symbol</param>
-        /// <param name="listId">List id to cancel</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Symbol</param>
+        /// <param name="listId">["<c>list_id</c>"] List id to cancel</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
         Task<WebCallResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
@@ -261,8 +261,8 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/get-order-list
         /// </para>
         /// </summary>
-        /// <param name="symbol">Symbol</param>
-        /// <param name="listId">Id</param>
+        /// <param name="symbol">["<c>instrument_name</c>"] Symbol</param>
+        /// <param name="listId">["<c>list_id</c>"] Id</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
         Task<WebCallResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
@@ -276,10 +276,10 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// POST /private/amend-order
         /// </para>
         /// </summary>
-        /// <param name="orderId">Order id, either this or clientOrderId should be provided</param>
-        /// <param name="clientOrderId">Client order id, either this or orderId should be provided</param>
-        /// <param name="newPrice">New price</param>
-        /// <param name="newQuantity">New quantity</param>
+        /// <param name="orderId">["<c>order_id</c>"] Order id, either this or clientOrderId should be provided</param>
+        /// <param name="clientOrderId">["<c>orig_client_oid</c>"] Client order id, either this or orderId should be provided</param>
+        /// <param name="newPrice">["<c>new_price</c>"] New price</param>
+        /// <param name="newQuantity">["<c>new_quantity</c>"] New quantity</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
 
