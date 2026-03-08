@@ -8,7 +8,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComValuationWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComValuation[] Data { get; set; } = Array.Empty<CryptoComValuation>();
@@ -21,12 +21,12 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComValuation
     {
         /// <summary>
-        /// Value
+        /// ["<c>v</c>"] Value
         /// </summary>
         [JsonPropertyName("v")]
         public decimal Value { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }

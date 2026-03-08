@@ -22,12 +22,12 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComOrderBook
     {
         /// <summary>
-        /// Asks
+        /// ["<c>asks</c>"] Asks
         /// </summary>
         [JsonPropertyName("asks")]
         public CryptoComOrderBookEntry[] Asks { get; set; } = [];
         /// <summary>
-        /// Bids
+        /// ["<c>bids</c>"] Bids
         /// </summary>
         [JsonPropertyName("bids")]
         public CryptoComOrderBookEntry[] Bids { get; set; } = [];
@@ -40,22 +40,22 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComOrderBookUpdate: CryptoComOrderBook
     {
         /// <summary>
-        /// Time of the event
+        /// ["<c>t</c>"] Time of the event
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime MessageTime { get; set; }
         /// <summary>
-        /// Book update time
+        /// ["<c>tt</c>"] Book update time
         /// </summary>
         [JsonPropertyName("tt")]
         public DateTime? UpdateTime { get; set; }
         /// <summary>
-        /// Sequence number
+        /// ["<c>u</c>"] Sequence number
         /// </summary>
         [JsonPropertyName("u")]
         public long SequenceNumber { get; set; }
         /// <summary>
-        /// Sequence number
+        /// ["<c>pu</c>"] Sequence number
         /// </summary>
         [JsonPropertyName("pu")]
         public long? PreviousSequenceNumber { get; set; }

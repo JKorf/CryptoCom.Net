@@ -11,12 +11,12 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComBalanceHistory
     {
         /// <summary>
-        /// Asset name
+        /// ["<c>instrument_name</c>"] Asset name
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComBalanceHistoryValue[] Data { get; set; } = Array.Empty<CryptoComBalanceHistoryValue>();
@@ -29,17 +29,17 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComBalanceHistoryValue
     {
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Balance
+        /// ["<c>c</c>"] Balance
         /// </summary>
         [JsonPropertyName("c")]
         public decimal Balance { get; set; }
         /// <summary>
-        /// Isolated position balance
+        /// ["<c>i</c>"] Isolated position balance
         /// </summary>
         [JsonPropertyName("i")]
         public decimal IsolatedBalance { get; set; }

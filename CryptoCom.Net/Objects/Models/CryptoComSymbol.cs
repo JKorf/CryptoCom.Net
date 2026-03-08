@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComSymbolWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComSymbol[] Data { get; set; } = Array.Empty<CryptoComSymbol>();
@@ -22,67 +22,67 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComSymbol
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Symbol type
+        /// ["<c>inst_type</c>"] Symbol type
         /// </summary>
         [JsonPropertyName("inst_type")]
         public SymbolType SymbolType { get; set; }
         /// <summary>
-        /// Display name
+        /// ["<c>display_name</c>"] Display name
         /// </summary>
         [JsonPropertyName("display_name")]
         public string DisplayName { get; set; } = string.Empty;
         /// <summary>
-        /// Base asset
+        /// ["<c>base_ccy</c>"] Base asset
         /// </summary>
         [JsonPropertyName("base_ccy")]
         public string BaseAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Quote asset
+        /// ["<c>quote_ccy</c>"] Quote asset
         /// </summary>
         [JsonPropertyName("quote_ccy")]
         public string QuoteAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Price decimals
+        /// ["<c>quote_decimals</c>"] Price decimals
         /// </summary>
         [JsonPropertyName("quote_decimals")]
         public int PriceDecimals { get; set; }
         /// <summary>
-        /// Quantity decimals
+        /// ["<c>quantity_decimals</c>"] Quantity decimals
         /// </summary>
         [JsonPropertyName("quantity_decimals")]
         public int QuantityDecimals { get; set; }
         /// <summary>
-        /// Price step
+        /// ["<c>price_tick_size</c>"] Price step
         /// </summary>
         [JsonPropertyName("price_tick_size")]
         public decimal PriceTickSize { get; set; }
         /// <summary>
-        /// Quantity step
+        /// ["<c>qty_tick_size</c>"] Quantity step
         /// </summary>
         [JsonPropertyName("qty_tick_size")]
         public decimal QuantityTickSize { get; set; }
         /// <summary>
-        /// Max leverage
+        /// ["<c>max_leverage</c>"] Max leverage
         /// </summary>
         [JsonPropertyName("max_leverage")]
         public decimal MaxLeverage { get; set; }
         /// <summary>
-        /// Tradable
+        /// ["<c>tradable</c>"] Tradable
         /// </summary>
         [JsonPropertyName("tradable")]
         public bool Tradable { get; set; }
         /// <summary>
-        /// Expiry timestamp
+        /// ["<c>expiry_timestamp_ms</c>"] Expiry timestamp
         /// </summary>
         [JsonPropertyName("expiry_timestamp_ms")]
         public DateTime ExpiryTime { get; set; }
         /// <summary>
-        /// Underlying symbol
+        /// ["<c>underlying_symbol</c>"] Underlying symbol
         /// </summary>
         [JsonPropertyName("underlying_symbol")]
         public string? UnderlyingSymbol { get; set; }

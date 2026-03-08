@@ -12,13 +12,13 @@ namespace CryptoCom.Net.Objects.Models
         // NOTE; THE ORDER OF THE PROPERTIES (JsonPropertyName) SHOULD BE IN ALPHABETICAL ORDER SO SERIALIZATION MATCHES SIGNATURE
 
         /// <summary>
-        /// Symbol
+        /// ["<c>instrument_name</c>"] Symbol
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
 
         /// <summary>
-        /// Order id
+        /// ["<c>order_id</c>"] Order id
         /// </summary>
         [JsonPropertyName("order_id")]
         public string OrderId { get; set; } = string.Empty;

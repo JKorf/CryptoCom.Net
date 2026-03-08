@@ -10,12 +10,12 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComConversionRate
     {
         /// <summary>
-        /// Symbol name
+        /// ["<c>instrument_name</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Conversion rate
+        /// ["<c>conversion_rate</c>"] Conversion rate
         /// </summary>
         [JsonPropertyName("conversion_rate")]
         public decimal ConversionRate { get; set; }

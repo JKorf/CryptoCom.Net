@@ -11,42 +11,42 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComStakeResult
     {
         /// <summary>
-        /// Staking id
+        /// ["<c>staking_id</c>"] Staking id
         /// </summary>
         [JsonPropertyName("staking_id")]
         public string StakingId { get; set; } = string.Empty;
         /// <summary>
-        /// Symbol
+        /// ["<c>instrument_name</c>"] Symbol
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Status
+        /// ["<c>status</c>"] Status
         /// </summary>
         [JsonPropertyName("status")]
         public StakeStatus StakeStatus { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>quantity</c>"] Quantity
         /// </summary>
         [JsonPropertyName("quantity")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Underlying asset
+        /// ["<c>underlying_inst_name</c>"] Underlying asset
         /// </summary>
         [JsonPropertyName("underlying_inst_name")]
         public string UnderlyingAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Pre stake charge rate in bps
+        /// ["<c>pre_stake_charge_rate_in_bps</c>"] Pre stake charge rate in bps
         /// </summary>
         [JsonPropertyName("pre_stake_charge_rate_in_bps")]
         public decimal PreStakeChargeRateInBps { get; set; }
         /// <summary>
-        /// Pre stake charge
+        /// ["<c>pre_stake_charge</c>"] Pre stake charge
         /// </summary>
         [JsonPropertyName("pre_stake_charge")]
         public decimal PreStakeCharge { get; set; }
         /// <summary>
-        /// Reason
+        /// ["<c>reason</c>"] Reason
         /// </summary>
         [JsonPropertyName("reason")]
         public string? Reason { get; set; }

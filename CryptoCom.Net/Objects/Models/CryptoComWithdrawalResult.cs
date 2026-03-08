@@ -11,42 +11,42 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComWithdrawalResult
     {
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>amount</c>"] Quantity
         /// </summary>
         [JsonPropertyName("amount")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Fee
+        /// ["<c>fee</c>"] Fee
         /// </summary>
         [JsonPropertyName("fee")]
         public decimal Fee { get; set; }
         /// <summary>
-        /// Asset
+        /// ["<c>symbol</c>"] Asset
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Address
+        /// ["<c>address</c>"] Address
         /// </summary>
         [JsonPropertyName("address")]
         public string Address { get; set; } = string.Empty;
         /// <summary>
-        /// Client withdrawal id
+        /// ["<c>client_wid</c>"] Client withdrawal id
         /// </summary>
         [JsonPropertyName("client_wid")]
         public string? ClientWithdrawId { get; set; }
         /// <summary>
-        /// Create time
+        /// ["<c>create_time</c>"] Create time
         /// </summary>
         [JsonPropertyName("create_time")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Network id
+        /// ["<c>network_id</c>"] Network id
         /// </summary>
         [JsonPropertyName("network_id")]
         public string? NetworkId { get; set; }

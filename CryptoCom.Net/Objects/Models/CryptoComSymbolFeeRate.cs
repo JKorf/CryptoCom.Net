@@ -10,17 +10,17 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComSymbolFeeRate
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>instrument_name</c>"] Symbol
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Effective maker rate bps
+        /// ["<c>effective_maker_rate_bps</c>"] Effective maker rate bps
         /// </summary>
         [JsonPropertyName("effective_maker_rate_bps")]
         public decimal EffectiveMakerRateBps { get; set; }
         /// <summary>
-        /// Effective taker rate bps
+        /// ["<c>effective_taker_rate_bps</c>"] Effective taker rate bps
         /// </summary>
         [JsonPropertyName("effective_taker_rate_bps")]
         public decimal EffectiveTakerRateBps { get; set; }

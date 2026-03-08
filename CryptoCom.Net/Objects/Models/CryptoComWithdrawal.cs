@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComWithdrawalWrapper
     {
         /// <summary>
-        /// Withdrawal list
+        /// ["<c>withdrawal_list</c>"] Withdrawal list
         /// </summary>
         [JsonPropertyName("withdrawal_list")]
         public CryptoComWithdrawal[] WithdrawalList { get; set; } = Array.Empty<CryptoComWithdrawal>();
@@ -22,57 +22,57 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComWithdrawal
     {
         /// <summary>
-        /// Asset
+        /// ["<c>currency</c>"] Asset
         /// </summary>
         [JsonPropertyName("currency")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Client withdrawal id
+        /// ["<c>client_wid</c>"] Client withdrawal id
         /// </summary>
         [JsonPropertyName("client_wid")]
         public string? ClientWithdrawalId { get; set; }
         /// <summary>
-        /// Fee
+        /// ["<c>fee</c>"] Fee
         /// </summary>
         [JsonPropertyName("fee")]
         public decimal Fee { get; set; }
         /// <summary>
-        /// Create time
+        /// ["<c>create_time</c>"] Create time
         /// </summary>
         [JsonPropertyName("create_time")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public string Id { get; set; } = string.Empty;
         /// <summary>
-        /// Update time
+        /// ["<c>update_time</c>"] Update time
         /// </summary>
         [JsonPropertyName("update_time")]
         public DateTime? UpdateTime { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>amount</c>"] Quantity
         /// </summary>
         [JsonPropertyName("amount")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Address
+        /// ["<c>address</c>"] Address
         /// </summary>
         [JsonPropertyName("address")]
         public string Address { get; set; } = string.Empty;
         /// <summary>
-        /// Status
+        /// ["<c>status</c>"] Status
         /// </summary>
         [JsonPropertyName("status")]
         public WithdrawalStatus WithdrawalStatus { get; set; }
         /// <summary>
-        /// Transaction id
+        /// ["<c>txid</c>"] Transaction id
         /// </summary>
         [JsonPropertyName("txid")]
         public string TransactionId { get; set; } = string.Empty;
         /// <summary>
-        /// Network id
+        /// ["<c>network_id</c>"] Network id
         /// </summary>
         [JsonPropertyName("network_id")]
         public string? NetworkId { get; set; }

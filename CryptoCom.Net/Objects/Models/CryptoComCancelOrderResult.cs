@@ -10,17 +10,17 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComCancelOrderResult
     {
         /// <summary>
-        /// Order index in request
+        /// ["<c>index</c>"] Order index in request
         /// </summary>
         [JsonPropertyName("index")]
         public int Index { get; set; }
         /// <summary>
-        /// Result code
+        /// ["<c>code</c>"] Result code
         /// </summary>
         [JsonPropertyName("code")]
         public int Code { get; set; }
         /// <summary>
-        /// Error message
+        /// ["<c>message</c>"] Error message
         /// </summary>
         [JsonPropertyName("message")]
         public string? Message { get; set; }

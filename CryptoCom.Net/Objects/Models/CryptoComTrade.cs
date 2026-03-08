@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComTradeWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComTrade[] Data { get; set; } = Array.Empty<CryptoComTrade>();
@@ -22,32 +22,32 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComTrade
     {
         /// <summary>
-        /// Trade id
+        /// ["<c>d</c>"] Trade id
         /// </summary>
         [JsonPropertyName("d")]
         public string TradeId { get; set; } = string.Empty;
         /// <summary>
-        /// Trade timestamp
+        /// ["<c>t</c>"] Trade timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Trade quantity
+        /// ["<c>q</c>"] Trade quantity
         /// </summary>
         [JsonPropertyName("q")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Trade price
+        /// ["<c>p</c>"] Trade price
         /// </summary>
         [JsonPropertyName("p")]
         public decimal Price { get; set; }
         /// <summary>
-        /// Trade side
+        /// ["<c>s</c>"] Trade side
         /// </summary>
         [JsonPropertyName("s")]
         public OrderSide Side { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>i</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("i")]
         public string Symbol { get; set; } = string.Empty;

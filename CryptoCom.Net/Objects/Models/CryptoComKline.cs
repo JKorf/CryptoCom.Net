@@ -8,7 +8,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComKlineWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComKline[] Data { get; set; } = Array.Empty<CryptoComKline>();
@@ -21,32 +21,32 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComKline
     {
         /// <summary>
-        /// Open price
+        /// ["<c>o</c>"] Open price
         /// </summary>
         [JsonPropertyName("o")]
         public decimal OpenPrice { get; set; }
         /// <summary>
-        /// High price
+        /// ["<c>h</c>"] High price
         /// </summary>
         [JsonPropertyName("h")]
         public decimal HighPrice { get; set; }
         /// <summary>
-        /// Low price
+        /// ["<c>l</c>"] Low price
         /// </summary>
         [JsonPropertyName("l")]
         public decimal LowPrice { get; set; }
         /// <summary>
-        /// Close price
+        /// ["<c>c</c>"] Close price
         /// </summary>
         [JsonPropertyName("c")]
         public decimal ClosePrice { get; set; }
         /// <summary>
-        /// Volume
+        /// ["<c>v</c>"] Volume
         /// </summary>
         [JsonPropertyName("v")]
         public decimal Volume { get; set; }
         /// <summary>
-        /// Open timestamp
+        /// ["<c>t</c>"] Open timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime OpenTime { get; set; }

@@ -18,67 +18,67 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComTicker
     {
         /// <summary>
-        /// High price in last 24 hours
+        /// ["<c>h</c>"] High price in last 24 hours
         /// </summary>
         [JsonPropertyName("h")]
         public decimal? HighPrice { get; set; }
         /// <summary>
-        /// Low price in last 24 hours
+        /// ["<c>l</c>"] Low price in last 24 hours
         /// </summary>
         [JsonPropertyName("l")]
         public decimal? LowPrice { get; set; }
         /// <summary>
-        /// Last price
+        /// ["<c>a</c>"] Last price
         /// </summary>
         [JsonPropertyName("a")]
         public decimal? LastPrice { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>i</c>"] Symbol
         /// </summary>
         [JsonPropertyName("i")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Volume in last 24 hours
+        /// ["<c>v</c>"] Volume in last 24 hours
         /// </summary>
         [JsonPropertyName("v")]
         public decimal Volume { get; set; }
         /// <summary>
-        /// Volume in last 24 hours in USD
+        /// ["<c>vv</c>"] Volume in last 24 hours in USD
         /// </summary>
         [JsonPropertyName("vv")]
         public decimal? VolumeUsd { get; set; }
         /// <summary>
-        /// Current open interest
+        /// ["<c>oi</c>"] Current open interest
         /// </summary>
         [JsonPropertyName("oi")]
         public decimal? OpenInterest { get; set; }
         /// <summary>
-        /// Price change factor since 24 hours ago, 0.01 = 1%
+        /// ["<c>c</c>"] Price change factor since 24 hours ago, 0.01 = 1%
         /// </summary>
         [JsonPropertyName("c")]
         public decimal? PriceChange { get; set; }
         /// <summary>
-        /// Current best bid price
+        /// ["<c>b</c>"] Current best bid price
         /// </summary>
         [JsonPropertyName("b")]
         public decimal? BestBidPrice { get; set; }
         /// <summary>
-        /// Current best bid quantity
+        /// ["<c>bs</c>"] Current best bid quantity
         /// </summary>
         [JsonPropertyName("bs")]
         public decimal? BestBidQuantity { get; set; }
         /// <summary>
-        /// Current best ask price
+        /// ["<c>k</c>"] Current best ask price
         /// </summary>
         [JsonPropertyName("k")]
         public decimal? BestAskPrice { get; set; }
         /// <summary>
-        /// Current best ask quantity
+        /// ["<c>ks</c>"] Current best ask quantity
         /// </summary>
         [JsonPropertyName("ks")]
         public decimal? BestAskQuantity { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }

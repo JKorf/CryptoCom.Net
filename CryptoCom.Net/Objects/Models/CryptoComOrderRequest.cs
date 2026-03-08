@@ -41,7 +41,7 @@ namespace CryptoCom.Net.Objects.Models
             }
         }
         /// <summary>
-        /// Symbol
+        /// ["<c>instrument_name</c>"] Symbol
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;

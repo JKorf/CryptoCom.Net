@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComPositionWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComPosition[] Data { get; set; } = Array.Empty<CryptoComPosition>();
@@ -22,67 +22,67 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComPosition
     {
         /// <summary>
-        /// Account id
+        /// ["<c>account_id</c>"] Account id
         /// </summary>
         [JsonPropertyName("account_id")]
         public string AccountId { get; set; } = string.Empty;
         /// <summary>
-        /// Id of isolated position
+        /// ["<c>isolation_id</c>"] Id of isolated position
         /// </summary>
         [JsonPropertyName("isolation_id")]
         public string? IsolationId { get; set; }
         /// <summary>
-        /// Isolated position max leverage
+        /// ["<c>leverage</c>"] Isolated position max leverage
         /// </summary>
         [JsonPropertyName("leverage")]
         public int? Leverage { get; set; }
         /// <summary>
-        /// Isolated position liquidation price
+        /// ["<c>liquidation_price</c>"] Isolated position liquidation price
         /// </summary>
         [JsonPropertyName("liquidation_price")]
         public decimal? LiquidationPrice { get; set; }
         /// <summary>
-        /// Isolated position margin balance
+        /// ["<c>isolated_margin_balance</c>"] Isolated position margin balance
         /// </summary>
         [JsonPropertyName("isolated_margin_balance")]
         public decimal? IsolatedMarginBalance { get; set; }
         /// <summary>
-        /// Position size
+        /// ["<c>quantity</c>"] Position size
         /// </summary>
         [JsonPropertyName("quantity")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Cost
+        /// ["<c>cost</c>"] Cost
         /// </summary>
         [JsonPropertyName("cost")]
         public decimal Cost { get; set; }
         /// <summary>
-        /// Open position profit and loss
+        /// ["<c>open_position_pnl</c>"] Open position profit and loss
         /// </summary>
         [JsonPropertyName("open_position_pnl")]
         public decimal OpenPositionPnl { get; set; }
         /// <summary>
-        /// Open pos cost
+        /// ["<c>open_pos_cost</c>"] Open pos cost
         /// </summary>
         [JsonPropertyName("open_pos_cost")]
         public decimal OpenPosCost { get; set; }
         /// <summary>
-        /// Session profit and loss
+        /// ["<c>session_pnl</c>"] Session profit and loss
         /// </summary>
         [JsonPropertyName("session_pnl")]
         public decimal SessionPnl { get; set; }
         /// <summary>
-        /// Update timestamp
+        /// ["<c>update_timestamp_ms</c>"] Update timestamp
         /// </summary>
         [JsonPropertyName("update_timestamp_ms")]
         public DateTime UpdateTime { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>instrument_name</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Type
+        /// ["<c>type</c>"] Type
         /// </summary>
         [JsonPropertyName("type")]
         public SymbolType SymbolType { get; set; }

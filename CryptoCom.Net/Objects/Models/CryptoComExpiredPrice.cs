@@ -8,7 +8,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComExpiredPriceWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComExpiredPrice[] Data { get; set; } = Array.Empty<CryptoComExpiredPrice>();
@@ -21,22 +21,22 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComExpiredPrice
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>i</c>"] Symbol
         /// </summary>
         [JsonPropertyName("i")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Expire timestamp
+        /// ["<c>x</c>"] Expire timestamp
         /// </summary>
         [JsonPropertyName("x")]
         public DateTime ExpireTime { get; set; }
         /// <summary>
-        /// Value
+        /// ["<c>v</c>"] Value
         /// </summary>
         [JsonPropertyName("v")]
         public decimal Value { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }

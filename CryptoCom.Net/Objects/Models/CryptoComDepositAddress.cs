@@ -8,7 +8,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComDepositAddressWrapper
     {
         /// <summary>
-        /// Deposit address list
+        /// ["<c>deposit_address_list</c>"] Deposit address list
         /// </summary>
         [JsonPropertyName("deposit_address_list")]
         public CryptoComDepositAddress[] DepositAddressList { get; set; } = Array.Empty<CryptoComDepositAddress>();
@@ -21,32 +21,32 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComDepositAddress
     {
         /// <summary>
-        /// Asset
+        /// ["<c>currency</c>"] Asset
         /// </summary>
         [JsonPropertyName("currency")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Create time
+        /// ["<c>create_time</c>"] Create time
         /// </summary>
         [JsonPropertyName("create_time")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public string Id { get; set; } = string.Empty;
         /// <summary>
-        /// Address
+        /// ["<c>address</c>"] Address
         /// </summary>
         [JsonPropertyName("address")]
         public string Address { get; set; } = string.Empty;
         /// <summary>
-        /// Active
+        /// ["<c>status</c>"] Active
         /// </summary>
         [JsonPropertyName("status")]
         public bool Active { get; set; }
         /// <summary>
-        /// Network
+        /// ["<c>network</c>"] Network
         /// </summary>
         [JsonPropertyName("network")]
         public string Network { get; set; } = string.Empty;

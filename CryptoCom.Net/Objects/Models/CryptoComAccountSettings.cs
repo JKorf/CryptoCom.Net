@@ -11,22 +11,22 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComAccountSettings
     {
         /// <summary>
-        /// Account leverage
+        /// ["<c>leverage</c>"] Account leverage
         /// </summary>
         [JsonPropertyName("leverage")]
         public decimal Leverage { get; set; }
         /// <summary>
-        /// Self trade prevention id
+        /// ["<c>stp_id</c>"] Self trade prevention id
         /// </summary>
         [JsonPropertyName("stp_id")]
         public long? StpId { get; set; }
         /// <summary>
-        /// Self trade prevention scope
+        /// ["<c>stp_scope</c>"] Self trade prevention scope
         /// </summary>
         [JsonPropertyName("stp_scope")]
         public SelfTradePreventionScope StpScope { get; set; }
         /// <summary>
-        /// Self trade prevention mode
+        /// ["<c>stp_inst</c>"] Self trade prevention mode
         /// </summary>
         [JsonPropertyName("stp_inst")]
         public SelfTradePreventionMode? StpMode { get; set; }

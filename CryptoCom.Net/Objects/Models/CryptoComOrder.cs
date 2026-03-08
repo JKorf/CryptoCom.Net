@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComOrderWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComOrder[] Data { get; set; } = Array.Empty<CryptoComOrder>();
@@ -22,27 +22,27 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComOrder
     {
         /// <summary>
-        /// Account id
+        /// ["<c>account_id</c>"] Account id
         /// </summary>
         [JsonPropertyName("account_id")]
         public string AccountId { get; set; } = string.Empty;
         /// <summary>
-        /// Order id
+        /// ["<c>order_id</c>"] Order id
         /// </summary>
         [JsonPropertyName("order_id")]
         public string OrderId { get; set; } = string.Empty;
         /// <summary>
-        /// Isolation id
+        /// ["<c>isolation_id</c>"] Isolation id
         /// </summary>
         [JsonPropertyName("isolation_id")]
         public string? IsolationId { get; set; }
         /// <summary>
-        /// Client order id
+        /// ["<c>client_oid</c>"] Client order id
         /// </summary>
         [JsonPropertyName("client_oid")]
         public string? ClientOrderId { get; set; }
         /// <summary>
-        /// Order type
+        /// ["<c>order_type</c>"] Order type
         /// </summary>
         [JsonPropertyName("order_type")]
         public OrderType OrderType { get; set; }
@@ -53,22 +53,22 @@ namespace CryptoCom.Net.Objects.Models
             set => OrderType = value;
         }
         /// <summary>
-        /// Time in force
+        /// ["<c>time_in_force</c>"] Time in force
         /// </summary>
         [JsonPropertyName("time_in_force")]
         public TimeInForce TimeInForce { get; set; }
         /// <summary>
-        /// OrderSide
+        /// ["<c>side</c>"] OrderSide
         /// </summary>
         [JsonPropertyName("side")]
         public OrderSide OrderSide { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>quantity</c>"] Quantity
         /// </summary>
         [JsonPropertyName("quantity")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Limit price
+        /// ["<c>limit_price</c>"] Limit price
         /// </summary>
         [JsonPropertyName("limit_price")]
         public decimal Price { get; set; }
@@ -79,97 +79,97 @@ namespace CryptoCom.Net.Objects.Models
             set => Price = value;
         }
         /// <summary>
-        /// Order value
+        /// ["<c>order_value</c>"] Order value
         /// </summary>
         [JsonPropertyName("order_value")]
         public decimal OrderValue { get; set; }
         /// <summary>
-        /// Maker fee rate
+        /// ["<c>maker_fee_rate</c>"] Maker fee rate
         /// </summary>
         [JsonPropertyName("maker_fee_rate")]
         public decimal MakerFeeRate { get; set; }
         /// <summary>
-        /// Taker fee rate
+        /// ["<c>taker_fee_rate</c>"] Taker fee rate
         /// </summary>
         [JsonPropertyName("taker_fee_rate")]
         public decimal TakerFeeRate { get; set; }
         /// <summary>
-        /// Average fill price
+        /// ["<c>avg_price</c>"] Average fill price
         /// </summary>
         [JsonPropertyName("avg_price")]
         public decimal? AveragePrice { get; set; }
         /// <summary>
-        /// Cumulative quantity filled
+        /// ["<c>cumulative_quantity</c>"] Cumulative quantity filled
         /// </summary>
         [JsonPropertyName("cumulative_quantity")]
         public decimal QuantityFilled { get; set; }
         /// <summary>
-        /// Cumulative value filled
+        /// ["<c>cumulative_value</c>"] Cumulative value filled
         /// </summary>
         [JsonPropertyName("cumulative_value")]
         public decimal QuoteQuantityFilled { get; set; }
         /// <summary>
-        /// Cumulative fee
+        /// ["<c>cumulative_fee</c>"] Cumulative fee
         /// </summary>
         [JsonPropertyName("cumulative_fee")]
         public decimal Fee { get; set; }
         /// <summary>
-        /// Status
+        /// ["<c>status</c>"] Status
         /// </summary>
         [JsonPropertyName("status")]
         public OrderStatus Status { get; set; }
         /// <summary>
-        /// Update user id
+        /// ["<c>update_user_id</c>"] Update user id
         /// </summary>
         [JsonPropertyName("update_user_id")]
         public string UpdateUserId { get; set; } = string.Empty;
         /// <summary>
-        /// Reason as enum
+        /// ["<c>reason</c>"] Reason as enum
         /// </summary>
         [JsonPropertyName("reason")]
         public OrderRejectedReason Reason { get; set; }
         /// <summary>
-        /// Order date
+        /// ["<c>order_date</c>"] Order date
         /// </summary>
         [JsonPropertyName("order_date")]
         public DateTime OrderDate { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>instrument_name</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Fee asset
+        /// ["<c>fee_instrument_name</c>"] Fee asset
         /// </summary>
         [JsonPropertyName("fee_instrument_name")]
         public string FeeAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Creation time
+        /// ["<c>create_time_ns</c>"] Creation time
         /// </summary>
         [JsonPropertyName("create_time_ns")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Update time
+        /// ["<c>update_time</c>"] Update time
         /// </summary>
         [JsonPropertyName("update_time")]
         public DateTime? UpdateTime { get; set; }
         /// <summary>
-        /// Order list id
+        /// ["<c>list_id</c>"] Order list id
         /// </summary>
         [JsonPropertyName("list_id")]
         public string? ListId { get; set; }
         /// <summary>
-        /// Contingency type
+        /// ["<c>contingency_type</c>"] Contingency type
         /// </summary>
         [JsonPropertyName("contingency_type")]
         public string? ContingencyType { get; set; }
         /// <summary>
-        /// Execution instructions
+        /// ["<c>exec_inst</c>"] Execution instructions
         /// </summary>
         [JsonPropertyName("exec_inst")]
         public ExecutionInstruction[] ExecutionInstructions { get; set; } = [];
         /// <summary>
-        /// Trigger price
+        /// ["<c>ref_price</c>"] Trigger price
         /// </summary>
         [JsonPropertyName("ref_price")]
         public decimal? TriggerPrice { get; set; }
@@ -180,7 +180,7 @@ namespace CryptoCom.Net.Objects.Models
             set => TriggerPrice = value;
         }
         /// <summary>
-        /// Trigger price type
+        /// ["<c>ref_price_type</c>"] Trigger price type
         /// </summary>
         [JsonPropertyName("ref_price_type")]
         public PriceType? TriggerPriceType { get; set; }

@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComAssetWrapper
     {
         /// <summary>
-        /// Asset map
+        /// ["<c>currency_map</c>"] Asset map
         /// </summary>
         [JsonPropertyName("currency_map")]
         public Dictionary<string, CryptoComAsset> AssetMap { get; set; } = null!;
@@ -22,17 +22,17 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComAsset
     {
         /// <summary>
-        /// Full name
+        /// ["<c>full_name</c>"] Full name
         /// </summary>
         [JsonPropertyName("full_name")]
         public string FullName { get; set; } = string.Empty;
         /// <summary>
-        /// Default network
+        /// ["<c>default_network</c>"] Default network
         /// </summary>
         [JsonPropertyName("default_network")]
         public string? DefaultNetwork { get; set; }
         /// <summary>
-        /// Network list
+        /// ["<c>network_list</c>"] Network list
         /// </summary>
         [JsonPropertyName("network_list")]
         public CryptoComAssetNetwork[] Networks { get; set; } = Array.Empty<CryptoComAssetNetwork>();
@@ -45,32 +45,32 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComAssetNetwork
     {
         /// <summary>
-        /// Network id
+        /// ["<c>network_id</c>"] Network id
         /// </summary>
         [JsonPropertyName("network_id")]
         public string NetworkId { get; set; } = string.Empty;
         /// <summary>
-        /// Withdrawal fee
+        /// ["<c>withdrawal_fee</c>"] Withdrawal fee
         /// </summary>
         [JsonPropertyName("withdrawal_fee")]
         public decimal? WithdrawalFee { get; set; }
         /// <summary>
-        /// Withdraw enabled
+        /// ["<c>withdraw_enabled</c>"] Withdraw enabled
         /// </summary>
         [JsonPropertyName("withdraw_enabled")]
         public bool WithdrawEnabled { get; set; }
         /// <summary>
-        /// Min withdrawal quantity
+        /// ["<c>min_withdrawal_amount</c>"] Min withdrawal quantity
         /// </summary>
         [JsonPropertyName("min_withdrawal_amount")]
         public decimal MinWithdrawalQuantity { get; set; }
         /// <summary>
-        /// Deposit enabled
+        /// ["<c>deposit_enabled</c>"] Deposit enabled
         /// </summary>
         [JsonPropertyName("deposit_enabled")]
         public bool DepositEnabled { get; set; }
         /// <summary>
-        /// Confirmation required
+        /// ["<c>confirmation_required</c>"] Confirmation required
         /// </summary>
         [JsonPropertyName("confirmation_required")]
         public int ConfirmationRequired { get; set; }

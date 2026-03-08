@@ -10,37 +10,37 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComConvertResult
     {
         /// <summary>
-        /// From symbol
+        /// ["<c>from_instrument_name</c>"] From symbol
         /// </summary>
         [JsonPropertyName("from_instrument_name")]
         public string FromSymbol { get; set; } = string.Empty;
         /// <summary>
-        /// To symbol
+        /// ["<c>to_instrument_name</c>"] To symbol
         /// </summary>
         [JsonPropertyName("to_instrument_name")]
         public string ToSymbol { get; set; } = string.Empty;
         /// <summary>
-        /// Expected rate
+        /// ["<c>expected_rate</c>"] Expected rate
         /// </summary>
         [JsonPropertyName("expected_rate")]
         public decimal ExpectedRate { get; set; }
         /// <summary>
-        /// From quantity
+        /// ["<c>from_quantity</c>"] From quantity
         /// </summary>
         [JsonPropertyName("from_quantity")]
         public decimal FromQuantity { get; set; }
         /// <summary>
-        /// Slippage tolerance bps
+        /// ["<c>slippage_tolerance_bps</c>"] Slippage tolerance bps
         /// </summary>
         [JsonPropertyName("slippage_tolerance_bps")]
         public decimal SlippageToleranceBps { get; set; }
         /// <summary>
-        /// Convert id
+        /// ["<c>convert_id</c>"] Convert id
         /// </summary>
         [JsonPropertyName("convert_id")]
         public long ConvertId { get; set; }
         /// <summary>
-        /// Reason
+        /// ["<c>reason</c>"] Reason
         /// </summary>
         [JsonPropertyName("reason")]
         public string? Reason { get; set; }

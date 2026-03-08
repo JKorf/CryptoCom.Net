@@ -10,17 +10,17 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComListOrderResult
     {
         /// <summary>
-        /// List id
+        /// ["<c>list_id</c>"] List id
         /// </summary>
         [JsonPropertyName("list_id")]
         public long ListId { get; set; }
         /// <summary>
-        /// Order id
+        /// ["<c>order_id</c>"] Order id
         /// </summary>
         [JsonPropertyName("order_id")]
         public string OrderId { get; set; } = string.Empty;
         /// <summary>
-        /// Client order id
+        /// ["<c>client_oid</c>"] Client order id
         /// </summary>
         [JsonPropertyName("client_oid")]
         public string? ClientOrderId { get; set; }

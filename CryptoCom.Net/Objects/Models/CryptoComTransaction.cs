@@ -9,7 +9,7 @@ namespace CryptoCom.Net.Objects.Models
     internal record CryptoComTransactionWrapper
     {
         /// <summary>
-        /// Data
+        /// ["<c>data</c>"] Data
         /// </summary>
         [JsonPropertyName("data")]
         public CryptoComTransaction[] Data { get; set; } = Array.Empty<CryptoComTransaction>();
@@ -22,82 +22,82 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComTransaction
     {
         /// <summary>
-        /// Account id
+        /// ["<c>account_id</c>"] Account id
         /// </summary>
         [JsonPropertyName("account_id")]
         public string AccountId { get; set; } = string.Empty;
         /// <summary>
-        /// Isolation id
+        /// ["<c>isolation_id</c>"] Isolation id
         /// </summary>
         [JsonPropertyName("isolation_id")]
         public string? IsolationId { get; set; }
         /// <summary>
-        /// Event date
+        /// ["<c>event_date</c>"] Event date
         /// </summary>
         [JsonPropertyName("event_date")]
         public DateTime EventDate { get; set; }
         /// <summary>
-        /// Transaction type
+        /// ["<c>journal_type</c>"] Transaction type
         /// </summary>
         [JsonPropertyName("journal_type")]
         public TransactionType TransactionType { get; set; }
         /// <summary>
-        /// Journal id
+        /// ["<c>journal_id</c>"] Journal id
         /// </summary>
         [JsonPropertyName("journal_id")]
         public string JournalId { get; set; } = string.Empty;
         /// <summary>
-        /// Transaction quantity
+        /// ["<c>transaction_qty</c>"] Transaction quantity
         /// </summary>
         [JsonPropertyName("transaction_qty")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Transaction cost
+        /// ["<c>transaction_cost</c>"] Transaction cost
         /// </summary>
         [JsonPropertyName("transaction_cost")]
         public decimal Cost { get; set; }
         /// <summary>
-        /// Realized profit and loss
+        /// ["<c>realized_pnl</c>"] Realized profit and loss
         /// </summary>
         [JsonPropertyName("realized_pnl")]
         public decimal? RealizedPnl { get; set; }
         /// <summary>
-        /// Order id
+        /// ["<c>order_id</c>"] Order id
         /// </summary>
         [JsonPropertyName("order_id")]
         public string? OrderId { get; set; }
         /// <summary>
-        /// Trade id
+        /// ["<c>trade_id</c>"] Trade id
         /// </summary>
         [JsonPropertyName("trade_id")]
         public string? TradeId { get; set; }
         /// <summary>
-        /// Trade match id
+        /// ["<c>trade_match_id</c>"] Trade match id
         /// </summary>
         [JsonPropertyName("trade_match_id")]
         public string? TradeMatchId { get; set; }
         /// <summary>
-        /// Event timestamp
+        /// ["<c>event_timestamp_ns</c>"] Event timestamp
         /// </summary>
         [JsonPropertyName("event_timestamp_ns")]
         public DateTime EventTime { get; set; }
         /// <summary>
-        /// Client order id
+        /// ["<c>client_oid</c>"] Client order id
         /// </summary>
         [JsonPropertyName("client_oid")]
         public string? ClientOrderId { get; set; }
         /// <summary>
-        /// Trade role
+        /// ["<c>taker_side</c>"] Trade role
         /// </summary>
         [JsonPropertyName("taker_side")]
         public TradeRole? TradeRole { get; set; }
         /// <summary>
-        /// Side
+        /// ["<c>side</c>"] Side
         /// </summary>
         [JsonPropertyName("side")]
         public OrderSide? OrderSide { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>instrument_name</c>"] Symbol
         /// </summary>
         [JsonPropertyName("instrument_name")]
         public string Symbol { get; set; } = string.Empty;
