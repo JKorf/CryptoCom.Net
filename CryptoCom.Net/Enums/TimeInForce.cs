@@ -11,17 +11,17 @@ namespace CryptoCom.Net.Enums
     public enum TimeInForce
     {
         /// <summary>
-        /// Good till cancel
+        /// ["<c>GOOD_TILL_CANCEL</c>"] Good till cancel
         /// </summary>
         [Map("GOOD_TILL_CANCEL")]
         GoodTillCancel,
         /// <summary>
-        /// Immediate or cancel
+        /// ["<c>IMMEDIATE_OR_CANCEL</c>"] Immediate or cancel
         /// </summary>
         [Map("IMMEDIATE_OR_CANCEL")]
         ImmediateOrCancel,
         /// <summary>
-        /// Fill or kill
+        /// ["<c>FILL_OR_KILL</c>"] Fill or kill
         /// </summary>
         [Map("FILL_OR_KILL")]
         FillOrKill,

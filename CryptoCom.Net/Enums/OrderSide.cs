@@ -11,17 +11,17 @@ namespace CryptoCom.Net.Enums
     public enum OrderSide
     {
         /// <summary>
-        /// Unknown
+        /// ["<c>NULL_VAL</c>"] Unknown
         /// </summary>
         [Map("NULL_VAL")]
         Unknown,
         /// <summary>
-        /// Buy
+        /// ["<c>BUY</c>"] Buy
         /// </summary>
         [Map("BUY")]
         Buy,
         /// <summary>
-        /// Sell
+        /// ["<c>SELL</c>"] Sell
         /// </summary>
         [Map("SELL")]
         Sell

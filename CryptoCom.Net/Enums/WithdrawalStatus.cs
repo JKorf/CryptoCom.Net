@@ -11,37 +11,37 @@ namespace CryptoCom.Net.Enums
     public enum WithdrawalStatus
     {
         /// <summary>
-        /// Pending
+        /// ["<c>0</c>"] Pending
         /// </summary>
         [Map("0")]
         Pending,
         /// <summary>
-        /// Processing
+        /// ["<c>1</c>"] Processing
         /// </summary>
         [Map("1")]
         Processing,
         /// <summary>
-        /// Rejected
+        /// ["<c>2</c>"] Rejected
         /// </summary>
         [Map("2")]
         Rejected,
         /// <summary>
-        /// Payment in-progress
+        /// ["<c>3</c>"] Payment in-progress
         /// </summary>
         [Map("3")]
         PaymentInProgress,
         /// <summary>
-        /// Payment failed
+        /// ["<c>4</c>"] Payment failed
         /// </summary>
         [Map("4")]
         PaymentFailed,
         /// <summary>
-        /// Completed
+        /// ["<c>5</c>"] Completed
         /// </summary>
         [Map("5")]
         Completed,
         /// <summary>
-        /// Cancelled
+        /// ["<c>6</c>"] Cancelled
         /// </summary>
         [Map("6")]
         Canceled

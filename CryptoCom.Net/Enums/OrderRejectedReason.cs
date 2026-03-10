@@ -11,517 +11,517 @@ namespace CryptoCom.Net.Enums
 	public enum OrderRejectedReason
     {
         /// <summary>
-        /// Success (no error or rejection)
+        /// ["<c>0</c>"] Success (no error or rejection)
         /// </summary>
         [Map("0")]
         Success,
 
         /// <summary>
-        /// No position available.
+        /// ["<c>201</c>"] No position available.
         /// </summary>
         [Map("201")]
         NoPosition,
 
         /// <summary>
-        /// Account is suspended.
+        /// ["<c>202</c>"] Account is suspended.
         /// </summary>
         [Map("202")]
         AccountIsSuspended,
 
         /// <summary>
-        /// Accounts do not match.
+        /// ["<c>203</c>"] Accounts do not match.
         /// </summary>
         [Map("203")]
         AccountsDoNotMatch,
 
         /// <summary>
-        /// Duplicate client order ID.
+        /// ["<c>204</c>"] Duplicate client order ID.
         /// </summary>
         [Map("204")]
         DuplicateClientOrderId,
 
         /// <summary>
-        /// Duplicate order ID.
+        /// ["<c>205</c>"] Duplicate order ID.
         /// </summary>
         [Map("205")]
         DuplicateOrderId,
 
         /// <summary>
-        /// Instrument has expired.
+        /// ["<c>206</c>"] Instrument has expired.
         /// </summary>
         [Map("206")]
         InstrumentExpired,
 
         /// <summary>
-        /// No mark price available.
+        /// ["<c>207</c>"] No mark price available.
         /// </summary>
         [Map("207")]
         NoMarkPrice,
 
         /// <summary>
-        /// Instrument is not tradable.
+        /// ["<c>208</c>"] Instrument is not tradable.
         /// </summary>
         [Map("208")]
         InstrumentNotTradable,
 
         /// <summary>
-        /// Instrument is invalid.
+        /// ["<c>209</c>"] Instrument is invalid.
         /// </summary>
         [Map("209")]
         InvalidInstrument,
 
         /// <summary>
-        /// Account is invalid.
+        /// ["<c>210</c>"] Account is invalid.
         /// </summary>
         [Map("210")]
         InvalidAccount,
 
         /// <summary>
-        /// Currency is invalid.
+        /// ["<c>211</c>"] Currency is invalid.
         /// </summary>
         [Map("211")]
         InvalidCurrency,
 
         /// <summary>
-        /// Invalid order ID.
+        /// ["<c>212</c>"] Invalid order ID.
         /// </summary>
         [Map("212")]
         InvalidOrderId,
 
         /// <summary>
-        /// Invalid order quantity.
+        /// ["<c>213</c>"] Invalid order quantity.
         /// </summary>
         [Map("213")]
         InvalidOrderQuantity,
 
         /// <summary>
-        /// Invalid settlement currency.
+        /// ["<c>214</c>"] Invalid settlement currency.
         /// </summary>
         [Map("214")]
         InvalidSettleCurrency,
 
         /// <summary>
-        /// Invalid fee currency.
+        /// ["<c>215</c>"] Invalid fee currency.
         /// </summary>
         [Map("215")]
         InvalidFeeCurrency,
 
         /// <summary>
-        /// Invalid position quantity.
+        /// ["<c>216</c>"] Invalid position quantity.
         /// </summary>
         [Map("216")]
         InvalidPositionQuantity,
 
         /// <summary>
-        /// Invalid open quantity.
+        /// ["<c>217</c>"] Invalid open quantity.
         /// </summary>
         [Map("217")]
         InvalidOpenQuantity,
 
         /// <summary>
-        /// Invalid order type.
+        /// ["<c>218</c>"] Invalid order type.
         /// </summary>
         [Map("218")]
         InvalidOrderType,
 
         /// <summary>
-        /// Invalid execution instruction.
+        /// ["<c>219</c>"] Invalid execution instruction.
         /// </summary>
         [Map("219")]
         InvalidExecutionInstruction,
 
         /// <summary>
-        /// Invalid side.
+        /// ["<c>220</c>"] Invalid side.
         /// </summary>
         [Map("220")]
         InvalidSide,
 
         /// <summary>
-        /// Invalid time in force.
+        /// ["<c>221</c>"] Invalid time in force.
         /// </summary>
         [Map("221")]
         InvalidTimeInForce,
 
         /// <summary>
-        /// Stale mark price.
+        /// ["<c>222</c>"] Stale mark price.
         /// </summary>
         [Map("222")]
         StaleMarkPrice,
 
         /// <summary>
-        /// No client order ID provided.
+        /// ["<c>223</c>"] No client order ID provided.
         /// </summary>
         [Map("223")]
         NoClientOrderId,
 
         /// <summary>
-        /// Rejected by matching engine.
+        /// ["<c>224</c>"] Rejected by matching engine.
         /// </summary>
         [Map("224")]
         RejectedByMatchingEngine,
 
         /// <summary>
-        /// Exceeds maximum entry leverage.
+        /// ["<c>225</c>"] Exceeds maximum entry leverage.
         /// </summary>
         [Map("225")]
         ExceedMaximumEntryLeverage,
 
         /// <summary>
-        /// Invalid leverage.
+        /// ["<c>226</c>"] Invalid leverage.
         /// </summary>
         [Map("226")]
         InvalidLeverage,
 
         /// <summary>
-        /// Invalid slippage.
+        /// ["<c>227</c>"] Invalid slippage.
         /// </summary>
         [Map("227")]
         InvalidSlippage,
 
         /// <summary>
-        /// Invalid floor price.
+        /// ["<c>228</c>"] Invalid floor price.
         /// </summary>
         [Map("228")]
         InvalidFloorPrice,
 
         /// <summary>
-        /// Invalid reference price.
+        /// ["<c>229</c>"] Invalid reference price.
         /// </summary>
         [Map("229")]
         InvalidReferencePrice,
 
         /// <summary>
-        /// Invalid trigger type.
+        /// ["<c>230</c>"] Invalid trigger type.
         /// </summary>
         [Map("230")]
         InvalidTriggerType,
 
         /// <summary>
-        /// Account is in margin call.
+        /// ["<c>301</c>"] Account is in margin call.
         /// </summary>
         [Map("301")]
         AccountIsInMarginCall,
 
         /// <summary>
-        /// Exceeds account risk limit.
+        /// ["<c>302</c>"] Exceeds account risk limit.
         /// </summary>
         [Map("302")]
         ExceedsAccountRiskLimit,
 
         /// <summary>
-        /// Exceeds position risk limit.
+        /// ["<c>303</c>"] Exceeds position risk limit.
         /// </summary>
         [Map("303")]
         ExceedsPositionRiskLimit,
 
         /// <summary>
-        /// Order will lead to immediate liquidation.
+        /// ["<c>304</c>"] Order will lead to immediate liquidation.
         /// </summary>
         [Map("304")]
         OrderWillLeadToImmediateLiquidation,
 
         /// <summary>
-        /// Order will trigger margin call.
+        /// ["<c>305</c>"] Order will trigger margin call.
         /// </summary>
         [Map("305")]
         OrderWillTriggerMarginCall,
 
         /// <summary>
-        /// Insufficient available balance.
+        /// ["<c>306</c>"] Insufficient available balance.
         /// </summary>
         [Map("306")]
         InsufficientAvailableBalance,
 
         /// <summary>
-        /// Invalid order status.
+        /// ["<c>307</c>"] Invalid order status.
         /// </summary>
         [Map("307")]
         InvalidOrderStatus,
 
         /// <summary>
-        /// Invalid price.
+        /// ["<c>308</c>"] Invalid price.
         /// </summary>
         [Map("308")]
         InvalidPrice,
 
         /// <summary>
-        /// Market is not open.
+        /// ["<c>309</c>"] Market is not open.
         /// </summary>
         [Map("309")]
         MarketIsNotOpen,
 
         /// <summary>
-        /// Order price beyond liquidation price.
+        /// ["<c>310</c>"] Order price beyond liquidation price.
         /// </summary>
         [Map("310")]
         OrderPriceBeyondLiquidationPrice,
 
         /// <summary>
-        /// Position is in liquidation.
+        /// ["<c>311</c>"] Position is in liquidation.
         /// </summary>
         [Map("311")]
         PositionIsInLiquidation,
 
         /// <summary>
-        /// Order price is greater than the limit up price.
+        /// ["<c>312</c>"] Order price is greater than the limit up price.
         /// </summary>
         [Map("312")]
         OrderPriceGreaterThanLimitUpPrice,
 
         /// <summary>
-        /// Order price is less than the limit down price.
+        /// ["<c>313</c>"] Order price is less than the limit down price.
         /// </summary>
         [Map("313")]
         OrderPriceLessThanLimitDownPrice,
 
         /// <summary>
-        /// Exceeds maximum order size.
+        /// ["<c>314</c>"] Exceeds maximum order size.
         /// </summary>
         [Map("314")]
         ExceedsMaxOrderSize,
 
         /// <summary>
-        /// Far away limit price.
+        /// ["<c>315</c>"] Far away limit price.
         /// </summary>
         [Map("315")]
         FarAwayLimitPrice,
 
         /// <summary>
-        /// No active order.
+        /// ["<c>316</c>"] No active order.
         /// </summary>
         [Map("316")]
         NoActiveOrder,
 
         /// <summary>
-        /// Position does not exist.
+        /// ["<c>317</c>"] Position does not exist.
         /// </summary>
         [Map("317")]
         PositionDoesNotExist,
 
         /// <summary>
-        /// Exceeds maximum allowed orders.
+        /// ["<c>318</c>"] Exceeds maximum allowed orders.
         /// </summary>
         [Map("318")]
         ExceedsMaxAllowedOrders,
 
         /// <summary>
-        /// Exceeds maximum position size.
+        /// ["<c>319</c>"] Exceeds maximum position size.
         /// </summary>
         [Map("319")]
         ExceedsMaxPositionSize,
 
         /// <summary>
-        /// Exceeds initial margin.
+        /// ["<c>320</c>"] Exceeds initial margin.
         /// </summary>
         [Map("320")]
         ExceedsInitialMargin,
 
         /// <summary>
-        /// Exceeds maximum available balance.
+        /// ["<c>321</c>"] Exceeds maximum available balance.
         /// </summary>
         [Map("321")]
         ExceedsMaxAvailableBalance,
 
         /// <summary>
-        /// Account does not exist.
+        /// ["<c>401</c>"] Account does not exist.
         /// </summary>
         [Map("401")]
         AccountDoesNotExist,
 
         /// <summary>
-        /// Account is not active.
+        /// ["<c>406</c>"] Account is not active.
         /// </summary>
         [Map("406")]
         AccountIsNotActive,
 
         /// <summary>
-        /// Margin unit does not exist.
+        /// ["<c>407</c>"] Margin unit does not exist.
         /// </summary>
         [Map("407")]
         MarginUnitDoesNotExist,
 
         /// <summary>
-        /// Margin unit is suspended.
+        /// ["<c>408</c>"] Margin unit is suspended.
         /// </summary>
         [Map("408")]
         MarginUnitIsSuspended,
 
         /// <summary>
-        /// Invalid user.
+        /// ["<c>409</c>"] Invalid user.
         /// </summary>
         [Map("409")]
         InvalidUser,
 
         /// <summary>
-        /// User is not active.
+        /// ["<c>410</c>"] User is not active.
         /// </summary>
         [Map("410")]
         UserIsNotActive,
 
         /// <summary>
-        /// User does not have derivative access.
+        /// ["<c>411</c>"] User does not have derivative access.
         /// </summary>
         [Map("411")]
         UserNoDerivativeAccess,
 
         /// <summary>
-        /// Account does not have derivative access.
+        /// ["<c>412</c>"] Account does not have derivative access.
         /// </summary>
         [Map("412")]
         AccountNoDerivativeAccess,
 
         /// <summary>
-        /// Below minimum order size.
+        /// ["<c>415</c>"] Below minimum order size.
         /// </summary>
         [Map("415")]
         BelowMinimumOrderSize,
 
         /// <summary>
-        /// Exceeds maximum effective leverage.
+        /// ["<c>501</c>"] Exceeds maximum effective leverage.
         /// </summary>
         [Map("501")]
         ExceedMaximumEffectiveLeverage,
 
         /// <summary>
-        /// Invalid collateral price.
+        /// ["<c>604</c>"] Invalid collateral price.
         /// </summary>
         [Map("604")]
         InvalidCollateralPrice,
 
         /// <summary>
-        /// Invalid margin calculation.
+        /// ["<c>605</c>"] Invalid margin calculation.
         /// </summary>
         [Map("605")]
         InvalidMarginCalculation,
 
         /// <summary>
-        /// Exceeds allowed slippage.
+        /// ["<c>606</c>"] Exceeds allowed slippage.
         /// </summary>
         [Map("606")]
         ExceedAllowedSlippage,
 
         /// <summary>
-        /// Maximum amount violated.
+        /// ["<c>30024</c>"] Maximum amount violated.
         /// </summary>
         [Map("30024")]
         MaxAmountViolated,
 
         /// <summary>
-        /// Bad request.
+        /// ["<c>40001</c>"] Bad request.
         /// </summary>
         [Map("40001")]
         BadRequest,
 
         /// <summary>
-        /// Method not found.
+        /// ["<c>40002</c>"] Method not found.
         /// </summary>
         [Map("40002")]
         MethodNotFound,
 
         /// <summary>
-        /// Invalid request.
+        /// ["<c>40003</c>"] Invalid request.
         /// </summary>
         [Map("40003")]
         InvalidRequest,
 
         /// <summary>
-        /// Missing or invalid argument.
+        /// ["<c>40004</c>"] Missing or invalid argument.
         /// </summary>
         [Map("40004")]
         MissingOrInvalidArgument,
 
         /// <summary>
-        /// Invalid date.
+        /// ["<c>40005</c>"] Invalid date.
         /// </summary>
         [Map("40005")]
         InvalidDate,
 
         /// <summary>
-        /// Duplicate request received.
+        /// ["<c>40006</c>"] Duplicate request received.
         /// </summary>
         [Map("40006")]
         DuplicateRequest,
 
         /// <summary>
-        /// Unauthorized access.
+        /// ["<c>40101</c>"] Unauthorized access.
         /// </summary>
         [Map("40101")]
         Unauthorized,
 
         /// <summary>
-        /// Invalid nonce value.
+        /// ["<c>40102</c>"] Invalid nonce value.
         /// </summary>
         [Map("40102")]
         InvalidNonce,
 
         /// <summary>
-        /// IP address not whitelisted.
+        /// ["<c>40103</c>"] IP address not whitelisted.
         /// </summary>
         [Map("40103")]
         IpIllegal,
 
         /// <summary>
-        /// User tier is invalid.
+        /// ["<c>40104</c>"] User tier is invalid.
         /// </summary>
         [Map("40104")]
         UserTierInvalid,
 
         /// <summary>
-        /// Exceeds maximum subscriptions.
+        /// ["<c>40107</c>"] Exceeds maximum subscriptions.
         /// </summary>
         [Map("40107")]
         ExceedMaxSubscriptions,
 
         /// <summary>
-        /// Not found.
+        /// ["<c>40401</c>"] Not found.
         /// </summary>
         [Map("40401")]
         NotFound,
 
         /// <summary>
-        /// Request has timed out.
+        /// ["<c>40801</c>"] Request has timed out.
         /// </summary>
         [Map("40801")]
         RequestTimeout,
 
         /// <summary>
-        /// Too many requests.
+        /// ["<c>42901</c>"] Too many requests.
         /// </summary>
         [Map("42901")]
         TooManyRequests,
 
         /// <summary>
-        /// FOK order not filled and canceled.
+        /// ["<c>43003</c>"] FOK order not filled and canceled.
         /// </summary>
         [Map("43003")]
         FillOrKill,
 
         /// <summary>
-        /// IOC order not filled and canceled.
+        /// ["<c>43004</c>"] IOC order not filled and canceled.
         /// </summary>
         [Map("43004")]
         ImmediateOrCancel,
 
         /// <summary>
-        /// Rejected POST_ONLY create-order request.
+        /// ["<c>43005</c>"] Rejected POST_ONLY create-order request.
         /// </summary>
         [Map("43005")]
         PostOnlyRejected,
 
         /// <summary>
-        /// Canceled due to self-trade prevention.
+        /// ["<c>43012</c>"] Canceled due to self-trade prevention.
         /// </summary>
         [Map("43012")]
         SelfTradePrevention,
 
         /// <summary>
-        /// Credit line not maintained.
+        /// ["<c>50001</c>"] Credit line not maintained.
         /// </summary>
         [Map("50001")]
         CreditLineNotMaintained,
 
         /// <summary>
-        /// Internal error occurred.
+        /// ["<c>50002</c>"] Internal error occurred.
         /// </summary>
         [Map("50002")]
         InternalError,

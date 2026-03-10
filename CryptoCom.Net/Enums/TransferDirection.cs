@@ -16,12 +16,12 @@ namespace CryptoCom.Net.Enums
     public enum TransferDirection
     {
         /// <summary>
-        /// Add to the position
+        /// ["<c>CREDIT</c>"] Add to the position
         /// </summary>
         [Map("CREDIT")]
         Credit,
         /// <summary>
-        /// Remove from the position
+        /// ["<c>DEBIT</c>"] Remove from the position
         /// </summary>
         [Map("DEBIT")]
         Debit

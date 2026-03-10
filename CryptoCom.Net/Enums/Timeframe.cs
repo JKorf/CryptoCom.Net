@@ -11,12 +11,12 @@ namespace CryptoCom.Net.Enums
     public enum Timeframe
     {
         /// <summary>
-        /// One hour
+        /// ["<c>H1</c>"] One hour
         /// </summary>
         [Map("H1")]
         OneHour,
         /// <summary>
-        /// One day
+        /// ["<c>D1</c>"] One day
         /// </summary>
         [Map("D1")]
         OneDay

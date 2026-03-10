@@ -11,17 +11,17 @@ namespace CryptoCom.Net.Enums
     public enum OrderTypeFilter
     {
         /// <summary>
-        /// Limit orders
+        /// ["<c>LIMIT</c>"] Limit orders
         /// </summary>
         [Map("LIMIT")]
         Limit,
         /// <summary>
-        /// Trigger orders
+        /// ["<c>TRIGGER</c>"] Trigger orders
         /// </summary>
         [Map("TRIGGER")]
         Trigger,
         /// <summary>
-        /// All types
+        /// ["<c>ALL</c>"] All types
         /// </summary>
         [Map("ALL")]
         All

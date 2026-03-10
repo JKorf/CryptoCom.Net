@@ -11,22 +11,22 @@ namespace CryptoCom.Net.Enums
     public enum SymbolType
     {
         /// <summary>
-        /// Spot
+        /// ["<c>CCY_PAIR</c>"] Spot
         /// </summary>
         [Map("CCY_PAIR")]
         Spot,
         /// <summary>
-        /// Perpetual swap
+        /// ["<c>PERPETUAL_SWAP</c>"] Perpetual swap
         /// </summary>
         [Map("PERPETUAL_SWAP")]
         PerpetualSwap,
         /// <summary>
-        /// Future
+        /// ["<c>FUTURE</c>"] Future
         /// </summary>
         [Map("FUTURE")]
         DeliveryFuture,
         /// <summary>
-        /// CRO stake
+        /// ["<c>CRO_STAKE</c>"] CRO stake
         /// </summary>
         [Map("CRO_STAKE")]
         CroStake

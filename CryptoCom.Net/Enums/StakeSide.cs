@@ -11,12 +11,12 @@ namespace CryptoCom.Net.Enums
     public enum StakeSide
     {
         /// <summary>
-        /// Stake
+        /// ["<c>STAKE</c>"] Stake
         /// </summary>
         [Map("STAKE")]
         Stake,
         /// <summary>
-        /// Unstake
+        /// ["<c>UNSTAKE</c>"] Unstake
         /// </summary>
         [Map("UNSTAKE")]
         Unstake

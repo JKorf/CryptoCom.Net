@@ -11,22 +11,22 @@ namespace CryptoCom.Net.Enums
     public enum DepositStatus
     {
         /// <summary>
-        /// Not arrived
+        /// ["<c>0</c>"] Not arrived
         /// </summary>
         [Map("0")]
         NotArrived,
         /// <summary>
-        /// Arrived
+        /// ["<c>1</c>"] Arrived
         /// </summary>
         [Map("1")]
         Arrived,
         /// <summary>
-        /// Failed
+        /// ["<c>2</c>"] Failed
         /// </summary>
         [Map("2")]
         Failed,
         /// <summary>
-        /// Pending
+        /// ["<c>3</c>"] Pending
         /// </summary>
         [Map("3")]
         Pending

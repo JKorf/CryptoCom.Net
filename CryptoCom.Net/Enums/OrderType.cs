@@ -11,32 +11,32 @@ namespace CryptoCom.Net.Enums
     public enum OrderType
     {
         /// <summary>
-        /// Limit
+        /// ["<c>LIMIT</c>"] Limit
         /// </summary>
         [Map("LIMIT")]
         Limit,
         /// <summary>
-        /// Market
+        /// ["<c>MARKET</c>"] Market
         /// </summary>
         [Map("MARKET")]
         Market,
         /// <summary>
-        /// Stop loss
+        /// ["<c>STOP_LOSS</c>"] Stop loss
         /// </summary>
         [Map("STOP_LOSS")]
         StopLoss,
         /// <summary>
-        /// Stop limit
+        /// ["<c>STOP_LIMIT</c>"] Stop limit
         /// </summary>
         [Map("STOP_LIMIT")]
         StopLimit,
         /// <summary>
-        /// Take profit
+        /// ["<c>TAKE_PROFIT</c>"] Take profit
         /// </summary>
         [Map("TAKE_PROFIT")]
         TakeProfit,
         /// <summary>
-        /// Take profit limit
+        /// ["<c>TAKE_PROFIT_LIMIT</c>"] Take profit limit
         /// </summary>
         [Map("TAKE_PROFIT_LIMIT")]
         TakeProfitLimit,

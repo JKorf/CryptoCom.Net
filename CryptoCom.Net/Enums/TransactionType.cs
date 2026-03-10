@@ -11,122 +11,122 @@ namespace CryptoCom.Net.Enums
     public enum TransactionType
     {
         /// <summary>
-        /// Trading
+        /// ["<c>TRADING</c>"] Trading
         /// </summary>
         [Map("TRADING")]
         Trading,
         /// <summary>
-        /// Trade fee
+        /// ["<c>TRADE_FEE</c>"] Trade fee
         /// </summary>
         [Map("TRADE_FEE")]
         TradeFee,
         /// <summary>
-        /// Withdraw fee
+        /// ["<c>WITHDRAW_FEE</c>"] Withdraw fee
         /// </summary>
         [Map("WITHDRAW_FEE")]
         WithdrawFee,
         /// <summary>
-        /// Withdraw
+        /// ["<c>WITHDRAW</c>"] Withdraw
         /// </summary>
         [Map("WITHDRAW")]
         Withdraw,
         /// <summary>
-        /// Deposit
+        /// ["<c>DEPOSIT</c>"] Deposit
         /// </summary>
         [Map("DEPOSIT")]
         Deposit,
         /// <summary>
-        /// Rollback deposit
+        /// ["<c>ROLLBACK_DEPOSIT</c>"] Rollback deposit
         /// </summary>
         [Map("ROLLBACK_DEPOSIT")]
         RollbackDeposit,
         /// <summary>
-        /// Rollback withdraw
+        /// ["<c>ROLLBACK_WITHDRAW</c>"] Rollback withdraw
         /// </summary>
         [Map("ROLLBACK_WITHDRAW")]
         RollbackWithdraw,
         /// <summary>
-        /// Funding
+        /// ["<c>FUNDING</c>"] Funding
         /// </summary>
         [Map("FUNDING")]
         Funding,
         /// <summary>
-        /// Realized pnl
+        /// ["<c>REALIZED_PNL</c>"] Realized pnl
         /// </summary>
         [Map("REALIZED_PNL")]
         RealizedPnl,
         /// <summary>
-        /// Insurance fund
+        /// ["<c>INSURANCE_FUND</c>"] Insurance fund
         /// </summary>
         [Map("INSURANCE_FUND")]
         InsuranceFund,
         /// <summary>
-        /// Socialized loss
+        /// ["<c>SOCIALIZED_LOSS</c>"] Socialized loss
         /// </summary>
         [Map("SOCIALIZED_LOSS")]
         SocializedLoss,
         /// <summary>
-        /// Liquidation fee
+        /// ["<c>LIQUIDATION_FEE</c>"] Liquidation fee
         /// </summary>
         [Map("LIQUIDATION_FEE")]
         LiquidationFee,
         /// <summary>
-        /// Session reset
+        /// ["<c>SESSION_RESET</c>"] Session reset
         /// </summary>
         [Map("SESSION_RESET")]
         SessionReset,
         /// <summary>
-        /// Adjustment
+        /// ["<c>ADJUSTMENT</c>"] Adjustment
         /// </summary>
         [Map("ADJUSTMENT")]
         Adjustment,
         /// <summary>
-        /// Session settle
+        /// ["<c>SESSION_SETTLE</c>"] Session settle
         /// </summary>
         [Map("SESSION_SETTLE")]
         SessionSettle,
         /// <summary>
-        /// Uncovered loss
+        /// ["<c>UNCOVERED_LOSS</c>"] Uncovered loss
         /// </summary>
         [Map("UNCOVERED_LOSS")]
         UncoveredLoss,
         /// <summary>
-        /// Admin adjustment
+        /// ["<c>ADMIN_ADJUSTMENT</c>"] Admin adjustment
         /// </summary>
         [Map("ADMIN_ADJUSTMENT")]
         AdminAdjustment,
         /// <summary>
-        /// Delist
+        /// ["<c>DELIST</c>"] Delist
         /// </summary>
         [Map("DELIST")]
         Delist,
         /// <summary>
-        /// Settlement fee
+        /// ["<c>SETTLEMENT_FEE</c>"] Settlement fee
         /// </summary>
         [Map("SETTLEMENT_FEE")]
         SettlementFee,
         /// <summary>
-        /// Auto conversion
+        /// ["<c>AUTO_CONVERSION</c>"] Auto conversion
         /// </summary>
         [Map("AUTO_CONVERSION")]
         AutoConversion,
         /// <summary>
-        /// Manual conversion
+        /// ["<c>MANUAL_CONVERSION</c>"] Manual conversion
         /// </summary>
         [Map("MANUAL_CONVERSION")]
         ManualConversion,
         /// <summary>
-        /// Subaccount transaction
+        /// ["<c>SUBACCOUNT_TX</c>"] Subaccount transaction
         /// </summary>
         [Map("SUBACCOUNT_TX")]
         SubaccountTx,
         /// <summary>
-        /// Fiat withdrawal cancel
+        /// ["<c>FIAT_WITHDRAWAL_CANCEL</c>"] Fiat withdrawal cancel
         /// </summary>
         [Map("FIAT_WITHDRAWAL_CANCEL")]
         FiatWithdrawalCancel,
         /// <summary>
-        /// Soft stake reward
+        /// ["<c>SOFT_STAKE_REWARD</c>"] Soft stake reward
         /// </summary>
         [Map("SOFT_STAKE_REWARD")]
         SoftStakeReward

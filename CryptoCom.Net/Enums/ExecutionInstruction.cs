@@ -11,22 +11,22 @@ namespace CryptoCom.Net.Enums
     public enum ExecutionInstruction
     {
         /// <summary>
-        /// Post only order
+        /// ["<c>POST_ONLY</c>"] Post only order
         /// </summary>
         [Map("POST_ONLY")]
         PostOnly,
         /// <summary>
-        /// Liquidation order
+        /// ["<c>LIQUIDATION</c>"] Liquidation order
         /// </summary>
         [Map("LIQUIDATION")]
         Liquidation,
         /// <summary>
-        /// Smart post only
+        /// ["<c>SMART_POST_ONLY</c>"] Smart post only
         /// </summary>
         [Map("SMART_POST_ONLY")]
         SmartPostOnly,
         /// <summary>
-        /// Isolated margin
+        /// ["<c>ISOLATED_MARGIN</c>"] Isolated margin
         /// </summary>
         [Map("ISOLATED_MARGIN")]
         IsolatedMargin

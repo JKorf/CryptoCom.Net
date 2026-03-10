@@ -11,12 +11,12 @@ namespace CryptoCom.Net.Enums
     public enum TradeRole
     {
         /// <summary>
-        /// Maker
+        /// ["<c>MAKER</c>"] Maker
         /// </summary>
         [Map("MAKER")]
         Maker,
         /// <summary>
-        /// Taker
+        /// ["<c>TAKER</c>"] Taker
         /// </summary>
         [Map("TAKER")]
         Taker

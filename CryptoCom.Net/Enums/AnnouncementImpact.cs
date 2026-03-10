@@ -11,17 +11,17 @@ namespace CryptoCom.Net.Enums
     public enum AnnouncementImpact
     {
         /// <summary>
-        /// Impacted
+        /// ["<c>YES</c>"] Impacted
         /// </summary>
         [Map("YES")]
         Impacted,
         /// <summary>
-        /// Not impacted
+        /// ["<c>BAU</c>"] Not impacted
         /// </summary>
         [Map("BAU")]
         NotImpacted,
         /// <summary>
-        /// Partially impacted
+        /// ["<c>Partial</c>"] Partially impacted
         /// </summary>
         [Map("Partial")]
         PartiallyImpacted

@@ -11,17 +11,17 @@ namespace CryptoCom.Net.Enums
     public enum SelfTradePreventionScope
     {
         /// <summary>
-        /// Matches master or sub a/c
+        /// ["<c>M</c>"] Matches master or sub a/c
         /// </summary>
         [Map("M")]
         MasterAndSubAccount,
         /// <summary>
-        /// Matches sub a/c only
+        /// ["<c>S</c>"] Matches sub a/c only
         /// </summary>
         [Map("S")]
         SubAccount,
         /// <summary>
-        /// Unknown
+        /// ["<c>D</c>"] Unknown
         /// </summary>
         [Map("D")]
         Unknown

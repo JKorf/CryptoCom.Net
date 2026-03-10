@@ -11,12 +11,12 @@ namespace CryptoCom.Net.Enums
     public enum AccessType
     {
         /// <summary>
-        /// Default
+        /// ["<c>DEFAULT</c>"] Default
         /// </summary>
         [Map("DEFAULT")]
         Default,
         /// <summary>
-        /// Disabled
+        /// ["<c>DISABLED</c>"] Disabled
         /// </summary>
         [Map("DISABLED")]
         Disabled

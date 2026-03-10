@@ -11,17 +11,17 @@ namespace CryptoCom.Net.Enums
     public enum SelfTradePreventionMode
     {
         /// <summary>
-        /// Cancel maker
+        /// ["<c>M</c>"] Cancel maker
         /// </summary>
         [Map("M")]
         CancelMaker,
         /// <summary>
-        /// Cancel taker
+        /// ["<c>T</c>"] Cancel taker
         /// </summary>
         [Map("T")]
         CancelTaker,
         /// <summary>
-        /// Cancel both maker and taker
+        /// ["<c>B</c>"] Cancel both maker and taker
         /// </summary>
         [Map("B")]
         CancelBoth,

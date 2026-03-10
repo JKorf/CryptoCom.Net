@@ -11,27 +11,27 @@ namespace CryptoCom.Net.Enums
     public enum AnnouncementCategory
     {
         /// <summary>
-        /// Delist
+        /// ["<c>delist</c>"] Delist
         /// </summary>
         [Map("delist")]
         Delisting,
         /// <summary>
-        /// Listing
+        /// ["<c>list</c>"] Listing
         /// </summary>
         [Map("list")]
         Listing,
         /// <summary>
-        /// Event
+        /// ["<c>event</c>"] Event
         /// </summary>
         [Map("event")]
         Event,
         /// <summary>
-        /// Product
+        /// ["<c>product</c>"] Product
         /// </summary>
         [Map("product")]
         Product,
         /// <summary>
-        /// System
+        /// ["<c>system</c>"] System
         /// </summary>
         [Map("system")]
         System

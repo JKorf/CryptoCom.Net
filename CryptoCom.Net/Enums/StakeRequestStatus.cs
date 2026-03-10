@@ -11,37 +11,37 @@ namespace CryptoCom.Net.Enums
     public enum StakeRequestStatus
     {
         /// <summary>
-        /// New
+        /// ["<c>NEW</c>"] New
         /// </summary>
         [Map("NEW")]
         New,
         /// <summary>
-        /// Pending
+        /// ["<c>PENDING</c>"] Pending
         /// </summary>
         [Map("PENDING")]
         Pending,
         /// <summary>
-        /// Pending withdrawal
+        /// ["<c>PENDING_WITHDRAWAL</c>"] Pending withdrawal
         /// </summary>
         [Map("PENDING_WITHDRAWAL")]
         PendingWithdrawal,
         /// <summary>
-        /// Pending unstaking
+        /// ["<c>PENDING_UNSTAKING</c>"] Pending unstaking
         /// </summary>
         [Map("PENDING_UNSTAKING")]
         PendingUnstaking,
         /// <summary>
-        /// Staked
+        /// ["<c>STAKED</c>"] Staked
         /// </summary>
         [Map("STAKED")]
         Staked,
         /// <summary>
-        /// Completed
+        /// ["<c>COMPLETED</c>"] Completed
         /// </summary>
         [Map("COMPLETED")]
         Completed,
         /// <summary>
-        /// Rejected
+        /// ["<c>REJECTED</c>"] Rejected
         /// </summary>
         [Map("REJECTED")]
         Rejected
