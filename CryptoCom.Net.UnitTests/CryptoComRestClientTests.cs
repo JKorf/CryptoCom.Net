@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CryptoExchange.Net.Objects;
 using CryptoCom.Net.Interfaces.Clients;
+using CryptoCom.Net.Clients.ExchangeApi;
 
 namespace CryptoCom.Net.UnitTests
 {
@@ -111,8 +112,8 @@ namespace CryptoCom.Net.UnitTests
 
             Assert.That(((BaseApiClient)restClient.ExchangeApi).OutputOriginalData, Is.True);
             Assert.That(((BaseApiClient)socketClient.ExchangeApi).OutputOriginalData, Is.False);
-            Assert.That(((BaseApiClient)restClient.ExchangeApi).AuthenticationProvider.ApiKey, Is.EqualTo("123"));
-            Assert.That(((BaseApiClient)socketClient.ExchangeApi).AuthenticationProvider.ApiKey, Is.EqualTo("456"));
+            Assert.That(((CryptoComRestClientExchangeApi)restClient.ExchangeApi).AuthenticationProvider.PublicKey, Is.EqualTo("123"));
+            Assert.That(((CryptoComSocketClientExchangeApi)socketClient.ExchangeApi).AuthenticationProvider.PublicKey, Is.EqualTo("456"));
             Assert.That(((BaseApiClient)restClient.ExchangeApi).ClientOptions.Proxy.Host, Is.EqualTo("host"));
             Assert.That(((BaseApiClient)restClient.ExchangeApi).ClientOptions.Proxy.Port, Is.EqualTo(80));
             Assert.That(((BaseApiClient)socketClient.ExchangeApi).ClientOptions.Proxy.Host, Is.EqualTo("host2"));

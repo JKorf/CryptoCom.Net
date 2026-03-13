@@ -6,7 +6,7 @@ namespace CryptoCom.Net.Objects.Options
     /// <summary>
     /// CryptoCom options
     /// </summary>
-    public class CryptoComOptions : LibraryOptions<CryptoComRestOptions, CryptoComSocketOptions, ApiCredentials, CryptoComEnvironment>
+    public class CryptoComOptions : LibraryOptions<CryptoComRestOptions, CryptoComSocketOptions, CryptoComCredentials, CryptoComEnvironment>
     {
     }
 }

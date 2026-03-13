@@ -49,7 +49,7 @@ namespace CryptoCom.Net.Clients
         }
 
         /// <inheritdoc />
-        public void InitializeUserClient(string userIdentifier, ApiCredentials credentials, CryptoComEnvironment? environment = null)
+        public void InitializeUserClient(string userIdentifier, CryptoComCredentials credentials, CryptoComEnvironment? environment = null)
         {
             CreateRestClient(userIdentifier, credentials, environment);
             CreateSocketClient(userIdentifier, credentials, environment);
@@ -63,7 +63,7 @@ namespace CryptoCom.Net.Clients
         }
 
         /// <inheritdoc />
-        public ICryptoComRestClient GetRestClient(string userIdentifier, ApiCredentials? credentials = null, CryptoComEnvironment? environment = null)
+        public ICryptoComRestClient GetRestClient(string userIdentifier, CryptoComCredentials? credentials = null, CryptoComEnvironment? environment = null)
         {
             if (!_restClients.TryGetValue(userIdentifier, out var client) || client.Disposed)
                 client = CreateRestClient(userIdentifier, credentials, environment);
@@ -72,7 +72,7 @@ namespace CryptoCom.Net.Clients
         }
 
         /// <inheritdoc />
-        public ICryptoComSocketClient GetSocketClient(string userIdentifier, ApiCredentials? credentials = null, CryptoComEnvironment? environment = null)
+        public ICryptoComSocketClient GetSocketClient(string userIdentifier, CryptoComCredentials? credentials = null, CryptoComEnvironment? environment = null)
         {
             if (!_socketClients.TryGetValue(userIdentifier, out var client) || client.Disposed)
                 client = CreateSocketClient(userIdentifier, credentials, environment);
@@ -80,7 +80,7 @@ namespace CryptoCom.Net.Clients
             return client;
         }
 
-        private ICryptoComRestClient CreateRestClient(string userIdentifier, ApiCredentials? credentials, CryptoComEnvironment? environment)
+        private ICryptoComRestClient CreateRestClient(string userIdentifier, CryptoComCredentials? credentials, CryptoComEnvironment? environment)
         {
             var clientRestOptions = SetRestEnvironment(environment);
             var client = new CryptoComRestClient(_httpClient, _loggerFactory, clientRestOptions);
@@ -92,7 +92,7 @@ namespace CryptoCom.Net.Clients
             return client;
         }
 
-        private ICryptoComSocketClient CreateSocketClient(string userIdentifier, ApiCredentials? credentials, CryptoComEnvironment? environment)
+        private ICryptoComSocketClient CreateSocketClient(string userIdentifier, CryptoComCredentials? credentials, CryptoComEnvironment? environment)
         {
             var clientSocketOptions = SetSocketEnvironment(environment);
             var client = new CryptoComSocketClient(clientSocketOptions!, _loggerFactory);

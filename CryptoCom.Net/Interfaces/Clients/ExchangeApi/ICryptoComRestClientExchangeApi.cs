@@ -6,7 +6,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     /// <summary>
     /// CryptoCom Exchange API endpoints
     /// </summary>
-    public interface ICryptoComRestClientExchangeApi : IRestApiClient, IDisposable
+    public interface ICryptoComRestClientExchangeApi : IRestApiClient<CryptoComCredentials>, IDisposable
     {
         /// <summary>
         /// Endpoints related to account settings, info or actions

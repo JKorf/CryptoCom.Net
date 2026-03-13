@@ -33,7 +33,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
     /// <summary>
     /// Client providing access to the CryptoCom Exchange websocket Api
     /// </summary>
-    internal partial class CryptoComSocketClientExchangeApi : SocketApiClient, ICryptoComSocketClientExchangeApi
+    internal partial class CryptoComSocketClientExchangeApi : SocketApiClient<CryptoComEnvironment, CryptoComAuthenticationProvider, CryptoComCredentials>, ICryptoComSocketClientExchangeApi
     {
         #region fields
         protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
@@ -64,7 +64,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public override ISocketMessageHandler CreateMessageConverter(WebSocketMessageType messageType) => new CryptoComSocketMessageHandler();
 
         /// <inheritdoc />
-        protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
+        protected override CryptoComAuthenticationProvider CreateAuthenticationProvider(CryptoComCredentials credentials)
             => new CryptoComAuthenticationProvider(credentials);
 
         /// <inheritdoc />

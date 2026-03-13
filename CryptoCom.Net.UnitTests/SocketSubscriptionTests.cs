@@ -45,7 +45,7 @@ namespace CryptoCom.Net.UnitTests
             {
                 OutputOriginalData = true,
                 DelayAfterConnect = TimeSpan.Zero,
-                ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
+                ApiCredentials = new CryptoComCredentials("123", "456")
             }), loggerFactory);
             var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com");
             await tester.ValidateAsync<CryptoComOrderBookUpdate>((client, handler) => client.ExchangeApi.SubscribeToOrderBookSnapshotUpdatesAsync("ETH_USDT", 10, handler), "BookSnapshot", nestedJsonProperty: "result.data", useFirstUpdateItem: true);

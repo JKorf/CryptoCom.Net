@@ -6,7 +6,7 @@ namespace CryptoCom.Net.Objects.Options
     /// <summary>
     /// Options for the CryptoComSocketClient
     /// </summary>
-    public class CryptoComSocketOptions : SocketExchangeOptions<CryptoComEnvironment>
+    public class CryptoComSocketOptions : SocketExchangeOptions<CryptoComEnvironment, CryptoComCredentials>
     {
         /// <summary>
         /// Default options for new clients
@@ -30,7 +30,7 @@ namespace CryptoCom.Net.Objects.Options
         /// <summary>
         /// Exchange API options
         /// </summary>
-        public SocketApiOptions ExchangeOptions { get; private set; } = new SocketApiOptions();
+        public SocketApiOptions<CryptoComCredentials> ExchangeOptions { get; private set; } = new SocketApiOptions<CryptoComCredentials>();
 
         internal CryptoComSocketOptions Set(CryptoComSocketOptions targetOptions)
         {

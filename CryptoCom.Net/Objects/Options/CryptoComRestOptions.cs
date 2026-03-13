@@ -5,7 +5,7 @@ namespace CryptoCom.Net.Objects.Options
     /// <summary>
     /// Options for the CryptoComRestClient
     /// </summary>
-    public class CryptoComRestOptions : RestExchangeOptions<CryptoComEnvironment>
+    public class CryptoComRestOptions : RestExchangeOptions<CryptoComEnvironment, CryptoComCredentials>
     {
         /// <summary>
         /// Default options for new clients
@@ -27,7 +27,7 @@ namespace CryptoCom.Net.Objects.Options
         /// <summary>
         /// Exchange API options
         /// </summary>
-        public RestApiOptions ExchangeOptions { get; private set; } = new RestApiOptions();
+        public RestApiOptions<CryptoComCredentials> ExchangeOptions { get; private set; } = new RestApiOptions<CryptoComCredentials>();
 
         internal CryptoComRestOptions Set(CryptoComRestOptions targetOptions)
         {

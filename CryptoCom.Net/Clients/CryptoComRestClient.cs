@@ -13,7 +13,7 @@ using CryptoExchange.Net.Objects.Options;
 namespace CryptoCom.Net.Clients
 {
     /// <inheritdoc cref="ICryptoComRestClient" />
-    public class CryptoComRestClient : BaseRestClient, ICryptoComRestClient
+    public class CryptoComRestClient : BaseRestClient<CryptoComEnvironment, CryptoComCredentials>, ICryptoComRestClient
     {
         #region Api clients
 
@@ -50,12 +50,6 @@ namespace CryptoCom.Net.Clients
 
         #endregion
 
-        /// <inheritdoc />
-        public void SetOptions(UpdateOptions options)
-        {
-            ExchangeApi.SetOptions(options);
-        }
-
         /// <summary>
         /// Set the default options to be used when creating new clients
         /// </summary>
@@ -65,12 +59,5 @@ namespace CryptoCom.Net.Clients
             CryptoComRestOptions.Default = ApplyOptionsDelegate(optionsDelegate);
         }
 
-        /// <inheritdoc />
-        public void SetApiCredentials(ApiCredentials credentials)
-        {
-            
-            ExchangeApi.SetApiCredentials(credentials);
-
-        }
     }
 }

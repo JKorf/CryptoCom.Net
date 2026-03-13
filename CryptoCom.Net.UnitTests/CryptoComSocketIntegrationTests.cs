@@ -28,7 +28,7 @@ namespace CryptoCom.Net.UnitTests
             return new CryptoComSocketClient(Options.Create(new CryptoComSocketOptions
             {
                 OutputOriginalData = true,
-                ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null
+                ApiCredentials = Authenticated ? new CryptoComCredentials(key, sec) : null
             }), loggerFactory);
         }
 

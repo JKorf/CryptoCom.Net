@@ -28,7 +28,7 @@ namespace CryptoCom.Net.UnitTests
             return new CryptoComRestClient(null, loggerFactory, Options.Create(new Objects.Options.CryptoComRestOptions
             {
                 OutputOriginalData = true,
-                ApiCredentials = Authenticated ? new ApiCredentials(key, sec) : null
+                ApiCredentials = Authenticated ? new CryptoComCredentials(key, sec) : null
             }));
         }
 
@@ -76,8 +76,8 @@ namespace CryptoCom.Net.UnitTests
         {
             await RunAndCheckResult(client => client.ExchangeApi.Trading.GetPositionsAsync(default, default), true);
             await RunAndCheckResult(client => client.ExchangeApi.Trading.GetOpenOrdersAsync(default, default), true);
-            await RunAndCheckResult(client => client.ExchangeApi.Trading.GetClosedOrdersAsync(default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.ExchangeApi.Trading.GetUserTradesAsync(default, default, default, default, default), true);
+            await RunAndCheckResult(client => client.ExchangeApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default), true);
+            await RunAndCheckResult(client => client.ExchangeApi.Trading.GetUserTradesAsync(default, default, default, default, default, default), true);
         }
 
         [Test]

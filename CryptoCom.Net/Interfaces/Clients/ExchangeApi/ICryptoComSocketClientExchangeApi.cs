@@ -14,7 +14,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     /// <summary>
     /// CryptoCom Exchange streams
     /// </summary>
-    public interface ICryptoComSocketClientExchangeApi : ISocketApiClient, IDisposable
+    public interface ICryptoComSocketClientExchangeApi : ISocketApiClient<CryptoComCredentials>, IDisposable
     {
         /// <summary>
         /// Subscribe to order book snapshot updates

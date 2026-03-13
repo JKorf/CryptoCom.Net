@@ -18,7 +18,7 @@ namespace CryptoCom.Net.UnitTests
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
-                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
+                opts.ApiCredentials = new CryptoComCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Account", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result.data");
@@ -45,7 +45,7 @@ namespace CryptoCom.Net.UnitTests
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
-                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
+                opts.ApiCredentials = new CryptoComCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/ExchangeData", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetTickersAsync(), "GetTickers", nestedJsonProperty: "result.data");
@@ -66,7 +66,7 @@ namespace CryptoCom.Net.UnitTests
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
-                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
+                opts.ApiCredentials = new CryptoComCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Staking", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.Staking.StakeAsync("123", 0.1m), "Stake", nestedJsonProperty: "result");
@@ -87,7 +87,7 @@ namespace CryptoCom.Net.UnitTests
             var client = new CryptoComRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
-                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
+                opts.ApiCredentials = new CryptoComCredentials("123", "456");
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/Trading", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.GetPositionsAsync(), "GetPositions", nestedJsonProperty: "result.data");
