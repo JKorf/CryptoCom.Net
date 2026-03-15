@@ -39,7 +39,7 @@ namespace CryptoCom.Net
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
-                ApiKey = Credential.PublicKey,
+                ApiKey = Credential.Key,
                 Method = "public/auth"
             };
 
@@ -56,10 +56,10 @@ namespace CryptoCom.Net
             else if(client is SocketApiClient socketClient)
                 nonce = DateTimeConverter.ConvertToMilliseconds(GetTimestamp(socketClient)).Value;
 
-            var signString = $"{request.Method}{request.Id}{Credential.PublicKey}{paramString}{nonce}";
+            var signString = $"{request.Method}{request.Id}{Credential.Key}{paramString}{nonce}";
             var sign = SignHMACSHA256(signString, SignOutputType.Hex).ToLowerInvariant();
             request.Nonce = nonce;
-            request.ApiKey = Credential.PublicKey;
+            request.ApiKey = Credential.Key;
             request.Signature = sign;
         }
 
