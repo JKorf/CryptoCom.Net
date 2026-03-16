@@ -89,12 +89,12 @@ namespace CryptoCom.Net.UnitTests
             var configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(new Dictionary<string, string>
                 {
-                    { "ApiCredentials:Key", "123" },
-                    { "ApiCredentials:Secret", "456" },
-                    { "ApiCredentials:Memo", "000" },
-                    { "Socket:ApiCredentials:Key", "456" },
-                    { "Socket:ApiCredentials:Secret", "789" },
-                    { "Socket:ApiCredentials:Memo", "xxx" },
+                    { "ApiCredentials:Hmac:Key", "123" },
+                    { "ApiCredentials:Hmac:Secret", "456" },
+                    { "ApiCredentials:Hmac:Pass", "000" },
+                    { "Socket:ApiCredentials:Hmac:Key", "456" },
+                    { "Socket:ApiCredentials:Hmac:Secret", "789" },
+                    { "Socket:ApiCredentials:Hmac:Pass", "xxx" },
                     { "Rest:OutputOriginalData", "true" },
                     { "Socket:OutputOriginalData", "false" },
                     { "Rest:Proxy:Host", "host" },
@@ -112,8 +112,8 @@ namespace CryptoCom.Net.UnitTests
 
             Assert.That(((BaseApiClient)restClient.ExchangeApi).OutputOriginalData, Is.True);
             Assert.That(((BaseApiClient)socketClient.ExchangeApi).OutputOriginalData, Is.False);
-            Assert.That(((CryptoComRestClientExchangeApi)restClient.ExchangeApi).AuthenticationProvider.PublicKey, Is.EqualTo("123"));
-            Assert.That(((CryptoComSocketClientExchangeApi)socketClient.ExchangeApi).AuthenticationProvider.PublicKey, Is.EqualTo("456"));
+            Assert.That(((CryptoComRestClientExchangeApi)restClient.ExchangeApi).AuthenticationProvider.Key, Is.EqualTo("123"));
+            Assert.That(((CryptoComSocketClientExchangeApi)socketClient.ExchangeApi).AuthenticationProvider.Key, Is.EqualTo("456"));
             Assert.That(((BaseApiClient)restClient.ExchangeApi).ClientOptions.Proxy.Host, Is.EqualTo("host"));
             Assert.That(((BaseApiClient)restClient.ExchangeApi).ClientOptions.Proxy.Port, Is.EqualTo(80));
             Assert.That(((BaseApiClient)socketClient.ExchangeApi).ClientOptions.Proxy.Host, Is.EqualTo("host2"));
