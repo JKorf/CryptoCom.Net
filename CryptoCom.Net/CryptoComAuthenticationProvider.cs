@@ -20,7 +20,7 @@ namespace CryptoCom.Net
 {
     internal class CryptoComAuthenticationProvider : AuthenticationProvider<CryptoComCredentials, HMACCredential>
     {
-        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.Hmac];
+        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.HMAC];
         public CryptoComAuthenticationProvider(CryptoComCredentials credentials) : base(credentials)
         {
         }
