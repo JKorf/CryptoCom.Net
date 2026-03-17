@@ -1160,6 +1160,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             });
         }
 
+        private SharedOrderStatus ParseOrderStatus(OrderStatus status)
+        {
+            if (status == OrderStatus.Pending || status == OrderStatus.Active || status == OrderStatus.New)
+                return SharedOrderStatus.Open;
+
+            if (status == OrderStatus.Rejected || status == OrderStatus.Canceled || status == OrderStatus.Expired)
+                return SharedOrderStatus.Canceled;
+
+            if (status == OrderStatus.Filled)
+                return SharedOrderStatus.Filled;
+
+            return SharedOrderStatus.Unknown;
+        }
+
         EndpointOptions<GetOpenOrdersRequest> IFuturesOrderRestClient.GetOpenFuturesOrdersOptions { get; } = new EndpointOptions<GetOpenOrdersRequest>(true);
         async Task<ExchangeWebResult<SharedFuturesOrder[]>> IFuturesOrderRestClient.GetOpenFuturesOrdersAsync(GetOpenOrdersRequest request, CancellationToken ct)
         {
