@@ -2,6 +2,7 @@
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Options;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;

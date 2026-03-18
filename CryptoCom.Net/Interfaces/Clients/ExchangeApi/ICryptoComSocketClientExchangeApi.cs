@@ -1,6 +1,7 @@
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects;
 using CryptoCom.Net.Objects.Models;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Interfaces.Clients;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Objects.Sockets;

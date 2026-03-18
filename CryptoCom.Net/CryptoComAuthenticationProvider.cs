@@ -18,10 +18,9 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net
 {
-    internal class CryptoComAuthenticationProvider : AuthenticationProvider<CryptoComCredentials, HMACCredential>
+    internal class CryptoComAuthenticationProvider : AuthenticationProvider<CryptoComCredentials, CryptoComCredentials>
     {
-        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.HMAC];
-        public CryptoComAuthenticationProvider(CryptoComCredentials credentials) : base(credentials)
+        public CryptoComAuthenticationProvider(CryptoComCredentials credentials) : base(credentials, credentials)
         {
         }
 

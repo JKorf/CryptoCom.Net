@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 
 namespace CryptoCom.Net.Objects.Options
@@ -27,7 +28,7 @@ namespace CryptoCom.Net.Objects.Options
         /// <summary>
         /// Exchange API options
         /// </summary>
-        public RestApiOptions<CryptoComCredentials> ExchangeOptions { get; private set; } = new RestApiOptions<CryptoComCredentials>();
+        public RestApiOptions ExchangeOptions { get; private set; } = new RestApiOptions();
 
         internal CryptoComRestOptions Set(CryptoComRestOptions targetOptions)
         {

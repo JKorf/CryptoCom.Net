@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 using System;
 
@@ -30,7 +31,7 @@ namespace CryptoCom.Net.Objects.Options
         /// <summary>
         /// Exchange API options
         /// </summary>
-        public SocketApiOptions<CryptoComCredentials> ExchangeOptions { get; private set; } = new SocketApiOptions<CryptoComCredentials>();
+        public SocketApiOptions ExchangeOptions { get; private set; } = new SocketApiOptions();
 
         internal CryptoComSocketOptions Set(CryptoComSocketOptions targetOptions)
         {

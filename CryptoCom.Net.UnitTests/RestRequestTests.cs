@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CryptoCom.Net.Clients;
 using CryptoCom.Net.Enums;
+using CryptoExchange.Net.Authentication;
 
 namespace CryptoCom.Net.UnitTests
 {

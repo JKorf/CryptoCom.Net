@@ -89,12 +89,12 @@ namespace CryptoCom.Net.UnitTests
             var configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(new Dictionary<string, string>
                 {
-                    { "ApiCredentials:HMAC:Key", "123" },
-                    { "ApiCredentials:HMAC:Secret", "456" },
-                    { "ApiCredentials:HMAC:Pass", "000" },
-                    { "Socket:ApiCredentials:HMAC:Key", "456" },
-                    { "Socket:ApiCredentials:HMAC:Secret", "789" },
-                    { "Socket:ApiCredentials:HMAC:Pass", "xxx" },
+                    { "ApiCredentials:Key", "123" },
+                    { "ApiCredentials:Secret", "456" },
+                    { "ApiCredentials:Pass", "000" },
+                    { "Socket:ApiCredentials:Key", "456" },
+                    { "Socket:ApiCredentials:Secret", "789" },
+                    { "Socket:ApiCredentials:Pass", "xxx" },
                     { "Rest:OutputOriginalData", "true" },
                     { "Socket:OutputOriginalData", "false" },
                     { "Rest:Proxy:Host", "host" },

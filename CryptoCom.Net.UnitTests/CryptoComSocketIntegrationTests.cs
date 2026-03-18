@@ -1,6 +1,7 @@
 ﻿using CryptoCom.Net.Clients;
 using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Options;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

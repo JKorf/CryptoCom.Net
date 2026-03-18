@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using CryptoCom.Net.Objects.Options;
+using CryptoExchange.Net.Authentication;
 
 namespace CryptoCom.Net.UnitTests
 {
