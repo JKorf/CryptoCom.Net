@@ -108,8 +108,6 @@ namespace Microsoft.Extensions.DependencyInjection
             }).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
             services.Add(new ServiceDescriptor(typeof(ICryptoComSocketClient), x => { return new CryptoComSocketClient(x.GetRequiredService<IOptions<CryptoComSocketOptions>>(), x.GetRequiredService<ILoggerFactory>()); }, socketClientLifeTime ?? ServiceLifetime.Singleton));
 
-            services.AddTransient<ICryptoRestClient, CryptoRestClient>();
-            services.AddSingleton<ICryptoSocketClient, CryptoSocketClient>();
             services.AddTransient<ICryptoComOrderBookFactory, CryptoComOrderBookFactory>();
             services.AddTransient<ICryptoComTrackerFactory, CryptoComTrackerFactory>();
             services.AddTransient<ITrackerFactory, CryptoComTrackerFactory>();
