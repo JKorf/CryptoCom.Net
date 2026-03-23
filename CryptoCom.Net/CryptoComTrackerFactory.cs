@@ -94,7 +94,7 @@ namespace CryptoCom.Net
         }
 
         /// <inheritdoc />
-        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
+        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, CryptoComCredentials credentials, SpotUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<ICryptoComUserClientProvider>() ?? new CryptoComUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
@@ -123,7 +123,7 @@ namespace CryptoCom.Net
         }
 
         /// <inheritdoc />
-        public IUserFuturesDataTracker CreateUserFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
+        public IUserFuturesDataTracker CreateUserFuturesDataTracker(string userIdentifier, CryptoComCredentials credentials, FuturesUserDataTrackerConfig? config = null, CryptoComEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<ICryptoComUserClientProvider>() ?? new CryptoComUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);

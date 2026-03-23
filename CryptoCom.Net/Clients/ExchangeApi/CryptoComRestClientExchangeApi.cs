@@ -22,7 +22,7 @@ using System.Net.Http.Headers;
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
     /// <inheritdoc cref="ICryptoComRestClientExchangeApi" />
-    internal partial class CryptoComRestClientExchangeApi : RestApiClient, ICryptoComRestClientExchangeApi
+    internal partial class CryptoComRestClientExchangeApi : RestApiClient<CryptoComEnvironment, CryptoComAuthenticationProvider, CryptoComCredentials>, ICryptoComRestClientExchangeApi
     {
         #region fields 
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
@@ -59,7 +59,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));
 
         /// <inheritdoc />
-        protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
+        protected override CryptoComAuthenticationProvider CreateAuthenticationProvider(CryptoComCredentials credentials)
             => new CryptoComAuthenticationProvider(credentials);
 
         internal Task<WebCallResult> SendAsync(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)

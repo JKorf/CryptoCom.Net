@@ -18,10 +18,9 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net
 {
-    internal class CryptoComAuthenticationProvider : AuthenticationProvider
+    internal class CryptoComAuthenticationProvider : AuthenticationProvider<CryptoComCredentials, CryptoComCredentials>
     {
-        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.Hmac];
-        public CryptoComAuthenticationProvider(ApiCredentials credentials) : base(credentials)
+        public CryptoComAuthenticationProvider(CryptoComCredentials credentials) : base(credentials, credentials)
         {
         }
 
@@ -39,7 +38,7 @@ namespace CryptoCom.Net
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
-                ApiKey = ApiKey,
+                ApiKey = Credential.Key,
                 Method = "public/auth"
             };
 
@@ -56,10 +55,10 @@ namespace CryptoCom.Net
             else if(client is SocketApiClient socketClient)
                 nonce = DateTimeConverter.ConvertToMilliseconds(GetTimestamp(socketClient)).Value;
 
-            var signString = $"{request.Method}{request.Id}{ApiKey}{paramString}{nonce}";
+            var signString = $"{request.Method}{request.Id}{Credential.Key}{paramString}{nonce}";
             var sign = SignHMACSHA256(signString, SignOutputType.Hex).ToLowerInvariant();
             request.Nonce = nonce;
-            request.ApiKey = ApiKey;
+            request.ApiKey = Credential.Key;
             request.Signature = sign;
         }
 

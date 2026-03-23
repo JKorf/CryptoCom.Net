@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 using System;
 
@@ -6,7 +7,7 @@ namespace CryptoCom.Net.Objects.Options
     /// <summary>
     /// Options for the CryptoComSocketClient
     /// </summary>
-    public class CryptoComSocketOptions : SocketExchangeOptions<CryptoComEnvironment>
+    public class CryptoComSocketOptions : SocketExchangeOptions<CryptoComEnvironment, CryptoComCredentials>
     {
         /// <summary>
         /// Default options for new clients

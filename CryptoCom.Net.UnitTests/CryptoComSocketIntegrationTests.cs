@@ -1,6 +1,7 @@
 ﻿using CryptoCom.Net.Clients;
 using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Options;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -28,7 +29,7 @@ namespace CryptoCom.Net.UnitTests
             return new CryptoComSocketClient(Options.Create(new CryptoComSocketOptions
             {
                 OutputOriginalData = true,
-                ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null
+                ApiCredentials = Authenticated ? new CryptoComCredentials(key, sec) : null
             }), loggerFactory);
         }
 

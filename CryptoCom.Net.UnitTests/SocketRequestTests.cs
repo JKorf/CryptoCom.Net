@@ -2,6 +2,7 @@
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects.Models;
 using CryptoCom.Net.Objects.Options;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,7 @@ namespace CryptoCom.Net.UnitTests
             {
                 OutputOriginalData = true,
                 RequestTimeout = TimeSpan.FromSeconds(5),
-                ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
+                ApiCredentials = new CryptoComCredentials("123", "456")
             }), fact);
             return client;
         }

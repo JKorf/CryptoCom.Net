@@ -167,13 +167,23 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                             x.Quantity,
                             x.DepositStatus == Enums.DepositStatus.Arrived,
                             x.CreateTime,
-                            x.DepositStatus == DepositStatus.Arrived ? SharedTransferStatus.Completed
-                            : x.DepositStatus == DepositStatus.Failed ? SharedTransferStatus.Failed
-                            : SharedTransferStatus.InProgress)
+                            ParseTransferStatus(x.DepositStatus))
                         {
                             Id = x.Id
                         })
                     .ToArray(), nextPageRequest);
+        }
+
+        private SharedTransferStatus ParseTransferStatus(DepositStatus depositStatus)
+        {
+            if (depositStatus == DepositStatus.Arrived)
+                return SharedTransferStatus.Completed;
+            if (depositStatus == DepositStatus.Failed)
+                return SharedTransferStatus.Failed;
+            if (depositStatus == DepositStatus.Pending || depositStatus == DepositStatus.NotArrived)
+                return SharedTransferStatus.InProgress;
+
+            return SharedTransferStatus.Unknown;
         }
 
         #endregion
@@ -748,11 +758,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return null;
         }
 
-        private SharedOrderStatus ParseOrderStatus(OrderStatus status)
+        private SharedOrderStatus ParseStatus(OrderStatus status)
         {
             if (status == OrderStatus.Pending || status == OrderStatus.New || status == OrderStatus.Active) return SharedOrderStatus.Open;
             if (status == OrderStatus.Canceled || status == OrderStatus.Rejected || status == OrderStatus.Expired) return SharedOrderStatus.Canceled;
-            return SharedOrderStatus.Filled;
+            if (status == OrderStatus.Filled) return SharedOrderStatus.Filled;
+
+            return SharedOrderStatus.Unknown;
         }
 
         private SharedOrderType ParseOrderType(OrderType type)
@@ -1148,6 +1160,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             });
         }
 
+        private SharedOrderStatus ParseOrderStatus(OrderStatus status)
+        {
+            if (status == OrderStatus.Pending || status == OrderStatus.Active || status == OrderStatus.New)
+                return SharedOrderStatus.Open;
+
+            if (status == OrderStatus.Rejected || status == OrderStatus.Canceled || status == OrderStatus.Expired)
+                return SharedOrderStatus.Canceled;
+
+            if (status == OrderStatus.Filled)
+                return SharedOrderStatus.Filled;
+
+            return SharedOrderStatus.Unknown;
+        }
+
         EndpointOptions<GetOpenOrdersRequest> IFuturesOrderRestClient.GetOpenFuturesOrdersOptions { get; } = new EndpointOptions<GetOpenOrdersRequest>(true);
         async Task<ExchangeWebResult<SharedFuturesOrder[]>> IFuturesOrderRestClient.GetOpenFuturesOrdersAsync(GetOpenOrdersRequest request, CancellationToken ct)
         {
@@ -1516,7 +1542,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (status == OrderStatus.Rejected || status == OrderStatus.Canceled || status == OrderStatus.Expired)
                 return SharedTriggerOrderStatus.CanceledOrRejected;
 
-            return SharedTriggerOrderStatus.Active;
+            if (status == OrderStatus.Active || status == OrderStatus.New || status == OrderStatus.Pending)
+                return SharedTriggerOrderStatus.Active;
+
+            return SharedTriggerOrderStatus.Unknown;
         }
 
         EndpointOptions<CancelOrderRequest> ISpotTriggerOrderRestClient.CancelSpotTriggerOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);

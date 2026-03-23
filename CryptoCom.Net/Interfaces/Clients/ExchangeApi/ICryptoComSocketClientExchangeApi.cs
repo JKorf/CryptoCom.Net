@@ -1,6 +1,7 @@
 using CryptoCom.Net.Enums;
 using CryptoCom.Net.Objects;
 using CryptoCom.Net.Objects.Models;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Interfaces.Clients;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Objects.Sockets;
@@ -14,7 +15,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
     /// <summary>
     /// CryptoCom Exchange streams
     /// </summary>
-    public interface ICryptoComSocketClientExchangeApi : ISocketApiClient, IDisposable
+    public interface ICryptoComSocketClientExchangeApi : ISocketApiClient<CryptoComCredentials>, IDisposable
     {
         /// <summary>
         /// Subscribe to order book snapshot updates

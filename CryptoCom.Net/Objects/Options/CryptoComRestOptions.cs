@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 
 namespace CryptoCom.Net.Objects.Options
@@ -5,7 +6,7 @@ namespace CryptoCom.Net.Objects.Options
     /// <summary>
     /// Options for the CryptoComRestClient
     /// </summary>
-    public class CryptoComRestOptions : RestExchangeOptions<CryptoComEnvironment>
+    public class CryptoComRestOptions : RestExchangeOptions<CryptoComEnvironment, CryptoComCredentials>
     {
         /// <summary>
         /// Default options for new clients
