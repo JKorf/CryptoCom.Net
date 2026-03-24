@@ -43,5 +43,8 @@ namespace CryptoCom.Net
             Secret = secret;
             return this;
         }
+
+        /// <inheritdoc />
+        public override ApiCredentials Copy() => new CryptoComCredentials(this);
     }
 }
