@@ -46,22 +46,38 @@ CryptoCom.Net is available on [GitHub packages](https://github.com/JKorf/CryptoC
 The NuGet package files are added along side the source with the latest GitHub release which can found [here](https://github.com/JKorf/CryptoCom.Net/releases).
 
 ## How to use
-* REST Endpoints
-	```csharp
-	// Get the ETH/USD ticker via rest request
-	var restClient = new CryptoComRestClient();
-	var tickerResult = await restClient.ExchangeApi.ExchangeData.GetTickerAsync("ETH_USD");
-	var lastPrice = tickerResult.Data.LastPrice;
-	```
-* Websocket streams
-	```csharp
-	// Subscribe to ETH/USD ticker updates via the websocket API
-	var socketClient = new CryptoComSocketClient();
-	var tickerSubscriptionResult = socketClient.ExchangeApi.SubscribeToTickerUpdatesAsync("ETH_USD", (update) => 
-	{
-	  var lastPrice = update.Data.LastPrice;
-	});
-	```
+*Basic request:*
+```csharp
+// Get the ETH/USD ticker via rest request
+var restClient = new CryptoComRestClient();
+var tickerResult = await restClient.ExchangeApi.ExchangeData.GetTickerAsync("ETH_USD");
+var lastPrice = tickerResult.Data.LastPrice;
+```
+	
+*Place order:*
+```csharp
+var restClient = new CryptoComRestClient(opts => {
+	opts.ApiCredentials = new CryptoComCredentials("APIKEY", "APISECRET");
+});
+
+// Place Limit order to buy 0.1 ETH at 2000
+var orderResult = await restClient.ExchangeApi.Trading.PlaceOrderAsync(
+    "ETH_USDT",
+    OrderSide.Buy,
+    OrderType.Limit,
+    0.1m,
+    price: 2000);
+```
+
+*WebSocket subscription:*
+```csharp
+// Subscribe to ETH/USD ticker updates via the websocket API
+var socketClient = new CryptoComSocketClient();
+var tickerSubscriptionResult = socketClient.ExchangeApi.SubscribeToTickerUpdatesAsync("ETH_USD", (update) => 
+{
+  var lastPrice = update.Data.LastPrice;
+});
+```
 
 For information on the clients, dependency injection, response processing and more see the [documentation](https://cryptoexchange.jkorf.dev?library=CryptoCom.Net), or have a look at the examples [here](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples) or [here](https://github.com/JKorf/CryptoExchange.Net/tree/master/Examples).
 
