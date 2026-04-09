@@ -56,6 +56,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="isolationId">["<c>isolation_id</c>"] If isolationId is not specified then the order will create a new isolated position. If isolationId is specified then the order will be created for the specified existing isolated position</param>
         /// <param name="leverage">["<c>leverage</c>"] The maximum leverage to be used for the isolated position</param>
         /// <param name="isolatedMarginQuantity">["<c>isolated_margin_amount</c>"] Amount needed to transfer to the isolated position - must a be positive number. If it is not given, the transfer amount will be calculated by the leverage of the isolated position</param>
+        /// <param name="reduceOnly">Reduce only flag</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(
             string symbol, 
@@ -78,6 +79,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
             string? isolationId = null,
             int? leverage = null,
             decimal? isolatedMarginQuantity = null,
+            bool? reduceOnly = null,
             CancellationToken ct = default);
 
         /// <summary>

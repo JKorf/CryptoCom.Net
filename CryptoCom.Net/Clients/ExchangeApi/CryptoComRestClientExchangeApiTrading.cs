@@ -67,6 +67,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             string? isolationId = null,
             int? leverage = null,
             decimal? isolatedMarginQuantity = null,
+            bool? reduceOnly = null,
             CancellationToken ct = default)
         {
             if (postOnly == true && smartPostOnly == true)
@@ -76,6 +77,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (postOnly == true) execInsts.Add("POST_ONLY");
             if (smartPostOnly == true) execInsts.Add("SMART_POST_ONLY");
             if (isolatedMargin == true) execInsts.Add("ISOLATED_MARGIN");
+            if (reduceOnly == true) execInsts.Add("REDUCE_ONLY");
 
             var parameters = new ParameterCollection();
             parameters.Add("instrument_name", symbol);
