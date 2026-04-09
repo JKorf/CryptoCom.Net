@@ -5,6 +5,7 @@ using System;
 using CryptoExchange.Net;
 using CryptoCom.Net.Objects.Internal;
 using CryptoExchange.Net.Sockets.Default;
+using CryptoExchange.Net.Sockets.Default.Routing;
 
 namespace CryptoCom.Net.Objects.Sockets.Subscriptions
 {

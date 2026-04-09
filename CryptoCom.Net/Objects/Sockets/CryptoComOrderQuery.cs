@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Sockets.Default;
+using CryptoExchange.Net.Sockets.Default.Routing;
 
 namespace CryptoCom.Net.Objects.Sockets
 {
