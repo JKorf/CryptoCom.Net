@@ -12,6 +12,11 @@ namespace CryptoCom.Net.Objects.Models
     public record CryptoComAccountInfo
     {
         /// <summary>
+        /// ["<c>this_account</c>"] This account
+        /// </summary>
+        [JsonPropertyName("this_account")]
+        public CryptoComThisAccount ThisAccount { get; set; } = null!;
+        /// <summary>
         /// ["<c>master_account</c>"] Master account
         /// </summary>
         [JsonPropertyName("master_account")]
@@ -21,6 +26,24 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("sub_account_list")]
         public CryptoComAccountDetails[] SubAccountList { get; set; } = Array.Empty<CryptoComAccountDetails>();
+    }
+
+    /// <summary>
+    /// This account info
+    /// </summary>
+    public record CryptoComThisAccount
+    {
+        /// <summary>
+        /// ["<c>uuid</c>"] Unique id
+        /// </summary>
+        [JsonPropertyName("uuid")]
+        public string Uuid { get; set; } = string.Empty;
+
+        /// <summary>
+        /// ["<c>hierarchy</c>"] Account type
+        /// </summary>
+        [JsonPropertyName("hierarchy")]
+        public SubAccountType AccountType { get; set; }
     }
 
     /// <summary>
