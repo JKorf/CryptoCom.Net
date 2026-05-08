@@ -1,0 +1,46 @@
+# CryptoCom.Net
+
+> Strongly typed .NET client library for the Crypto.com Exchange REST and WebSocket APIs. Supports public market data, account management, trading, positions, staking, withdrawals, WebSocket subscriptions, and CryptoExchange.Net SharedApis. Part of the CryptoExchange.Net ecosystem providing a unified abstraction across 28+ cryptocurrency exchanges.
+
+CryptoCom.Net provides typed C# clients for Crypto.com Exchange with request signing, automatic WebSocket reconnection, result-based error handling via `WebCallResult<T>` / `CallResult<T>`, client-side rate limiting, native AOT support, and shared API interfaces for multi-exchange applications. Current version: 3.x. Targets netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0.
+
+## Documentation
+
+- [README](https://github.com/JKorf/CryptoCom.Net/blob/main/README.md): Overview, installation, supported features, basic usage examples, full release notes
+- [Documentation Site](https://cryptoexchange.jkorf.dev/CryptoCom.Net/): Full documentation hub including client reference, WebSocket subscriptions, dependency injection, and shared interfaces
+- [AI API Quick Map](https://github.com/JKorf/CryptoCom.Net/blob/main/docs/ai-api-map.md): Quick intent-to-method map for routing common user requests to the correct client member
+- [Full LLM Context](https://github.com/JKorf/CryptoCom.Net/blob/main/llms-full.txt): Detailed AI/LLM guide with code patterns, endpoint map, common mistakes, and anti-hallucination rules
+- [Assistant Skill](https://github.com/JKorf/CryptoCom.Net/blob/main/CLAUDE.md): Concise implementation rules for assistant coding workflows
+
+## Examples
+
+- [AI-friendly examples directory](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples/ai-friendly): Compact, fully runnable examples optimized for AI assistants and quick onboarding
+- [Exchange Quickstart](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/01-exchange-quickstart.cs): Client setup, ticker, balances, limit order, order status, cancellation
+- [Derivatives Positions](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/02-derivatives.cs): Account leverage, perpetual order, positions, close position
+- [WebSocket Streams](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/03-websocket.cs): Ticker, klines, trades, authenticated order/balance streams with teardown
+- [Multi-Exchange Pattern](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/04-multi-exchange.cs): Using CryptoExchange.Net SharedApis for exchange-agnostic code
+- [Error Handling](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): WebCallResult pattern, retry logic, common Crypto.com API pitfalls
+- [Full Examples Repository](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples): Console and configuration examples
+
+## Critical Usage Rules
+
+- Use `CryptoComRestClient` for REST and `CryptoComSocketClient` for WebSocket.
+- Use `CryptoComCredentials("key", "secret")` for API key setup.
+- Use `ExchangeApi.ExchangeData`, `ExchangeApi.Account`, `ExchangeApi.Trading`, and `ExchangeApi.Staking`.
+- Do not invent Binance-style roots such as `SpotApi`, `UsdFuturesApi`, or `GeneralApi`.
+- Always check `.Success` before reading `.Data`.
+- Use exact instrument names returned by `GetSymbolsAsync()`; spot examples commonly use `BTC_USDT`.
+- Store WebSocket subscriptions and unsubscribe with the concrete socket client.
+- For multi-exchange code, use `.ExchangeApi.SharedClient`.
+
+## Reference
+
+- [CryptoExchange.Net base library](https://github.com/JKorf/CryptoExchange.Net): Base abstractions used by CryptoCom.Net and other exchange libraries
+- [CryptoClients.Net](https://github.com/JKorf/CryptoClients.Net): Bundle package providing unified access to all exchange libraries
+- [NuGet Package](https://www.nuget.org/packages/CryptoCom.Net): Latest stable release on NuGet
+
+## Optional
+
+- [Discord Community](https://discord.gg/MSpeEtSY8t): Maintainer-supported Discord for questions and discussion
+- [GitHub Issues](https://github.com/JKorf/CryptoCom.Net/issues): Bug reports and feature requests
+- [GitHub Sponsors](https://github.com/sponsors/JKorf): Support the maintainer

@@ -1,0 +1,101 @@
+---
+description: Conventions for using CryptoCom.Net when working with the Crypto.com Exchange API in C#/.NET. Apply when generating code that interacts with Crypto.com Exchange REST or WebSocket APIs.
+globs:
+  - "**/*.cs"
+  - "**/*.csproj"
+alwaysApply: false
+---
+
+# CryptoCom.Net Conventions
+
+This codebase uses **CryptoCom.Net** for Crypto.com Exchange access. Do not write raw `HttpClient` calls to Crypto.com endpoints.
+
+## Client setup pattern
+
+```csharp
+using CryptoCom.Net;
+using CryptoCom.Net.Clients;
+
+var restClient = new CryptoComRestClient(options =>
+{
+    options.ApiCredentials = new CryptoComCredentials("API_KEY", "API_SECRET");
+});
+```
+
+For public market data only, no credentials are needed: `new CryptoComRestClient()`.
+
+## Result pattern
+
+All methods return `WebCallResult<T>` or `CallResult<T>`. Always check `.Success` before reading `.Data`:
+
+```csharp
+var ticker = await restClient.ExchangeApi.ExchangeData.GetTickersAsync("BTC_USDT");
+if (!ticker.Success) { /* ticker.Error */ return; }
+var price = ticker.Data.First().LastPrice;
+```
+
+## API surface
+
+- `restClient.ExchangeApi.ExchangeData`
+- `restClient.ExchangeApi.Account`
+- `restClient.ExchangeApi.Trading`
+- `restClient.ExchangeApi.Staking`
+- `restClient.ExchangeApi.SharedClient`
+- `socketClient.ExchangeApi`
+- `socketClient.ExchangeApi.SharedClient`
+
+CryptoCom.Net does not expose Binance-style `SpotApi`, `UsdFuturesApi`, `CoinFuturesApi`, or `GeneralApi` roots.
+
+## Order placement
+
+Use `CryptoCom.Net.Enums.OrderSide` and `CryptoCom.Net.Enums.OrderType`:
+
+```csharp
+var order = await restClient.ExchangeApi.Trading.PlaceOrderAsync(
+    "ETH_USDT", OrderSide.Buy, OrderType.Limit,
+    quantity: 0.1m, price: 2000m);
+```
+
+Do not pass `clientOrderId` unless an external system requires it.
+
+## WebSocket pattern
+
+```csharp
+var socketClient = new CryptoComSocketClient();
+var sub = await socketClient.ExchangeApi.SubscribeToTickerUpdatesAsync(
+    "BTC_USDT",
+    update => { /* update.Data.LastPrice */ });
+if (!sub.Success) { /* sub.Error */ return; }
+
+await socketClient.UnsubscribeAsync(sub.Data);
+```
+
+## Multi-exchange code
+
+For exchange-agnostic code, use `CryptoExchange.Net.SharedApis`:
+
+```csharp
+using CryptoExchange.Net.SharedApis;
+
+var shared = new CryptoComRestClient().ExchangeApi.SharedClient;
+var ticker = await shared.GetSpotTickerAsync(
+    new GetTickerRequest(new SharedSymbol(TradingMode.Spot, "BTC", "USDT")));
+```
+
+## Hard rules
+
+- Never write raw `HttpClient` to Crypto.com endpoints
+- Never use `.Result` or `.Wait()`
+- Never instantiate clients per request
+- Never skip checking `WebCallResult.Success` / `CallResult.Success`
+- Never invent Binance-like API roots
+- Always use `CryptoComCredentials("key", "secret")` for credentials
+- Always store WebSocket subscriptions and unsubscribe on shutdown
+- Always inspect `CryptoCom.Net/Interfaces/Clients/ExchangeApi/**` when unsure
+
+## Reference
+
+- Skill: `CLAUDE.md` in repo root has fuller examples
+- `llms.txt` and `llms-full.txt` in repo root for AI context
+- Examples: `Examples/ai-friendly/`
+- Intent map: `docs/ai-api-map.md`
