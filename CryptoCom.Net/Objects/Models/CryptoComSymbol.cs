@@ -16,7 +16,7 @@ namespace CryptoCom.Net.Objects.Models
     }
 
     /// <summary>
-    /// 
+    /// Symbol info
     /// </summary>
     [SerializationModel]
     public record CryptoComSymbol
@@ -86,6 +86,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("underlying_symbol")]
         public string? UnderlyingSymbol { get; set; }
+        /// <summary>
+        /// ["<c>product_type</c>"] Product type
+        /// </summary>
+        [JsonPropertyName("product_type")]
+        public ProductType? ProductType { get; set; }
     }
 
 
