@@ -1,6 +1,7 @@
 # ![CryptoCom.Net](https://raw.githubusercontent.com/JKorf/CryptoCom.Net/main/CryptoCom.Net/Icon/icon.png) CryptoCom.Net  
 
 [![.NET](https://img.shields.io/github/actions/workflow/status/JKorf/CryptoCom.Net/dotnet.yml?style=for-the-badge)](https://github.com/JKorf/CryptoCom.Net/actions/workflows/dotnet.yml) ![License](https://img.shields.io/github/license/JKorf/CryptoCom.Net?style=for-the-badge)
+![Since](https://img.shields.io/badge/since-2024-brightgreen?style=for-the-badge)
 
 CryptoCom.Net is a client library for accessing the [Crypto.com REST and Websocket API](https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction). 
 
