@@ -1,3 +1,4 @@
+using CryptoCom.Net;
 using CryptoCom.Net.Interfaces.Clients;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ builder.Services.AddCryptoCom();
 /*
 builder.Services.AddCryptoCom(options =>
 {    
-   options.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+   options.ApiCredentials = new CryptoComCredentials("API_KEY", "API_SECRET");
    options.Rest.RequestTimeout = TimeSpan.FromSeconds(5);
 });
 */
@@ -27,7 +28,9 @@ app.UseHttpsRedirection();
 app.MapGet("/{Symbol}", async ([FromServices] ICryptoComRestClient client, string symbol) =>
 {
     var result = await client.ExchangeApi.ExchangeData.GetTickersAsync(symbol);
-    return result.Data?.SingleOrDefault()?.LastPrice;
+    return result.Success
+        ? Results.Ok(result.Data.SingleOrDefault()?.LastPrice)
+        : Results.Problem(result.Error?.Message, statusCode: 502);
 })
 .WithOpenApi();
 
@@ -35,7 +38,9 @@ app.MapGet("/{Symbol}", async ([FromServices] ICryptoComRestClient client, strin
 app.MapGet("/Balances", async ([FromServices] ICryptoComRestClient client) =>
 {
     var result = await client.ExchangeApi.Account.GetBalancesAsync();
-    return (object)(result.Success ? result.Data : result.Error!);
+    return result.Success
+        ? Results.Ok(result.Data)
+        : Results.Problem(result.Error?.Message, statusCode: 502);
 })
 .WithOpenApi();
 
