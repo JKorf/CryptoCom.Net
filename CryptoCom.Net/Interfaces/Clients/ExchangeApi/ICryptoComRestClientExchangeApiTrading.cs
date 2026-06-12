@@ -25,7 +25,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETHUSD_PERP`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new order
@@ -58,7 +58,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="isolatedMarginQuantity">["<c>isolated_margin_amount</c>"] Amount needed to transfer to the isolated position - must a be positive number. If it is not given, the transfer amount will be calculated by the leverage of the isolated position</param>
         /// <param name="reduceOnly">Reduce only flag</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(
+        Task<HttpResult<CryptoComOrderId>> PlaceOrderAsync(
             string symbol, 
             OrderSide side,
             OrderType type,
@@ -94,7 +94,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="orderId">["<c>order_id</c>"] Order id, either this or clientOrderId should be provided</param>
         /// <param name="clientOrderId">["<c>client_oid</c>"] Client order id, either this or orderId should be provided</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all order fitting the parameters
@@ -108,7 +108,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol</param>
         /// <param name="type">["<c>type</c>"] Filter by type</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default);
+        Task<HttpResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default);
 
         /// <summary>
         /// Close an open position
@@ -124,7 +124,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="price">["<c>price</c>"] Price for limit order</param>
         /// <param name="isolationId">["<c>isolation_id</c>"] Isolated position id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default);
         
         /// <summary>
         /// Get user open orders
@@ -137,7 +137,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">["<c>instrument_name</c>"] Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get info on a specific order
@@ -151,7 +151,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="orderId">["<c>order_id</c>"] Order id, either this or clientOrderId should be provided</param>
         /// <param name="clientOrderId">["<c>client_oid</c>"] Client order id, either this or orderId should be provided</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrder>> GetOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrder>> GetOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get closed order history
@@ -168,7 +168,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">["<c>end_time</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(
+        Task<HttpResult<CryptoComOrder[]>> GetClosedOrdersAsync(
             string? symbol = null,
             string? isolationId = null,
             DateTime? startTime = null,
@@ -191,7 +191,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">["<c>end_time</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(
+        Task<HttpResult<CryptoComUserTrade[]>> GetUserTradesAsync(
             string? symbol = null,
             string? isolationId = null,
             DateTime? startTime = null,
@@ -210,7 +210,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="orders">["<c>order_list</c>"] Orders to place, max 10</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default);
+        Task<HttpResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
@@ -223,7 +223,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="orders">["<c>order_list</c>"] Orders to cancel</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default);
+        Task<HttpResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new OCO (One Cancels Other) order
@@ -237,7 +237,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="order1">First order</param>
         /// <param name="order2">Second order</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel an OCO order
@@ -252,7 +252,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="listId">["<c>list_id</c>"] List id to cancel</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
+        Task<HttpResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
 
         /// <summary>
         /// Get info on an OCO order
@@ -267,7 +267,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="listId">["<c>list_id</c>"] Id</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default);
 
         /// <summary>
         /// Edit an order price and/or quantity. ote that amend order is designed as a convenience function such that it performs cancel and then create behind the scene. The new order will lose queue priority, except if the amend is only to amend down order quantity. For faster performance, it is recommended to use CancelOrderAsync and then PlaceOrderAsync instead.
@@ -283,7 +283,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="newPrice">["<c>new_price</c>"] New price</param>
         /// <param name="newQuantity">["<c>new_quantity</c>"] New quantity</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default);
 
     }
 }

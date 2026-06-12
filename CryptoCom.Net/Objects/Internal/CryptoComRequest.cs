@@ -10,7 +10,7 @@ namespace CryptoCom.Net.Objects.Internal
         [JsonPropertyName("method")]
         public string Method { get; set; } = string.Empty;
         [JsonPropertyName("params"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ParameterCollection Parameters { get; set; } = new ParameterCollection();
+        public Parameters Parameters { get; set; } = new Parameters(CryptoComExchange._parameterSerializationSettings);
         [JsonPropertyName("api_key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? ApiKey { get; set; }
         [JsonPropertyName("nonce"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

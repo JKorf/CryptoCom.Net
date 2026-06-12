@@ -21,19 +21,19 @@ namespace CryptoCom.Net.Objects.Sockets
             _client = client;
             RequiredResponses = expectedResponses;
 
-            MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse<CryptoComListOrderResult>>(request.Id.ToString(), HandleMessage);
+            MessageRouter = MessageRouter.CreateForQuery<CryptoComResponse<CryptoComListOrderResult>, CryptoComListOrderResult[]>(request.Id.ToString(), HandleMessage);
         }
 
         public CallResult<CryptoComListOrderResult[]> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<CryptoComListOrderResult> message)
         {
             if (message.Result == null)
-                return new CallResult<CryptoComListOrderResult[]>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);            
+                return CallResult.Fail<CryptoComListOrderResult[]>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);            
 
             if (message.Code != 0)
                 _result.Add(message.Result with { ErrorCode = message.Code, ErrorMessage = message.Message });
             else
                 _result.Add(message.Result);
-            return new CallResult<CryptoComListOrderResult[]>(_result.OrderBy(x => x.OrderId).ToArray(), originalData, null);
+            return CallResult.Ok<CryptoComListOrderResult[]>(_result.OrderBy(x => x.OrderId).ToArray(), originalData);
         }
     }
 }

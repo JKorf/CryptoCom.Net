@@ -104,7 +104,7 @@ namespace CryptoCom.Net.UnitTests
             await tester.ValidateAsync(client => client.ExchangeApi.Trading.EditOrderAsync(0.1m, 0.1m), "EditOrder", nestedJsonProperty: "result");
         }
 
-        private bool IsAuthenticated(WebCallResult result)
+        private bool IsAuthenticated(IHttpResult result)
         {
             return result.RequestBody?.Contains("sig") == true;
         }

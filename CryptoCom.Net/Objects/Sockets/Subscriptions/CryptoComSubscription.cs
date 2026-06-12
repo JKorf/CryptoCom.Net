@@ -45,7 +45,10 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             IndividualSubscriptionCount = symbols?.Length ?? 1;
 
             string[] topics = additionalUpdateTopic == null ? [topic] : [additionalUpdateTopic, topic];
-            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topics, filters, DoHandleRouteMessage);
+            if (filters != null)
+                MessageRouter = MessageRouter.CreateForEvent<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topics, filters, DoHandleRouteMessage);
+            else
+                MessageRouter = MessageRouter.CreateForEvent<CryptoComResponse<CryptoComSubscriptionEvent<T>>>(topics, DoHandleRouteMessage);
         }
 
         /// <inheritdoc />
@@ -56,7 +59,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId(),
                 Method = "subscribe",
                 Nonce = DateTimeConverter.ConvertToMilliseconds(DateTime.UtcNow),
-                Parameters = new ParameterCollection
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
                 {
                     { "channels", _listenerIdentifiers }
                 }
@@ -82,7 +85,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId(),
                 Method = "unsubscribe",
                 Nonce = DateTimeConverter.ConvertToMilliseconds(DateTime.UtcNow),
-                Parameters = new ParameterCollection
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
                 {
                     { "channels", _listenerIdentifiers.ToArray() }
                 }
@@ -104,17 +107,17 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
         public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<CryptoComSubscriptionEvent<T>> message)
         {
             if (_symbols.Any() && !_symbols.Contains(message.Result.Symbol))
-                return CallResult.SuccessResult;
+                return CallResult.Ok();
 
             _handler.Invoke(receiveTime, originalData, ConnectionInvocations, message.Result);
-            return CallResult.SuccessResult;
+            return CallResult.Ok();
         }
 
         /// <inheritdoc />
         public CallResult DoHandleRouteMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<CryptoComSubscriptionEvent<T>> message)
         {
             _handler.Invoke(receiveTime, originalData, ConnectionInvocations, message.Result);
-            return CallResult.SuccessResult;
+            return CallResult.Ok();
         }
     }
 }

@@ -26,10 +26,10 @@ namespace CryptoCom.Net
 
         public override void ProcessRequest(RestApiClient apiClient, RestRequestConfiguration request)
         {
-            if (!request.Authenticated || request.BodyParameters?.Any() != true)
+            if (!request.RequestDefinition.Authenticated || request.BodyParameters?.BodyValue == null)
                 return;
 
-            var ccRequest = (CryptoComRequest)request.BodyParameters["_BODY_"];
+            var ccRequest = (CryptoComRequest)request.BodyParameters.BodyValue;
             AuthenticateRequest(apiClient, ccRequest);
         }
 
@@ -62,7 +62,7 @@ namespace CryptoCom.Net
             request.Signature = sign;
         }
 
-        public string ToParamString(Dictionary<string, object> parameters)
+        public string ToParamString(Parameters parameters)
         {
             var result = string.Empty;
             foreach(var parameter in parameters.OrderBy(x => x.Key))
@@ -102,12 +102,12 @@ namespace CryptoCom.Net
         [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode", Justification = "JsonSerializerOptions provided here has TypeInfoResolver set")]
         [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2075:RequiresUnreferencedCode", Justification = "All send types are registered in the TypeInfoResolver used and are therefor not trimmed")]
 #endif
-        private static Dictionary<string, object>? ToDictionary(object? obj)
+        private static Parameters? ToDictionary(object? obj)
         {
             if (obj == null)
                 return null;
 
-            var result = new Dictionary<string, object>();
+            var result = new Parameters(CryptoComExchange._parameterSerializationSettings);
             var properties = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
             foreach(var prop in properties)
             {

@@ -66,25 +66,24 @@ namespace CryptoCom.Net.SymbolOrderBooks
         protected override async Task<CallResult<UpdateSubscription>> DoStartAsync(CancellationToken ct)
         {
             var subResult = await _socketClient.ExchangeApi.SubscribeToOrderBookUpdatesAsync(Symbol, Levels ?? 10, HandleUpdate).ConfigureAwait(false);
-            if (!subResult)
-                return subResult;
+            if (!subResult.Success)
+                return CallResult.Fail<UpdateSubscription>(subResult.Error);
 
             if (ct.IsCancellationRequested)
             {
                 await subResult.Data.CloseAsync().ConfigureAwait(false);
-                return subResult.AsError<UpdateSubscription>(new CancellationRequestedError());
+                return CallResult.Fail<UpdateSubscription>(new CancellationRequestedError());
             }
 
             Status = OrderBookStatus.Syncing;
             var setResult = await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
-            if (!setResult)
+            if (!setResult.Success)
             {
-
                 await subResult.Data.CloseAsync().ConfigureAwait(false);
-                return setResult.As(subResult.Data);
+                return CallResult.Fail<UpdateSubscription>(setResult.Error);
             }
 
-            return subResult;
+            return CallResult.Ok(subResult.Data);
         }
 
         private void HandleUpdate(DataEvent<CryptoComOrderBookUpdate> data)
@@ -96,7 +95,7 @@ namespace CryptoCom.Net.SymbolOrderBooks
         }
 
         /// <inheritdoc />
-        protected override async Task<CallResult<bool>> DoResyncAsync(CancellationToken ct)
+        protected override async Task<CallResult> DoResyncAsync(CancellationToken ct)
         {
             return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
         }

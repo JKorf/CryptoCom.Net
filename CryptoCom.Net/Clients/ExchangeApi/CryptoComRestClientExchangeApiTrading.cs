@@ -32,13 +32,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Positions
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", symbol);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-positions", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", symbol);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/get-positions", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComPositionWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComPosition[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComPosition[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -46,7 +49,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Place Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderId>> PlaceOrderAsync(
+        public async Task<HttpResult<CryptoComOrderId>> PlaceOrderAsync(
             string symbol,
             OrderSide side, 
             OrderType type,
@@ -79,26 +82,26 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (isolatedMargin == true) execInsts.Add("ISOLATED_MARGIN");
             if (reduceOnly == true) execInsts.Add("REDUCE_ONLY");
 
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", symbol);
-            parameters.AddEnum("side", side);
-            parameters.AddEnum("type", type);
-            parameters.AddOptionalString("quantity", quantity);
-            parameters.AddOptionalString("notional", quoteQuantity);
-            parameters.AddOptionalString("price", price);
+            parameters.Add("side", side);
+            parameters.Add("type", type);
+            parameters.Add("quantity", quantity);
+            parameters.Add("notional", quoteQuantity);
+            parameters.Add("price", price);
             parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
-            parameters.AddOptional("exec_inst", execInsts.Any() ? execInsts.ToArray() : null);
-            parameters.AddOptionalEnum("time_in_force", timeInForce);
-            parameters.AddOptionalString("ref_price", triggerPrice);
-            parameters.AddOptionalEnum("ref_price_type", triggerPriceType);
-            parameters.AddOptional("spot_margin", margin == true ? "MARGIN" : null);
-            parameters.AddOptionalEnum("stp_scope", selfTradePreventionScope);
-            parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
-            parameters.AddOptional("stp_id", selfTradePreventionId);
-            parameters.AddOptional("isolation_id", isolationId);
-            parameters.AddOptionalString("leverage", leverage);
-            parameters.AddOptionalString("isolated_margin_amount", isolatedMarginQuantity);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            parameters.AddArray("exec_inst", execInsts.Any() ? execInsts.ToArray() : null);
+            parameters.Add("time_in_force", timeInForce);
+            parameters.Add("ref_price", triggerPrice);
+            parameters.Add("ref_price_type", triggerPriceType);
+            parameters.Add("spot_margin", margin == true ? "MARGIN" : null);
+            parameters.Add("stp_scope", selfTradePreventionScope);
+            parameters.Add("stp_inst", selfTradePreventionMode);
+            parameters.Add("stp_id", selfTradePreventionId);
+            parameters.Add("isolation_id", isolationId);
+            parameters.Add("leverage", leverage);
+            parameters.Add("isolated_margin_amount", isolatedMarginQuantity);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/create-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -108,14 +111,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Edit Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrderId>> EditOrderAsync(decimal newQuantity, decimal newPrice, string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("new_price", newPrice);
             parameters.Add("new_quantity", newQuantity);
-            parameters.AddOptional("order_id", orderId);
-            parameters.AddOptional("orig_client_oid", clientOrderId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/amend-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            parameters.Add("order_id", orderId);
+            parameters.Add("orig_client_oid", clientOrderId);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/amend-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -125,12 +128,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Cancel Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("order_id", orderId);
-            parameters.AddOptional("client_oid", clientOrderId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("order_id", orderId);
+            parameters.Add("client_oid", clientOrderId);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/cancel-order", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -140,12 +143,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Cancel All Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default)
+        public async Task<HttpResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", symbol);
-            parameters.AddOptionalEnum("type", type);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-all-orders", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", symbol);
+            parameters.Add("type", type);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/cancel-all-orders", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -155,14 +158,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Close Position
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", symbol);
-            parameters.AddEnum("type", orderType);
-            parameters.AddOptionalString("price", price);
-            parameters.AddOptional("isolation_id", isolationId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/close-position", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            parameters.Add("type", orderType);
+            parameters.Add("price", price);
+            parameters.Add("isolation_id", isolationId);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/close-position", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -172,13 +175,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Open Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", symbol);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-open-orders", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", symbol);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/get-open-orders", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComOrder[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComOrder[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -186,12 +192,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrder>> GetOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrder>> GetOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("order_id", orderId);
-            parameters.AddOptional("client_oid", clientOrderId);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-detail", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("order_id", orderId);
+            parameters.Add("client_oid", clientOrderId);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/get-order-detail", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrder>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -201,22 +207,25 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Closed Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrder[]>> GetClosedOrdersAsync(
+        public async Task<HttpResult<CryptoComOrder[]>> GetClosedOrdersAsync(
             string? symbol = null,
             string? isolationId = null,
             DateTime? startTime = null, 
             DateTime? endTime = null, 
             int? limit = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", symbol);
-            parameters.AddOptional("isolation_id", isolationId);
-            parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
-            parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
-            parameters.AddOptional("limit", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-history", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", symbol);
+            parameters.Add("isolation_id", isolationId);
+            parameters.Add("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
+            parameters.Add("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
+            parameters.Add("limit", limit);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/get-order-history", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComOrder[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComOrder[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -224,7 +233,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get User Trades
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComUserTrade[]>> GetUserTradesAsync(
+        public async Task<HttpResult<CryptoComUserTrade[]>> GetUserTradesAsync(
             string? symbol = null,
             string? isolationId = null,
             DateTime? startTime = null,
@@ -232,15 +241,18 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             int? limit = null,
             CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", symbol);
-            parameters.AddOptional("isolation_id", isolationId);
-            parameters.AddOptional("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
-            parameters.AddOptional("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
-            parameters.AddOptional("limit", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-trades", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", symbol);
+            parameters.Add("isolation_id", isolationId);
+            parameters.Add("start_time", DateTimeConverter.ConvertToNanoseconds(startTime));
+            parameters.Add("end_time", DateTimeConverter.ConvertToNanoseconds(endTime));
+            parameters.Add("limit", limit);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/get-trades", CryptoComExchange.RateLimiter.RestPrivateSpecific, 1, true);
             var result = await _baseClient.SendAsync<CryptoComUserTradeWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComUserTrade[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComUserTrade[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -248,33 +260,33 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Place Multiple Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
+        public async Task<HttpResult<CallResult<CryptoComOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
 
             foreach (var order in orders)
                 order.ClientOrderId ??= ExchangeHelpers.RandomString(32);
 
             parameters.Add("contingency_type", "LIST");
             parameters.Add("order_list", orders.ToArray());
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var resultData = await _baseClient.SendAsync<CryptoComOrderResult[]>(request, parameters, ct).ConfigureAwait(false);
-            if (!resultData)
-                return resultData.As<CallResult<CryptoComOrderResult>[]>(default);
+            if (!resultData.Success)
+                return HttpResult.Fail<CallResult<CryptoComOrderResult>[]>(resultData);
 
             var result = new List<CallResult<CryptoComOrderResult>>();
             foreach (var item in resultData.Data!)
             {
                 if (item.Code != 0)
-                    result.Add(new CallResult<CryptoComOrderResult>(item, null, new ServerError(item.Code, _baseClient.GetErrorInfo(item.Code, item.Message!))));
+                    result.Add(CallResult<CryptoComOrderResult>.Fail(new ServerError(item.Code, _baseClient.GetErrorInfo(item.Code, item.Message!))));
                 else
-                    result.Add(new CallResult<CryptoComOrderResult>(item));
+                    result.Add(CallResult<CryptoComOrderResult>.Ok(item));
             }
 
             if (result.All(x => !x.Success))
-                return resultData.AsErrorWithData(new ServerError(new ErrorInfo(ErrorType.AllOrdersFailed, "All orders failed")), result.ToArray());
+                return HttpResult.Fail(resultData, new ServerError(new ErrorInfo(ErrorType.AllOrdersFailed, "All orders failed")), result.ToArray());
 
-            return resultData.As(result.ToArray());
+            return HttpResult.Ok(resultData, result.ToArray());
         }
 
         #endregion
@@ -282,12 +294,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Cancel Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComCancelOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("contingency_type", "LIST");
             parameters.Add("order_list", orders.ToArray());
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/cancel-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             return await _baseClient.SendAsync<CryptoComCancelOrderResult[]>(request, parameters, ct).ConfigureAwait(false);
         }
 
@@ -296,16 +308,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Place OCO Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
 
             order1.ClientOrderId ??= ExchangeHelpers.RandomString(32);
             order2.ClientOrderId ??= ExchangeHelpers.RandomString(32);
 
             parameters.Add("contingency_type", "OCO");
             parameters.Add("order_list", new[] { order1, order2 });
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/create-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             return await _baseClient.SendAsync<CryptoComOcoResult>(request, parameters, ct).ConfigureAwait(false);
         }
 
@@ -314,13 +326,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Cancel OCO Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
+        public async Task<HttpResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("contingency_type", "OCO");
             parameters.Add("list_id", listId);
             parameters.Add("instrument_name", symbol);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/cancel-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/cancel-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             return await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
         }
 
@@ -329,15 +341,18 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get OCO Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrder[]>> GetOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("contingency_type", "OCO");
             parameters.Add("list_id", listId);
             parameters.Add("instrument_name", symbol);
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "private/get-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "private/get-order-list", CryptoComExchange.RateLimiter.RestPrivate, 1, true);
             var result = await _baseClient.SendAsync<CryptoComOrderWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComOrder[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComOrder[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion

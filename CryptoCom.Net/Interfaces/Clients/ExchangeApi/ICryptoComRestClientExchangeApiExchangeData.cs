@@ -23,7 +23,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default);
+        Task<HttpResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get risk parameters
@@ -35,7 +35,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComRiskParameters>> GetRiskParametersAsync(CancellationToken ct = default);
+        Task<HttpResult<CryptoComRiskParameters>> GetRiskParametersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get symbols/instruments
@@ -47,7 +47,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComSymbol[]>> GetSymbolsAsync(CancellationToken ct = default);
+        Task<HttpResult<CryptoComSymbol[]>> GetSymbolsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get the order book for a symbol
@@ -61,7 +61,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETHUSDT`</param>
         /// <param name="depth">["<c>depth</c>"] Order book depth, max 50</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComOrderBook>> GetOrderBookAsync(string symbol, int depth, CancellationToken ct = default);
+        Task<HttpResult<CryptoComOrderBook>> GetOrderBookAsync(string symbol, int depth, CancellationToken ct = default);
 
         /// <summary>
         /// Get tickers
@@ -74,7 +74,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// </summary>
         /// <param name="symbol">["<c>instrument_name</c>"] The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComTicker[]>> GetTickersAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComTicker[]>> GetTickersAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get trade history
@@ -90,7 +90,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">["<c>end_ts</c>"] Filter by end time</param>
         /// <param name="limit">["<c>count</c>"] Max number of results, max 150</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComTrade[]>> GetTradeHistoryAsync(string symbol, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComTrade[]>> GetTradeHistoryAsync(string symbol, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get Kline/Candlestick data
@@ -107,7 +107,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">["<c>end_ts</c>"] Filter by end time</param>
         /// <param name="limit">["<c>count</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get various statistics
@@ -124,7 +124,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">["<c>end_ts</c>"] Filter by end time</param>
         /// <param name="limit">["<c>count</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComValuation[]>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComValuation[]>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get expired contracts settlement price
@@ -138,7 +138,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="symbolType">["<c>instrument_type</c>"] Symbol type</param>
         /// <param name="pageNumber">["<c>page</c>"] Page number</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComExpiredPrice[]>> GetExpiredSettlementPriceAsync(SymbolType symbolType, int? pageNumber = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComExpiredPrice[]>> GetExpiredSettlementPriceAsync(SymbolType symbolType, int? pageNumber = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get the balance of Insurance Fund for a particular asset.
@@ -154,7 +154,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="endTime">["<c>end_ts</c>"] Filter by end time</param>
         /// <param name="limit">["<c>count</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComValuation[]>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComValuation[]>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get announcements
@@ -168,7 +168,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// <param name="category">["<c>category</c>"] Filter by category</param>
         /// <param name="productType">["<c>product_type</c>"] Filter by product type</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<CryptoComAnnouncement[]>> GetAnnouncementsAsync(AnnouncementCategory? category = null, string? productType = null, CancellationToken ct = default);
+        Task<HttpResult<CryptoComAnnouncement[]>> GetAnnouncementsAsync(AnnouncementCategory? category = null, string? productType = null, CancellationToken ct = default);
 
     }
 }
