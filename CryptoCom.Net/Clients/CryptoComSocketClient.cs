@@ -46,7 +46,7 @@ namespace CryptoCom.Net.Clients
         {
             Initialize(options.Value);
 
-            ExchangeApi = AddApiClient(new CryptoComSocketClientExchangeApi(_logger, options.Value));
+            ExchangeApi = AddApiClient(new CryptoComSocketClientExchangeApi(loggerFactory, options.Value));
         }
         #endregion
 

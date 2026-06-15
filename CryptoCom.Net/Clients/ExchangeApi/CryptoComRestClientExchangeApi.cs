@@ -45,13 +45,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         #region constructor/destructor
-        internal CryptoComRestClientExchangeApi(ILogger logger, HttpClient? httpClient, CryptoComRestOptions options)
-            : base(logger, CryptoComExchange.Metadata.Id, httpClient, options.Environment.RestClientAddress.AppendPath("/exchange/v1/"), options, options.ExchangeOptions)
+        internal CryptoComRestClientExchangeApi(ILoggerFactory? loggerFactory, HttpClient? httpClient, CryptoComRestOptions options)
+            : base(loggerFactory, CryptoComExchange.Metadata.Id, httpClient, options.Environment.RestClientAddress.AppendPath("/exchange/v1/"), options, options.ExchangeOptions)
         {
             Account = new CryptoComRestClientExchangeApiAccount(this);
-            ExchangeData = new CryptoComRestClientExchangeApiExchangeData(logger, this);
+            ExchangeData = new CryptoComRestClientExchangeApiExchangeData(_logger, this);
             Staking = new CryptoComRestClientExchangeApiStaking(this);
-            Trading = new CryptoComRestClientExchangeApiTrading(logger, this);
+            Trading = new CryptoComRestClientExchangeApiTrading(_logger, this);
         }
         #endregion
 

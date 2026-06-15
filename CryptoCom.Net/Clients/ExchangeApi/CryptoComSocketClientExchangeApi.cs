@@ -45,8 +45,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <summary>
         /// ctor
         /// </summary>
-        internal CryptoComSocketClientExchangeApi(ILogger logger, CryptoComSocketOptions options) :
-            base(logger, CryptoComExchange.Metadata.Id, options.Environment.SocketClientAddress!, options, options.ExchangeOptions)
+        internal CryptoComSocketClientExchangeApi(ILoggerFactory? loggerFactory, CryptoComSocketOptions options) :
+            base(loggerFactory, CryptoComExchange.Metadata.Id, options.Environment.SocketClientAddress!, options, options.ExchangeOptions)
         {
             MessageSendSizeLimit = 4000;
             RateLimiter = CryptoComExchange.RateLimiter.Socket;
