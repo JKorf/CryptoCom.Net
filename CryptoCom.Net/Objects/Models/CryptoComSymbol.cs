@@ -67,6 +67,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("qty_tick_size")]
         public decimal QuantityTickSize { get; set; }
         /// <summary>
+        /// ["<c>contract_size</c>"] Contract size
+        /// </summary>
+        [JsonPropertyName("contract_size")]
+        public decimal? ContractSize { get; set; }
+        /// <summary>
         /// ["<c>max_leverage</c>"] Max leverage
         /// </summary>
         [JsonPropertyName("max_leverage")]
