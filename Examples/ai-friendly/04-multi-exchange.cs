@@ -16,7 +16,10 @@ using CryptoExchange.Net.SharedApis;
 // Each exchange client exposes a `.SharedClient` property on its API surfaces.
 // CryptoCom.Net exposes it under ExchangeApi.SharedClient.
 
-ISpotTickerRestClient cryptoComShared = new CryptoComRestClient().ExchangeApi.SharedClient;
+var restClient = new CryptoComRestClient();
+ISpotTickerRestClient cryptoComShared = restClient.ExchangeApi.SharedClient;
+var capabilities = restClient.ExchangeApi.SharedClient.Discover();
+Console.WriteLine($"Shared REST features: {capabilities.Features.Count(x => x.Supported)}");
 
 // To add other exchanges, install their package and use the correct root:
 //   ISpotTickerRestClient binanceShared = new BinanceRestClient().SpotApi.SharedClient;

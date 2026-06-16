@@ -24,13 +24,15 @@ Primary documentation:
 - Include `using CryptoCom.Net;` when using `CryptoComCredentials` or `CryptoComEnvironment`.
 - Always check `.Success` before reading `.Data`.
 - REST methods return `HttpResult<T>` or `HttpResult`.
-- WebSocket subscriptions and socket API requests return `WebSocketResult<T>` or `WebSocketResult`.
+- WebSocket subscriptions return `WebSocketResult<UpdateSubscription>`.
+- Socket API requests return `QueryResult<T>` or `QueryResult`.
+- Shared non-I/O symbol/cache helper methods can return `ExchangeCallResult<T>`.
 - Use the real client root: `.ExchangeApi`.
 - Do not invent `SpotApi`, `UsdFuturesApi`, `CoinFuturesApi`, or `GeneralApi` roots. Those are Binance.Net shapes, not CryptoCom.Net.
 - Reuse clients. Do not instantiate a REST or socket client per request in production code.
 - Store WebSocket subscriptions and unsubscribe during shutdown.
 - Use exact Crypto.com instrument names. Spot pairs commonly use underscores, for example `BTC_USDT`; derivatives can use suffixes such as `ETHUSD_PERP`.
-- For multi-exchange code, use `CryptoExchange.Net.SharedApis` from `.ExchangeApi.SharedClient`.
+- For multi-exchange code, use `CryptoExchange.Net.SharedApis` from `.ExchangeApi.SharedClient` and call `.Discover()` to inspect supported features.
 - Do not invent endpoint names. If unsure, inspect `CryptoCom.Net/Interfaces/Clients/ExchangeApi/**`.
 
 ## Installation
@@ -383,8 +385,11 @@ Use CryptoExchange.Net.SharedApis when the user asks for code that can work agai
 using CryptoCom.Net.Clients;
 using CryptoExchange.Net.SharedApis;
 
-ISpotTickerRestClient tickerClient = new CryptoComRestClient().ExchangeApi.SharedClient;
+var restClient = new CryptoComRestClient();
+ISpotTickerRestClient tickerClient = restClient.ExchangeApi.SharedClient;
 var symbol = new SharedSymbol(TradingMode.Spot, "BTC", "USDT");
+var info = restClient.ExchangeApi.SharedClient.Discover();
+var supportedFeatures = info.Features.Where(x => x.Supported).Select(x => x.EndpointName);
 
 var ticker = await tickerClient.GetSpotTickerAsync(new GetTickerRequest(symbol));
 if (!ticker.Success)
@@ -478,10 +483,10 @@ Examples/ai-friendly/03-websocket.cs
   Public ticker/kline/trade streams, authenticated order/balance streams, success checks, teardown.
 
 Examples/ai-friendly/04-multi-exchange.cs
-  CryptoExchange.Net SharedApis REST and socket patterns.
+  CryptoExchange.Net SharedApis REST/socket patterns and capability discovery.
 
 Examples/ai-friendly/05-error-handling.cs
-  HttpResult pattern, transient retry, symbol precision handling, batch-order nested results.
+  HttpResult, WebSocketResult, QueryResult, ExchangeCallResult patterns; transient retry; symbol precision handling; batch-order nested results.
 ```
 
 These files are intended to be copied into a console `Program.cs` after `dotnet add package CryptoCom.Net`.

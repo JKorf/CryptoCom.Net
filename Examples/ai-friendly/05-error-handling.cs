@@ -1,7 +1,7 @@
 // 05-error-handling.cs
 //
-// Demonstrates: HttpResult patterns, retry logic, symbol precision,
-// and batch-order nested result checks.
+// Demonstrates: HttpResult, WebSocketResult, QueryResult, and ExchangeCallResult
+// patterns, retry logic, symbol precision, and batch-order nested result checks.
 //
 // Setup: dotnet add package CryptoCom.Net
 
@@ -20,7 +20,9 @@ const string symbolName = "BTC_USDT";
 
 // ---- 1. THE BASIC PATTERN ----
 // REST methods return HttpResult<T> or HttpResult.
-// WebSocket subscriptions and socket API requests return WebSocketResult<T> or WebSocketResult.
+// WebSocket subscriptions return WebSocketResult<UpdateSubscription>.
+// Socket API requests return QueryResult<T> or QueryResult.
+// Some SharedApis symbol helper methods return ExchangeCallResult<T>.
 // .Success is true/false. .Data is only valid after success.
 var result = await client.ExchangeApi.ExchangeData.GetTickersAsync(symbolName);
 
@@ -104,7 +106,7 @@ if (!order.Success)
 
 // ---- 4. BATCH ORDER CALLS CAN HAVE NESTED FAILURES ----
 // Some batch endpoints can return outer success even when one or more individual
-// order requests failed. Always inspect the nested WebSocketResult entries.
+// order requests failed. Always inspect the nested CallResult entries.
 var batch = await client.ExchangeApi.Trading.PlaceMultipleOrdersAsync(new[]
 {
     new CryptoComOrderRequest
