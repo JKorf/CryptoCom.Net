@@ -41,7 +41,7 @@ var publicClient = new CryptoComRestClient();
 
 ## Core Pattern: Result Handling
 
-Every REST method returns `WebCallResult<T>` or `WebCallResult`. WebSocket subscriptions and socket API requests return `CallResult<T>` or `CallResult`. Always check `.Success` before accessing `.Data`.
+Every REST method returns `HttpResult<T>` or `HttpResult`. WebSocket subscriptions and socket API requests return `WebSocketResult<T>` or `WebSocketResult`. Always check `.Success` before accessing `.Data`.
 
 ```csharp
 var tickers = await restClient.ExchangeApi.ExchangeData.GetTickersAsync("BTC_USDT");

@@ -2,7 +2,7 @@
 
 > Strongly typed .NET client library for the Crypto.com Exchange REST and WebSocket APIs. Supports public market data, account management, trading, positions, staking, withdrawals, WebSocket subscriptions, and CryptoExchange.Net SharedApis. Part of the CryptoExchange.Net ecosystem providing a unified abstraction across 28+ cryptocurrency exchanges.
 
-CryptoCom.Net provides typed C# clients for Crypto.com Exchange with request signing, automatic WebSocket reconnection, result-based error handling via `WebCallResult<T>` / `CallResult<T>`, client-side rate limiting, native AOT support, and shared API interfaces for multi-exchange applications. Current version: 3.x. Targets netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0.
+CryptoCom.Net provides typed C# clients for Crypto.com Exchange with request signing, automatic WebSocket reconnection, result-based error handling via `HttpResult<T>` / `WebSocketResult<T>`, client-side rate limiting, native AOT support, and shared API interfaces for multi-exchange applications. Current version: 3.x. Targets netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0.
 
 ## Documentation
 
@@ -19,7 +19,7 @@ CryptoCom.Net provides typed C# clients for Crypto.com Exchange with request sig
 - [Derivatives Positions](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/02-derivatives.cs): Account leverage, perpetual order, positions, close position
 - [WebSocket Streams](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/03-websocket.cs): Ticker, klines, trades, authenticated order/balance streams with teardown
 - [Multi-Exchange Pattern](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/04-multi-exchange.cs): Using CryptoExchange.Net SharedApis for exchange-agnostic code
-- [Error Handling](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): WebCallResult pattern, retry logic, common Crypto.com API pitfalls
+- [Error Handling](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): HttpResult pattern, retry logic, common Crypto.com API pitfalls
 - [Full Examples Repository](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples): Console and configuration examples
 
 ## Critical Usage Rules

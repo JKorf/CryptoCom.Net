@@ -15,7 +15,7 @@ These examples are optimized for AI coding assistants and quick onboarding. Each
 | `02-derivatives.cs` | Derivatives/perpetuals: positions, isolated margin order parameters, close position |
 | `03-websocket.cs` | Subscribe to ticker, klines, trades, authenticated order and balance streams with proper teardown |
 | `04-multi-exchange.cs` | `CryptoExchange.Net.SharedApis` pattern for exchange-agnostic code |
-| `05-error-handling.cs` | `WebCallResult` patterns, retry, symbol precision, batch-order nested result checks |
+| `05-error-handling.cs` | `HttpResult` patterns, retry, symbol precision, batch-order nested result checks |
 
 ## Running
 

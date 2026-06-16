@@ -1009,7 +1009,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         SetLeverageOptions ILeverageRestClient.SetLeverageOptions { get; } = new SetLeverageOptions(_exchangeName)
         {
-            RequestNotes = "This sets the max account leverage. If the AccountId exchange parameter is not provided it will be requested when executing this method"
+            RequestNotes = "This sets the max account leverage. If the AccountId exchange parameter is not provided it will be requested when executing this method",
+            OptionalExchangeParameters = [
+                new ParameterDescription(["AccountId", "account_id"],  typeof(string), "The account id to set the leverage for. If not provided the master account id will be used", 123L)
+                ]
         };
         async Task<HttpResult<SharedLeverage>> ILeverageRestClient.SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
         {
@@ -1017,7 +1020,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (validationError != null)
                 return HttpResult.Fail<SharedLeverage>(Exchange, validationError);
 
-            var userId = ExchangeParameters.GetValue<string>(request.ExchangeParameters, Exchange, "AccountId");
+            var userId = request.GetParamValue<string>(Exchange, "AccountId", "account_id");
             if (userId == null)
             {
                 var user = await Account.GetAccountInfoAsync(ct: ct).ConfigureAwait(false);

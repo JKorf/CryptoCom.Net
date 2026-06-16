@@ -23,8 +23,8 @@ Primary documentation:
 - Use `CryptoComCredentials`, not generic `ApiCredentials`, for API key setup.
 - Include `using CryptoCom.Net;` when using `CryptoComCredentials` or `CryptoComEnvironment`.
 - Always check `.Success` before reading `.Data`.
-- REST methods return `WebCallResult<T>` or `WebCallResult`.
-- WebSocket subscriptions and socket API requests return `CallResult<T>` or `CallResult`.
+- REST methods return `HttpResult<T>` or `HttpResult`.
+- WebSocket subscriptions and socket API requests return `WebSocketResult<T>` or `WebSocketResult`.
 - Use the real client root: `.ExchangeApi`.
 - Do not invent `SpotApi`, `UsdFuturesApi`, `CoinFuturesApi`, or `GeneralApi` roots. Those are Binance.Net shapes, not CryptoCom.Net.
 - Reuse clients. Do not instantiate a REST or socket client per request in production code.
@@ -159,9 +159,9 @@ var lastPrice = result.Data.FirstOrDefault()?.LastPrice;
 For retry logic, only retry transient errors:
 
 ```csharp
-async Task<WebCallResult<T>> WithRetry<T>(Func<Task<WebCallResult<T>>> call, int maxAttempts = 3)
+async Task<HttpResult<T>> WithRetry<T>(Func<Task<HttpResult<T>>> call, int maxAttempts = 3)
 {
-    WebCallResult<T> last = default!;
+    HttpResult<T> last = default!;
 
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
@@ -481,7 +481,7 @@ Examples/ai-friendly/04-multi-exchange.cs
   CryptoExchange.Net SharedApis REST and socket patterns.
 
 Examples/ai-friendly/05-error-handling.cs
-  WebCallResult pattern, transient retry, symbol precision handling, batch-order nested results.
+  HttpResult pattern, transient retry, symbol precision handling, batch-order nested results.
 ```
 
 These files are intended to be copied into a console `Program.cs` after `dotnet add package CryptoCom.Net`.
