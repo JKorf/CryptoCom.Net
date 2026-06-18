@@ -107,7 +107,7 @@ namespace CryptoCom.Net
         /// <summary>
         /// Rate limiter configuration for the CryptoCom API
         /// </summary>
-        public static CryptoComRateLimiters RateLimiter { get; } = new CryptoComRateLimiters();
+        public static CryptoComRateLimiters RateLimiter { get; set; } = new CryptoComRateLimiters();
     }
 
     /// <summary>
@@ -126,13 +126,19 @@ namespace CryptoCom.Net
         public event Action<RateLimitUpdateEvent> RateLimitUpdated;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        internal CryptoComRateLimiters()
+        /// <summary>
+        /// ctor
+        /// </summary>
+        public CryptoComRateLimiters()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Initialize();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// Initialize the rate limits
+        /// </summary>
+        protected virtual void Initialize()
         {
             RestPrivate = new RateLimitGate("Rest Private")
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, Array.Empty<IGuardFilter>(), 3, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding));
