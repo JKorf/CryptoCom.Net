@@ -903,7 +903,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 PriceDecimals = s.PriceDecimals,
                 QuantityDecimals = s.QuantityDecimals,
                 DeliveryTime = s.ExpiryTime,
-                ContractSize = 1,
+                ContractSize = s.ContractSize > 0 ? s.ContractSize.Value : 1m,
                 MaxLongLeverage = s.MaxLeverage,
                 MaxShortLeverage = s.MaxLeverage
             }).ToArray());
