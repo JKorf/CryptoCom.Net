@@ -325,7 +325,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return HttpResult.Ok(result,
                     ExchangeHelpers.ApplyFilter(result.Data, x => x.CreateTime, request.StartTime, request.EndTime, direction)
                     .Select(x => 
-                        new SharedWithdrawal(x.Asset, x.Address, x.Quantity, x.WithdrawalStatus == Enums.WithdrawalStatus.Completed, x.CreateTime)
+                        new SharedWithdrawal(
+                            x.Asset,
+                            x.Address, 
+                            x.Quantity, 
+                            x.WithdrawalStatus == Enums.WithdrawalStatus.Completed, 
+                            x.CreateTime,
+                            GetWithdrawalStatus(x))
                         {
                             Network = x.NetworkId,
                             TransactionId = x.TransactionId,
@@ -333,6 +339,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                             Id = x.Id
                         })
                     .ToArray(), nextPageRequest);
+        }
+
+        private SharedTransferStatus GetWithdrawalStatus(CryptoComWithdrawal x)
+        {
+            if (x.WithdrawalStatus == WithdrawalStatus.Canceled || x.WithdrawalStatus == WithdrawalStatus.PaymentFailed || x.WithdrawalStatus == WithdrawalStatus.Rejected)
+                return SharedTransferStatus.Failed;
+
+            if (x.WithdrawalStatus == WithdrawalStatus.Completed)
+                return SharedTransferStatus.Completed;
+
+            if (x.WithdrawalStatus == WithdrawalStatus.PaymentInProgress || x.WithdrawalStatus == WithdrawalStatus.Pending || x.WithdrawalStatus == WithdrawalStatus.Processing)
+                return SharedTransferStatus.InProgress;
+
+            return SharedTransferStatus.Unknown;
         }
 
         #endregion
