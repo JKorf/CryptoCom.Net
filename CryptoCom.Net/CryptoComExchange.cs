@@ -27,7 +27,8 @@ namespace CryptoCom.Net
                 "https://www.crypto.com",
                 ["https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction"],
                 PlatformType.CryptoCurrencyExchange,
-                CentralizationType.Centralized
+                CentralizationType.Centralized,
+                CryptoComEnvironment.All
                 );
 
         /// <summary>
