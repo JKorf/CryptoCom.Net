@@ -98,7 +98,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result.Success)
                 return HttpResult.Fail<SharedBalance[]>(result);
 
-            return HttpResult.Ok(result, result.Data.SelectMany(x => x.PositionBalances.Select(x => new SharedBalance(x.Asset, x.Quantity - x.ReservedQuantity, x.Quantity))).ToArray());
+            return HttpResult.Ok(result, result.Data.SelectMany(x => x.PositionBalances.Select(x =>
+                new SharedBalance(
+                    SupportedTradingModes, 
+                    x.Asset, 
+                    x.Quantity - x.ReservedQuantity,
+                    x.Quantity))).ToArray());
         }
 
         #endregion

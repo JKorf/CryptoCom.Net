@@ -350,7 +350,12 @@ var validationError = SharedClient.SubscribeKlineOptions.ValidateRequest(request
             var result = await SubscribeToBalanceUpdatesAsync(
                 update =>
                 {
-                    handler(update.ToType<SharedBalance[]>(update.Data.PositionBalances.Select(x => new SharedBalance(x.Asset, x.Quantity - x.ReservedQuantity, x.Quantity)).ToArray()));
+                    handler(update.ToType<SharedBalance[]>(update.Data.PositionBalances.Select(x =>
+                        new SharedBalance(
+                            SupportedTradingModes, 
+                            x.Asset, 
+                            x.Quantity - x.ReservedQuantity, 
+                            x.Quantity)).ToArray()));
                 },
                 ct: ct).ConfigureAwait(false);
 
