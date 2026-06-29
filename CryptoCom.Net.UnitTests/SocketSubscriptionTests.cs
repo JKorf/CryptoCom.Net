@@ -30,7 +30,7 @@ namespace CryptoCom.Net.UnitTests
                 DelayAfterConnect = TimeSpan.Zero,
             }), logger);
 
-            var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com");
+            var tester = new SocketSubscriptionValidator<CryptoComSocketClient>(client, "Subscriptions/ExchangeApi", "wss://stream.crypto.com/exchange/v1/market");
             await tester.ValidateConcurrentAsync<CryptoComKline[]>(
                 (client, handler) => client.ExchangeApi.SubscribeToKlineUpdatesAsync("ETH_USDT", Enums.KlineInterval.OneDay, handler),
                 (client, handler) => client.ExchangeApi.SubscribeToKlineUpdatesAsync("ETH_USDT", Enums.KlineInterval.OneHour, handler),

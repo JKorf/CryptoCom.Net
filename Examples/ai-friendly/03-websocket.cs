@@ -14,6 +14,7 @@ const string spotSymbol = "BTC_USDT";
 // ---- 1. PUBLIC SOCKET CLIENT - for market data streams ----
 // Reuse a single client instance across subscriptions. The client manages
 // connection pooling, reconnects, and subscription recovery.
+// Subscription methods return WebSocketResult<UpdateSubscription>.
 var publicSocket = new CryptoComSocketClient();
 
 var tickerSub = await publicSocket.ExchangeApi.SubscribeToTickerUpdatesAsync(

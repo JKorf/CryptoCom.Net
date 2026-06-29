@@ -16,15 +16,15 @@ namespace CryptoCom.Net.Objects.Sockets
         {
             _client = client;
 
-            MessageRouter = MessageRouter.CreateWithoutTopicFilter<CryptoComResponse<T>>(request.Id.ToString(), HandleMessage);
+            MessageRouter = MessageRouter.CreateForQuery<CryptoComResponse<T>>(request.Id.ToString(), HandleMessage);
         }
 
         public CallResult<CryptoComResponse<T>> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, CryptoComResponse<T> message)
         {
             if (message.Code != 0)
-                return new CallResult<CryptoComResponse<T>>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);
+                return CallResult<CryptoComResponse<T>>.Fail(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message!)), originalData);
 
-            return new CallResult<CryptoComResponse<T>>(message, originalData, null);
+            return CallResult<CryptoComResponse<T>>.Ok(message, originalData);
         }
     }
 }

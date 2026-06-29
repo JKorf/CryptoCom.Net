@@ -1,7 +1,7 @@
 // 05-error-handling.cs
 //
-// Demonstrates: WebCallResult patterns, retry logic, symbol precision,
-// and batch-order nested result checks.
+// Demonstrates: HttpResult, WebSocketResult, QueryResult, and ExchangeCallResult
+// patterns, retry logic, symbol precision, and batch-order nested result checks.
 //
 // Setup: dotnet add package CryptoCom.Net
 
@@ -19,8 +19,10 @@ var client = new CryptoComRestClient(options =>
 const string symbolName = "BTC_USDT";
 
 // ---- 1. THE BASIC PATTERN ----
-// REST methods return WebCallResult<T> or WebCallResult.
-// WebSocket subscriptions and socket API requests return CallResult<T> or CallResult.
+// REST methods return HttpResult<T> or HttpResult.
+// WebSocket subscriptions return WebSocketResult<UpdateSubscription>.
+// Socket API requests return QueryResult<T> or QueryResult.
+// Some SharedApis symbol helper methods return ExchangeCallResult<T>.
 // .Success is true/false. .Data is only valid after success.
 var result = await client.ExchangeApi.ExchangeData.GetTickersAsync(symbolName);
 
@@ -39,11 +41,11 @@ else
 // ---- 2. SIMPLE RETRY WITH BACKOFF ----
 // Retry only on transient errors such as rate limits, temporary network failures,
 // or server overload. Do not retry validation or authentication errors blindly.
-async Task<WebCallResult<T>> WithRetry<T>(
-    Func<Task<WebCallResult<T>>> call,
+async Task<HttpResult<T>> WithRetry<T>(
+    Func<Task<HttpResult<T>>> call,
     int maxAttempts = 3)
 {
-    WebCallResult<T> last = default!;
+    HttpResult<T> last = default!;
     for (int attempt = 1; attempt <= maxAttempts; attempt++)
     {
         last = await call();

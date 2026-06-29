@@ -45,8 +45,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         /// <summary>
         /// ctor
         /// </summary>
-        internal CryptoComSocketClientExchangeApi(ILogger logger, CryptoComSocketOptions options) :
-            base(logger, options.Environment.SocketClientAddress!, options, options.ExchangeOptions)
+        internal CryptoComSocketClientExchangeApi(ILoggerFactory? loggerFactory, CryptoComSocketOptions options) :
+            base(loggerFactory, CryptoComExchange.Metadata.Id, options.Environment.SocketClientAddress!, options, options.ExchangeOptions)
         {
             MessageSendSizeLimit = 4000;
             RateLimiter = CryptoComExchange.RateLimiter.Socket;
@@ -68,11 +68,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             => new CryptoComAuthenticationProvider(credentials);
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
             => SubscribeToOrderBookSnapshotUpdatesAsync([symbol], depth, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderBookSnapshotUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -95,11 +95,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(string symbol, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
             => SubscribeToOrderBookUpdatesAsync([symbol], depth, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<CryptoComOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrderBookUpdateInt[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -131,11 +131,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(string symbol, Action<DataEvent<CryptoComTicker>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(string symbol, Action<DataEvent<CryptoComTicker>> onMessage, CancellationToken ct = default)
             => SubscribeToTickerUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTicker>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTicker>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComTicker[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -156,11 +156,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(string symbol, Action<DataEvent<CryptoComTrade[]>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(string symbol, Action<DataEvent<CryptoComTrade[]>> onMessage, CancellationToken ct = default)
             => SubscribeToTradeUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTrade[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComTrade[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -182,11 +182,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(string symbol, KlineInterval interval, Action<DataEvent<CryptoComKline[]>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(string symbol, KlineInterval interval, Action<DataEvent<CryptoComKline[]>> onMessage, CancellationToken ct = default)
             => SubscribeToKlineUpdatesAsync([symbol], interval, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(IEnumerable<string> symbols, KlineInterval interval, Action<DataEvent<CryptoComKline[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(IEnumerable<string> symbols, KlineInterval interval, Action<DataEvent<CryptoComKline[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComKline[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -204,11 +204,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
             => SubscribeToIndexPriceUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -229,11 +229,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
             => SubscribeToMarkPriceUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -254,11 +254,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
             => SubscribeToSettlementUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -279,7 +279,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToSettlementUpdatesAsync(Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -300,11 +300,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
             => SubscribeToFundingRateUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -325,11 +325,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToEstimatedFundingRateUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToEstimatedFundingRateUpdatesAsync(string symbol, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
             => SubscribeToEstimatedFundingRateUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToEstimatedFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToEstimatedFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComValuation>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComValuation[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -350,11 +350,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string symbol, Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string symbol, Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
             => SubscribeToOrderUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrder[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -376,7 +376,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<CryptoComOrder[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComOrder[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -399,11 +399,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string symbol, Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string symbol, Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
             => SubscribeToUserTradeUpdatesAsync([symbol], onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComUserTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -425,7 +425,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<CryptoComUserTrade[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComUserTrade[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -447,7 +447,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<CryptoComBalances>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<CryptoComBalances>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComBalances[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -464,7 +464,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<CryptoComPosition[]>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<CryptoComPosition[]>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComPosition[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -486,7 +486,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<UpdateSubscription>> SubscribeToPositionBalanceUpdatesAsync(Action<DataEvent<CryptoComBalancePositionUpdate>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionBalanceUpdatesAsync(Action<DataEvent<CryptoComBalancePositionUpdate>> onMessage, CancellationToken ct = default)
         {
             var handler = new Action<DateTime, string?, int, CryptoComSubscriptionEvent<CryptoComBalancePositionUpdate[]>>((receiveTime, originalData, invocations, data) =>
             {
@@ -507,7 +507,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Queries
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComBalances[]>> GetBalancesAsync(CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComBalances[]>> GetBalancesAsync(CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
@@ -516,26 +516,30 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             };
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComBalancesWrapper>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComBalances[]>(result.Data?.Result.Data);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComBalances[]>(result);
+            return QueryResult.Ok(result, result.Data.Result.Data);
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/get-positions",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
-            request.Parameters.AddOptional("instrument_name", symbol);
+            request.Parameters.Add("instrument_name", symbol);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComPositionWrapper>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComPosition[]>(result.Data?.Result.Data);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComPosition[]>(result);
+            return QueryResult.Ok(result, result.Data.Result.Data);
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComOrderId>> PlaceOrderAsync(
+        public async Task<QueryResult<CryptoComOrderId>> PlaceOrderAsync(
             string symbol,
             OrderSide side,
             OrderType type,
@@ -565,105 +569,117 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/create-order",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
             request.Parameters.Add("instrument_name", symbol);
-            request.Parameters.AddEnum("side", side);
-            request.Parameters.AddEnum("type", type);
-            request.Parameters.AddOptionalString("quantity", quantity);
-            request.Parameters.AddOptionalString("notional", quoteQuantity);
-            request.Parameters.AddOptionalString("price", price);
+            request.Parameters.Add("side", side);
+            request.Parameters.Add("type", type);
+            request.Parameters.Add("quantity", quantity);
+            request.Parameters.Add("notional", quoteQuantity);
+            request.Parameters.Add("price", price);
             request.Parameters.Add("client_oid", clientOrderId ?? ExchangeHelpers.RandomString(32));
-            request.Parameters.AddOptional("exec_inst", execInsts.ToArray());
-            request.Parameters.AddOptionalEnum("time_in_force", timeInForce);
-            request.Parameters.AddOptionalString("ref_price", triggerPrice);
-            request.Parameters.AddOptionalEnum("ref_price_type", triggerPriceType);
-            request.Parameters.AddOptional("spot_margin", margin == true ? "MARGIN" : null);
-            request.Parameters.AddOptionalEnum("stp_scope", selfTradePreventionScope);
-            request.Parameters.AddOptionalEnum("stp_inst", selfTradePreventionMode);
-            request.Parameters.AddOptional("stp_id", selfTradePreventionId);
-            request.Parameters.AddOptional("isolation_id", isolationId);
-            request.Parameters.AddOptionalString("leverage", leverage);
-            request.Parameters.AddOptionalString("isolated_margin_amount", isolatedMarginQuantity);
+            request.Parameters.Add("exec_inst", execInsts.ToArray());
+            request.Parameters.Add("time_in_force", timeInForce);
+            request.Parameters.Add("ref_price", triggerPrice);
+            request.Parameters.Add("ref_price_type", triggerPriceType);
+            request.Parameters.Add("spot_margin", margin == true ? "MARGIN" : null);
+            request.Parameters.Add("stp_scope", selfTradePreventionScope);
+            request.Parameters.Add("stp_inst", selfTradePreventionMode);
+            request.Parameters.Add("stp_id", selfTradePreventionId);
+            request.Parameters.Add("isolation_id", isolationId);
+            request.Parameters.Add("leverage", leverage);
+            request.Parameters.Add("isolated_margin_amount", isolatedMarginQuantity);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComOrderId>(result.Data?.Result);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComOrderId>(result);
+
+            return QueryResult.Ok(result, result.Data.Result);
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComOrderId>> CancelOrderAsync(string? orderId = null, string? clientOrderId = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/cancel-order",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
-            request.Parameters.AddOptional("order_id", orderId);
-            request.Parameters.AddOptional("client_oid", clientOrderId);
+            request.Parameters.Add("order_id", orderId);
+            request.Parameters.Add("client_oid", clientOrderId);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComOrderId>(result.Data?.Result);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComOrderId>(result);
+
+            return QueryResult.Ok(result, result.Data.Result);
         }
 
         /// <inheritdoc />
-        public async Task<CallResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default)
+        public async Task<QueryResult> CancelAllOrdersAsync(string? symbol = null, OrderTypeFilter? type = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/cancel-all-orders",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
-            request.Parameters.AddOptional("instrument_name", symbol);
-            request.Parameters.AddOptionalEnum("type", type);
+            request.Parameters.Add("instrument_name", symbol);
+            request.Parameters.Add("type", type);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<object>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.AsDataless();
+            return result;
         }
 
         /// <inheritdoc />
-        public async Task<CallResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComOrderId>> ClosePositionAsync(string symbol, OrderType orderType, decimal? price = null, string? isolationId = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/close-position",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
             request.Parameters.Add("instrument_name", symbol);
-            request.Parameters.AddEnum("type", orderType);
-            request.Parameters.AddOptionalString("price", price);
-            request.Parameters.AddOptional("isolation_id", isolationId);
+            request.Parameters.Add("type", orderType);
+            request.Parameters.Add("price", price);
+            request.Parameters.Add("isolation_id", isolationId);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderId>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComOrderId>(result.Data?.Result);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComOrderId>(result);
+
+            return QueryResult.Ok(result, result.Data.Result);
         }
 
 
-        public async Task<CallResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/get-open-orders",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
-            request.Parameters.AddOptional("instrument_name", symbol);
+            request.Parameters.Add("instrument_name", symbol);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOrderWrapper>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComOrder[]>(result.Data?.Result.Data);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComOrder[]>(result);
+
+            return QueryResult.Ok(result, result.Data.Result.Data);
         }
 
-        public async Task<CallResult<CallResult<CryptoComListOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
+        public async Task<QueryResult<CallResult<CryptoComListOrderResult>[]>> PlaceMultipleOrdersAsync(IEnumerable<CryptoComOrderRequest> orders, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/create-order-list",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
             foreach (var order in orders)
@@ -673,47 +689,46 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("order_list", orders.ToArray());
 
             var resultData = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(this, request, orders.Count()), ct).ConfigureAwait(false);
-            if (!resultData)
-                return resultData.As<CallResult<CryptoComListOrderResult>[]>(default);
+            if (!resultData.Success)
+                return QueryResult.Fail<CallResult<CryptoComListOrderResult>[]>(resultData);
 
             var result = new List<CallResult<CryptoComListOrderResult>>();
             foreach (var item in resultData.Data)
             {
                 if (item.ErrorCode != null)
-                    result.Add(new CallResult<CryptoComListOrderResult>(item, null, new ServerError(item.ErrorCode.Value, GetErrorInfo(item.ErrorCode.Value, item.ErrorMessage!))));
+                    result.Add(CallResult.Fail<CryptoComListOrderResult>(new ServerError(item.ErrorCode.Value, GetErrorInfo(item.ErrorCode.Value, item.ErrorMessage!))));
                 else
-                    result.Add(new CallResult<CryptoComListOrderResult>(item));
+                    result.Add(CallResult.Ok(item));
             }
 
             if (result.All(x => !x.Success))
-                return resultData.AsErrorWithData(new ServerError(new ErrorInfo(ErrorType.AllOrdersFailed, "All orders failed")), result.ToArray());
+                return QueryResult.Fail<CallResult<CryptoComListOrderResult>[]>(resultData, new ServerError(new ErrorInfo(ErrorType.AllOrdersFailed, "All orders failed")), result.ToArray());
 
-            return resultData.As(result.ToArray());
+            return QueryResult.Ok(resultData, result.ToArray());
         }
 
-        public async Task<CallResult<CryptoComListOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComListOrderResult[]>> CancelOrdersAsync(IEnumerable<CryptoComCancelOrderRequest> orders, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/cancel-order-list",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
             request.Parameters.Add("contingency_type", "LIST");
             request.Parameters.Add("order_list", orders.ToArray());
 
-            var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(this, request, orders.Count()), ct).ConfigureAwait(false);
-            return result.As<CryptoComListOrderResult[]>(result.Data);
+            return await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComOrderQuery(this, request, orders.Count()), ct).ConfigureAwait(false);
         }
 
-        public async Task<CallResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComOcoResult>> PlaceOcoOrderAsync(CryptoComOrderRequest order1, CryptoComOrderRequest order2, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/create-order-list",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
             order1.ClientOrderId ??= ExchangeHelpers.RandomString(32);
@@ -723,16 +738,19 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("order_list", new[] { order1, order2 });
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComOcoResult>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComOcoResult> (result.Data?.Result);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComOcoResult>(result);
+
+            return QueryResult.Ok(result, result.Data.Result);
         }
 
-        public async Task<CallResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
+        public async Task<QueryResult> CancelOcoOrderAsync(string symbol, string listId, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/cancel-order-list",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
             request.Parameters.Add("contingency_type", "OCO");
@@ -740,43 +758,46 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             request.Parameters.Add("instrument_name", symbol);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<object>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.AsDataless();
+            return result;
         }
 
-        public async Task<CallResult<CryptoComWithdrawalResult>> WithdrawAsync(string asset, decimal quantity, string address, string? addressTag = null, string? network = null, string? clientWithdrawId = null, CancellationToken ct = default)
+        public async Task<QueryResult<CryptoComWithdrawalResult>> WithdrawAsync(string asset, decimal quantity, string address, string? addressTag = null, string? network = null, string? clientWithdrawId = null, CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/create-withdrawal",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
             };
 
             request.Parameters.Add("currency", asset);
             request.Parameters.Add("amount", quantity);
             request.Parameters.Add("address", address);
-            request.Parameters.AddOptional("address_tag", addressTag);
-            request.Parameters.AddOptional("network_id", network);
-            request.Parameters.AddOptional("client_wid", clientWithdrawId);
+            request.Parameters.Add("address_tag", addressTag);
+            request.Parameters.Add("network_id", network);
+            request.Parameters.Add("client_wid", clientWithdrawId);
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<CryptoComWithdrawalResult>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.As<CryptoComWithdrawalResult>(result.Data?.Result);
+            if (!result.Success)
+                return QueryResult.Fail<CryptoComWithdrawalResult>(result);
+
+            return QueryResult.Ok(result, result.Data.Result);
         }
 
-        public async Task<CallResult> SetCancelOnDisconnectAsync(CancellationToken ct = default)
+        public async Task<QueryResult> SetCancelOnDisconnectAsync(CancellationToken ct = default)
         {
             var request = new CryptoComRequest
             {
                 Id = ExchangeHelpers.NextId(),
                 Method = "private/set-cancel-on-disconnect",
-                Parameters = new ParameterCollection()
+                Parameters = new Parameters(CryptoComExchange._parameterSerializationSettings)
                 {
                     { "scope", "CONNECTION" }
                 }
             };
 
             var result = await QueryAsync(BaseAddress.AppendPath("exchange/v1/user"), new CryptoComQuery<object>(this, request, true, 1), ct).ConfigureAwait(false);
-            return result.AsDataless();
+            return result;
         }
 
         #endregion

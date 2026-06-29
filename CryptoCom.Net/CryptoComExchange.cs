@@ -27,7 +27,8 @@ namespace CryptoCom.Net
                 "https://www.crypto.com",
                 ["https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction"],
                 PlatformType.CryptoCurrencyExchange,
-                CentralizationType.Centralized
+                CentralizationType.Centralized,
+                CryptoComEnvironment.All
                 );
 
         /// <summary>
@@ -63,6 +64,11 @@ namespace CryptoCom.Net
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
         internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<CryptoComSourceGenerationContext>();
+        internal static ParameterSerializationSettings _parameterSerializationSettings = new ParameterSerializationSettings
+        {
+            Decimal = DecimalSerialization.String,
+            DateTimes = DateTimeSerialization.MillisecondsString
+        };
 
         /// <summary>
         /// Aliases for Crypto.com assets
@@ -102,7 +108,7 @@ namespace CryptoCom.Net
         /// <summary>
         /// Rate limiter configuration for the CryptoCom API
         /// </summary>
-        public static CryptoComRateLimiters RateLimiter { get; } = new CryptoComRateLimiters();
+        public static CryptoComRateLimiters RateLimiter { get; set; } = new CryptoComRateLimiters();
     }
 
     /// <summary>
@@ -121,13 +127,19 @@ namespace CryptoCom.Net
         public event Action<RateLimitUpdateEvent> RateLimitUpdated;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        internal CryptoComRateLimiters()
+        /// <summary>
+        /// ctor
+        /// </summary>
+        public CryptoComRateLimiters()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Initialize();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// Initialize the rate limits
+        /// </summary>
+        protected virtual void Initialize()
         {
             RestPrivate = new RateLimitGate("Rest Private")
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, Array.Empty<IGuardFilter>(), 3, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding));

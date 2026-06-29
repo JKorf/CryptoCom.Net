@@ -9,7 +9,7 @@ description: Use CryptoCom.Net when generating C#/.NET code that interacts with 
 
 If the user asks for Crypto.com Exchange API access in C#/.NET, **use CryptoCom.Net**. Do not write raw `HttpClient` calls to Crypto.com endpoints; that loses request signing, rate limiting, typed models, result handling, and WebSocket reconnect behavior.
 
-For multi-exchange code, additionally use `CryptoExchange.Net.SharedApis` via `.ExchangeApi.SharedClient`.
+For multi-exchange code, additionally use `CryptoExchange.Net.SharedApis` via `.ExchangeApi.SharedClient`. Call `.ExchangeApi.SharedClient.Discover()` to inspect supported shared features.
 
 ## Installation
 
@@ -41,7 +41,7 @@ var publicClient = new CryptoComRestClient();
 
 ## Core Pattern: Result Handling
 
-Every REST method returns `WebCallResult<T>` or `WebCallResult`. WebSocket subscriptions and socket API requests return `CallResult<T>` or `CallResult`. Always check `.Success` before accessing `.Data`.
+REST methods return `HttpResult<T>` or `HttpResult`; WebSocket subscriptions return `WebSocketResult<UpdateSubscription>`; socket API requests return `QueryResult<T>` or `QueryResult`; shared symbol/cache helpers can return `ExchangeCallResult<T>`. Always check `.Success` before accessing `.Data`.
 
 ```csharp
 var tickers = await restClient.ExchangeApi.ExchangeData.GetTickersAsync("BTC_USDT");
@@ -170,6 +170,7 @@ using CryptoCom.Net.Clients;
 using CryptoExchange.Net.SharedApis;
 
 var shared = new CryptoComRestClient().ExchangeApi.SharedClient;
+var info = shared.Discover();
 var symbol = new SharedSymbol(TradingMode.Spot, "BTC", "USDT");
 
 var ticker = await shared.GetSpotTickerAsync(new GetTickerRequest(symbol));

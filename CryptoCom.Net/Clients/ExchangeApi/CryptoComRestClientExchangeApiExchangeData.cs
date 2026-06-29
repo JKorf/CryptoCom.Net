@@ -26,14 +26,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Server Time
 
         /// <inheritdoc />
-        public async Task<WebCallResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default)
+        public async Task<HttpResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default)
         {
             // No dedicated endpoint, use ticker endpoint which returns a timestamp
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", "BTC_USD");
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-tickers", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", "BTC_USD");
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-tickers", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComTickersWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As(result.Data?.Tickers.Single().Timestamp ?? default);
+            if (!result.Success)
+                return HttpResult.Fail<DateTime>(result);
+
+            return HttpResult.Ok(result, result.Data.Tickers.Single().Timestamp);
         }
 
         #endregion
@@ -41,10 +44,10 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Risk Parameters
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComRiskParameters>> GetRiskParametersAsync(CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComRiskParameters>> GetRiskParametersAsync(CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "/public/get-risk-parameters", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/public/get-risk-parameters", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComRiskParameters>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -54,12 +57,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Symbols
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComSymbol[]>> GetSymbolsAsync(CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComSymbol[]>> GetSymbolsAsync(CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-instruments", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-instruments", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComSymbolWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComSymbol[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComSymbol[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -67,14 +73,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Order Book
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComOrderBook>> GetOrderBookAsync(string symbol, int depth, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComOrderBook>> GetOrderBookAsync(string symbol, int depth, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", symbol);
             parameters.Add("depth", depth);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-book", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-book", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComOrderBookWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComOrderBook> (result.Data?.Data.First());
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComOrderBook>(result);
+
+            return HttpResult.Ok(result, result.Data.Data.First());
         }
 
         #endregion
@@ -82,17 +91,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Klines
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", symbol);
-            parameters.AddEnum("timeframe", interval);
-            parameters.AddOptionalMillisecondsString("start_ts", startTime);
-            parameters.AddOptionalMillisecondsString("end_ts", endTime);
-            parameters.AddOptional("count", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-candlestick", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            parameters.Add("timeframe", interval);
+            parameters.Add("start_ts", startTime);
+            parameters.Add("end_ts", endTime);
+            parameters.Add("count", limit);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-candlestick", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComKlineWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComKline[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComKline[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -100,13 +112,16 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Tickers
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComTicker[]>> GetTickersAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComTicker[]>> GetTickersAsync(string? symbol = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("instrument_name", symbol);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-tickers", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_name", symbol);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-tickers", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComTickersWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComTicker[]>(result.Data?.Tickers);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComTicker[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Tickers);
         }
 
         #endregion
@@ -114,16 +129,19 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Trade History
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComTrade[]>> GetTradeHistoryAsync(string symbol, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComTrade[]>> GetTradeHistoryAsync(string symbol, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", symbol);
-            parameters.AddOptional("start_ts", DateTimeConverter.ConvertToNanoseconds(startTime));
-            parameters.AddOptional("end_ts", DateTimeConverter.ConvertToNanoseconds(endTime));
-            parameters.AddOptional("count", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-trades", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            parameters.Add("start_ts", DateTimeConverter.ConvertToNanoseconds(startTime));
+            parameters.Add("end_ts", DateTimeConverter.ConvertToNanoseconds(endTime));
+            parameters.Add("count", limit);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-trades", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComTradeWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComTrade[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComTrade[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -131,17 +149,20 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Valuations
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComValuation[]>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComValuation[]>> GetValuationsAsync(string symbol, ValuationType type, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", symbol);
-            parameters.AddEnum("valuation_type", type);
-            parameters.AddOptionalMillisecondsString("start_ts", startTime);
-            parameters.AddOptionalMillisecondsString("end_ts", endTime);
-            parameters.AddOptional("count", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-valuations", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            parameters.Add("valuation_type", type);
+            parameters.Add("start_ts", startTime);
+            parameters.Add("end_ts", endTime);
+            parameters.Add("count", limit);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-valuations", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComValuationWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComValuation[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComValuation[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -149,14 +170,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Expired Settlement Price
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComExpiredPrice[]>> GetExpiredSettlementPriceAsync(SymbolType symbolType, int? pageNumber = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComExpiredPrice[]>> GetExpiredSettlementPriceAsync(SymbolType symbolType, int? pageNumber = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddEnum("instrument_type", symbolType);
-            parameters.AddOptional("page", pageNumber);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-expired-settlement-price", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("instrument_type", symbolType);
+            parameters.Add("page", pageNumber);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-expired-settlement-price", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComExpiredPriceWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComExpiredPrice[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComExpiredPrice[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -164,16 +188,19 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Insurance
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComValuation[]>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComValuation[]>> GetInsuranceAsync(string asset, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", asset);
-            parameters.AddOptionalMillisecondsString("start_ts", startTime);
-            parameters.AddOptionalMillisecondsString("end_ts", endTime);
-            parameters.AddOptional("count", limit);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "public/get-insurance", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            parameters.Add("start_ts", startTime);
+            parameters.Add("end_ts", endTime);
+            parameters.Add("count", limit);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-insurance", CryptoComExchange.RateLimiter.RestPublic, 1, false);
             var result = await _baseClient.SendAsync<CryptoComValuationWrapper>(request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComValuation[]>(result.Data?.Data);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComValuation[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion
@@ -181,14 +208,17 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #region Get Announcements
 
         /// <inheritdoc />
-        public async Task<WebCallResult<CryptoComAnnouncement[]>> GetAnnouncementsAsync(AnnouncementCategory? category = null, string? productType = null, CancellationToken ct = default)
+        public async Task<HttpResult<CryptoComAnnouncement[]>> GetAnnouncementsAsync(AnnouncementCategory? category = null, string? productType = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptionalEnum("category", category);
-            parameters.AddOptional("product_type", productType);
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "v1/public/get-announcements", CryptoComExchange.RateLimiter.RestPublic, 1, false);
-            var result = await _baseClient.SendToAddressAsync<CryptoComAnnouncementWrapper>(_baseClient.ClientOptions.Environment.RestClientAddress, request, parameters, ct).ConfigureAwait(false);
-            return result.As<CryptoComAnnouncement[]>(result.Data?.Data);
+            var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
+            parameters.Add("category", category);
+            parameters.Add("product_type", productType);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.ClientOptions.Environment.RestClientAddress, "v1/public/get-announcements", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var result = await _baseClient.SendAsync<CryptoComAnnouncementWrapper>(request, parameters, ct).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<CryptoComAnnouncement[]>(result);
+
+            return HttpResult.Ok(result, result.Data.Data);
         }
 
         #endregion

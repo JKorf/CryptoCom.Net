@@ -8,7 +8,8 @@ using System.Text.Json.Serialization;
 
 namespace CryptoCom.Net.Converters
 {
-    [JsonSerializable(typeof(ParameterCollection))]
+    [JsonSerializable(typeof(Parameters))]
+    [JsonSerializable(typeof(Parameters[]))]
     [JsonSerializable(typeof(CryptoComResponse<object>))]
     [JsonSerializable(typeof(CryptoComResponse<CryptoComListOrderResult>))]
     [JsonSerializable(typeof(CryptoComResponse<CryptoComAnnouncementWrapper>))]

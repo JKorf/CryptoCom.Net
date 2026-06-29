@@ -45,13 +45,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         #region constructor/destructor
-        internal CryptoComRestClientExchangeApi(ILogger logger, HttpClient? httpClient, CryptoComRestOptions options)
-            : base(logger, httpClient, options.Environment.RestClientAddress.AppendPath("/exchange/v1/"), options, options.ExchangeOptions)
+        internal CryptoComRestClientExchangeApi(ILoggerFactory? loggerFactory, HttpClient? httpClient, CryptoComRestOptions options)
+            : base(loggerFactory, CryptoComExchange.Metadata.Id, httpClient, options.Environment.RestClientAddress.AppendPath("/exchange/v1/"), options, options.ExchangeOptions)
         {
             Account = new CryptoComRestClientExchangeApiAccount(this);
-            ExchangeData = new CryptoComRestClientExchangeApiExchangeData(logger, this);
+            ExchangeData = new CryptoComRestClientExchangeApiExchangeData(_logger, this);
             Staking = new CryptoComRestClientExchangeApiStaking(this);
-            Trading = new CryptoComRestClientExchangeApiTrading(logger, this);
+            Trading = new CryptoComRestClientExchangeApiTrading(_logger, this);
         }
         #endregion
 
@@ -62,62 +62,54 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         protected override CryptoComAuthenticationProvider CreateAuthenticationProvider(CryptoComCredentials credentials)
             => new CryptoComAuthenticationProvider(credentials);
 
-        internal Task<WebCallResult> SendAsync(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)
-            => SendToAddressAsync(BaseAddress, definition, parameters, cancellationToken, weight);
-
-        internal async Task<WebCallResult> SendToAddressAsync(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)
+        internal async Task<HttpResult> SendAsync(RequestDefinition definition, Parameters? parameters, CancellationToken cancellationToken, int? weight = null)
         {
-            ParameterCollection? wrapperParameters = parameters;
+            Parameters? wrapperParameters = parameters;
             if (definition.Method == HttpMethod.Post)
             {
-                wrapperParameters = new ParameterCollection();
-                wrapperParameters.SetBody(new CryptoComRequest
+                wrapperParameters = new Parameters(new CryptoComRequest
                 {
                     Id = ExchangeHelpers.NextId(),
                     Method = definition.Path.TrimStart('/'),
-                    Parameters = parameters ?? new ParameterCollection()
-                });
+                    Parameters = parameters ?? new Parameters(CryptoComExchange._parameterSerializationSettings)
+                }, CryptoComExchange._parameterSerializationSettings);
             }
 
-            var result = await base.SendAsync<CryptoComResponse>(baseAddress, definition, wrapperParameters, cancellationToken, null, weight).ConfigureAwait(false);
-            if (!result)
-                return result.AsDataless();
+            var result = await base.SendAsync<CryptoComResponse>(definition, wrapperParameters, cancellationToken, null, weight).ConfigureAwait(false);
+            if (!result.Success)
+                return result;
 
             if (result.Data.Code != 0)
-                return result.AsDatalessError(new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
+                return HttpResult.Fail(result, new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
 
-            return result.AsDataless();
+            return result;
         }
 
-        internal Task<WebCallResult<T>> SendAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
-            => SendToAddressAsync<T>(BaseAddress, definition, parameters, cancellationToken, weight);
-
-        internal async Task<WebCallResult<T>> SendToAddressAsync<T>(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
+        internal async Task<HttpResult<T>> SendAsync<T>(RequestDefinition definition, Parameters? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
         {
-            ParameterCollection? wrapperParameters = parameters;
+            Parameters? wrapperParameters = parameters;
             if (definition.Method == HttpMethod.Post)
             {
-                wrapperParameters = new ParameterCollection();
-                wrapperParameters.SetBody(new CryptoComRequest
+                wrapperParameters = new Parameters(new CryptoComRequest
                 {
                     Id = ExchangeHelpers.NextId(),
                     Method = definition.Path.TrimStart('/'),
-                    Parameters = parameters ?? new ParameterCollection()
-                });
+                    Parameters = parameters ?? new Parameters(CryptoComExchange._parameterSerializationSettings)
+                }, CryptoComExchange._parameterSerializationSettings);
             }
 
-            var result = await base.SendAsync<CryptoComResponse<T>>(baseAddress, definition, wrapperParameters, cancellationToken, null, weight).ConfigureAwait(false);
-            if (!result)
-                return result.As<T>(default);
+            var result = await base.SendAsync<CryptoComResponse<T>>(definition, wrapperParameters, cancellationToken, null, weight).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<T>(result);
 
             if (result.Data.Code != 0)
-                return result.AsError<T>(new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
+                return HttpResult.Fail<T>(result, new ServerError(result.Data.Code, GetErrorInfo(result.Data.Code, result.Data.Message!)));
 
-            return result.As(result.Data.Result);
+            return HttpResult.Ok(result, result.Data.Result);
         }
 
         /// <inheritdoc />
-        protected override Task<WebCallResult<DateTime>> GetServerTimestampAsync()
+        protected override Task<HttpResult<DateTime>> GetServerTimestampAsync()
             => ExchangeData.GetServerTimeAsync();
 
         /// <inheritdoc />
