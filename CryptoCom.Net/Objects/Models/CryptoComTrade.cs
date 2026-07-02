@@ -27,9 +27,9 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("d")]
         public string TradeId { get; set; } = string.Empty;
         /// <summary>
-        /// ["<c>t</c>"] Trade timestamp
+        /// ["<c>tn</c>"] Trade timestamp
         /// </summary>
-        [JsonPropertyName("t")]
+        [JsonPropertyName("tn")]
         public DateTime Timestamp { get; set; }
         /// <summary>
         /// ["<c>q</c>"] Trade quantity
@@ -51,6 +51,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("i")]
         public string Symbol { get; set; } = string.Empty;
+        /// <summary>
+        /// ["<c>m</c>"] Trade match id
+        /// </summary>
+        [JsonPropertyName("m")]
+        public string TradeMatchId { get; set; } = string.Empty;
     }
 
 
