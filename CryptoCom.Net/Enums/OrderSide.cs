@@ -18,12 +18,12 @@ namespace CryptoCom.Net.Enums
         /// <summary>
         /// ["<c>BUY</c>"] Buy
         /// </summary>
-        [Map("BUY")]
+        [Map("BUY", "buy")]
         Buy,
         /// <summary>
         /// ["<c>SELL</c>"] Sell
         /// </summary>
-        [Map("SELL")]
+        [Map("SELL", "sell")]
         Sell
     }
 }
