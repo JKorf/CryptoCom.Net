@@ -96,6 +96,22 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("product_type")]
         public ProductType? ProductType { get; set; }
+
+        /// <summary>
+        /// ["<c>beta_product</c>"] Is beta product
+        /// </summary>
+        [JsonPropertyName("beta_product")]
+        public bool BetaProduct { get; set; }
+        /// <summary>
+        /// ["<c>margin_buy_enabled</c>"] Is margin buying enabled
+        /// </summary>
+        [JsonPropertyName("margin_buy_enabled")]
+        public bool MarginBuyEnabled { get; set; }
+        /// <summary>
+        /// ["<c>margin_sell_enabled</c>"] Is margin selling enabled
+        /// </summary>
+        [JsonPropertyName("margin_sell_enabled")]
+        public bool MarginSellEnabled { get; set; }
     }
 
 
