@@ -26,6 +26,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("d")]
         public string TradeId { get; set; } = string.Empty;
+        [JsonInclude, JsonPropertyName("t")]
+        internal DateTime TimestampInt
+        {
+            set => Timestamp = value;
+        }
         /// <summary>
         /// ["<c>tn</c>"] Trade timestamp
         /// </summary>

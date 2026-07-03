@@ -50,7 +50,7 @@ namespace CryptoCom.Net.UnitTests
             });
             var tester = new RestRequestValidator<CryptoComRestClient>(client, "Endpoints/ExchangeApi/ExchangeData", "https://api.crypto.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetTickersAsync(), "GetTickers", nestedJsonProperty: "result.data");
-            await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetTradeHistoryAsync("123"), "GetTradeHistory", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "tn" });
+            await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetTradeHistoryAsync("123"), "GetTradeHistory", nestedJsonProperty: "result.data", ignoreProperties: new List<string> { "t" });
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetSymbolsAsync(), "GetSymbols", nestedJsonProperty: "result.data");
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetOrderBookAsync("123", 123), "GetOrderBook", nestedJsonProperty: "result.data", useSingleArrayItem: true);
             await tester.ValidateAsync(client => client.ExchangeApi.ExchangeData.GetRiskParametersAsync(), "GetRiskParameters", nestedJsonProperty: "result");
