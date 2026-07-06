@@ -42,6 +42,11 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("id")]
         public string Id { get; set; } = string.Empty;
         /// <summary>
+        /// ["<c>txid</c>"] Transaction id
+        /// </summary>
+        [JsonPropertyName("txid")]
+        public string TransactionId { get; set; } = string.Empty;
+        /// <summary>
         /// ["<c>update_time</c>"] Update time
         /// </summary>
         [JsonPropertyName("update_time")]
@@ -56,6 +61,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("address")]
         public string Address { get; set; } = string.Empty;
+        /// <summary>
+        /// ["<c>source_address</c>"] Source address
+        /// </summary>
+        [JsonPropertyName("source_address")]
+        public string SourceAddress { get; set; } = string.Empty;
         /// <summary>
         /// ["<c>status</c>"] Status
         /// </summary>
