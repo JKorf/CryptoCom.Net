@@ -101,10 +101,30 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("used_position_limit")]
         public decimal UsedPositionLimit { get; set; }
         /// <summary>
-        /// ["<c>total_isolated_cash_balance </c>"] Total isolated cash balance
+        /// ["<c>total_isolated_cash_balance</c>"] Total isolated cash balance
         /// </summary>
-        [JsonPropertyName("total_isolated_cash_balance ")]
+        [JsonPropertyName("total_isolated_cash_balance")]
         public decimal TotalIsolatedCashBalance { get; set; }
+        /// <summary>
+        /// ["<c>total_risk_exposure</c>"] Total risk exposure
+        /// </summary>
+        [JsonPropertyName("total_risk_exposure")]
+        public decimal TotalRiskExposure { get; set; }
+        /// <summary>
+        /// ["<c>total_borrow</c>"] Total borrowed
+        /// </summary>
+        [JsonPropertyName("total_borrow")]
+        public decimal TotalBorrow { get; set; }
+        /// <summary>
+        /// ["<c>has_risk</c>"] Has risk
+        /// </summary>
+        [JsonPropertyName("has_risk")]
+        public bool HasRisk { get; set; }
+        /// <summary>
+        /// ["<c>terminatable</c>"] Terminatable
+        /// </summary>
+        [JsonPropertyName("terminatable")]
+        public bool Terminatable { get; set; }
         /// <summary>
         /// ["<c>position_balances</c>"] Position balances
         /// </summary>
@@ -158,6 +178,11 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("reserved_qty")]
         public decimal ReservedQuantity { get; set; }
+        /// <summary>
+        /// ["<c>hourly_interest_rate</c>"] Hourly interest rate
+        /// </summary>
+        [JsonPropertyName("hourly_interest_rate")]
+        public decimal HourlyInterestRate { get; set; }
     }
 
 
