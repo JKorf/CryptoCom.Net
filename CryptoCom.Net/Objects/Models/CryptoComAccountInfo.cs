@@ -103,6 +103,16 @@ namespace CryptoCom.Net.Objects.Models
         [JsonPropertyName("country_code")]
         public string? CountryCode { get; set; }
         /// <summary>
+        /// ["<c>phone_country_code</c>"] Phone country code
+        /// </summary>
+        [JsonPropertyName("phone_country_code")]
+        public string? PhoneCountryCode { get; set; }
+        /// <summary>
+        /// ["<c>incorp_country_code</c>"] Incorp country code
+        /// </summary>
+        [JsonPropertyName("incorp_country_code")]
+        public string? IncorpCountryCode { get; set; }
+        /// <summary>
         /// ["<c>address</c>"] Address
         /// </summary>
         [JsonPropertyName("address")]
@@ -167,5 +177,12 @@ namespace CryptoCom.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("label")]
         public string? Label { get; set; }
+        /// <summary>
+        /// ["<c>onboarding_entity</c>"] Onboard entity
+        /// </summary>
+        [JsonPropertyName("onboarding_entity")]
+        public string? OnboardEntity { get; set; }
+
+
     }
 }
