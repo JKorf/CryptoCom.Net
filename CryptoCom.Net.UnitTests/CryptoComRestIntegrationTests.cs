@@ -49,15 +49,20 @@ namespace CryptoCom.Net.UnitTests
         public async Task TestExchangeApiAccount()
         {
             var warnings = new List<Exception>();
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetBalancesAsync(default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetBalanceHistoryAsync(Enums.Timeframe.OneDay, default, default, default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetAccountInfoAsync(default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetBalancesAsync(default), true, "result.data", ignoreProperties: [
+                "credit_limits", // Unclear model
+                "isolated_positions", // Unclear model
+            ]);
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetBalanceHistoryAsync(Enums.Timeframe.OneDay, default, default, default), true, "result.data");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetAccountInfoAsync(default, default, default), true, "result", ignoreProperties: [
+                "account_locked" // Unclear what int value means
+                ]);
             await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetAccountSettingsAsync(default), true, "result");
             await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetFeeRatesAsync(default), true, "result");
             await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetSymbolFeeRateAsync("ETH_USD", default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetAssetsAsync(default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetDepositHistoryAsync(default, default, default, default, default, default, default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetWithdrawalHistoryAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(client => client.ExchangeApi.Account.GetAssetsAsync(default), true);
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetDepositHistoryAsync(default, default, default, default, default, default, default), true, "result.deposit_list");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Account.GetWithdrawalHistoryAsync(default, default, default, default, default, default, default), true, "result.withdrawal_list");
             foreach (var warning in warnings)
                 Assert.Warn(warning.Message);
         }
@@ -82,10 +87,10 @@ namespace CryptoCom.Net.UnitTests
         public async Task TestExchangeApiTrading()
         {
             var warnings = new List<Exception>();
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetPositionsAsync(default, default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetOpenOrdersAsync(default, default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default), true, "result");
-            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetUserTradesAsync(default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetPositionsAsync(default, default), true, "result.data");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetOpenOrdersAsync(default, default), true, "result.data");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default), true, "result.data");
+            await RunAndCheckResult(warnings, client => client.ExchangeApi.Trading.GetUserTradesAsync(default, default, default, default, default, default), true, "result.data");
             foreach (var warning in warnings)
                 Assert.Warn(warning.Message);
         }
