@@ -178,6 +178,17 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 4.1.0 - 09 Jul 2026
+    * Updated CryptoExchange.Net to v12.1.0
+    * Added TradeMatchId to CryptoComTrade model, update timestamp to nano seconds accuracy
+    * Added BetaProduct, MarginBuyEnabled and MarginSellEnabled properties to CryptoComSymbol model
+    * Added mapping OrderSide enum values
+    * Added PhoneCountryCode, IncropCountryCode and OnboardEntity to CryptoComAccountDetails model
+    * Added HourlyInterestRate, Terminatable, HasRisk, TotalBorrow, TotalRiskExposure to CryptoComBalances model
+    * Added TransactionId and SourceAddress to CryptoComDeposit model
+    * Updated CryptoComRiskParameters response model
+    * Fixed test/trade subscription timestamp deserialization
+
 * Version 4.0.0 - 29 Jun 2026
     * Result types:
       * (Web)CallResult types are replaced by HttpResult, WebSocketResult and QueryResult with the same logic
