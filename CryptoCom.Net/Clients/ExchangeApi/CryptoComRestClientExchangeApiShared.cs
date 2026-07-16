@@ -26,6 +26,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public void ResetDefaultExchangeParameters() => ExchangeParameters.ResetStaticParameters();
         public SharedClientInfo Discover() => SharedUtils.GetClientInfo(CryptoComExchange.Metadata, this);
 
+        private readonly static HashSet<string> _knownExchangeFiat = ["EUR", "USD", "BRL", "GBP", "CAD", "HKD", "KRW", "TWD", "RUB", "SGD"];
 
         #region Asset client
         GetAssetsOptions IAssetsRestClient.GetAssetsOptions { get; } = new GetAssetsOptions(_exchangeName, true);
@@ -388,6 +389,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         #region Spot Symbol client
+        SharedSymbolCatalog? ISpotSymbolRestClient.SpotSymbolCatalog => ExchangeSymbolCache.GetSymbolCatalog(_topicSpotId, EnvironmentName, null);
         GetSpotSymbolsOptions ISpotSymbolRestClient.GetSpotSymbolsOptions { get; } = new GetSpotSymbolsOptions(_exchangeName, false);
 
         async Task<HttpResult<SharedSpotSymbol[]>> ISpotSymbolRestClient.GetSpotSymbolsAsync(GetSymbolsRequest request, CancellationToken ct)
@@ -400,18 +402,64 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result.Success)
                 return HttpResult.Fail<SharedSpotSymbol[]>(result);
 
-            var data = result.Data.Where(x => x.SymbolType == Enums.SymbolType.Spot);
+            var data = result.Data
+                .Where(x => x.SymbolType == Enums.SymbolType.Spot)
+               .Select(x => ParseSymbol(x))
+               .ToArray();
 
-            var response = HttpResult.Ok(result, data.Select(s => new SharedSpotSymbol(s.BaseAsset, s.QuoteAsset, s.Symbol, s.Tradable)
+            ExchangeSymbolCache.UpdateSymbolInfo(_topicSpotId, EnvironmentName, null, data);
+            return HttpResult.Ok(result, SharedUtils.ApplySymbolFilter(data, request));
+        }
+
+        private SharedSpotSymbol ParseSymbol(CryptoComSymbol s)
+        {
+            var result = new SharedSpotSymbol(s.BaseAsset, s.QuoteAsset, s.Symbol, s.Tradable)
             {
                 QuantityStep = s.QuantityTickSize,
                 PriceStep = s.PriceTickSize,
                 PriceDecimals = s.PriceDecimals,
                 QuantityDecimals = s.QuantityDecimals
-            }).ToArray());
+            };
 
-            ExchangeSymbolCache.UpdateSymbolInfo(_topicSpotId, EnvironmentName, null, response.Data!);
-            return response;
+            if (s.ProductType == ProductType.Equity)
+            {
+                result.BaseAssetType = SharedAssetType.TradFi;
+                result.BaseAssetSubType = SharedAssetSubType.Stock;
+            }
+            else if (s.ProductType == ProductType.Commodities)
+            {
+                result.BaseAssetType = SharedAssetType.TradFi;
+                result.BaseAssetSubType = SharedAssetSubType.Commodity;
+            }
+            else if (s.ProductType == ProductType.Currencies)
+            {
+                result.BaseAssetType = SharedAssetType.Fiat;
+            }
+            else if (s.ProductType == ProductType.EquityIndex)
+            {
+                result.BaseAssetType = SharedAssetType.TradFi;
+                result.BaseAssetSubType = SharedAssetSubType.Index;
+            }
+            else if (s.ProductType == ProductType.DigitalCurrencies)
+            {
+                result.BaseAssetType = SharedAssetType.Crypto;
+                if (LibraryHelpers.IsStableCoin(result.BaseAsset))
+                    result.BaseAssetSubType = SharedAssetSubType.StableCoin;
+            }
+
+            if (_knownExchangeFiat.Contains(s.QuoteAsset))
+            {
+                result.QuoteAssetType = SharedAssetType.Fiat;
+            }
+            else 
+            {
+                result.QuoteAssetType = SharedAssetType.Crypto;
+
+                if (LibraryHelpers.IsStableCoin(s.QuoteAsset))
+                    result.QuoteAssetSubType = SharedAssetSubType.StableCoin;
+            }
+
+            return result;
         }
 
         async Task<ExchangeCallResult<SharedSymbol[]>> ISpotSymbolRestClient.GetSpotSymbolsForBaseAssetAsync(string baseAsset)
@@ -882,7 +930,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         #region Futures Symbol client
-
+        SharedSymbolCatalog? IFuturesSymbolRestClient.FuturesSymbolCatalog => ExchangeSymbolCache.GetSymbolCatalog(_topicFuturesId, EnvironmentName, null);
         GetFuturesSymbolsOptions IFuturesSymbolRestClient.GetFuturesSymbolsOptions { get; } = new GetFuturesSymbolsOptions(_exchangeName, false);
         async Task<HttpResult<SharedFuturesSymbol[]>> IFuturesSymbolRestClient.GetFuturesSymbolsAsync(GetSymbolsRequest request, CancellationToken ct)
         {
@@ -894,10 +942,18 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result.Success)
                 return HttpResult.Fail<SharedFuturesSymbol[]>(result);
 
-            var data = result.Data.Where(x => x.SymbolType != SymbolType.Spot && x.SymbolType != SymbolType.CroStake);
-            if (request.TradingMode != null)
-                data = data.Where(x => request.TradingMode == TradingMode.PerpetualLinear ? x.SymbolType == SymbolType.PerpetualSwap : x.SymbolType == SymbolType.DeliveryFuture);
-            var response = HttpResult.Ok(result, data.Select(s => new SharedFuturesSymbol(
+            var data = result.Data
+               .Where(x => x.SymbolType != SymbolType.Spot && x.SymbolType != SymbolType.CroStake)
+               .Select(x => ParseFuturesSymbol(x))
+               .ToArray();
+
+            ExchangeSymbolCache.UpdateSymbolInfo(_topicSpotId, EnvironmentName, null, data);
+            return HttpResult.Ok(result, SharedUtils.ApplySymbolFilter(data, request));
+        }
+
+        private SharedFuturesSymbol ParseFuturesSymbol(CryptoComSymbol s)
+        {
+            var result = new SharedFuturesSymbol(
                 s.SymbolType == SymbolType.PerpetualSwap ? TradingMode.PerpetualLinear : TradingMode.DeliveryLinear, s.BaseAsset, s.QuoteAsset, s.Symbol, s.Tradable)
             {
                 QuantityStep = s.QuantityTickSize,
@@ -908,10 +964,43 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 ContractSize = s.ContractSize > 0 ? s.ContractSize.Value : 1m,
                 MaxLongLeverage = s.MaxLeverage,
                 MaxShortLeverage = s.MaxLeverage
-            }).ToArray());
+            };
 
-            ExchangeSymbolCache.UpdateSymbolInfo(_topicFuturesId, EnvironmentName, null, response.Data!);
-            return response;
+            if (s.ProductType == ProductType.Equity
+                || (s.ProductType == ProductType.EquityIndex)) // etfs
+            {
+                result.BaseAssetType = SharedAssetType.TradFi;
+                result.BaseAssetSubType = SharedAssetSubType.Stock;
+            }
+            else if (s.ProductType == ProductType.Commodities)
+            {
+                result.BaseAssetType = SharedAssetType.TradFi;
+                result.BaseAssetSubType = SharedAssetSubType.Commodity;
+            }
+            else if (s.ProductType == ProductType.Currencies)
+            {
+                result.BaseAssetType = SharedAssetType.Fiat;
+            }
+            else if (s.ProductType == ProductType.DigitalCurrencies)
+            {
+                result.BaseAssetType = SharedAssetType.Crypto;
+                if (LibraryHelpers.IsStableCoin(result.BaseAsset))
+                    result.BaseAssetSubType = SharedAssetSubType.StableCoin;
+            }
+
+            if (_knownExchangeFiat.Contains(s.QuoteAsset))
+            {
+                result.QuoteAssetType = SharedAssetType.Fiat;
+            }
+            else
+            {
+                result.QuoteAssetType = SharedAssetType.Crypto;
+
+                if (LibraryHelpers.IsStableCoin(s.QuoteAsset))
+                    result.QuoteAssetSubType = SharedAssetSubType.StableCoin;
+            }
+
+            return result;
         }
 
         async Task<ExchangeCallResult<SharedSymbol[]>> IFuturesSymbolRestClient.GetFuturesSymbolsForBaseAssetAsync(string baseAsset)
