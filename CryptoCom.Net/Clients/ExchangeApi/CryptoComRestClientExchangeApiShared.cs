@@ -421,10 +421,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 QuantityDecimals = s.QuantityDecimals
             };
 
-            if (s.ProductType == ProductType.Equity)
+            if (s.ProductType == ProductType.Equity ||
+                s.ProductType == ProductType.EquityIndex)
             {
                 result.BaseAssetType = SharedAssetType.TradFi;
-                result.BaseAssetSubType = SharedAssetSubType.Stock;
+                result.BaseAssetSubType = SharedAssetSubType.Equity;
             }
             else if (s.ProductType == ProductType.Commodities)
             {
@@ -434,11 +435,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             else if (s.ProductType == ProductType.Currencies)
             {
                 result.BaseAssetType = SharedAssetType.Fiat;
-            }
-            else if (s.ProductType == ProductType.EquityIndex)
-            {
-                result.BaseAssetType = SharedAssetType.TradFi;
-                result.BaseAssetSubType = SharedAssetSubType.Index;
             }
             else if (s.ProductType == ProductType.DigitalCurrencies)
             {
@@ -970,7 +966,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 || (s.ProductType == ProductType.EquityIndex)) // etfs
             {
                 result.BaseAssetType = SharedAssetType.TradFi;
-                result.BaseAssetSubType = SharedAssetSubType.Stock;
+                result.BaseAssetSubType = SharedAssetSubType.Equity;
             }
             else if (s.ProductType == ProductType.Commodities)
             {
