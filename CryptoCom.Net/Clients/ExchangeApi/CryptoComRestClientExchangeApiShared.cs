@@ -418,7 +418,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 QuantityStep = s.QuantityTickSize,
                 PriceStep = s.PriceTickSize,
                 PriceDecimals = s.PriceDecimals,
-                QuantityDecimals = s.QuantityDecimals
+                QuantityDecimals = s.QuantityDecimals,
+                DisplayName = s.DisplayName
             };
 
             if (s.ProductType == ProductType.Equity ||
@@ -959,10 +960,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 DeliveryTime = s.ExpiryTime,
                 ContractSize = s.ContractSize > 0 ? s.ContractSize.Value : 1m,
                 MaxLongLeverage = s.MaxLeverage,
-                MaxShortLeverage = s.MaxLeverage
+                MaxShortLeverage = s.MaxLeverage,
+                DisplayName = s.DisplayName
             };
 
             if (s.ProductType == ProductType.Equity
+                || (s.ProductType == ProductType.PreIpo) // pre-ipo
                 || (s.ProductType == ProductType.EquityIndex)) // etfs
             {
                 result.BaseAssetType = SharedAssetType.TradFi;
