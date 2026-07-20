@@ -85,7 +85,7 @@ namespace CryptoCom.Net.Objects.Models
         /// ["<c>expiry_timestamp_ms</c>"] Expiry timestamp
         /// </summary>
         [JsonPropertyName("expiry_timestamp_ms")]
-        public DateTime ExpiryTime { get; set; }
+        public DateTime? ExpiryTime { get; set; }
         /// <summary>
         /// ["<c>underlying_symbol</c>"] Underlying symbol
         /// </summary>
