@@ -181,6 +181,8 @@ Console.WriteLine(ticker.Data.LastPrice);
 
 Available shared interfaces include `ISpotTickerRestClient`, `ISpotOrderRestClient`, `IFuturesOrderRestClient`, `IBalanceRestClient`, `IFeeRestClient`, `ITickerSocketClient`, `IOrderBookSocketClient`, `IBalanceSocketClient`, and more.
 
+Shared spot and futures symbol results include `DisplayName`, base/quote asset type metadata, and subtypes for stablecoins, equities, and commodities. After loading symbols through `ISpotSymbolRestClient.GetSpotSymbolsAsync(...)` or `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(...)`, use `SpotSymbolCatalog` or `FuturesSymbolCatalog` for cached symbol lookup.
+
 ## Dependency Injection
 
 ```csharp

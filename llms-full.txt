@@ -4,8 +4,8 @@
 
 CryptoCom.Net is a strongly typed .NET client library for the Crypto.com Exchange REST and WebSocket APIs. It is part of the CryptoExchange.Net ecosystem and uses the same result, shared API, logging, rate limiting, and socket patterns as the other JKorf exchange libraries.
 
-Current package version in this repository: 3.10.0.
-CryptoExchange.Net dependency: 11.1.0.
+Current package version in this repository: 4.2.0.
+CryptoExchange.Net dependency: 12.2.0.
 Target frameworks: netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0.
 Native AOT: supported on compatible .NET targets.
 
@@ -400,6 +400,22 @@ if (!ticker.Success)
 
 Console.WriteLine(ticker.Data.LastPrice);
 ```
+
+Shared spot and futures symbol calls apply `GetSymbolsRequest` filters and return `DisplayName`, `BaseAssetType`, `BaseAssetSubType`, `QuoteAssetType`, and `QuoteAssetSubType` metadata. The subtypes identify stablecoins, equities, and commodities when applicable. Loading symbols also populates the corresponding catalog:
+
+```csharp
+ISpotSymbolRestClient symbolClient = restClient.ExchangeApi.SharedClient;
+var symbols = await symbolClient.GetSpotSymbolsAsync(new GetSymbolsRequest());
+if (!symbols.Success)
+{
+    Console.WriteLine(symbols.Error);
+    return;
+}
+
+SharedSymbolCatalog? catalog = symbolClient.SpotSymbolCatalog;
+```
+
+Use `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(...)` and `FuturesSymbolCatalog` for derivatives.
 
 Shared WebSocket subscriptions return an `UpdateSubscription` in `.Data`. For shared interface variables, unsubscribe through the concrete socket client:
 

@@ -144,6 +144,10 @@ Use SharedApis for exchange-agnostic code across Crypto.com, Binance, Bybit, OKX
 | Shared REST client | `new CryptoComRestClient().ExchangeApi.SharedClient` |
 | Shared socket client | `new CryptoComSocketClient().ExchangeApi.SharedClient` |
 | Discover shared capabilities | `client.ExchangeApi.SharedClient.Discover()` |
+| Get shared spot symbols and apply request filters | `ISpotSymbolRestClient.GetSpotSymbolsAsync(new GetSymbolsRequest(...))` |
+| Get shared futures symbols and apply request filters | `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))` |
+| Access cached shared spot symbol catalog | `ISpotSymbolRestClient.SpotSymbolCatalog` after loading symbols |
+| Access cached shared futures symbol catalog | `IFuturesSymbolRestClient.FuturesSymbolCatalog` after loading symbols |
 | Shared spot ticker REST | `ISpotTickerRestClient.GetSpotTickerAsync(new GetTickerRequest(symbol))` |
 | Shared futures ticker REST | `IFuturesTickerRestClient.GetFuturesTickerAsync(new GetTickerRequest(symbol))` |
 | Shared spot order REST | `ISpotOrderRestClient.PlaceSpotOrderAsync(...)` |
@@ -156,6 +160,8 @@ Use SharedApis for exchange-agnostic code across Crypto.com, Binance, Bybit, OKX
 | Shared position socket | `IPositionSocketClient.SubscribeToPositionUpdatesAsync(...)` |
 
 Shared REST methods return `HttpResult<T>` / `HttpResult`; shared socket subscriptions return `WebSocketResult<UpdateSubscription>`; shared symbol/cache helpers such as `SupportsSpotSymbolAsync` and `SupportsFuturesSymbolAsync` can return `ExchangeCallResult<T>`.
+
+Shared spot and futures symbol results populate `DisplayName` plus base/quote `SharedAssetType` and `SharedAssetSubType` metadata, including stablecoin, equity, and commodity classifications when applicable.
 
 For shared socket subscriptions, keep the concrete socket client and unsubscribe with `await socketClient.UnsubscribeAsync(subscription.Data)`.
 
