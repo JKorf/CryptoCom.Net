@@ -37,7 +37,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)) : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToTickerUpdatesAsync(symbols, update => handler(update.ToType(new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, update.Data.Symbol) ?? ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, update.Data.Symbol), update.Data.Symbol, update.Data.LastPrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.Volume, update.Data.PriceChange * 100))), ct).ConfigureAwait(false);
+            var result = await SubscribeToTickerUpdatesAsync(symbols, update => handler(update.ToType(
+                new SharedSpotTicker(
+                    ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, update.Data.Symbol) ?? ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, update.Data.Symbol),
+                    update.Data.Symbol,
+                    update.Data.LastPrice,
+                    update.Data.HighPrice,
+                    update.Data.LowPrice,
+                    new SharedOrderQuantity(update.Data.Volume), 
+                    update.Data.PriceChange * 100))), ct).ConfigureAwait(false);
 
             return result;
         }
@@ -95,8 +103,19 @@ var validationError = SharedClient.SubscribeKlineOptions.ValidateRequest(request
                 if (update.UpdateType == SocketUpdateType.Snapshot)
                     return;
 
-                foreach(var item in update.Data)
-                    handler(update.ToType(new SharedKline(ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, update.Symbol) ?? ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, update.Symbol), update.Symbol!, item.OpenTime, item.ClosePrice, item.HighPrice, item.LowPrice, item.OpenPrice, item.Volume)));
+                foreach (var item in update.Data)
+                {
+                    handler(update.ToType(
+                        new SharedKline(
+                            ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, update.Symbol) ?? ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, update.Symbol),
+                            update.Symbol!,
+                            item.OpenTime,
+                            item.ClosePrice,
+                            item.HighPrice,
+                            item.LowPrice,
+                            item.OpenPrice,
+                            new SharedOrderQuantity(item.Volume))));
+                }
             }, ct).ConfigureAwait(false);
 
             return result;
@@ -142,7 +161,11 @@ var validationError = SharedClient.SubscribeKlineOptions.ValidateRequest(request
                     return;
 
                 handler(update.ToType<SharedTrade[]>(update.Data.Select(x =>
-                new SharedTrade(ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, x.Symbol) ?? ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, x.Symbol), x.Symbol, x.Quantity, x.Price, x.Timestamp)
+                new SharedTrade(ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, x.Symbol) ?? ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, x.Symbol), 
+                x.Symbol,
+                new SharedOrderQuantity(x.Quantity),
+                x.Price,
+                x.Timestamp)
                 {
                     Side = x.Side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell
                 }).ToArray()));

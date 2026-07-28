@@ -243,7 +243,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return HttpResult.Ok(result, ExchangeHelpers.ApplyFilter(result.Data, x => x.OpenTime, request.StartTime, request.EndTime, direction)
                     .Select(x => 
-                        new SharedKline(request.Symbol, symbol, x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume))
+                        new SharedKline(
+                            request.Symbol, 
+                            symbol, 
+                            x.OpenTime,
+                            x.ClosePrice,
+                            x.HighPrice, 
+                            x.LowPrice,
+                            x.OpenPrice, 
+                            new SharedOrderQuantity(x.Volume)))
                     .ToArray(), nextPageRequest);
         }
 
@@ -289,7 +297,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             // Return
             return HttpResult.Ok(result, result.Data.Select(x =>
-            new SharedTrade(request.Symbol, symbol, x.Quantity, x.Price, x.Timestamp)
+            new SharedTrade(request.Symbol, symbol, new SharedOrderQuantity(x.Quantity), x.Price, x.Timestamp)
             {
                 Side = x.Side == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell
             }).ToArray());
@@ -516,7 +524,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 return HttpResult.Fail<SharedSpotTicker>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
             var symbol = result.Data.Single();
-            return HttpResult.Ok(result, new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, symbol.Symbol), symbol.Symbol, symbol.LastPrice, symbol.HighPrice, symbol.LowPrice, symbol.Volume, symbol.PriceChange * 100));
+            return HttpResult.Ok(result, new SharedSpotTicker(
+                ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, symbol.Symbol), 
+                symbol.Symbol, 
+                symbol.LastPrice,
+                symbol.HighPrice,
+                symbol.LowPrice,
+                new SharedOrderQuantity(symbol.Volume), 
+                symbol.PriceChange * 100));
         }
 
         GetSpotTickersOptions ISpotTickerRestClient.GetSpotTickersOptions { get; } = new GetSpotTickersOptions(_exchangeName);
@@ -530,7 +545,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             if (!result.Success)
                 return HttpResult.Fail<SharedSpotTicker[]>(result);
 
-            return HttpResult.Ok(result, result.Data.Select(x => new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, x.Symbol), x.Symbol, x.LastPrice, x.HighPrice, x.LowPrice, x.Volume, x.PriceChange * 100)).ToArray());
+            return HttpResult.Ok(result, result.Data.Select(x => new SharedSpotTicker(
+                ExchangeSymbolCache.ParseSymbol(_topicSpotId, EnvironmentName, null, x.Symbol),
+                x.Symbol,
+                x.LastPrice,
+                x.HighPrice,
+                x.LowPrice,
+                new SharedOrderQuantity(x.Volume),
+                x.PriceChange * 100)).ToArray());
         }
 
         #endregion
@@ -1067,13 +1089,21 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var ticker = tickerTask.Result.Data.Single();
             var time = DateTime.UtcNow;
-            return HttpResult.Ok(tickerTask.Result, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, ticker.PriceChange * 100)
-            {
-                FundingRate = fundingTask.Result.Data?.Single().Value,
-                MarkPrice = markTask.Result.Data?.Single().Value,
-                IndexPrice = indexTask.Result.Data?.Single().Value,
-                NextFundingTime = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, DateTimeKind.Utc).AddHours(1),
-            });
+            return HttpResult.Ok(tickerTask.Result,
+                new SharedFuturesTicker(
+                    ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, ticker.Symbol),
+                    ticker.Symbol,
+                    ticker.LastPrice,
+                    ticker.HighPrice,
+                    ticker.LowPrice,
+                    new SharedOrderQuantity(ticker.Volume),
+                    ticker.PriceChange * 100)
+                {
+                    FundingRate = fundingTask.Result.Data?.Single().Value,
+                    MarkPrice = markTask.Result.Data?.Single().Value,
+                    IndexPrice = indexTask.Result.Data?.Single().Value,
+                    NextFundingTime = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, DateTimeKind.Utc).AddHours(1),
+                });
         }
 
         GetFuturesTickersOptions IFuturesTickerRestClient.GetFuturesTickersOptions { get; } = new GetFuturesTickersOptions(_exchangeName);
@@ -1089,10 +1119,18 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             var time = DateTime.UtcNow;
             var nextFundingTime = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0, DateTimeKind.Utc).AddHours(1);
-            return HttpResult.Ok(result, result.Data.Select(x => new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, x.Symbol), x.Symbol, x.LastPrice, x.HighPrice, x.LowPrice, x.Volume, x.PriceChange * 100)
-            {
-                NextFundingTime = nextFundingTime
-            }).ToArray());
+            return HttpResult.Ok(result, result.Data.Select(x =>
+                new SharedFuturesTicker(
+                    ExchangeSymbolCache.ParseSymbol(_topicFuturesId, EnvironmentName, null, x.Symbol),
+                    x.Symbol,
+                    x.LastPrice, 
+                    x.HighPrice, 
+                    x.LowPrice,
+                    new SharedOrderQuantity(x.Volume),
+                    x.PriceChange * 100)
+                {
+                    NextFundingTime = nextFundingTime
+                }).ToArray());
         }
 
         #endregion
