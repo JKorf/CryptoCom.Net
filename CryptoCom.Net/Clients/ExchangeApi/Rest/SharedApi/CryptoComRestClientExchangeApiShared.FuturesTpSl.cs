@@ -1,0 +1,72 @@
+using CryptoExchange.Net.SharedApis;
+using System;
+using System.Collections.Generic;
+using CryptoCom.Net.Interfaces.Clients.ExchangeApi;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Linq;
+using CryptoExchange.Net.Objects;
+using CryptoCom.Net.Enums;
+using CryptoExchange.Net;
+using CryptoCom.Net.Objects.Models;
+using CryptoExchange.Net.Objects.Errors;
+
+namespace CryptoCom.Net.Clients.ExchangeApi
+{
+    internal partial class CryptoComRestClientExchangeSharedApi
+    {
+        #region Tp/SL Client
+        public SetFuturesTpSlOptions SetFuturesTpSlOptions { get; } = new SetFuturesTpSlOptions(_exchangeName, true)
+        {
+            RequiredRequestParameters = new List<ParameterDescription>
+            {
+                new ParameterDescription(nameof(SetTpSlRequest.Quantity), typeof(decimal), "Position quantity the TP/SL is for", 123m)
+            }
+        };
+
+        public async Task<HttpResult<SharedId>> SetFuturesTpSlAsync(SetTpSlRequest request, CancellationToken ct)
+        {
+            var validationError = SetFuturesTpSlOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedId>(Exchange, validationError);
+
+            var result = await _api.Trading.PlaceOrderAsync(
+                request.Symbol!.GetSymbol(FormatSymbol),
+                request.PositionSide == SharedPositionSide.Long ? OrderSide.Buy : OrderSide.Sell,
+                request.TpSlSide == SharedTpSlSide.TakeProfit ? OrderType.TakeProfit : OrderType.StopLoss,
+                quantity: request.Quantity,
+                triggerPrice: request.TriggerPrice,
+                ct: ct).ConfigureAwait(false);
+            
+            if (!result.Success)
+                return HttpResult.Fail<SharedId>(result);
+
+            // Return
+            return HttpResult.Ok(result, new SharedId(result.Data.OrderId));
+        }
+
+        public CancelFuturesTpSlOptions CancelFuturesTpSlOptions { get; } = new CancelFuturesTpSlOptions(_exchangeName, true)
+        {
+            RequiredRequestParameters = new List<ParameterDescription>
+            {
+                new ParameterDescription(nameof(CancelTpSlRequest.OrderId), typeof(string), "Id of the tp/sl order", "123123")
+            }
+        };
+
+        public async Task<HttpResult<bool>> CancelFuturesTpSlAsync(CancelTpSlRequest request, CancellationToken ct)
+        {
+            var validationError = CancelFuturesTpSlOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<bool>(Exchange, validationError);
+
+            var result = await _api.Trading.CancelOrderAsync(request.OrderId, ct: ct).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<bool>(result);
+
+            // Return
+            return HttpResult.Ok(result, true);
+        }
+
+        #endregion
+    }
+}
