@@ -15,7 +15,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Withdrawal client
+
+        #region Get Withdrawal History
+
+        async Task<ICallResult<SharedWithdrawal[]>> IGetWithdrawalHistory.GetWithdrawalHistoryAsync(GetWithdrawalsRequest request, PageRequest? pageRequest, CancellationToken ct)
+            => await GetWithdrawalHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
 
         Task<HttpResult<SharedWithdrawal[]>> IWithdrawalRestClient.GetWithdrawalsAsync(GetWithdrawalsRequest request, PageRequest? pageRequest, CancellationToken ct)
             => GetWithdrawalHistoryAsync(request, pageRequest, ct);
@@ -70,6 +74,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                     .ToArray(), nextPageRequest);
         }
 
+        #endregion
+
         private SharedTransferStatus GetWithdrawalStatus(CryptoComWithdrawal x)
         {
             if (x.WithdrawalStatus == WithdrawalStatus.Canceled || x.WithdrawalStatus == WithdrawalStatus.PaymentFailed || x.WithdrawalStatus == WithdrawalStatus.Rejected)
@@ -84,9 +90,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return SharedTransferStatus.Unknown;
         }
 
-        #endregion
 
-        #region Withdraw client
+
+        #region Withdraw
+
+        async Task<ICallResult<SharedId>> IWithdraw.WithdrawAsync(WithdrawRequest request, CancellationToken ct)
+            => await WithdrawAsync(request, ct).ConfigureAwait(false);
 
         public WithdrawOptions WithdrawOptions { get; } = new WithdrawOptions(_exchangeName);
         public async Task<HttpResult<SharedId>> WithdrawAsync(WithdrawRequest request, CancellationToken ct)
@@ -110,5 +119,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         #endregion
+
     }
 }

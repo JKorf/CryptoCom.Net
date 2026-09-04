@@ -15,7 +15,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Klines Client
+
+        #region Get Klines
+
+        async Task<ICallResult<SharedKline[]>> IGetKlines.GetKlinesAsync(GetKlinesRequest request, PageRequest? pageRequest, CancellationToken ct)
+            => await GetKlinesAsync(request, pageRequest, ct).ConfigureAwait(false);
 
         public GetKlinesOptions GetKlinesOptions { get; } = new GetKlinesOptions(_exchangeName, false, true, true, 1000, false,
             SharedKlineInterval.OneMinute,
@@ -79,5 +83,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         #endregion
+
     }
 }

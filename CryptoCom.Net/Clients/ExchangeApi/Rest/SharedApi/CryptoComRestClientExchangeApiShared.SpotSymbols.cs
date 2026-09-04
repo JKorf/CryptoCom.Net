@@ -15,7 +15,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Spot Symbol client
+        #region Get Spot Symbols
+
+        async Task<ICallResult<SharedSpotSymbol[]>> IGetSpotSymbols.GetSpotSymbolsAsync(GetSymbolsRequest request, CancellationToken ct)
+            => await GetSpotSymbolsAsync(request, ct).ConfigureAwait(false);
+
         public SharedSymbolCatalog? SpotSymbolCatalog => ExchangeSymbolCache.GetSymbolCatalog(_exchangeName, _topicSpotId, _api.EnvironmentName, null);
         public GetSpotSymbolsOptions GetSpotSymbolsOptions { get; } = new GetSpotSymbolsOptions(_exchangeName, false);
 
@@ -37,6 +41,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             ExchangeSymbolCache.UpdateSymbolInfo(_topicSpotId, _api.EnvironmentName, null, data);
             return HttpResult.Ok(result, SharedUtils.ApplySymbolFilter(data, request));
         }
+
+        #endregion
 
         private SharedSpotSymbol ParseSymbol(CryptoComSymbol s)
         {
@@ -124,6 +130,5 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return ExchangeCallResult<bool>.Ok(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicSpotId, _api.EnvironmentName, null, symbolName));
         }
-        #endregion
     }
 }

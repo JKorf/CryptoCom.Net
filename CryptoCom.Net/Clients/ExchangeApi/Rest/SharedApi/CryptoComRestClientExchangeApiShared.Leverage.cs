@@ -15,8 +15,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Leverage client
         public SharedLeverageSettingMode LeverageSettingType => SharedLeverageSettingMode.PerSymbol;
+
+        #region Get Leverage
+
+        async Task<ICallResult<SharedLeverage>> IGetLeverage.GetLeverageAsync(GetLeverageRequest request, CancellationToken ct)
+            => await GetLeverageAsync(request, ct).ConfigureAwait(false);
 
         public GetLeverageOptions GetLeverageOptions { get; } = new GetLeverageOptions(_exchangeName, true)
         {
@@ -37,6 +41,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return HttpResult.Ok(result, new SharedLeverage(result.Data.First().Leverage));
         }
+
+        #endregion
+
+        #region Set Leverage
+
+        async Task<ICallResult<SharedLeverage>> ISetLeverage.SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
+            => await SetLeverageAsync(request, ct).ConfigureAwait(false);
 
         public SetLeverageOptions SetLeverageOptions { get; } = new SetLeverageOptions(_exchangeName)
         {
@@ -67,6 +78,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return HttpResult.Ok(result, new SharedLeverage((int)request.Leverage));
         }
+
         #endregion
     }
 }

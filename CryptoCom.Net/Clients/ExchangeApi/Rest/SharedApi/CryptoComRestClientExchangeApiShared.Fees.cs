@@ -15,8 +15,12 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Fee Client
         public GetFeeOptions GetFeeOptions { get; } = new GetFeeOptions(_exchangeName, true);
+
+        #region Get Fees
+
+        async Task<ICallResult<SharedFee>> IGetFees.GetFeesAsync(GetFeeRequest request, CancellationToken ct)
+            => await GetFeesAsync(request, ct).ConfigureAwait(false);
 
         public async Task<HttpResult<SharedFee>> GetFeesAsync(GetFeeRequest request, CancellationToken ct)
         {
@@ -32,6 +36,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             // Return
             return HttpResult.Ok(result, new SharedFee(result.Data.EffectiveMakerRateBps / 100, result.Data.EffectiveTakerRateBps / 100));
         }
+
         #endregion
     }
 }

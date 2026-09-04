@@ -15,7 +15,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Futures Symbol client
+        #region Get Futures Symbols
+
+        async Task<ICallResult<SharedFuturesSymbol[]>> IGetFuturesSymbols.GetFuturesSymbolsAsync(GetSymbolsRequest request, CancellationToken ct)
+            => await GetFuturesSymbolsAsync(request, ct).ConfigureAwait(false);
+
         public SharedSymbolCatalog? FuturesSymbolCatalog => ExchangeSymbolCache.GetSymbolCatalog(_exchangeName, _topicFuturesId, _api.EnvironmentName, null);
         public GetFuturesSymbolsOptions GetFuturesSymbolsOptions { get; } = new GetFuturesSymbolsOptions(_exchangeName, false);
         public async Task<HttpResult<SharedFuturesSymbol[]>> GetFuturesSymbolsAsync(GetSymbolsRequest request, CancellationToken ct)
@@ -36,6 +40,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             ExchangeSymbolCache.UpdateSymbolInfo(_topicFuturesId, _api.EnvironmentName, null, data);
             return HttpResult.Ok(result, SharedUtils.ApplySymbolFilter(data, request));
         }
+
+        #endregion
 
         private SharedFuturesSymbol ParseFuturesSymbol(CryptoComSymbol s)
         {
@@ -129,6 +135,5 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return ExchangeCallResult<bool>.Ok(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicFuturesId, _api.EnvironmentName, null, symbolName));
         }
-        #endregion
     }
 }

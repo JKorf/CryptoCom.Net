@@ -15,7 +15,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComRestClientExchangeSharedApi
     {
-        #region Spot Trigger Order Client
+        #region Place Spot Trigger Order
+
+        async Task<ICallResult<SharedId>> IPlaceSpotTriggerOrder.PlaceSpotTriggerOrderAsync(PlaceSpotTriggerOrderRequest request, CancellationToken ct)
+            => await PlaceSpotTriggerOrderAsync(request, ct).ConfigureAwait(false);
+
         public PlaceSpotTriggerOrderOptions PlaceSpotTriggerOrderOptions { get; } = new PlaceSpotTriggerOrderOptions(_exchangeName, false);
         public async Task<HttpResult<SharedId>> PlaceSpotTriggerOrderAsync(PlaceSpotTriggerOrderRequest request, CancellationToken ct)
         {
@@ -41,6 +45,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return HttpResult.Ok(result, new SharedId(result.Data.OrderId));
         }
 
+        #endregion
+
 
         private OrderType GetOrderType(PlaceSpotTriggerOrderRequest request)
         {
@@ -55,6 +61,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return request.OrderPrice == null ? OrderType.TakeProfit : OrderType.TakeProfitLimit;
         }
+
+        #region Get Spot Trigger Order
+
+        async Task<ICallResult<SharedSpotTriggerOrder>> IGetSpotTriggerOrder.GetSpotTriggerOrderAsync(GetOrderRequest request, CancellationToken ct)
+            => await GetSpotTriggerOrderAsync(request, ct).ConfigureAwait(false);
 
         public GetSpotTriggerOrderOptions GetSpotTriggerOrderOptions { get; } = new GetSpotTriggerOrderOptions(_exchangeName, true)
         {
@@ -92,6 +103,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             });
         }
 
+        #endregion
+
         private SharedTriggerOrderStatus ParseTriggerOrderStatus(OrderStatus status)
         {
             if (status == OrderStatus.Filled)
@@ -105,6 +118,11 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return SharedTriggerOrderStatus.Unknown;
         }
+
+        #region Cancel Spot Trigger Order
+
+        async Task<ICallResult<SharedId>> ICancelSpotTriggerOrder.CancelSpotTriggerOrderAsync(CancelOrderRequest request, CancellationToken ct)
+            => await CancelSpotTriggerOrderAsync(request, ct).ConfigureAwait(false);
 
         public CancelSpotTriggerOrderOptions CancelSpotTriggerOrderOptions { get; } = new CancelSpotTriggerOrderOptions(_exchangeName, true);
         public async Task<HttpResult<SharedId>> CancelSpotTriggerOrderAsync(CancelOrderRequest request, CancellationToken ct)
@@ -123,5 +141,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         #endregion
+
     }
 }

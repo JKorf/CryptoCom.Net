@@ -26,7 +26,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         public CryptoComSocketClientExchangeSharedApi(CryptoComSocketClientExchangeApi api)
             : base(
-                  SharedTransport.Rest,
+                  SharedTransport.Socket,
                   api.Exchange,
                   [TradingMode.Spot, TradingMode.PerpetualLinear, TradingMode.DeliveryLinear],
                   () => api.Authenticated,

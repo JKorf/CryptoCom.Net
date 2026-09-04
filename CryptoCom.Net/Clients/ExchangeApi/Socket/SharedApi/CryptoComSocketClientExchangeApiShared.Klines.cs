@@ -13,7 +13,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComSocketClientExchangeSharedApi
     {
-        #region Kline client
         public SubscribeKlineOptions SubscribeKlineOptions { get; } = new SubscribeKlineOptions(_exchangeName, false,
             SharedKlineInterval.OneMinute,
             SharedKlineInterval.ThreeMinutes,
@@ -31,6 +30,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             SupportsMultipleSymbols = true,
             MaxSymbolCount = 140
         };
+        #region Subscribe To Kline Updates
+
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(SubscribeKlineRequest request, Action<DataEvent<SharedKline>> handler, CancellationToken ct)
         {
             var interval = (Enums.KlineInterval)request.Interval;
@@ -61,6 +62,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return result;
         }
+
         #endregion
     }
 }

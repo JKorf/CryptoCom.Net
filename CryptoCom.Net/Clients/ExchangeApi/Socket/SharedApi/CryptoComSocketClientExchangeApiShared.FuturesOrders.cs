@@ -13,7 +13,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComSocketClientExchangeSharedApi
     {
-        #region Futures Order client
+
+        #region Subscribe To Futures Order Updates
 
         async Task<WebSocketResult<UpdateSubscription>> IFuturesOrderSocketClient.SubscribeToFuturesOrderUpdatesAsync(SubscribeFuturesOrderRequest request, Action<DataEvent<SharedFuturesOrder[]>> handler, CancellationToken ct)
             => await SubscribeToFuturesOrderUpdatesAsync(request, x => handler(x.ToType<SharedFuturesOrder[]>(x.Data)), ct).ConfigureAwait(false);
@@ -66,9 +67,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return result;
         }
+
         #endregion
 
-        #region Futures Order Management Client
 
         public SharedFeeDeductionType FuturesFeeDeductionType => SharedFeeDeductionType.AddToCost;
         public SharedFeeAssetType FuturesFeeAssetType => SharedFeeAssetType.QuoteAsset;
@@ -80,6 +81,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 SharedQuantityType.BaseAsset,
                 SharedQuantityType.BaseAsset,
                 SharedQuantityType.BaseAsset);
+
+        #region Place Futures Order
+
+        async Task<ICallResult<SharedId>> IPlaceFuturesOrder.PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
+            => await PlaceFuturesOrderAsync(request, ct).ConfigureAwait(false);
+
+        PlaceFuturesOrderOptions IPlaceFuturesOrder.PlaceFuturesOrderOptions => PlaceFuturesOrderOptions;
 
         public PlaceFuturesOrderSocketOptions PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderSocketOptions(_exchangeName, false);
         public async Task<QueryResult<SharedId>> PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
@@ -104,6 +112,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return QueryResult.Ok(result, new SharedId(result.Data.OrderId));
         }
+
+        #endregion
+        #region Cancel Futures Order
+
+        async Task<ICallResult<SharedId>> ICancelFuturesOrder.CancelFuturesOrderAsync(CancelOrderRequest request, CancellationToken ct)
+            => await CancelFuturesOrderAsync(request, ct).ConfigureAwait(false);
+
+        CancelFuturesOrderOptions ICancelFuturesOrder.CancelFuturesOrderOptions => CancelFuturesOrderOptions;
+
         public CancelFuturesOrderSocketOptions CancelFuturesOrderOptions { get; } = new CancelFuturesOrderSocketOptions(_exchangeName, true);
         public async Task<QueryResult<SharedId>> CancelFuturesOrderAsync(CancelOrderRequest request, CancellationToken ct)
         {
@@ -119,5 +136,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         #endregion
+
     }
 }

@@ -13,13 +13,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComSocketClientExchangeSharedApi
     {
-        #region Trade client
 
         public SubscribeTradeOptions SubscribeTradeOptions { get; } = new SubscribeTradeOptions(_exchangeName, false)
         {
             SupportsMultipleSymbols = true,
             MaxSymbolCount = 200
         };
+        #region Subscribe To Trade Updates
+
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(SubscribeTradeRequest request, Action<DataEvent<SharedTrade[]>> handler, CancellationToken ct)
         {
             var validationError = SubscribeTradeOptions.ValidateRequest(request, this);
@@ -47,5 +48,6 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         }
 
         #endregion
+
     }
 }

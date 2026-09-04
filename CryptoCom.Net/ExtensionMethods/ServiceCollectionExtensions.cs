@@ -118,6 +118,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 x.GetRequiredService<IOptions<CryptoComRestOptions>>(),
                 x.GetRequiredService<IOptions<CryptoComSocketOptions>>()));
 
+            services.AddTransient<ICryptoComSharedApiClient, CryptoComSharedApiClient>();
+
+            services.RegisterSharedApi(x => x.GetRequiredService<ICryptoComRestClient>().ExchangeApi.SharedApi);
+            services.RegisterSharedApi(x => x.GetRequiredService<ICryptoComSocketClient>().ExchangeApi.SharedApi);
+
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<ICryptoComRestClient>().ExchangeApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<ICryptoComSocketClient>().ExchangeApi.SharedClient);
 

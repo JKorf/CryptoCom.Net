@@ -13,7 +13,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComSocketClientExchangeSharedApi
     {
-        #region Spot Order client
+
+        #region Subscribe To Spot Order Updates
 
         async Task<WebSocketResult<UpdateSubscription>> ISpotOrderSocketClient.SubscribeToSpotOrderUpdatesAsync(SubscribeSpotOrderRequest request, Action<DataEvent<SharedSpotOrder[]>> handler, CancellationToken ct)
             => await SubscribeToSpotOrderUpdatesAsync(request, x => handler(x.ToType<SharedSpotOrder[]>(x.Data)), ct).ConfigureAwait(false);
@@ -67,6 +68,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return result;
         }
 
+        #endregion
+
         private SharedOrderType ParseOrderType(OrderType orderType)
         {
             if (orderType == OrderType.Market || orderType == OrderType.StopLoss || orderType == OrderType.TakeProfit)
@@ -86,9 +89,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return SharedOrderStatus.Unknown;
         }
-        #endregion
 
-        #region Spot Order Management Client
 
         public SharedFeeDeductionType SpotFeeDeductionType => SharedFeeDeductionType.DeductFromOutput;
         public SharedFeeAssetType SpotFeeAssetType => SharedFeeAssetType.OutputAsset;
@@ -101,6 +102,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 SharedQuantityType.BaseAsset);
 
         public string GenerateClientOrderId() => ExchangeHelpers.RandomString(32);
+
+        #region Place Spot Order
 
         async Task<ICallResult<SharedId>> IPlaceSpotOrder.PlaceSpotOrderAsync(PlaceSpotOrderRequest request, CancellationToken ct)
             => await PlaceSpotOrderAsync(request, ct).ConfigureAwait(false);
@@ -132,6 +135,15 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return QueryResult.Ok(result, new SharedId(result.Data.OrderId));
         }
 
+        #endregion
+
+        #region Cancel Spot Order
+
+        async Task<ICallResult<SharedId>> ICancelSpotOrder.CancelSpotOrderAsync(CancelOrderRequest request, CancellationToken ct)
+            => await CancelSpotOrderAsync(request, ct).ConfigureAwait(false);
+
+        CancelSpotOrderOptions ICancelSpotOrder.CancelSpotOrderOptions => CancelSpotOrderOptions;
+
         public CancelSpotOrderSocketOptions CancelSpotOrderOptions { get; } = new CancelSpotOrderSocketOptions(_exchangeName, true);
         public async Task<QueryResult<SharedId>> CancelSpotOrderAsync(CancelOrderRequest request, CancellationToken ct)
         {
@@ -146,6 +158,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return QueryResult.Ok(order, new SharedId(order.Data.OrderId));
         }
 
+        #endregion
+
         private Enums.TimeInForce? GetTimeInForce(SharedTimeInForce? tif)
         {
             if (tif == SharedTimeInForce.FillOrKill) return TimeInForce.FillOrKill;
@@ -155,6 +169,5 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             return null;
         }
 
-        #endregion
     }
 }

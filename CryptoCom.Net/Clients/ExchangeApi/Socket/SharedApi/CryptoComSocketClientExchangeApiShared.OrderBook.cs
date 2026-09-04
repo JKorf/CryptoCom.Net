@@ -13,12 +13,13 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 {
     internal partial class CryptoComSocketClientExchangeSharedApi
     {
-        #region Order Book client
         public SubscribeOrderBookOptions SubscribeOrderBookOptions { get; } = new SubscribeOrderBookOptions(_exchangeName, false, new[] { 5, 10, 20 })
         {
             SupportsMultipleSymbols = true,
             MaxSymbolCount = 200
         };
+        #region Subscribe To Order Book Updates
+
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(SubscribeOrderBookRequest request, Action<DataEvent<SharedOrderBook>> handler, CancellationToken ct)
         {
             var validationError = SubscribeOrderBookOptions.ValidateRequest(request, this);
@@ -32,6 +33,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
             return result;
         }
+
         #endregion
     }
 }
