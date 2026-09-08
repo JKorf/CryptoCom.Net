@@ -52,9 +52,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public SetLeverageOptions SetLeverageOptions { get; } = new SetLeverageOptions(_exchangeName)
         {
             RequestNotes = "This sets the max account leverage. If the AccountId exchange parameter is not provided it will be requested when executing this method",
-            OptionalExchangeParameters = [
-                new ParameterDescription(["AccountId", "account_id"],  typeof(string), "The account id to set the leverage for. If not provided the master account id will be used", 123L)
-                ]
+            ExchangeParameterRules = [
+                ExchangeParameterRule.Optional("AccountId", "The account id to set the leverage for. If not provided the master account id will be used", 123L, aliases: ["account_id"])
+            ]
         };
         public async Task<HttpResult<SharedLeverage>> SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
         {

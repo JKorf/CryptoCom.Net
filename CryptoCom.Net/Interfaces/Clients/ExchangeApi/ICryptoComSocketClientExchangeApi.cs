@@ -21,7 +21,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to order book snapshot updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-book-instrument-name-depth" /><br />
         /// Endpoint:<br />
         /// book.{instrument_name}.{depth}
         /// </para>
@@ -37,7 +37,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to order book snapshot updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name-depth" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-book-instrument-name-depth" /><br />
         /// Endpoint:<br />
         /// book.{instrument_name}.{depth}
         /// </para>
@@ -53,7 +53,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-book-instrument-name-depth" /><br />
         /// Endpoint:<br />
         /// book.update.{instrument_name}.{depth}
         /// </para>
@@ -69,7 +69,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to orderbook delta updates. Initially the orderbook snapshot is pushed, after which only changes are pushed.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#book-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-book-instrument-name-depth" /><br />
         /// Endpoint:<br />
         /// book.update.{instrument_name}.{depth}
         /// </para>
@@ -85,7 +85,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to kline/candlestick updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-candlestick-timeframe-instrument-name" /><br />
         /// Endpoint:<br />
         /// candlestick.{time_frame}.{instrument_name}
         /// </para>
@@ -101,7 +101,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to kline/candlestick updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#candlestick-time_frame-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-candlestick-timeframe-instrument-name" /><br />
         /// Endpoint:<br />
         /// candlestick.{time_frame}.{instrument_name}
         /// </para>
@@ -117,7 +117,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-ticker-instrument-name" /><br />
         /// Endpoint:<br />
         /// ticker.{instrument_name}
         /// </para>
@@ -132,7 +132,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#ticker-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-ticker-instrument-name" /><br />
         /// Endpoint:<br />
         /// ticker.{instrument_name}
         /// </para>
@@ -147,7 +147,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to public trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-trade-instrument-name" /><br />
         /// Endpoint:<br />
         /// trade.{instrument_name}
         /// </para>
@@ -162,7 +162,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to public trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#trade-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-trade-instrument-name" /><br />
         /// Endpoint:<br />
         /// trade.{instrument_name}
         /// </para>
@@ -177,7 +177,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to index price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-index-instrument-name" /><br />
         /// Endpoint:<br />
         /// index.{instrument_name}
         /// </para>
@@ -192,7 +192,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to index price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#index-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-index-instrument-name" /><br />
         /// Endpoint:<br />
         /// index.{instrument_name}
         /// </para>
@@ -207,7 +207,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to mark price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-mark-instrument-name" /><br />
         /// Endpoint:<br />
         /// mark.{instrument_name}
         /// </para>
@@ -222,7 +222,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to mark price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#mark-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-mark-instrument-name" /><br />
         /// Endpoint:<br />
         /// mark.{instrument_name}
         /// </para>
@@ -237,7 +237,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to settlement prices
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-settlement-instrument-name" /><br />
         /// Endpoint:<br />
         /// settlement.{instrument_name}
         /// </para>
@@ -251,7 +251,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to settlement prices
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-settlement-instrument-name" /><br />
         /// Endpoint:<br />
         /// settlement.{instrument_name}
         /// </para>
@@ -266,7 +266,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to settlement prices
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#settlement-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-settlement-instrument-name" /><br />
         /// Endpoint:<br />
         /// settlement.{instrument_name}
         /// </para>
@@ -281,7 +281,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to funding rate updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-funding-instrument-name" /><br />
         /// Endpoint:<br />
         /// funding.{instrument_name}
         /// </para>
@@ -296,7 +296,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to funding rate updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#funding-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-funding-instrument-name" /><br />
         /// Endpoint:<br />
         /// funding.{instrument_name}
         /// </para>
@@ -311,7 +311,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to estimated funding rate updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-estimatedfunding-instrument-name" /><br />
         /// Endpoint:<br />
         /// estimatedfunding.{instrument_name}
         /// </para>
@@ -326,7 +326,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to estimated funding rate updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#estimatedfunding-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-estimatedfunding-instrument-name" /><br />
         /// Endpoint:<br />
         /// estimatedfunding.{instrument_name}
         /// </para>
@@ -341,7 +341,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user order updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-order" /><br />
         /// Endpoint:<br />
         /// user.order.{instrument_name}
         /// </para>
@@ -355,7 +355,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user order updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-order-instrument-name" /><br />
         /// Endpoint:<br />
         /// user.order.{instrument_name}
         /// </para>
@@ -370,7 +370,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user order updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-order-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-order-instrument-name" /><br />
         /// Endpoint:<br />
         /// user.order.{instrument_name}
         /// </para>
@@ -385,7 +385,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-trade" /><br />
         /// Endpoint:<br />
         /// user.trade.{instrument_name}
         /// </para>
@@ -399,7 +399,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-trade-instrument-name" /><br />
         /// Endpoint:<br />
         /// user.trade.{instrument_name}
         /// </para>
@@ -414,7 +414,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-trade-instrument_name" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-trade-instrument-name" /><br />
         /// Endpoint:<br />
         /// user.trade.{instrument_name}
         /// </para>
@@ -429,7 +429,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user balance updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-balance" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-balance" /><br />
         /// Endpoint:<br />
         /// user.balance
         /// </para>
@@ -443,7 +443,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user position updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-positions" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-positions" /><br />
         /// Endpoint:<br />
         /// user.positions
         /// </para>
@@ -457,7 +457,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Subscribe to user position and balance updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#user-position_balance" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-channel-user-position-balance" /><br />
         /// Endpoint:<br />
         /// user.position_balance
         /// </para>
@@ -471,7 +471,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get user account balances
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-user-balance" /><br />
         /// Endpoint:<br />
         /// private/user-balance
         /// </para>
@@ -483,7 +483,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get positions for the account
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-positions" /><br />
         /// Endpoint:<br />
         /// private/get-positions
         /// </para>
@@ -496,7 +496,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Place a new order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-user-api-private-create-order-dma" /><br />
         /// Endpoint:<br />
         /// private/create-order
         /// </para>
@@ -547,7 +547,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Cancel an order by id
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-user-api-private-cancel-order" /><br />
         /// Endpoint:<br />
         /// private/cancel-order
         /// </para>
@@ -561,7 +561,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Cancel all order fitting the parameters
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-user-api-private-cancel-all-orders" /><br />
         /// Endpoint:<br />
         /// private/cancel-all-orders
         /// </para>
@@ -575,7 +575,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Close an open position
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-user-api-private-close-position" /><br />
         /// Endpoint:<br />
         /// private/close-position
         /// </para>
@@ -591,7 +591,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get user open orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-open-orders" /><br />
         /// Endpoint:<br />
         /// private/get-open-orders
         /// </para>
@@ -604,7 +604,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-user-api-private-create-order-list" /><br />
         /// Endpoint:<br />
         /// private/create-order-list
         /// </para>
@@ -617,7 +617,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-user-api-private-cancel-order-list" /><br />
         /// Endpoint:<br />
         /// private/cancel-order-list
         /// </para>
@@ -659,7 +659,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Withdraw funds
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-create-withdrawal" /><br />
         /// Endpoint:<br />
         /// private/create-withdrawal
         /// </para>
@@ -677,7 +677,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Set all open orders created by this connection to cancel when the connection is interrupted. There is no way to cancel this once set, unsubscribing is considered a loss of connection.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-set-cancel-on-disconnect" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/websocket/ws-client-commands-set-cancel-on-disconnect-request" /><br />
         /// Endpoint:<br />
         /// private/set-cancel-on-disconnect
         /// </para>

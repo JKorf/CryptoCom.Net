@@ -41,6 +41,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 clientOrderId: request.ClientOrderId,
                 timeInForce: GetTimeInForce(request.TimeInForce),
                 triggerPriceType: GetPriceType(request),
+                reduceOnly: request.ReduceOnly,
                 ct: ct).ConfigureAwait(false);
             if (!result.Success)
                 return HttpResult.Fail<SharedId>(result);
