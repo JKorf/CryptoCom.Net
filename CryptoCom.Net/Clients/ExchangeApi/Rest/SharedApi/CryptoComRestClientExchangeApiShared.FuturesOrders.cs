@@ -32,7 +32,14 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         async Task<ICallResult<SharedId>> IPlaceFuturesOrder.PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
             => await PlaceFuturesOrderAsync(request, ct).ConfigureAwait(false);
 
-        public PlaceFuturesOrderOptions PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderOptions(_exchangeName, false);
+        public PlaceFuturesOrderOptions PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderOptions(_exchangeName, false)
+        {
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.StopLossPrice),
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.TakeProfitPrice),
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.PositionSide),
+                ]
+        };
         public async Task<HttpResult<SharedId>> PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
         {
             var validationError = PlaceFuturesOrderOptions.ValidateRequest(request, this);
@@ -48,6 +55,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 postOnly: request.OrderType == SharedOrderType.LimitMaker,
                 timeInForce: GetTimeInForce(request.TimeInForce),
                 clientOrderId: request.ClientOrderId,
+                leverage: (int?)request.Leverage,
+                reduceOnly: request.ReduceOnly,
                 ct: ct).ConfigureAwait(false);
 
             if (!result.Success)

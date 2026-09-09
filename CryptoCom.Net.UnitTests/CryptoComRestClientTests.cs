@@ -2,6 +2,7 @@ using CryptoCom.Net.Clients;
 using CryptoCom.Net.Clients.ExchangeApi;
 using CryptoCom.Net.Interfaces.Clients;
 using CryptoExchange.Net.Clients;
+using CryptoExchange.Net.Interfaces.Clients;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Configuration;
@@ -137,6 +138,22 @@ namespace CryptoCom.Net.UnitTests
 
             Assert.That(missingOptions, Is.Empty);
             Assert.That(missingInterfaces, Is.Empty);
+        }
+
+        [Test]
+        public void TestRestSharedApiDoesntHaveUnsupportedCapabilities()
+        {
+            var unsupported = TestHelpers.ValidateUnsupportedCapabilities(new CryptoComRestClient().ExchangeApi.SharedApi);
+
+            Assert.That(unsupported, Is.Empty);
+        }
+
+        [Test]
+        public void TestSocketSharedApiDoesntHaveUnsupportedCapabilities()
+        {
+            var unsupported = TestHelpers.ValidateUnsupportedCapabilities(new CryptoComSocketClient().ExchangeApi.SharedApi);
+
+            Assert.That(unsupported, Is.Empty);
         }
     }
 }

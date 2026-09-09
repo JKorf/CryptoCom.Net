@@ -22,6 +22,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         public PlaceFuturesTriggerOrderOptions PlaceFuturesTriggerOrderOptions { get; } = new PlaceFuturesTriggerOrderOptions(_exchangeName, false)
         {
+            ParameterRuleOverwrites = [
+                    RequestParameterRuleOverride<PlaceFuturesTriggerOrderRequest>.NotSupported(x => x.MarginMode),
+                ]
         };
         public async Task<HttpResult<SharedId>> PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
         {
@@ -42,6 +45,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 timeInForce: GetTimeInForce(request.TimeInForce),
                 triggerPriceType: GetPriceType(request),
                 reduceOnly: request.ReduceOnly,
+                leverage: (int?)request.Leverage,
                 ct: ct).ConfigureAwait(false);
             if (!result.Success)
                 return HttpResult.Fail<SharedId>(result);
