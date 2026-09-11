@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Attributes;
+using CryptoExchange.Net.Converters.SystemTextJson;
 
 namespace CryptoCom.Net.Enums
 {
@@ -129,7 +129,12 @@ namespace CryptoCom.Net.Enums
         /// ["<c>SOFT_STAKE_REWARD</c>"] Soft stake reward
         /// </summary>
         [Map("SOFT_STAKE_REWARD")]
-        SoftStakeReward
+        SoftStakeReward,
+        /// <summary>
+        /// ["<c>ONCHAIN_WITHDRAWAL</c>"] On-chain withdrawal
+        /// </summary>
+        [Map("ONCHAIN_WITHDRAWAL")]
+        OnChainWithdrawal,
     }
 
 }
