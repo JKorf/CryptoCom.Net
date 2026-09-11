@@ -1,5 +1,6 @@
 ﻿using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
+using CryptoExchange.Net.SharedApis;
 
 namespace CryptoCom.Net.Objects.Options
 {
@@ -8,5 +9,9 @@ namespace CryptoCom.Net.Objects.Options
     /// </summary>
     public class CryptoComOptions : LibraryOptions<CryptoComRestOptions, CryptoComSocketOptions, CryptoComCredentials, CryptoComEnvironment>
     {
+        /// <summary>
+        /// Options for Shared API usage
+        /// </summary>
+        public SharedApiOptions SharedApi { get; set; } = new();
     }
 }
