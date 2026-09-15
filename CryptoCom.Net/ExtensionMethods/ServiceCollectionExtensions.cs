@@ -1,18 +1,19 @@
-using CryptoExchange.Net;
-using CryptoExchange.Net.Clients;
-using CryptoExchange.Net.Interfaces;
-using System;
-using System.Net.Http;
+using CryptoCom.Net;
 using CryptoCom.Net.Clients;
 using CryptoCom.Net.Interfaces;
 using CryptoCom.Net.Interfaces.Clients;
 using CryptoCom.Net.Objects.Options;
 using CryptoCom.Net.SymbolOrderBooks;
-using CryptoCom.Net;
+using CryptoExchange.Net;
+using CryptoExchange.Net.Clients;
+using CryptoExchange.Net.Interfaces;
+using CryptoExchange.Net.Interfaces.Clients;
+using CryptoExchange.Net.SharedApis;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Configuration;
-using CryptoExchange.Net.Interfaces.Clients;
+using System;
+using System.Net.Http;
 using System.Threading;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -119,16 +120,15 @@ namespace Microsoft.Extensions.DependencyInjection
                 x.GetRequiredService<IOptions<CryptoComRestOptions>>(),
                 x.GetRequiredService<IOptions<CryptoComSocketOptions>>()));
 
-            services.AddTransient<ICryptoComSharedApiClient, CryptoComSharedApiClient>();
-
-            services.RegisterSharedApi(x => x.GetRequiredService<ICryptoComRestClient>().ExchangeApi.SharedApi);
-            services.RegisterSharedApi(x => x.GetRequiredService<ICryptoComSocketClient>().ExchangeApi.SharedApi);
-
-            services.RegisterSharedApiClientCapabilities<ICryptoComSharedApiClient>();
-
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<ICryptoComRestClient>().ExchangeApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<ICryptoComSocketClient>().ExchangeApi.SharedClient);
 
+            services.RegisterSharedApiClient<
+                ICryptoComSharedApiClient,
+                CryptoComSharedApiClient>(sharedApis => sharedApis
+                    .Add(client => client.Rest)
+                    .Add(client => client.Socket)
+                    );
             return services;
         }
     }
