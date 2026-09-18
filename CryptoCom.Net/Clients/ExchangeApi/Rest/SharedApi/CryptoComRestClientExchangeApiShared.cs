@@ -31,7 +31,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         public CryptoComRestClientExchangeSharedApi(CryptoComRestClientExchangeApi api)
             : base(
                   SharedTransport.Rest,
-                  api.Exchange,
+                  api,
                   [TradingMode.Spot, TradingMode.PerpetualLinear, TradingMode.DeliveryLinear],
                   () => api.Authenticated,
                   api.FormatSymbol)

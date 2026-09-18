@@ -84,7 +84,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
 
         #region Place Futures Order
 
-        async Task<ICallResult<SharedId>> IPlaceFuturesOrder.PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedId>> IPlaceFuturesOrder.PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
             => await PlaceFuturesOrderAsync(request, ct).ConfigureAwait(false);
 
         PlaceFuturesOrderOptions IPlaceFuturesOrder.PlaceFuturesOrderOptions => PlaceFuturesOrderOptions;
@@ -116,7 +116,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
         #region Cancel Futures Order
 
-        async Task<ICallResult<SharedId>> ICancelFuturesOrder.CancelFuturesOrderAsync(CancelOrderRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedId>> ICancelFuturesOrder.CancelFuturesOrderAsync(CancelOrderRequest request, CancellationToken ct)
             => await CancelFuturesOrderAsync(request, ct).ConfigureAwait(false);
 
         CancelFuturesOrderOptions ICancelFuturesOrder.CancelFuturesOrderOptions => CancelFuturesOrderOptions;
