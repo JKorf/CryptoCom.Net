@@ -32,9 +32,9 @@ REST methods return `HttpResult<T>` or `HttpResult`. WebSocket subscriptions ret
 - `restClient.ExchangeApi.Account` - balances, account info, account settings, fees, deposits, withdrawals, isolated margin transfers
 - `restClient.ExchangeApi.Trading` - positions, orders, order history, trades, OCO orders, close position
 - `restClient.ExchangeApi.Staking` - staking, unstaking, staking positions/history, staking conversions
-- `restClient.ExchangeApi.SharedClient` - CryptoExchange.Net SharedApis REST interfaces
+- `restClient.ExchangeApi.SharedApi` - CryptoExchange.Net SharedApis REST interfaces
 - `socketClient.ExchangeApi` - public streams, authenticated streams, and socket API requests
-- `socketClient.ExchangeApi.SharedClient` - CryptoExchange.Net SharedApis socket interfaces
+- `socketClient.ExchangeApi.SharedApi` - CryptoExchange.Net SharedApis socket interfaces
 
 ## Symbols
 
@@ -50,9 +50,9 @@ Store the returned `UpdateSubscription` and unsubscribe on shutdown via `socketC
 
 ## Cross-exchange
 
-For code that needs to work across multiple exchanges, use `CryptoExchange.Net.SharedApis` interfaces (`ISpotTickerRestClient`, `ISpotOrderRestClient`, `IFuturesOrderRestClient`, etc.) accessed via `.ExchangeApi.SharedClient`. Shared socket order placement and cancellation use `ISpotOrderManagementSocketClient` or `IFuturesOrderManagementSocketClient`.
+For code that needs to work across multiple exchanges, use `CryptoExchange.Net.SharedApis` interfaces (`IGetTickerRest`, `IPlaceSpotOrderRest`, `IPlaceFuturesOrderRest`, etc.) accessed via `.ExchangeApi.SharedApi`. Shared socket order placement and cancellation use `IPlaceSpotOrderSocket` and `ICancelSpotOrderSocket` or `IPlaceFuturesOrderSocket` and `ICancelFuturesOrderSocket`.
 
-Shared spot and futures symbol results include `DisplayName` and base/quote asset type/subtype metadata. Loading symbols through `ISpotSymbolRestClient` or `IFuturesSymbolRestClient` also populates `SpotSymbolCatalog` or `FuturesSymbolCatalog` for cached lookup.
+Shared spot and futures symbol results include `DisplayName` and base/quote asset type/subtype metadata. Loading symbols through `IGetSpotSymbolsRest` or `IGetFuturesSymbolsRest` also populates `SpotSymbolCatalog` or `FuturesSymbolCatalog` for cached lookup.
 
 ## Avoid
 

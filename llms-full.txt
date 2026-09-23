@@ -32,7 +32,7 @@ Primary documentation:
 - Reuse clients. Do not instantiate a REST or socket client per request in production code.
 - Store WebSocket subscriptions and unsubscribe during shutdown.
 - Use exact Crypto.com instrument names. Spot pairs commonly use underscores, for example `BTC_USDT`; derivatives can use suffixes such as `ETHUSD_PERP`.
-- For multi-exchange code, use `CryptoExchange.Net.SharedApis` from `.ExchangeApi.SharedClient` and call `.Discover()` to inspect supported features.
+- Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 - Do not invent endpoint names. If unsure, inspect `CryptoCom.Net/Interfaces/Clients/ExchangeApi/**`.
 
 ## Installation
@@ -192,7 +192,7 @@ CryptoComRestClient
     .Account
     .Trading
     .Staking
-    .SharedClient
+    .SharedApi
 ```
 
 WebSocket:
@@ -230,7 +230,7 @@ CryptoComSocketClient
       CancelOcoOrderAsync
       WithdrawAsync
       SetCancelOnDisconnectAsync
-    .SharedClient
+    .SharedApi
 ```
 
 ## Intent To Method Map
@@ -386,12 +386,11 @@ using CryptoCom.Net.Clients;
 using CryptoExchange.Net.SharedApis;
 
 var restClient = new CryptoComRestClient();
-ISpotTickerRestClient tickerClient = restClient.ExchangeApi.SharedClient;
+IGetTickerRest tickerClient = restClient.ExchangeApi.SharedApi;
 var symbol = new SharedSymbol(TradingMode.Spot, "BTC", "USDT");
-var info = restClient.ExchangeApi.SharedClient.Discover();
-var supportedFeatures = info.Features.Where(x => x.Supported).Select(x => x.EndpointName);
+// Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 
-var ticker = await tickerClient.GetSpotTickerAsync(new GetTickerRequest(symbol));
+var ticker = await tickerClient.GetTickerAsync(new GetTickerRequest(symbol));
 if (!ticker.Success)
 {
     Console.WriteLine(ticker.Error);
@@ -404,7 +403,7 @@ Console.WriteLine(ticker.Data.LastPrice);
 Shared spot and futures symbol calls apply `GetSymbolsRequest` filters and return `DisplayName`, `BaseAssetType`, `BaseAssetSubType`, `QuoteAssetType`, and `QuoteAssetSubType` metadata. The subtypes identify stablecoins, equities, and commodities when applicable. Loading symbols also populates the corresponding catalog:
 
 ```csharp
-ISpotSymbolRestClient symbolClient = restClient.ExchangeApi.SharedClient;
+IGetSpotSymbolsRest symbolClient = restClient.ExchangeApi.SharedApi;
 var symbols = await symbolClient.GetSpotSymbolsAsync(new GetSymbolsRequest());
 if (!symbols.Success)
 {
@@ -415,15 +414,15 @@ if (!symbols.Success)
 SharedSymbolCatalog? catalog = symbolClient.SpotSymbolCatalog;
 ```
 
-Use `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(...)` and `FuturesSymbolCatalog` for derivatives.
+Use `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(...)` and `FuturesSymbolCatalog` for derivatives.
 
-The shared socket client also implements `ISpotOrderManagementSocketClient` and `IFuturesOrderManagementSocketClient`. Use `PlaceSpotOrderAsync(...)` / `CancelSpotOrderAsync(...)` or `PlaceFuturesOrderAsync(...)` / `CancelFuturesOrderAsync(...)` for exchange-agnostic socket order management. These requests return `QueryResult<SharedId>`; check `.Success` before reading the order id from `.Data`.
+The shared socket client also implements `IPlaceSpotOrderSocket` and `ICancelSpotOrderSocket` and `IPlaceFuturesOrderSocket` and `ICancelFuturesOrderSocket`. Use `PlaceSpotOrderAsync(...)` / `CancelSpotOrderAsync(...)` or `PlaceFuturesOrderAsync(...)` / `CancelFuturesOrderAsync(...)` for exchange-agnostic socket order management. These requests return `QueryResult<SharedId>`; check `.Success` before reading the order id from `.Data`.
 
 Shared WebSocket subscriptions return an `UpdateSubscription` in `.Data`. For shared interface variables, unsubscribe through the concrete socket client:
 
 ```csharp
 var socketClient = new CryptoComSocketClient();
-ITickerSocketClient tickerSocket = socketClient.ExchangeApi.SharedClient;
+ISubscribeTickerSocket tickerSocket = socketClient.ExchangeApi.SharedApi;
 
 var sub = await tickerSocket.SubscribeToTickerUpdatesAsync(
     new SubscribeTickerRequest(new SharedSymbol(TradingMode.Spot, "BTC", "USDT")),

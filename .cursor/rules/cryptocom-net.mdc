@@ -40,9 +40,9 @@ var price = ticker.Data.First().LastPrice;
 - `restClient.ExchangeApi.Account`
 - `restClient.ExchangeApi.Trading`
 - `restClient.ExchangeApi.Staking`
-- `restClient.ExchangeApi.SharedClient`
+- `restClient.ExchangeApi.SharedApi`
 - `socketClient.ExchangeApi`
-- `socketClient.ExchangeApi.SharedClient`
+- `socketClient.ExchangeApi.SharedApi`
 
 CryptoCom.Net does not expose Binance-style `SpotApi`, `UsdFuturesApi`, `CoinFuturesApi`, or `GeneralApi` roots.
 
@@ -77,8 +77,8 @@ For exchange-agnostic code, use `CryptoExchange.Net.SharedApis`:
 ```csharp
 using CryptoExchange.Net.SharedApis;
 
-var shared = new CryptoComRestClient().ExchangeApi.SharedClient;
-var ticker = await shared.GetSpotTickerAsync(
+var shared = new CryptoComRestClient().ExchangeApi.SharedApi;
+var ticker = await shared.GetTickerAsync(
     new GetTickerRequest(new SharedSymbol(TradingMode.Spot, "BTC", "USDT")));
 ```
 
