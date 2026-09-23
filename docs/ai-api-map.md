@@ -141,27 +141,27 @@ Use SharedApis for exchange-agnostic code across Crypto.com, Binance, Bybit, OKX
 
 | User intent | CryptoCom.Net member or interface |
 |---|---|
-| Shared REST client | `new CryptoComRestClient().ExchangeApi.SharedClient` |
-| Shared socket client | `new CryptoComSocketClient().ExchangeApi.SharedClient` |
-| Discover shared capabilities | `client.ExchangeApi.SharedClient.Discover()` |
-| Get shared spot symbols and apply request filters | `ISpotSymbolRestClient.GetSpotSymbolsAsync(new GetSymbolsRequest(...))` |
-| Get shared futures symbols and apply request filters | `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))` |
-| Access cached shared spot symbol catalog | `ISpotSymbolRestClient.SpotSymbolCatalog` after loading symbols |
-| Access cached shared futures symbol catalog | `IFuturesSymbolRestClient.FuturesSymbolCatalog` after loading symbols |
-| Shared spot ticker REST | `ISpotTickerRestClient.GetSpotTickerAsync(new GetTickerRequest(symbol))` |
-| Shared futures ticker REST | `IFuturesTickerRestClient.GetFuturesTickerAsync(new GetTickerRequest(symbol))` |
-| Shared spot order REST | `ISpotOrderRestClient.PlaceSpotOrderAsync(...)` |
-| Shared futures order REST | `IFuturesOrderRestClient.PlaceFuturesOrderAsync(...)` |
-| Shared balances REST | `IBalanceRestClient.GetBalancesAsync(...)` |
-| Shared fees REST | `IFeeRestClient.GetFeeAsync(...)` |
-| Shared ticker socket | `ITickerSocketClient.SubscribeToTickerUpdatesAsync(...)` |
-| Shared order book socket | `IOrderBookSocketClient.SubscribeToOrderBookUpdatesAsync(...)` |
-| Shared balance socket | `IBalanceSocketClient.SubscribeToBalanceUpdatesAsync(...)` |
-| Shared position socket | `IPositionSocketClient.SubscribeToPositionUpdatesAsync(...)` |
-| Place shared spot order over socket | `ISpotOrderManagementSocketClient.PlaceSpotOrderAsync(...)` |
-| Cancel shared spot order over socket | `ISpotOrderManagementSocketClient.CancelSpotOrderAsync(...)` |
-| Place shared futures order over socket | `IFuturesOrderManagementSocketClient.PlaceFuturesOrderAsync(...)` |
-| Cancel shared futures order over socket | `IFuturesOrderManagementSocketClient.CancelFuturesOrderAsync(...)` |
+| Shared REST client | `new CryptoComRestClient().ExchangeApi.SharedApi` |
+| Shared socket client | `new CryptoComSocketClient().ExchangeApi.SharedApi` |
+| Resolve a runtime-selected Shared API capability | `ICryptoComSharedApiClient.GetCapability(...)` |
+| Get shared spot symbols and apply request filters | `IGetSpotSymbolsRest.GetSpotSymbolsAsync(new GetSymbolsRequest(...))` |
+| Get shared futures symbols and apply request filters | `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))` |
+| Access cached shared spot symbol catalog | `IGetSpotSymbolsRest.SpotSymbolCatalog` after loading symbols |
+| Access cached shared futures symbol catalog | `IGetFuturesSymbolsRest.FuturesSymbolCatalog` after loading symbols |
+| Shared spot ticker REST | `IGetTickerRest.GetTickerAsync(new GetTickerRequest(symbol))` |
+| Shared futures ticker REST | `IGetTickerRest.GetTickerAsync(new GetTickerRequest(symbol))` |
+| Shared spot order REST | `IPlaceSpotOrderRest.PlaceSpotOrderAsync(...)` |
+| Shared futures order REST | `IPlaceFuturesOrderRest.PlaceFuturesOrderAsync(...)` |
+| Shared balances REST | `IGetBalancesRest.GetBalancesAsync(...)` |
+| Shared fees REST | `IGetFeesRest.GetFeesAsync(...)` |
+| Shared ticker socket | `ISubscribeTickerSocket.SubscribeToTickerUpdatesAsync(...)` |
+| Shared order book socket | `ISubscribeOrderBookSocket.SubscribeToOrderBookUpdatesAsync(...)` |
+| Shared balance socket | `ISubscribeBalancesSocket.SubscribeToBalanceUpdatesAsync(...)` |
+| Shared position socket | `ISubscribePositionsSocket.SubscribeToPositionUpdatesAsync(...)` |
+| Place shared spot order over socket | `IPlaceSpotOrderSocket.PlaceSpotOrderAsync(...)` |
+| Cancel shared spot order over socket | `ICancelSpotOrderSocket.CancelSpotOrderAsync(...)` |
+| Place shared futures order over socket | `IPlaceFuturesOrderSocket.PlaceFuturesOrderAsync(...)` |
+| Cancel shared futures order over socket | `ICancelFuturesOrderSocket.CancelFuturesOrderAsync(...)` |
 
 Shared REST methods return `HttpResult<T>` / `HttpResult`; shared socket subscriptions return `WebSocketResult<UpdateSubscription>`; shared symbol/cache helpers such as `SupportsSpotSymbolAsync` and `SupportsFuturesSymbolAsync` can return `ExchangeCallResult<T>`.
 
@@ -194,5 +194,5 @@ For shared socket subscriptions, keep the concrete socket client and unsubscribe
 | `GetTickerAsync` | `GetTickersAsync` |
 | `BTCUSDT` by default | `BTC_USDT` for spot examples, or exact symbol from `GetSymbolsAsync()` |
 | `.Data` without `.Success` check | Check `.Success` first |
-| `ITickerSocketClient.UnsubscribeAsync(...)` | Keep the concrete socket client and call `socketClient.UnsubscribeAsync(subscription.Data)` |
+| Unsubscribe from a shared subscription | Keep the concrete socket client and call `socketClient.UnsubscribeAsync(subscription.Data)` |
 | Custom `clientOrderId` by default | Omit it unless external correlation is required |

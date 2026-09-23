@@ -32,4 +32,61 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         IBookTickerRestClient
     {
     }
+
+    /// <summary>
+    /// Shared API interface. Shared APIs provide a common,
+    /// exchange-independent contract for accessing functionality across different
+    /// exchange client libraries.
+    /// </summary>
+    public interface ICryptoComRestClientExchangeSharedApi :
+        IGetAssetRest,
+        IGetAllAssetsRest,
+        IGetBalancesRest,
+        IGetDepositAddressesRest,
+        IGetDepositHistoryRest,
+        IGetKlinesRest,
+        IGetOrderBookRest,
+        IGetRecentTradesRest,
+        IGetWithdrawalHistoryRest,
+        IWithdrawRest,
+        IGetSpotSymbolsRest,
+        IGetTickerRest,
+        IGetAllTickersRest,
+        IPlaceSpotOrderRest,
+        IGetSpotOrderRest,
+        IGetOpenSpotOrdersRest,
+        IGetClosedSpotOrdersRest,
+        ICancelSpotOrderRest,
+        IGetSpotOrderTradesRest,
+        IGetSpotUserTradeHistoryRest,
+        IGetFundingRateHistoryRest,
+        IGetFuturesSymbolsRest,
+        IGetLeverageRest,
+        ISetLeverageRest,
+        IGetOpenInterestRest,
+        IPlaceFuturesOrderRest,
+        IGetFuturesOrderRest,
+        IGetOpenFuturesOrdersRest,
+        IGetClosedFuturesOrdersRest,
+        ICancelFuturesOrderRest,
+        IGetFuturesOrderTradesRest,
+        IGetFuturesUserTradeHistoryRest,
+        IGetPositionsRest,
+        ICloseFullPositionRest,
+        IGetSpotOrderByClientOrderIdRest,
+        ICancelSpotOrderByClientOrderIdRest,
+        IGetFuturesOrderByClientOrderIdRest,
+        ICancelFuturesOrderByClientOrderIdRest,
+        IPlaceSpotTriggerOrderRest,
+        IGetSpotTriggerOrderRest,
+        ICancelSpotTriggerOrderRest,
+        IPlaceFuturesTriggerOrderRest,
+        IGetFuturesTriggerOrderRest,
+        ICancelFuturesTriggerOrderRest,
+        ISetFuturesTpSlRest,
+        ICancelFuturesTpSlRest,
+        IGetBookTickerRest,
+        IGetFeesRest
+    {
+    }
 }

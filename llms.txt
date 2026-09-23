@@ -31,7 +31,7 @@ CryptoCom.Net provides typed C# clients for Crypto.com Exchange with request sig
 - Always check `.Success` before reading `.Data`.
 - Use exact instrument names returned by `GetSymbolsAsync()`; spot examples commonly use `BTC_USDT`.
 - Store WebSocket subscriptions and unsubscribe with the concrete socket client.
-- For multi-exchange code, use `.ExchangeApi.SharedClient` and call `.Discover()` to inspect supported shared features.
+- Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 - Shared spot and futures symbol results expose display names and asset type/subtype metadata; their interfaces also expose cached `SpotSymbolCatalog` and `FuturesSymbolCatalog` values after symbols are loaded.
 
 ## Reference

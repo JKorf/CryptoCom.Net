@@ -18,7 +18,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get positions for the account
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-positions" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-positions" /><br />
         /// Endpoint:<br />
         /// POST /private/get-positions
         /// </para>
@@ -31,7 +31,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Place a new order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#introduction-2" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-create-order-dma" /><br />
         /// Endpoint:<br />
         /// POST /private/create-order
         /// </para>
@@ -86,7 +86,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Cancel an order by id
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-cancel-order" /><br />
         /// Endpoint:<br />
         /// POST /private/cancel-order
         /// </para>
@@ -100,7 +100,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Cancel all order fitting the parameters
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-all-orders" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-cancel-all-orders" /><br />
         /// Endpoint:<br />
         /// POST /private/cancel-all-orders
         /// </para>
@@ -114,7 +114,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Close an open position
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-close-position" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-close-position" /><br />
         /// Endpoint:<br />
         /// POST /private/close-position
         /// </para>
@@ -130,7 +130,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get user open orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-open-orders" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-open-orders" /><br />
         /// Endpoint:<br />
         /// POST /private/get-open-orders
         /// </para>
@@ -143,7 +143,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get info on a specific order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-detail" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-order-detail" /><br />
         /// Endpoint:<br />
         /// POST /private/get-order-detail
         /// </para>
@@ -157,7 +157,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get closed order history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-order-history" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-order-history" /><br />
         /// Endpoint:<br />
         /// POST /private/get-order-history
         /// </para>
@@ -180,7 +180,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get user trade history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-trades" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-trades" /><br />
         /// Endpoint:<br />
         /// POST /private/get-trades
         /// </para>
@@ -203,7 +203,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Place multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-order-list-list" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-create-order-list" /><br />
         /// Endpoint:<br />
         /// POST /private/create-order-list
         /// </para>
@@ -216,7 +216,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Cancel multiple orders in a single call. Note that this call will return success even when all or some of the requests fail. Make sure to check the result data.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-cancel-order-list-list" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-cancel-order-list" /><br />
         /// Endpoint:<br />
         /// POST /private/cancel-order-list
         /// </para>
@@ -273,7 +273,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Edit an order price and/or quantity. ote that amend order is designed as a convenience function such that it performs cancel and then create behind the scene. The new order will lose queue priority, except if the amend is only to amend down order quantity. For faster performance, it is recommended to use CancelOrderAsync and then PlaceOrderAsync instead.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-amend-order" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-amend-order" /><br />
         /// Endpoint:<br />
         /// POST /private/amend-order
         /// </para>

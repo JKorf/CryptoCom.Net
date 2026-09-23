@@ -16,7 +16,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// 
         /// <para>
         /// Docs:<br />
-        /// <a href="XXX" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-tickers" /><br />
         /// Endpoint:<br />
         /// GET /public/get-tickers
         /// </para>
@@ -29,7 +29,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get risk parameters
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-risk-parameters" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-risk-parameters" /><br />
         /// Endpoint:<br />
         /// GET /public/get-risk-parameters
         /// </para>
@@ -41,7 +41,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get symbols/instruments
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-instruments" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-instruments" /><br />
         /// Endpoint:<br />
         /// GET /public/get-instruments
         /// </para>
@@ -53,7 +53,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get the order book for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-book" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-book" /><br />
         /// Endpoint:<br />
         /// GET /public/get-book
         /// </para>
@@ -67,7 +67,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get tickers
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-tickers" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-tickers" /><br />
         /// Endpoint:<br />
         /// GET /public/get-tickers
         /// </para>
@@ -80,7 +80,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get trade history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-trades" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-trades" /><br />
         /// Endpoint:<br />
         /// GET /public/get-trades
         /// </para>
@@ -96,7 +96,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get Kline/Candlestick data
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-candlestick" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-candlestick" /><br />
         /// Endpoint:<br />
         /// GET /public/get-candlestick
         /// </para>
@@ -113,7 +113,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get various statistics
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-valuations" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-valuations" /><br />
         /// Endpoint:<br />
         /// GET /public/get-valuations
         /// </para>
@@ -130,7 +130,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get expired contracts settlement price
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-expired-settlement-price" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-expired-settlement-price" /><br />
         /// Endpoint:<br />
         /// GET /public/get-expired-settlement-price
         /// </para>
@@ -144,7 +144,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get the balance of Insurance Fund for a particular asset.
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-get-insurance" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-get-insurance" /><br />
         /// Endpoint:<br />
         /// GET /public/get-insurance
         /// </para>

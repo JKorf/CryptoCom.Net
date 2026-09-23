@@ -31,7 +31,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             // No dedicated endpoint, use ticker endpoint which returns a timestamp
             var parameters = new Parameters(CryptoComExchange._parameterSerializationSettings);
             parameters.Add("instrument_name", "BTC_USD");
-            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-tickers", CryptoComExchange.RateLimiter.RestPublic, 1, false);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "public/get-tickers", CryptoComExchange.RateLimiter.RestPublic, 1, false,
+                preventCaching: true,
+                preventRequestCoalescing: true);
             var result = await _baseClient.SendAsync<CryptoComTickersWrapper>(request, parameters, ct).ConfigureAwait(false);
             if (!result.Success)
                 return HttpResult.Fail<DateTime>(result);

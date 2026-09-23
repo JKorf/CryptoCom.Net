@@ -17,7 +17,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get user account balances
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-user-balance" /><br />
         /// Endpoint:<br />
         /// POST /private/user-balance
         /// </para>
@@ -29,7 +29,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get account cash balance history 
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-user-balance-history" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-user-balance-history" /><br />
         /// Endpoint:<br />
         /// POST /private/user-balance-history
         /// </para>
@@ -44,7 +44,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get master and sub account info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-accounts" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-accounts" /><br />
         /// Endpoint:<br />
         /// POST /private/get-accounts
         /// </para>
@@ -58,7 +58,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Set account leverage. Not that each symbol has it's own max leverage, the lower of the two will be used
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-leverage" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-change-account-leverage" /><br />
         /// Endpoint:<br />
         /// POST /private/change-account-leverage
         /// </para>
@@ -72,7 +72,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Update account settings
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-account-settings" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-change-account-settings" /><br />
         /// Endpoint:<br />
         /// POST /private/change-account-settings
         /// </para>
@@ -88,7 +88,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get current account settings
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-account-settings" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-account-settings" /><br />
         /// Endpoint:<br />
         /// POST /private/get-account-settings
         /// </para>
@@ -100,7 +100,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get account transaction history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-transactions" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-transactions" /><br />
         /// Endpoint:<br />
         /// POST /private/get-transactions
         /// </para>
@@ -125,7 +125,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get user fee rates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-fee-rate" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-fee-rate" /><br />
         /// Endpoint:<br />
         /// POST /private/get-fee-rate
         /// </para>
@@ -137,7 +137,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get symbol fee rates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-instrument-fee-rate" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-instrument-fee-rate" /><br />
         /// Endpoint:<br />
         /// POST /private/get-instrument-fee-rate
         /// </para>
@@ -150,7 +150,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Withdraw funds
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-withdrawal" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-create-withdrawal" /><br />
         /// Endpoint:<br />
         /// POST /private/create-withdrawal
         /// </para>
@@ -168,7 +168,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get asset network info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-currency-networks" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-currency-networks" /><br />
         /// Endpoint:<br />
         /// POST /private/get-currency-networks
         /// </para>
@@ -180,7 +180,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get deposit addresses for an asset
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-address" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-deposit-address" /><br />
         /// Endpoint:<br />
         /// POST /private/get-deposit-address
         /// </para>
@@ -193,7 +193,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get deposit history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-deposit-history" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-deposit-history" /><br />
         /// Endpoint:<br />
         /// POST /private/get-deposit-history
         /// </para>
@@ -211,7 +211,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get withdrawal history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-get-withdrawal-history" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-get-withdrawal-history" /><br />
         /// Endpoint:<br />
         /// POST /private/get-withdrawal-history
         /// </para>
@@ -229,7 +229,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Create transfer from or to an isolated position
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-create-isolated-margin-transfer" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-create-isolated-margin-transfer" /><br />
         /// Endpoint:<br />
         /// POST /private/create-isolated-margin-transfer
         /// </para>
@@ -244,7 +244,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Set leverage for isolated margin position
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-change-isolated-margin-leverage" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-change-isolated-margin-leverage" /><br />
         /// Endpoint:<br />
         /// POST /private/change-isolated-margin-leverage
         /// </para>

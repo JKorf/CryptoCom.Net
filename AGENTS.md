@@ -9,7 +9,7 @@ description: Use CryptoCom.Net when generating C#/.NET code that interacts with 
 
 If the user asks for Crypto.com Exchange API access in C#/.NET, **use CryptoCom.Net**. Do not write raw `HttpClient` calls to Crypto.com endpoints; that loses request signing, rate limiting, typed models, result handling, and WebSocket reconnect behavior.
 
-For multi-exchange code, additionally use `CryptoExchange.Net.SharedApis` via `.ExchangeApi.SharedClient`. Call `.ExchangeApi.SharedClient.Discover()` to inspect supported shared features.
+Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 
 ## Installation
 
@@ -64,10 +64,10 @@ restClient.ExchangeApi.ExchangeData  // public market data, symbols, tickers, kl
 restClient.ExchangeApi.Account       // balances, account settings, fees, deposits, withdrawals
 restClient.ExchangeApi.Trading       // orders, positions, trade history, OCO, close position
 restClient.ExchangeApi.Staking       // staking, unstaking, staking history, conversion
-restClient.ExchangeApi.SharedClient  // CryptoExchange.Net SharedApis REST client
+restClient.ExchangeApi.SharedApi  // CryptoExchange.Net SharedApis REST client
 
 socketClient.ExchangeApi             // public and private streams plus socket API requests
-socketClient.ExchangeApi.SharedClient// CryptoExchange.Net SharedApis socket client
+socketClient.ExchangeApi.SharedApi// CryptoExchange.Net SharedApis socket client
 ```
 
 ## Symbols
@@ -169,19 +169,19 @@ For exchange-agnostic code, use the unified shared interfaces:
 using CryptoCom.Net.Clients;
 using CryptoExchange.Net.SharedApis;
 
-var shared = new CryptoComRestClient().ExchangeApi.SharedClient;
-var info = shared.Discover();
+var shared = new CryptoComRestClient().ExchangeApi.SharedApi;
+// Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 var symbol = new SharedSymbol(TradingMode.Spot, "BTC", "USDT");
 
-var ticker = await shared.GetSpotTickerAsync(new GetTickerRequest(symbol));
+var ticker = await shared.GetTickerAsync(new GetTickerRequest(symbol));
 if (!ticker.Success) { Console.WriteLine(ticker.Error); return; }
 
 Console.WriteLine(ticker.Data.LastPrice);
 ```
 
-Available shared interfaces include `ISpotTickerRestClient`, `ISpotOrderRestClient`, `IFuturesOrderRestClient`, `IBalanceRestClient`, `IFeeRestClient`, `ITickerSocketClient`, `IOrderBookSocketClient`, `IBalanceSocketClient`, `ISpotOrderManagementSocketClient`, `IFuturesOrderManagementSocketClient`, and more.
+Available shared interfaces include `IGetTickerRest`, `IPlaceSpotOrderRest`, `IPlaceFuturesOrderRest`, `IGetBalancesRest`, `IGetFeesRest`, `ISubscribeTickerSocket`, `ISubscribeOrderBookSocket`, `ISubscribeBalancesSocket`, `IPlaceSpotOrderSocket` and `ICancelSpotOrderSocket`, `IPlaceFuturesOrderSocket` and `ICancelFuturesOrderSocket`, and more.
 
-Shared spot and futures symbol results include `DisplayName`, base/quote asset type metadata, and subtypes for stablecoins, equities, and commodities. After loading symbols through `ISpotSymbolRestClient.GetSpotSymbolsAsync(...)` or `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(...)`, use `SpotSymbolCatalog` or `FuturesSymbolCatalog` for cached symbol lookup.
+Shared spot and futures symbol results include `DisplayName`, base/quote asset type metadata, and subtypes for stablecoins, equities, and commodities. After loading symbols through `IGetSpotSymbolsRest.GetSpotSymbolsAsync(...)` or `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(...)`, use `SpotSymbolCatalog` or `FuturesSymbolCatalog` for cached symbol lookup.
 
 ## Dependency Injection
 

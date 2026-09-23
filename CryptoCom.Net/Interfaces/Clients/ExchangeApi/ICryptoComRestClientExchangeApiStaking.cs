@@ -15,7 +15,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Create a new stake request
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-stake" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-stake" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/stake
         /// </para>
@@ -29,7 +29,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Create a new unstake request
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-unstake" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-unstake" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/unstake
         /// </para>
@@ -43,7 +43,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get current staking positions
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-position" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-get-staking-position" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/get-staking-position
         /// </para>
@@ -56,7 +56,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get staking symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-staking-instruments" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-get-staking-instruments" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/get-staking-instruments
         /// </para>
@@ -68,7 +68,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get open stake/unstake requests
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-stake" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-get-open-stake" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/get-open-stake
         /// </para>
@@ -84,7 +84,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get staking request history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-stake-history" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-get-stake-history" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/get-stake-history
         /// </para>
@@ -100,7 +100,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get staking reward history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-reward-history" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-get-reward-history" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/get-reward-history
         /// </para>
@@ -116,7 +116,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Create a new convert request
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-convert" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-convert" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/convert
         /// </para>
@@ -133,7 +133,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get open convert requests
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#private-staking-get-open-convert" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/private-staking-get-open-convert" /><br />
         /// Endpoint:<br />
         /// POST /private/staking/get-open-convert
         /// </para>
@@ -148,7 +148,7 @@ namespace CryptoCom.Net.Interfaces.Clients.ExchangeApi
         /// Get conversion rate
         /// <para>
         /// Docs:<br />
-        /// <a href="https://exchange-docs.crypto.com/exchange/v1/rest-ws/index.html#public-staking-get-conversion-rate" /><br />
+        /// <a href="https://exchange-developer.crypto.com/exchange/v1/docs/api/rest/public-staking-get-conversion-rate" /><br />
         /// Endpoint:<br />
         /// POST /public/staking/get-conversion-rate
         /// </para>
