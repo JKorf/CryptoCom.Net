@@ -19,17 +19,12 @@ namespace CryptoCom.Net
             string? userIdentifier,
             SpotUserDataTrackerConfig? config) : base(
                 logger,
-                restClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
+                restClient.ExchangeApi.SharedClient,
+                restClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
+                restClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
                 userIdentifier,
                 config ?? new SpotUserDataTrackerConfig())
         {
@@ -51,20 +46,13 @@ namespace CryptoCom.Net
             ICryptoComSocketClient socketClient,
             string? userIdentifier,
             FuturesUserDataTrackerConfig? config) : base(logger,
-                restClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
-
-                restClient.ExchangeApi.SharedApi,
-                socketClient.ExchangeApi.SharedApi,
+                restClient.ExchangeApi.SharedClient,
+                restClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
+                restClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
+                socketClient.ExchangeApi.SharedClient,
                 userIdentifier,
                 config ?? new FuturesUserDataTrackerConfig())
         {

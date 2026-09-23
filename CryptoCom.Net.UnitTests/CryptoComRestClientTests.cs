@@ -1,6 +1,3 @@
-using CryptoCom.Net.Clients;
-using CryptoCom.Net.Clients.ExchangeApi;
-using CryptoCom.Net.Interfaces.Clients;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces.Clients;
 using CryptoExchange.Net.Objects;
@@ -9,6 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using System.Collections.Generic;
+using CryptoCom.Net.Clients;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using CryptoExchange.Net.Objects;
+using CryptoCom.Net.Interfaces.Clients;
+using CryptoCom.Net.Clients.ExchangeApi;
 
 namespace CryptoCom.Net.UnitTests
 {
