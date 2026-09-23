@@ -25,6 +25,7 @@ namespace CryptoCom.Net.Clients.ExchangeApi
     internal partial class CryptoComRestClientExchangeApi : RestApiClient<CryptoComEnvironment, CryptoComAuthenticationProvider, CryptoComCredentials>, ICryptoComRestClientExchangeApi
     {
         #region fields 
+        private readonly CryptoComRestClientExchangeSharedApi _sharedApi;
         internal new CryptoComRestOptions ClientOptions => (CryptoComRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => CryptoComErrors.Errors;
@@ -52,6 +53,8 @@ namespace CryptoCom.Net.Clients.ExchangeApi
             ExchangeData = new CryptoComRestClientExchangeApiExchangeData(_logger, this);
             Staking = new CryptoComRestClientExchangeApiStaking(this);
             Trading = new CryptoComRestClientExchangeApiTrading(_logger, this);
+
+            _sharedApi = new CryptoComRestClientExchangeSharedApi(this);
         }
         #endregion
 
@@ -117,7 +120,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 => CryptoComExchange.FormatSymbol(baseAsset, quoteAsset, tradingMode, deliverTime);
 
         /// <inheritdoc />
-        public ICryptoComRestClientExchangeApiShared SharedClient => this;
+        public ICryptoComRestClientExchangeApiShared SharedClient => _sharedApi;
+        /// <inheritdoc />
+        public ICryptoComRestClientExchangeSharedApi SharedApi => _sharedApi;
 
     }
 }
