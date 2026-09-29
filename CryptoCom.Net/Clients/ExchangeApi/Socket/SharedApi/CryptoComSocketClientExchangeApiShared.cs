@@ -51,5 +51,9 @@ namespace CryptoCom.Net.Clients.ExchangeApi
                 CancelFuturesOrderOptions
                 );
         }
+
+
+        /// <inheritdoc />
+        public Task UnsubscribeAllAsync() => _api.UnsubscribeAllAsync();
     }
 }
