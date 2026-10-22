@@ -20,27 +20,38 @@ namespace CryptoCom.Net.Clients.MessageHandlers
             _errorMapping = errorMapping;
         }
 
+        /// <inheritdoc />
         public override async ValueTask<Error> ParseErrorResponse(
             int httpStatusCode,
             HttpResponseHeaders responseHeaders,
             Stream responseStream)
         {
-            if (httpStatusCode == 401 || httpStatusCode == 403)
-                return new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Unauthorized"));
-
             var (jsonError, jsonDocument) = await GetJsonDocument(responseStream).ConfigureAwait(false);
-            if (jsonError != null)
-                return jsonError;
+            using var document = jsonDocument;
+            if (jsonError != null || jsonDocument!.RootElement.ValueKind != JsonValueKind.Object)
+                return new ServerError(new ErrorInfo(httpStatusCode == 401 || httpStatusCode == 403 ? ErrorType.Unauthorized : ErrorType.Unknown, $"HTTP {httpStatusCode}"));
 
-            int? code = jsonDocument!.RootElement.TryGetProperty("code", out var codeProp) ? codeProp.GetInt32() : null;
-            var msg = jsonDocument.RootElement.TryGetProperty("message", out var msgProp) ? msgProp.GetString() : null;
-            if (msg == null)
-                return new ServerError(ErrorInfo.Unknown);
+            int? code = jsonDocument!.RootElement.TryGetProperty("code", out var codeProp) && codeProp.ValueKind == JsonValueKind.Number && codeProp.TryGetInt32(out var value) ? value : null;
+            var msg = jsonDocument.RootElement.TryGetProperty("message", out var msgProp) && msgProp.ValueKind == JsonValueKind.String ? msgProp.GetString() : null;
+            if (msg == null && code == null)
+                return new ServerError(new ErrorInfo(httpStatusCode == 401 || httpStatusCode == 403 ? ErrorType.Unauthorized : ErrorType.Unknown, $"HTTP {httpStatusCode}"));
 
             if (code == null)
                 return new ServerError(ErrorInfo.Unknown with { Message = msg });
 
             return new ServerError(code.Value, _errorMapping.GetErrorInfo(code.Value.ToString(), msg));
+        }
+
+        /// <inheritdoc />
+        public override async ValueTask<ServerRateLimitError> ParseErrorRateLimitResponse(int httpStatusCode, HttpResponseHeaders responseHeaders, Stream responseStream)
+        {
+            var rateLimit = await base.ParseErrorRateLimitResponse(httpStatusCode, responseHeaders, responseStream).ConfigureAwait(false);
+            var error = await ParseErrorResponse(httpStatusCode, responseHeaders, responseStream).ConfigureAwait(false);
+            return new ServerRateLimitError(error.Message ?? error.ErrorDescription)
+            {
+                ErrorCode = error.ErrorCode,
+                RetryAfter = rateLimit.RetryAfter
+            };
         }
     }
 }

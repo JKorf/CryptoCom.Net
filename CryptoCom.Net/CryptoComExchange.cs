@@ -143,10 +143,10 @@ namespace CryptoCom.Net
         {
             RestPrivate = new RateLimitGate("Rest Private")
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, Array.Empty<IGuardFilter>(), 3, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding));
-           RestPrivateSpecific = new RateLimitGate("Rest Specific")
-                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, new ExactPathsFilter(["/exchange/v1/private/create-order", "/exchange/v1/private/cancel-order", "/exchange/v1/private/cancel-all-orders"]), 15, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding))
-                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, new ExactPathsFilter(["/exchange/v1/private/get-order-detail"]), 30, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding))
-                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, new ExactPathsFilter(["private/get-trades", "private/get-order-history"]), 1, TimeSpan.FromMilliseconds(1000), RateLimitWindowType.Sliding));
+            RestPrivateSpecific = new RateLimitGate("Rest Specific")
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, new ExactPathsFilter(["/private/create-order", "/private/cancel-order", "/private/cancel-all-orders"]), 15, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding))
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, new ExactPathsFilter(["/private/get-order-detail"]), 30, TimeSpan.FromMilliseconds(100), RateLimitWindowType.Sliding))
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, new ExactPathsFilter(["/private/get-trades", "/private/get-order-history"]), 1, TimeSpan.FromMilliseconds(1000), RateLimitWindowType.Sliding));
             RestPublic = new RateLimitGate("Rest Public")
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerEndpoint, Array.Empty<IGuardFilter>(), 100, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             RestStaking = new RateLimitGate("Rest Staking")
