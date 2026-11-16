@@ -1,29 +1,13 @@
-# AI-Friendly Examples
+# CryptoCom.Net examples
 
-These examples are optimized for AI coding assistants and quick onboarding. Each file is:
+See [usage](../../.claude/skills/cryptocom-net/references/usage.md), [API routing](../../.claude/skills/cryptocom-net/references/api-surfaces.md), and [operational considerations](../../.claude/skills/cryptocom-net/references/safety.md) for maintained consumer guidance.
 
-- **Compilable** - drop into a console project with `dotnet add package CryptoCom.Net` and it builds.
-- **Self-contained** - single file, no external setup, no shared helpers.
-- **Heavily commented** - explains why each line matters, not just what it does.
-- **Idiomatic** - follows current CryptoCom.Net 3.x patterns.
+- [Exchange quickstart](01-exchange-quickstart.cs)
+- [Derivatives](02-derivatives.cs)
+- [WebSockets](03-websocket.cs)
+- [Shared API V2](04-multi-exchange.cs)
+- [Error handling](05-error-handling.cs)
 
-## Files
+The documentation test compiles these files as independent console programs without executing exchange operations. Running them can contact Crypto.com and execute illustrated orders and account changes. Review credentials, environment, and operations first.
 
-| File | What it shows |
-|---|---|
-| `01-exchange-quickstart.cs` | Client setup, public ticker, symbols, authenticated balance, place limit order, query order status |
-| `02-derivatives.cs` | Derivatives/perpetuals: positions, isolated margin order parameters, close position |
-| `03-websocket.cs` | Subscribe to ticker, klines, trades, authenticated order and balance streams with proper teardown |
-| `04-multi-exchange.cs` | `CryptoExchange.Net.SharedApis` pattern and shared capability discovery |
-| `05-error-handling.cs` | `HttpResult`, `WebSocketResult`, `QueryResult`, and `ExchangeCallResult` handling patterns |
-
-## Running
-
-```bash
-dotnet new console -n MyCryptoComApp
-cd MyCryptoComApp
-dotnet add package CryptoCom.Net
-# Copy the example .cs file content into Program.cs
-# Replace API_KEY / API_SECRET placeholders with your own for private endpoints
-dotnet run
-```
+See [repository instructions](../../AGENTS.md) for build and test commands.

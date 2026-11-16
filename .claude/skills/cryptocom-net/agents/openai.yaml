@@ -1,0 +1,4 @@
+interface:
+  display_name: "CryptoCom.Net"
+  short_description: "Build C# Crypto.com Exchange integrations."
+  default_prompt: "Use $cryptocom-net to implement a CryptoCom.Net REST, websocket, account, or trading workflow."

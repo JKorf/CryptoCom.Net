@@ -1,19 +1,10 @@
-# CryptoCom.Net AI API Quick Map
+# API surfaces
 
-Use this file to route common user intents to the correct CryptoCom.Net client member. If a method name or parameter is not listed here, inspect `CryptoCom.Net/Interfaces/Clients/**` before generating code.
+## Client roots and symbols
 
-## Client Roots
+`client` below is a `CryptoComRestClient`; `socketClient` is a `CryptoComSocketClient`. Both use `ExchangeApi` for spot and derivatives. REST has `ExchangeData`, `Account`, `Trading`, and `Staking` groups. Socket subscriptions and request/response operations live directly under `ExchangeApi`.
 
-| Intent | Use |
-|---|---|
-| REST calls | `new CryptoComRestClient()` |
-| WebSocket streams and socket API requests | `new CryptoComSocketClient()` |
-| API key authentication | `options.ApiCredentials = new CryptoComCredentials("key", "secret")` |
-| Live environment | `CryptoComEnvironment.Live` |
-| Sandbox environment | `CryptoComEnvironment.Sandbox` |
-| Dependency injection | `services.AddCryptoCom(options => { ... })` |
-| REST API root | `client.ExchangeApi` |
-| Socket API root | `socketClient.ExchangeApi` |
+Spot symbols commonly use `BTC_USDT` and `ETH_USDT`. Use exact instrument names returned by `GetSymbolsAsync()` for derivatives. `CryptoComExchange.FormatSymbol` formats spot with underscores and perpetuals with a `-PERP` suffix; delivery formatting also requires a delivery date. Confirm formatted names against available instruments before trading. Candles use `KlineInterval`, valuation requests use the selected valuation type, and orders use `OrderSide` / `OrderType`.
 
 ## Exchange Data REST
 
@@ -28,7 +19,7 @@ Use this file to route common user intents to the correct CryptoCom.Net client m
 | Get recent public trades | `client.ExchangeApi.ExchangeData.GetTradeHistoryAsync("BTC_USDT")` |
 | Get klines/candles | `client.ExchangeApi.ExchangeData.GetKlinesAsync("BTC_USDT", KlineInterval.OneMinute)` |
 | Get index/mark/funding valuation history | `client.ExchangeApi.ExchangeData.GetValuationsAsync(symbol, valuationType)` |
-| Get expired settlement prices | `client.ExchangeApi.ExchangeData.GetExpiredSettlementPriceAsync(SymbolType.Perpetual)` |
+| Get expired settlement prices | `client.ExchangeApi.ExchangeData.GetExpiredSettlementPriceAsync(SymbolType.DeliveryFuture)` |
 | Get insurance fund history | `client.ExchangeApi.ExchangeData.GetInsuranceAsync(asset)` |
 | Get announcements | `client.ExchangeApi.ExchangeData.GetAnnouncementsAsync()` |
 
@@ -58,7 +49,7 @@ Use this file to route common user intents to the correct CryptoCom.Net client m
 | User intent | CryptoCom.Net member |
 |---|---|
 | Get positions | `client.ExchangeApi.Trading.GetPositionsAsync()` |
-| Get one symbol positions | `client.ExchangeApi.Trading.GetPositionsAsync("ETHUSD_PERP")` |
+| Get one symbol positions | `client.ExchangeApi.Trading.GetPositionsAsync(symbol)` |
 | Place order | `client.ExchangeApi.Trading.PlaceOrderAsync(...)` |
 | Place spot limit order | `client.ExchangeApi.Trading.PlaceOrderAsync("BTC_USDT", OrderSide.Buy, OrderType.Limit, quantity: ..., price: ...)` |
 | Place market order by base quantity | `client.ExchangeApi.Trading.PlaceOrderAsync(symbol, side, OrderType.Market, quantity: ...)` |
@@ -68,7 +59,7 @@ Use this file to route common user intents to the correct CryptoCom.Net client m
 | Cancel order | `client.ExchangeApi.Trading.CancelOrderAsync(orderId: orderId)` |
 | Cancel by client order id | `client.ExchangeApi.Trading.CancelOrderAsync(clientOrderId: clientOrderId)` |
 | Cancel all orders | `client.ExchangeApi.Trading.CancelAllOrdersAsync(symbol)` |
-| Close position | `client.ExchangeApi.Trading.ClosePositionAsync("ETHUSD_PERP", OrderType.Market)` |
+| Close position | `client.ExchangeApi.Trading.ClosePositionAsync(symbol, OrderType.Market)` |
 | Get open orders | `client.ExchangeApi.Trading.GetOpenOrdersAsync(symbol)` |
 | Get order detail | `client.ExchangeApi.Trading.GetOrderAsync(orderId: orderId)` |
 | Get order by client id | `client.ExchangeApi.Trading.GetOrderAsync(clientOrderId: clientOrderId)` |
@@ -135,64 +126,35 @@ Use this file to route common user intents to the correct CryptoCom.Net client m
 | Socket API withdraw | `socketClient.ExchangeApi.WithdrawAsync(...)` |
 | Cancel orders on disconnect | `socketClient.ExchangeApi.SetCancelOnDisconnectAsync()` |
 
-## SharedApis
+## Shared API V2
 
-Use SharedApis for exchange-agnostic code across Crypto.com, Binance, Bybit, OKX, Kraken, and other CryptoExchange.Net libraries.
+Use `client.ExchangeApi.SharedApi` and `socketClient.ExchangeApi.SharedApi`. The DI aggregate `ICryptoComSharedApiClient` exposes `Rest` and `Socket`.
 
-| User intent | CryptoCom.Net member or interface |
-|---|---|
-| Shared REST client | `new CryptoComRestClient().ExchangeApi.SharedApi` |
-| Shared socket client | `new CryptoComSocketClient().ExchangeApi.SharedApi` |
-| Resolve a runtime-selected Shared API capability | `ICryptoComSharedApiClient.GetCapability(...)` |
-| Get shared spot symbols and apply request filters | `IGetSpotSymbolsRest.GetSpotSymbolsAsync(new GetSymbolsRequest(...))` |
-| Get shared futures symbols and apply request filters | `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))` |
-| Access cached shared spot symbol catalog | `IGetSpotSymbolsRest.SpotSymbolCatalog` after loading symbols |
-| Access cached shared futures symbol catalog | `IGetFuturesSymbolsRest.FuturesSymbolCatalog` after loading symbols |
-| Shared spot ticker REST | `IGetTickerRest.GetTickerAsync(new GetTickerRequest(symbol))` |
-| Shared futures ticker REST | `IGetTickerRest.GetTickerAsync(new GetTickerRequest(symbol))` |
-| Shared spot order REST | `IPlaceSpotOrderRest.PlaceSpotOrderAsync(...)` |
-| Shared futures order REST | `IPlaceFuturesOrderRest.PlaceFuturesOrderAsync(...)` |
-| Shared balances REST | `IGetBalancesRest.GetBalancesAsync(...)` |
-| Shared fees REST | `IGetFeesRest.GetFeesAsync(...)` |
-| Shared ticker socket | `ISubscribeTickerSocket.SubscribeToTickerUpdatesAsync(...)` |
-| Shared order book socket | `ISubscribeOrderBookSocket.SubscribeToOrderBookUpdatesAsync(...)` |
-| Shared balance socket | `ISubscribeBalancesSocket.SubscribeToBalanceUpdatesAsync(...)` |
-| Shared position socket | `ISubscribePositionsSocket.SubscribeToPositionUpdatesAsync(...)` |
-| Place shared spot order over socket | `IPlaceSpotOrderSocket.PlaceSpotOrderAsync(...)` |
-| Cancel shared spot order over socket | `ICancelSpotOrderSocket.CancelSpotOrderAsync(...)` |
-| Place shared futures order over socket | `IPlaceFuturesOrderSocket.PlaceFuturesOrderAsync(...)` |
-| Cancel shared futures order over socket | `ICancelFuturesOrderSocket.CancelFuturesOrderAsync(...)` |
+| Intent | Representative capabilities |
+| --- | --- |
+| Symbols and tickers | `IGetSpotSymbolsRest`, `IGetFuturesSymbolsRest`, `IGetTickerRest`, `IGetAllTickersRest`, `IGetBookTickerRest` |
+| Market data | `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetFundingRateHistoryRest`, `IGetOpenInterestRest` |
+| Accounts | `IGetAssetRest`, `IGetAllAssetsRest`, `IGetBalancesRest`, deposit/withdrawal history and placement, `IGetFeesRest`, `IGetLeverageRest`, `ISetLeverageRest` |
+| Spot trading | `IPlaceSpotOrderRest`, `ICancelSpotOrderRest`, order/client-ID lookup, order/trade history, and spot trigger-order capabilities |
+| Futures trading | `IPlaceFuturesOrderRest`, `ICancelFuturesOrderRest`, order/client-ID lookup, `IGetPositionsRest`, `ICloseFullPositionRest`, futures trigger-order and TP/SL capabilities |
+| Public socket subscriptions | `ISubscribeTickerSocket`, `ISubscribeBookTickerSocket`, `ISubscribeKlinesSocket`, `ISubscribeOrderBookSocket`, `ISubscribeTradesSocket` |
+| Private socket subscriptions | `ISubscribeUserTradesSocket`, `ISubscribeSpotOrdersSocket`, `ISubscribeFuturesOrdersSocket`, `ISubscribePositionsSocket`, `ISubscribeBalancesSocket` |
+| Socket order queries | `IPlaceSpotOrderSocket`, `ICancelSpotOrderSocket`, `IPlaceFuturesOrderSocket`, `ICancelFuturesOrderSocket` |
 
-Shared REST methods return `HttpResult<T>` / `HttpResult`; shared socket subscriptions return `WebSocketResult<UpdateSubscription>`; shared symbol/cache helpers such as `SupportsSpotSymbolAsync` and `SupportsFuturesSymbolAsync` can return `ExchangeCallResult<T>`.
+Use the aggregate's `GetCapability` with a descriptor such as `SharedCapabilities.Tickers.GetTicker.Rest` and the required trading mode when selecting implementations dynamically. Check for a missing match before accessing `Capability` and `Options`. `GetCapabilities` enumerates implementations and `Discover()` describes supported operations. With multiple exchanges registered, resolve `IEnumerable<TCapability>` and select by exchange and supported mode.
 
-Shared spot and futures symbol results populate `DisplayName` plus base/quote `SharedAssetType` and `SharedAssetSubType` metadata, including stablecoin, equity, and commodity classifications when applicable.
+### Catalogs, quantity representations, and prerequisites
 
-For shared socket subscriptions, keep the concrete socket client and unsubscribe with `await socketClient.UnsubscribeAsync(subscription.Data)`.
+Call `IGetSpotSymbolsRest.GetSpotSymbolsAsync(new GetSymbolsRequest())` or `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(new GetSymbolsRequest())` successfully before reading `SpotSymbolCatalog` or `FuturesSymbolCatalog`. Requests support base/quote asset type and subtype filters; results include `DisplayName`, trading constraints, and classifications (`Crypto`, `Fiat`, `TradFi`; applicable `StableCoin`, `Equity`, `Commodity` subtypes).
 
-## Result Handling
+Shared quantity-bearing models use `SharedOrderQuantity`. Spot limit orders and market sells use base-asset quantity; spot market buys can use base or quote quantity. Futures order capabilities advertise base-asset quantities. Shared REST and socket order books use `SharedQuantityType.BaseAsset`; do not copy contract quantity semantics from another exchange.
 
-| Situation | Pattern |
-|---|---|
-| REST success check | `if (!result.Success) { Console.WriteLine(result.Error); return; }` |
-| Socket subscription success check | `if (!sub.Success) { Console.WriteLine(sub.Error); return; }` where `sub` is `WebSocketResult<UpdateSubscription>` |
-| Socket request success check | `if (!query.Success) { Console.WriteLine(query.Error); return; }` where `query` is `QueryResult<T>` or `QueryResult` |
-| Read REST data | Read `result.Data` only after `result.Success` |
-| Read shared helper data | Read `ExchangeCallResult<T>.Data` only after `.Success` |
-| Retry decision | Retry only when `result.Error?.IsTransient == true` |
-| Cancellation | Pass `ct: cancellationToken` |
-| Batch order result | Check each nested `CallResult<T>` in the response data |
+Shared futures placement does not support inline `StopLossPrice`, `TakeProfitPrice`, or `PositionSide`; use the appropriate separate trigger/TP-SL workflow. Shared all-ticker requests require `TradingMode`. Shared TP/SL setting requires quantity, and TP/SL cancellation requires an order ID. Shared leverage setting accepts `AccountId` in `ExchangeParameters` (alias `account_id`); without it, the adapter uses the master account ID. Read capability options and exchange parameter rules before constructing portable writes.
 
-## Common Routing Pitfalls
+Shared REST uses `HttpResult<T>` / `HttpResult`, socket subscriptions use `WebSocketResult<UpdateSubscription>`, socket order queries use `QueryResult<T>` / `QueryResult`, and non-I/O symbol/cache helpers can return `ExchangeCallResult<T>`.
 
-| Do not use | Use instead |
-|---|---|
-| `CryptoComClient` | `CryptoComRestClient` |
-| `ApiCredentials` | `CryptoComCredentials` |
-| `SpotApi` | `ExchangeApi` |
-| `UsdFuturesApi` / `CoinFuturesApi` | `ExchangeApi.Trading` with derivative symbols |
-| `GeneralApi` | `ExchangeApi.Account`, `ExchangeApi.Trading`, or `ExchangeApi.Staking` |
-| `GetTickerAsync` | `GetTickersAsync` |
-| `BTCUSDT` by default | `BTC_USDT` for spot examples, or exact symbol from `GetSymbolsAsync()` |
-| `.Data` without `.Success` check | Check `.Success` first |
-| Unsubscribe from a shared subscription | Keep the concrete socket client and call `socketClient.UnsubscribeAsync(subscription.Data)` |
-| Custom `clientOrderId` by default | Omit it unless external correlation is required |
+## Environments and helpers
+
+Clients default to `CryptoComEnvironment.Live`. Select `CryptoComEnvironment.Sandbox` explicitly when testing with sandbox credentials. `CreateCustom` takes a name, REST address, and socket address.
+
+Checkout-only: [public interfaces](../../../../CryptoCom.Net/Interfaces/Clients/), [local order books](../../../../CryptoCom.Net/SymbolOrderBooks/), and [tracker factory](../../../../CryptoCom.Net/CryptoComTrackerFactory.cs). A maintained local book combines snapshots and deltas; an individual incremental message is not a full book.

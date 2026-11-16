@@ -1,47 +1,18 @@
 # CryptoCom.Net
 
-> Strongly typed .NET client library for the Crypto.com Exchange REST and WebSocket APIs. Supports public market data, account management, trading, positions, staking, withdrawals, WebSocket subscriptions, and CryptoExchange.Net SharedApis. Part of the CryptoExchange.Net ecosystem providing a unified abstraction across 28+ cryptocurrency exchanges.
+> A .NET client library for Crypto.com Exchange spot, derivatives, staking, REST, and WebSocket APIs.
 
-CryptoCom.Net provides typed C# clients for Crypto.com Exchange with request signing, automatic WebSocket reconnection, result-based error handling via the CryptoExchange.Net result model, client-side rate limiting, native AOT support, and shared API interfaces for multi-exchange applications. REST methods return `HttpResult<T>` / `HttpResult`, WebSocket subscriptions return `WebSocketResult<UpdateSubscription>`, socket API requests return `QueryResult<T>` / `QueryResult`, and selected shared helper methods return `ExchangeCallResult<T>`. Current version: 4.7.0. Targets netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0.
+## Library usage
 
-## Documentation
+- [CryptoCom.Net skill](.claude/skills/cryptocom-net/SKILL.md): Consumer conventions and task-specific guidance.
+- [API surfaces](.claude/skills/cryptocom-net/references/api-surfaces.md): Client roots, intent-to-method routing, and Shared APIs.
+- [Usage examples](.claude/skills/cryptocom-net/references/usage.md): Authentication, REST, WebSockets, and dependency injection.
+- [Operational considerations](.claude/skills/cryptocom-net/references/safety.md): Credentials, order handling, and retry decisions.
 
-- [README](https://github.com/JKorf/CryptoCom.Net/blob/main/README.md): Overview, installation, supported features, basic usage examples, full release notes
-- [Documentation Site](https://cryptoexchange.jkorf.dev/CryptoCom.Net/): Full documentation hub including client reference, WebSocket subscriptions, dependency injection, and shared interfaces
-- [AI API Quick Map](https://github.com/JKorf/CryptoCom.Net/blob/main/docs/ai-api-map.md): Quick intent-to-method map for routing common user requests to the correct client member
-- [Full LLM Context](https://github.com/JKorf/CryptoCom.Net/blob/main/llms-full.txt): Detailed AI/LLM guide with code patterns, endpoint map, common mistakes, and anti-hallucination rules
-- [Assistant Skill](https://github.com/JKorf/CryptoCom.Net/blob/main/CLAUDE.md): Concise implementation rules for assistant coding workflows
+## Repository and reference
 
-## Examples
-
-- [AI-friendly examples directory](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples/ai-friendly): Compact, fully runnable examples optimized for AI assistants and quick onboarding
-- [Exchange Quickstart](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/01-exchange-quickstart.cs): Client setup, ticker, balances, limit order, order status, cancellation
-- [Derivatives Positions](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/02-derivatives.cs): Account leverage, perpetual order, positions, close position
-- [WebSocket Streams](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/03-websocket.cs): Ticker, klines, trades, authenticated order/balance streams with teardown
-- [Multi-Exchange Pattern](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/04-multi-exchange.cs): Using CryptoExchange.Net SharedApis and shared capability discovery for exchange-agnostic code
-- [Error Handling](https://github.com/JKorf/CryptoCom.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): HttpResult, WebSocketResult, QueryResult, and ExchangeCallResult patterns, retry logic, common Crypto.com API pitfalls
-- [Full Examples Repository](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples): Console and configuration examples
-
-## Critical Usage Rules
-
-- Use `CryptoComRestClient` for REST and `CryptoComSocketClient` for WebSocket.
-- Use `CryptoComCredentials("key", "secret")` for API key setup.
-- Use `ExchangeApi.ExchangeData`, `ExchangeApi.Account`, `ExchangeApi.Trading`, and `ExchangeApi.Staking`.
-- Do not invent Binance-style roots such as `SpotApi`, `UsdFuturesApi`, or `GeneralApi`.
-- Always check `.Success` before reading `.Data`.
-- Use exact instrument names returned by `GetSymbolsAsync()`; spot examples commonly use `BTC_USDT`.
-- Store WebSocket subscriptions and unsubscribe with the concrete socket client.
-- Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
-- Shared spot and futures symbol results expose display names and asset type/subtype metadata; their interfaces also expose cached `SpotSymbolCatalog` and `FuturesSymbolCatalog` values after symbols are loaded.
-
-## Reference
-
-- [CryptoExchange.Net base library](https://github.com/JKorf/CryptoExchange.Net): Base abstractions used by CryptoCom.Net and other exchange libraries
-- [CryptoClients.Net](https://github.com/JKorf/CryptoClients.Net): Bundle package providing unified access to all exchange libraries
-- [NuGet Package](https://www.nuget.org/packages/CryptoCom.Net): Latest stable release on NuGet
-
-## Optional
-
-- [Discord Community](https://discord.gg/MSpeEtSY8t): Maintainer-supported Discord for questions and discussion
-- [GitHub Issues](https://github.com/JKorf/CryptoCom.Net/issues): Bug reports and feature requests
-- [GitHub Sponsors](https://github.com/sponsors/JKorf): Support the maintainer
+- [README](README.md): Overview, installation, release notes, and documentation site link.
+- [Repository instructions](AGENTS.md): Development workflow and documentation ownership.
+- [Client interfaces](CryptoCom.Net/Interfaces/Clients/): Exact endpoint signatures and XML documentation.
+- [Library project](CryptoCom.Net/CryptoCom.Net.csproj): Package version, dependencies, and target frameworks.
+- [AI-friendly examples](Examples/ai-friendly/): Complete programs compiled by the documentation test.

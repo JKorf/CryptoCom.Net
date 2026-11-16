@@ -39,8 +39,8 @@ else
 }
 
 // ---- 2. SIMPLE RETRY WITH BACKOFF ----
-// Retry only on transient errors such as rate limits, temporary network failures,
-// or server overload. Do not retry validation or authentication errors blindly.
+// For public reads only: retry transient failures with a bounded attempt count.
+// Do not use this helper to retry account-changing submissions.
 async Task<HttpResult<T>> WithRetry<T>(
     Func<Task<HttpResult<T>>> call,
     int maxAttempts = 3)
@@ -98,7 +98,7 @@ var order = await client.ExchangeApi.Trading.PlaceOrderAsync(
 if (!order.Success)
 {
     string category = order.Error?.IsTransient == true
-        ? "Transient - should retry with backoff if the operation is idempotent"
+        ? "Transient - reconcile submission state before deciding whether to resubmit"
         : "Permanent - surface to the caller or fix request parameters";
 
     Console.WriteLine($"{category}: {order.Error?.Code} {order.Error?.Message}");
@@ -140,7 +140,7 @@ else
 // or programming errors. Use CancellationToken via the `ct:` parameter where needed.
 
 // Common scenarios:
-//   Rate limit / network issue: result.Error.IsTransient may be true; retry with backoff
+//   Rate limit / network issue: result.Error.IsTransient may be true; retry reads with backoff and reconcile writes
 //   Invalid signature:          credentials, permissions, or environment issue
 //   Invalid instrument:         use GetSymbolsAsync() and exact symbol names
 //   Invalid precision:          use PriceTickSize / QuantityTickSize

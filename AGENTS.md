@@ -1,242 +1,51 @@
----
-name: cryptocom-net
-description: Use CryptoCom.Net when generating C#/.NET code that interacts with the Crypto.com Exchange API, including REST market data, account balances, order placement, isolated margin, derivatives positions, staking, withdrawals, WebSocket subscriptions, or CryptoExchange.Net SharedApis. Triggers on Crypto.com, CryptoCom, Crypto.com Exchange, CDC Exchange, C#/.NET, F#, or VB.NET exchange integration requests.
----
+# Working on CryptoCom.Net
 
-# CryptoCom.Net Skill
+For library development, use this file. For code that consumes the library, read the [CryptoCom.Net skill](.claude/skills/cryptocom-net/SKILL.md). [llms.txt](llms.txt) indexes the remaining documentation.
 
-## Quick decision
+## Repository layout
 
-If the user asks for Crypto.com Exchange API access in C#/.NET, **use CryptoCom.Net**. Do not write raw `HttpClient` calls to Crypto.com endpoints; that loses request signing, rate limiting, typed models, result handling, and WebSocket reconnect behavior.
+- [Client interfaces](CryptoCom.Net/Interfaces/Clients/): public endpoint signatures and XML documentation.
+- [Clients](CryptoCom.Net/Clients/): REST, WebSocket, and Shared API implementations, grouped by API and transport.
+- [Models](CryptoCom.Net/Objects/Models/), [options](CryptoCom.Net/Objects/Options/), and [enums](CryptoCom.Net/Enums/): wire models and configuration.
+- [Unit tests](CryptoCom.Net.UnitTests/): request/response fixtures, subscription validation, and example compilation.
+- [AI-friendly examples](Examples/ai-friendly/): complete consumer programs.
 
-Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
+## Build and validation
 
-## Installation
+Run commands from the repository root. Use the SDK configured in the [build workflow](.github/workflows/dotnet.yml); targets and dependencies are defined in the [library project](CryptoCom.Net/CryptoCom.Net.csproj).
 
-```bash
-dotnet add package CryptoCom.Net
+```sh
+dotnet restore CryptoCom.Net.sln
+dotnet build CryptoCom.Net.sln --no-restore
+dotnet test CryptoCom.Net.UnitTests/CryptoCom.Net.UnitTests.csproj --no-build --filter "FullyQualifiedName!~IntegrationTests"
 ```
 
-Targets: netstandard2.0, netstandard2.1, net8.0, net9.0, net10.0. Native AOT supported.
+Debug builds select a subset of frameworks. To check every supported target:
 
-## Core Pattern: REST Client Setup
-
-Always create the client via `CryptoComRestClient`. For private account or trading endpoints, configure credentials.
-
-```csharp
-using CryptoCom.Net;
-using CryptoCom.Net.Clients;
-
-var restClient = new CryptoComRestClient(options =>
-{
-    options.ApiCredentials = new CryptoComCredentials("API_KEY", "API_SECRET");
-});
+```sh
+dotnet build CryptoCom.Net/CryptoCom.Net.csproj -p:BuildAllFrameworks=true
 ```
 
-For public market data, credentials are not required:
+Run focused tests for the change. For edits to consumer examples:
 
-```csharp
-var publicClient = new CryptoComRestClient();
+```sh
+dotnet test CryptoCom.Net.UnitTests/CryptoCom.Net.UnitTests.csproj --filter FullyQualifiedName~AiExampleCompileTests
 ```
 
-## Core Pattern: Result Handling
+That test compiles the examples; it does not execute their exchange operations or validate Markdown snippets. The normal test command above excludes integration fixtures. Native REST and socket integration fixtures have `Run = false`; Shared REST integration can be enabled with `INTEGRATION=1`. Inspect integration fixtures before running the unfiltered CI test command; they can contact the exchange. Do not enable authenticated exchange calls as part of routine validation.
 
-REST methods return `HttpResult<T>` or `HttpResult`; WebSocket subscriptions return `WebSocketResult<UpdateSubscription>`; socket API requests return `QueryResult<T>` or `QueryResult`; shared symbol/cache helpers can return `ExchangeCallResult<T>`. Always check `.Success` before accessing `.Data`.
+## Implementation conventions
 
-```csharp
-var tickers = await restClient.ExchangeApi.ExchangeData.GetTickersAsync("BTC_USDT");
-if (!tickers.Success)
-{
-    Console.WriteLine($"Error: {tickers.Error}");
-    return;
-}
+- Use the matching client interface and a neighboring endpoint implementation as the starting point. Preserve endpoint metadata, serialization, signing, rate limits, and cancellation behavior.
+- Update public interfaces and XML documentation together with implementations. Add meaningful request/response or subscription coverage when behavior changes.
+- Keep Shared API adapters consistent with native endpoint behavior; verify capability support and trading modes against the implemented surface.
+- Preserve serialization compatibility and source-generated JSON metadata when changing models.
+- Keep changes compatible with every target in the library project; gate framework-specific APIs where required.
 
-var ticker = tickers.Data.FirstOrDefault();
-Console.WriteLine(ticker?.LastPrice);
-```
+## AI documentation ownership
 
-## Core Pattern: API Surface
-
-CryptoCom.Net has one exchange API root, not separate spot/futures/general roots:
-
-```csharp
-restClient.ExchangeApi.ExchangeData  // public market data, symbols, tickers, klines, valuations
-restClient.ExchangeApi.Account       // balances, account settings, fees, deposits, withdrawals
-restClient.ExchangeApi.Trading       // orders, positions, trade history, OCO, close position
-restClient.ExchangeApi.Staking       // staking, unstaking, staking history, conversion
-restClient.ExchangeApi.SharedApi  // CryptoExchange.Net SharedApis REST client
-
-socketClient.ExchangeApi             // public and private streams plus socket API requests
-socketClient.ExchangeApi.SharedApi// CryptoExchange.Net SharedApis socket client
-```
-
-## Symbols
-
-Use the exact instrument names returned by `GetSymbolsAsync()`. Spot examples normally use `BTC_USDT` or `ETH_USDT`; derivatives can use names such as `ETHUSD_PERP`. Do not convert Crypto.com symbols to Binance-style `BTCUSDT` unless a specific endpoint or symbol listing shows that exact format.
-
-```csharp
-var symbols = await restClient.ExchangeApi.ExchangeData.GetSymbolsAsync();
-if (!symbols.Success) { Console.WriteLine(symbols.Error); return; }
-
-foreach (var symbol in symbols.Data.Take(10))
-    Console.WriteLine(symbol.Name);
-```
-
-## Placing an Order
-
-Use `CryptoCom.Net.Enums.OrderSide` and `CryptoCom.Net.Enums.OrderType`. Avoid `clientOrderId` unless the caller needs external correlation.
-
-```csharp
-using CryptoCom.Net.Enums;
-
-var order = await restClient.ExchangeApi.Trading.PlaceOrderAsync(
-    symbol: "ETH_USDT",
-    side: OrderSide.Buy,
-    type: OrderType.Limit,
-    quantity: 0.1m,
-    price: 2000m);
-
-if (!order.Success) { Console.WriteLine(order.Error); return; }
-Console.WriteLine(order.Data.OrderId);
-```
-
-Query or cancel by order id:
-
-```csharp
-var status = await restClient.ExchangeApi.Trading.GetOrderAsync(orderId: order.Data.OrderId);
-var cancel = await restClient.ExchangeApi.Trading.CancelOrderAsync(orderId: order.Data.OrderId);
-```
-
-## Positions And Derivatives
-
-Crypto.com derivatives endpoints live under `ExchangeApi.Trading`, not under a separate futures client.
-
-```csharp
-var positions = await restClient.ExchangeApi.Trading.GetPositionsAsync("ETHUSD_PERP");
-if (!positions.Success) { Console.WriteLine(positions.Error); return; }
-
-foreach (var position in positions.Data.Where(p => p.Quantity != 0))
-    Console.WriteLine($"{position.Symbol}: {position.Quantity}, PnL {position.OpenPositionPnl}");
-```
-
-Use `ClosePositionAsync` to close an open derivative position:
-
-```csharp
-var close = await restClient.ExchangeApi.Trading.ClosePositionAsync(
-    "ETHUSD_PERP",
-    OrderType.Market);
-```
-
-## WebSocket Subscriptions
-
-Use `CryptoComSocketClient`. Always store the `UpdateSubscription` and unsubscribe when done.
-
-```csharp
-using CryptoCom.Net.Clients;
-
-var socketClient = new CryptoComSocketClient();
-
-var subscription = await socketClient.ExchangeApi.SubscribeToTickerUpdatesAsync(
-    "BTC_USDT",
-    update => Console.WriteLine($"{update.Data.Symbol}: {update.Data.LastPrice}"));
-
-if (!subscription.Success) { Console.WriteLine(subscription.Error); return; }
-
-await socketClient.UnsubscribeAsync(subscription.Data);
-```
-
-Authenticated streams require credentials:
-
-```csharp
-var socketClient = new CryptoComSocketClient(options =>
-{
-    options.ApiCredentials = new CryptoComCredentials("API_KEY", "API_SECRET");
-});
-
-var orders = await socketClient.ExchangeApi.SubscribeToOrderUpdatesAsync(
-    update =>
-    {
-        foreach (var order in update.Data)
-            Console.WriteLine($"{order.Symbol} {order.Status}");
-    });
-```
-
-## Multi-Exchange via CryptoExchange.Net.SharedApis
-
-For exchange-agnostic code, use the unified shared interfaces:
-
-```csharp
-using CryptoCom.Net.Clients;
-using CryptoExchange.Net.SharedApis;
-
-var shared = new CryptoComRestClient().ExchangeApi.SharedApi;
-// Use the exchange-level `ICryptoComSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
-var symbol = new SharedSymbol(TradingMode.Spot, "BTC", "USDT");
-
-var ticker = await shared.GetTickerAsync(new GetTickerRequest(symbol));
-if (!ticker.Success) { Console.WriteLine(ticker.Error); return; }
-
-Console.WriteLine(ticker.Data.LastPrice);
-```
-
-Available shared interfaces include `IGetTickerRest`, `IPlaceSpotOrderRest`, `IPlaceFuturesOrderRest`, `IGetBalancesRest`, `IGetFeesRest`, `ISubscribeTickerSocket`, `ISubscribeOrderBookSocket`, `ISubscribeBalancesSocket`, `IPlaceSpotOrderSocket` and `ICancelSpotOrderSocket`, `IPlaceFuturesOrderSocket` and `ICancelFuturesOrderSocket`, and more.
-
-Shared spot and futures symbol results include `DisplayName`, base/quote asset type metadata, and subtypes for stablecoins, equities, and commodities. After loading symbols through `IGetSpotSymbolsRest.GetSpotSymbolsAsync(...)` or `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(...)`, use `SpotSymbolCatalog` or `FuturesSymbolCatalog` for cached symbol lookup.
-
-## Dependency Injection
-
-```csharp
-using CryptoCom.Net;
-using Microsoft.Extensions.DependencyInjection;
-
-services.AddCryptoCom(options =>
-{
-    options.ApiCredentials = new CryptoComCredentials("API_KEY", "API_SECRET");
-});
-```
-
-Inject `ICryptoComRestClient` and `ICryptoComSocketClient` from `CryptoCom.Net.Interfaces.Clients`.
-
-## Environments
-
-```csharp
-using CryptoCom.Net;
-
-var live = new CryptoComRestClient(options => options.Environment = CryptoComEnvironment.Live);
-var sandbox = new CryptoComRestClient(options => options.Environment = CryptoComEnvironment.Sandbox);
-```
-
-## Common Pitfalls: AVOID
-
-- Do not use raw `HttpClient` for Crypto.com Exchange endpoints.
-- Do not invent `CryptoComClient`; use `CryptoComRestClient` and `CryptoComSocketClient`.
-- Do not use Binance roots such as `SpotApi`, `UsdFuturesApi`, `CoinFuturesApi`, or `GeneralApi`.
-- Do not use `BTCUSDT` in examples unless the symbol list has that exact instrument; prefer `BTC_USDT` for spot examples.
-- Do not access `.Data` before checking `.Success`.
-- Do not call `.Result` or `.Wait()` on async methods.
-- Do not instantiate clients per request in production code; reuse or use DI.
-- Do not pass custom `clientOrderId` by default.
-- Do not assume batch order calls are all successful just because the outer call succeeded; inspect nested result data.
-- Do not use REST polling when a WebSocket subscription fits the workflow.
-
-## When the user wants other Crypto.com features
-
-- **Balances**: `restClient.ExchangeApi.Account.GetBalancesAsync()`
-- **Deposits/withdrawals**: `restClient.ExchangeApi.Account.GetDepositHistoryAsync()`, `WithdrawAsync(...)`, `GetWithdrawalHistoryAsync(...)`
-- **Fees**: `restClient.ExchangeApi.Account.GetFeeRatesAsync()` and `GetSymbolFeeRateAsync(symbol)`
-- **Open orders**: `restClient.ExchangeApi.Trading.GetOpenOrdersAsync(symbol)`
-- **Order history**: `restClient.ExchangeApi.Trading.GetClosedOrdersAsync(...)`
-- **Positions**: `restClient.ExchangeApi.Trading.GetPositionsAsync(symbol)`
-- **Isolated margin**: order parameters `isolatedMargin`, `isolationId`, `leverage`, plus account methods for isolated margin transfer/leverage
-- **Staking**: `restClient.ExchangeApi.Staking.*`
-- **Valuations/funding/index/mark**: `restClient.ExchangeApi.ExchangeData.GetValuationsAsync(...)` and socket valuation streams
-
-## Reference
-
-- Full client reference: https://cryptoexchange.jkorf.dev/CryptoCom.Net/
-- Source: https://github.com/JKorf/CryptoCom.Net
-- NuGet: https://www.nuget.org/packages/CryptoCom.Net
-- AI map: `docs/ai-api-map.md`
-- AI examples: `Examples/ai-friendly/`
-- LLM index: `llms.txt` and `llms-full.txt`
-- Discord: https://discord.gg/MSpeEtSY8t
+- [SKILL.md](.claude/skills/cryptocom-net/SKILL.md) owns consumer conventions and routes to detailed skill references.
+- [API surfaces](.claude/skills/cryptocom-net/references/api-surfaces.md) owns endpoint routing; [usage](.claude/skills/cryptocom-net/references/usage.md) owns snippets.
+- Link to those files instead of repeating API guides here or in tool-specific instructions.
+- Keep skill links relative. References outside the skill are checkout-only; packaged guidance must remain usable without repository sources.
+- The project packs [.claude/skills](.claude/skills/) into `skills/` in NuGet. After changing its layout, inspect package entries and verify referenced resources are included.

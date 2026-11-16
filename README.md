@@ -95,19 +95,12 @@ var tickerSubscriptionResult = socketClient.ExchangeApi.SubscribeToTickerUpdates
 
 For more examples and explanations, continue with the [CryptoCom.Net documentation](https://cryptoexchange.jkorf.dev/docs/exchange-clients?library=CryptoCom.Net) or browse the [compilable repository examples](https://github.com/JKorf/CryptoCom.Net/tree/main/Examples).
 
-## AI / LLM documentation
+## AI documentation
 
-CryptoCom.Net includes AI-oriented documentation and examples for code generation tools:
-
-|File|Purpose|
-|--|--|
-|[`AGENTS.md`](AGENTS.md)|Assistant skill with core CryptoCom.Net patterns, pitfalls, and examples|
-|[`llms.txt`](llms.txt)|Short LLM index with links to docs, examples, and critical usage rules|
-|[`llms-full.txt`](llms-full.txt)|Detailed LLM context with endpoint routing, code patterns, and anti-hallucination checks|
-|[`docs/ai-api-map.md`](docs/ai-api-map.md)|Quick intent-to-method map for the CryptoCom.Net REST, WebSocket, and shared API surfaces|
-|[`Examples/ai-friendly`](Examples/ai-friendly)|Compilable single-file examples for common REST, WebSocket, shared API, and error handling workflows|
-
-See [cryptoexchange-skills-hub](https://github.com/JKorf/cryptoexchange-skills-hub) for installable skills.
+- [Library skill](.claude/skills/cryptocom-net/SKILL.md): Consumer guidance and API references.
+- [Repository instructions](AGENTS.md): Development workflow and documentation ownership.
+- [llms.txt](llms.txt): Local documentation index.
+- [Complete examples](Examples/ai-friendly/): Programs compiled by the documentation test.
 
 ## Shared / unified API
 

@@ -15,7 +15,22 @@ var client = new CryptoComRestClient(options =>
     options.ApiCredentials = new CryptoComCredentials("API_KEY", "API_SECRET");
 });
 
-const string symbol = "ETHUSD_PERP";
+// Select the currently listed ETH/USD perpetual instead of guessing a suffix.
+var symbols = await client.ExchangeApi.ExchangeData.GetSymbolsAsync();
+if (!symbols.Success)
+{
+    Console.WriteLine(symbols.Error);
+    return;
+}
+var instrument = symbols.Data.FirstOrDefault(x =>
+    x.SymbolType == SymbolType.PerpetualSwap && x.BaseAsset == "ETH" &&
+    x.QuoteAsset == "USD" && x.Tradable);
+if (instrument is null)
+{
+    Console.WriteLine("No tradable ETH/USD perpetual was returned.");
+    return;
+}
+var symbol = instrument.Symbol;
 
 // ---- 1. GET CURRENT POSITIONS ----
 // CryptoCom.Net has one ExchangeApi root. Derivatives are not under a separate
@@ -34,7 +49,7 @@ foreach (var p in positions.Data)
 
 // ---- 2. PLACE MARKET ORDER (open or increase a position) ----
 // Derivative instruments use the same PlaceOrderAsync method as spot, with a
-// derivative instrument name such as ETHUSD_PERP.
+// the derivative instrument name returned by symbol metadata.
 var openOrder = await client.ExchangeApi.Trading.PlaceOrderAsync(
     symbol: symbol,
     side: OrderSide.Buy,
