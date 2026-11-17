@@ -49,8 +49,8 @@ namespace CryptoCom.Net
         /// <inheritdoc />
         public IKlineTracker CreateKlineTracker(SharedSymbol symbol, SharedKlineInterval interval, int? limit = null, TimeSpan? period = null, ExchangeParameters? exchangeParameters = null)
         {
-            var restClient = (_serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient()).ExchangeApi.SharedClient;
-            var socketClient = (_serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient()).ExchangeApi.SharedClient;
+            var restClient = (_serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient()).ExchangeApi.SharedApi;
+            var socketClient = (_serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient()).ExchangeApi.SharedApi;
 
             return new KlineTracker(
                 _serviceProvider?.GetRequiredService<ILoggerFactory>().CreateLogger(restClient.Exchange),
@@ -66,8 +66,8 @@ namespace CryptoCom.Net
         /// <inheritdoc />
         public ITradeTracker CreateTradeTracker(SharedSymbol symbol, int? limit = null, TimeSpan? period = null, ExchangeParameters? exchangeParameters = null)
         {
-            var restClient = (_serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient()).ExchangeApi.SharedClient;
-            var socketClient = (_serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient()).ExchangeApi.SharedClient;
+            var restClient = (_serviceProvider?.GetRequiredService<ICryptoComRestClient>() ?? new CryptoComRestClient()).ExchangeApi.SharedApi;
+            var socketClient = (_serviceProvider?.GetRequiredService<ICryptoComSocketClient>() ?? new CryptoComSocketClient()).ExchangeApi.SharedApi;
 
             return new TradeTracker(
                 _serviceProvider?.GetRequiredService<ILoggerFactory>().CreateLogger(restClient.Exchange),
