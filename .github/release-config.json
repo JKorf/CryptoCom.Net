@@ -1,0 +1,18 @@
+{
+  "baseBranch": "main",
+  "sdk": "11.0.100",
+  "packages": [
+    {
+      "key": "cryptocom",
+      "project": "CryptoCom.Net/CryptoCom.Net.csproj",
+      "testProjects": [
+        "CryptoCom.Net.UnitTests/CryptoCom.Net.UnitTests.csproj"
+      ],
+      "packageId": "CryptoCom.Net",
+      "readme": "README.md",
+      "tagPrefix": "CryptoCom.Net.",
+      "releaseIntegrationTests": false,
+      "publishToGitHubPackages": true
+    }
+  ]
+}
