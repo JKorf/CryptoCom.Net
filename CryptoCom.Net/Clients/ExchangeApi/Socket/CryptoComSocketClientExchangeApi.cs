@@ -27,6 +27,7 @@ using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
 using CryptoCom.Net.Clients.MessageHandlers;
 using CryptoExchange.Net.Sockets.Default;
+using CryptoExchange.Net.Sockets.Interfaces;
 
 namespace CryptoCom.Net.Clients.ExchangeApi
 {
@@ -59,6 +60,24 @@ namespace CryptoCom.Net.Clients.ExchangeApi
         #endregion
 
         #region Subscriptions
+
+        protected override bool ConnectionCanBeUsedFor(SocketConnection connection, string address, bool authenticated, IMessageProcessor? processor, string? topic = null)
+        {
+            if (!base.ConnectionCanBeUsedFor(connection, address, authenticated, processor, topic))
+                return false;
+
+            if (topic != "book" && topic != "bookbook.update")
+                return true;
+
+            if ((connection.Topics.Contains("bookbook.update") && topic == "book")
+                || (connection.Topics.Contains("book") && topic == "bookbook.update"))
+            {
+                // Keep snapshot and incremental order book subscriptions on separate connections
+                return false;
+            }
+
+            return true;
+        }
 
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(CryptoComExchange._serializerContext));

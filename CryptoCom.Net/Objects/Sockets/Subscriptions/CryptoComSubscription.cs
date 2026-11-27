@@ -43,6 +43,7 @@ namespace CryptoCom.Net.Objects.Sockets.Subscriptions
             _listenerIdentifiers = filters == null ? [topic] : filters.Select(x => $"{topic}.{x}").ToArray();
 
             IndividualSubscriptionCount = symbols?.Length ?? 1;
+            Topic = topic + additionalUpdateTopic;
 
             string[] topics = additionalUpdateTopic == null ? [topic] : [additionalUpdateTopic, topic];
             if (filters != null)
